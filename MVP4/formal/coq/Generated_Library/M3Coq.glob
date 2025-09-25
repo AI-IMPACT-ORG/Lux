@@ -1,0 +1,192 @@
+DIGEST d3a1ca71e95f7f2b1974d7b6c9293320
+FM3Coq
+R163:167 Stdlib.Arith.Arith <> <> lib
+R197:200 Stdlib.Bool.Bool <> <> lib
+R230:235 Stdlib.Strings.String <> <> lib
+R265:268 Stdlib.Lists.List <> <> lib
+ind 300:305 <> Symbol
+constr 321:324 <> port
+constr 339:341 <> pin
+constr 356:360 <> input
+constr 375:380 <> output
+constr 395:400 <> sigma6
+constr 415:420 <> tensor
+constr 435:438 <> wire
+constr 453:456 <> unit
+constr 471:474 <> cast
+R328:333 M3Coq <> Symbol:1 ind
+R345:350 M3Coq <> Symbol:1 ind
+R364:369 M3Coq <> Symbol:1 ind
+R384:389 M3Coq <> Symbol:1 ind
+R404:409 M3Coq <> Symbol:1 ind
+R424:429 M3Coq <> Symbol:1 ind
+R442:447 M3Coq <> Symbol:1 ind
+R460:465 M3Coq <> Symbol:1 ind
+R478:483 M3Coq <> Symbol:1 ind
+scheme 300:305 <> Symbol_rect
+scheme 300:305 <> Symbol_ind
+scheme 300:305 <> Symbol_rec
+scheme 300:305 <> Symbol_sind
+rec 520:524 <> Arity
+proj 544:554 <> input_arity
+proj 567:578 <> output_arity
+R558:560 Corelib.Init.Datatypes <> nat ind
+R582:584 Corelib.Init.Datatypes <> nat ind
+ind 618:625 <> PortSort
+constr 641:644 <> Port
+constr 671:673 <> Pin
+constr 700:704 <> Input
+constr 731:736 <> Output
+R654:657 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R648:653 M3Coq <> Symbol ind
+R658:665 M3Coq <> PortSort:6 ind
+R683:686 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R677:682 M3Coq <> Symbol ind
+R687:694 M3Coq <> PortSort:6 ind
+R714:717 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R708:713 M3Coq <> Symbol ind
+R718:725 M3Coq <> PortSort:6 ind
+R746:749 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R740:745 M3Coq <> Symbol ind
+R750:757 M3Coq <> PortSort:6 ind
+scheme 618:625 <> PortSort_rect
+scheme 618:625 <> PortSort_ind
+scheme 618:625 <> PortSort_rec
+scheme 618:625 <> PortSort_sind
+ind 807:814 <> EdgeKind
+constr 830:835 <> Sigma6
+constr 852:857 <> Tensor
+constr 874:877 <> Wire
+constr 894:897 <> Unit
+constr 914:917 <> Cast
+R839:846 M3Coq <> EdgeKind:8 ind
+R861:868 M3Coq <> EdgeKind:8 ind
+R881:888 M3Coq <> EdgeKind:8 ind
+R901:908 M3Coq <> EdgeKind:8 ind
+R921:928 M3Coq <> EdgeKind:8 ind
+scheme 807:814 <> EdgeKind_rect
+scheme 807:814 <> EdgeKind_ind
+scheme 807:814 <> EdgeKind_rec
+scheme 807:814 <> EdgeKind_sind
+rec 956:964 <> TypeGraph
+proj 984:988 <> ports
+proj 1011:1015 <> kinds
+proj 1038:1046 <> arity_map
+proj 1073:1081 <> src_sorts
+proj 1116:1124 <> dst_sorts
+R992:995 Corelib.Init.Datatypes <> list ind
+R997:1004 M3Coq <> PortSort ind
+R1019:1022 Corelib.Init.Datatypes <> list ind
+R1024:1031 M3Coq <> EdgeKind ind
+R1058:1061 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R1050:1057 M3Coq <> EdgeKind ind
+R1062:1066 M3Coq <> Arity rec
+R1093:1096 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R1085:1092 M3Coq <> EdgeKind ind
+R1097:1100 Corelib.Init.Datatypes <> list ind
+R1102:1109 M3Coq <> PortSort ind
+R1136:1139 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R1128:1135 M3Coq <> EdgeKind ind
+R1140:1143 Corelib.Init.Datatypes <> list ind
+R1145:1152 M3Coq <> PortSort ind
+ind 1218:1228 <> ModuliSpace
+constr 1244:1256 <> mkModuliSpace
+R1263:1266 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R1260:1262 Corelib.Init.Datatypes <> nat ind
+R1270:1273 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R1267:1269 Corelib.Init.Datatypes <> nat ind
+R1277:1280 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R1274:1276 Corelib.Init.Datatypes <> nat ind
+R1284:1287 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R1281:1283 Corelib.Init.Datatypes <> nat ind
+R1291:1294 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R1288:1290 Corelib.Init.Datatypes <> nat ind
+R1298:1301 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R1295:1297 Corelib.Init.Datatypes <> nat ind
+R1305:1308 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R1302:1304 Corelib.Init.Datatypes <> nat ind
+R1312:1315 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R1309:1311 Corelib.Init.Datatypes <> nat ind
+R1319:1322 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R1316:1318 Corelib.Init.Datatypes <> nat ind
+R1326:1329 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R1323:1325 Corelib.Init.Datatypes <> nat ind
+R1330:1340 M3Coq <> ModuliSpace:16 ind
+scheme 1218:1228 <> ModuliSpace_rect
+scheme 1218:1228 <> ModuliSpace_ind
+scheme 1218:1228 <> ModuliSpace_rec
+scheme 1218:1228 <> ModuliSpace_sind
+def 1391:1405 <> concrete_moduli
+R1409:1419 M3Coq <> ModuliSpace ind
+R1426:1438 M3Coq <> mkModuliSpace constr
+ind 1497:1507 <> AnomalyFunc
+constr 1523:1529 <> Anomaly
+R1536:1539 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R1533:1535 Corelib.Init.Datatypes <> nat ind
+R1540:1550 M3Coq <> AnomalyFunc:18 ind
+scheme 1497:1507 <> AnomalyFunc_rect
+scheme 1497:1507 <> AnomalyFunc_ind
+scheme 1497:1507 <> AnomalyFunc_rec
+scheme 1497:1507 <> AnomalyFunc_sind
+def 1587:1601 <> anomaly_measure
+R1609:1619 M3Coq <> AnomalyFunc ind
+binder 1604:1605 <> af:20
+R1624:1626 Corelib.Init.Datatypes <> nat ind
+R1639:1640 M3Coq <> af:20 var
+R1651:1657 M3Coq <> Anomaly constr
+def 1741:1752 <> sigma6_arity
+R1756:1760 M3Coq <> Arity rec
+R1770:1780 M3Coq <> input_arity proj
+R1770:1780 M3Coq <> input_arity proj
+R1770:1780 M3Coq <> input_arity proj
+R1788:1799 M3Coq <> output_arity proj
+R1788:1799 M3Coq <> output_arity proj
+def 1851:1872 <> anomaly_vanishes_at_m3
+R1880:1888 M3Coq <> TypeGraph rec
+binder 1875:1876 <> tg:22
+R1893:1896 Corelib.Init.Datatypes <> bool ind
+R1903:1906 Corelib.Init.Datatypes <> true constr
+def 1957:1963 <> get_mu1
+R1971:1981 M3Coq <> ModuliSpace ind
+binder 1966:1967 <> ms:23
+R1986:1988 Corelib.Init.Datatypes <> nat ind
+R2001:2002 M3Coq <> ms:23 var
+R2013:2025 M3Coq <> mkModuliSpace constr
+def 2119:2125 <> get_mu2
+R2133:2143 M3Coq <> ModuliSpace ind
+binder 2128:2129 <> ms:25
+R2148:2150 Corelib.Init.Datatypes <> nat ind
+R2163:2164 M3Coq <> ms:25 var
+R2175:2187 M3Coq <> mkModuliSpace constr
+def 2281:2287 <> get_mu3
+R2295:2305 M3Coq <> ModuliSpace ind
+binder 2290:2291 <> ms:27
+R2310:2312 Corelib.Init.Datatypes <> nat ind
+R2325:2326 M3Coq <> ms:27 var
+R2337:2349 M3Coq <> mkModuliSpace constr
+def 2443:2449 <> get_mu4
+R2457:2467 M3Coq <> ModuliSpace ind
+binder 2452:2453 <> ms:29
+R2472:2474 Corelib.Init.Datatypes <> nat ind
+R2487:2488 M3Coq <> ms:29 var
+R2499:2511 M3Coq <> mkModuliSpace constr
+def 2636:2647 <> mu1_positive
+R2655:2665 M3Coq <> ModuliSpace ind
+binder 2650:2651 <> ms:31
+R2670:2673 Corelib.Init.Datatypes <> bool ind
+R2680:2683 Corelib.Init.Datatypes <> true constr
+def 2698:2709 <> mu2_positive
+R2717:2727 M3Coq <> ModuliSpace ind
+binder 2712:2713 <> ms:32
+R2732:2735 Corelib.Init.Datatypes <> bool ind
+R2742:2745 Corelib.Init.Datatypes <> true constr
+def 2760:2771 <> mu3_positive
+R2779:2789 M3Coq <> ModuliSpace ind
+binder 2774:2775 <> ms:33
+R2794:2797 Corelib.Init.Datatypes <> bool ind
+R2804:2807 Corelib.Init.Datatypes <> true constr
+def 2822:2833 <> mu4_positive
+R2841:2851 M3Coq <> ModuliSpace ind
+binder 2836:2837 <> ms:34
+R2856:2859 Corelib.Init.Datatypes <> bool ind
+R2866:2869 Corelib.Init.Datatypes <> true constr

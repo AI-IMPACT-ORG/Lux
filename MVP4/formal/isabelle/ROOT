@@ -1,0 +1,8 @@
+chapter BootstrapPaper
+
+session BootstrapPaper = Main +
+  theories
+    Generated_Library/BootstrapPaper
+    Generated_Library/M3
+    Generated_Library/RG
+    Generated_Library/Tests

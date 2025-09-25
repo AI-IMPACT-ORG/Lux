@@ -1,0 +1,5 @@
+-R BootstrapPaper BootstrapPaper
+M3Coq.v
+RGCoq.v
+TestsCoq.v
+MDEPyramidCoq.v

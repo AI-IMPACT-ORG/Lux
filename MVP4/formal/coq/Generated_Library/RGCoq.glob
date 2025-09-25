@@ -1,0 +1,110 @@
+DIGEST 53c4bad3585c7822772a5566c9239a87
+FRGCoq
+R105:109 M3Coq <> <> lib
+def 143:145 <> not
+R152:155 Corelib.Init.Datatypes <> bool ind
+binder 148:148 <> b:1
+R160:163 Corelib.Init.Datatypes <> bool ind
+R176:176 RGCoq <> b:1 var
+R187:190 Corelib.Init.Datatypes <> true constr
+R195:199 Corelib.Init.Datatypes <> false constr
+R205:209 Corelib.Init.Datatypes <> false constr
+R214:217 Corelib.Init.Datatypes <> true constr
+def 273:279 <> rg_flow
+binder 282:282 <> A:3
+binder 284:284 <> B:4
+R300:303 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R299:299 RGCoq <> A:3 var
+R304:304 RGCoq <> B:4 var
+binder 295:295 <> f:5
+R312:312 RGCoq <> A:3 var
+binder 308:308 <> x:6
+R317:317 RGCoq <> B:4 var
+R324:324 RGCoq <> f:5 var
+R326:326 RGCoq <> x:6 var
+def 385:400 <> rg_beta_function
+R407:409 Corelib.Init.Datatypes <> nat ind
+binder 403:403 <> n:7
+R414:416 Corelib.Init.Datatypes <> nat ind
+R423:423 Corelib.Init.Datatypes <> S constr
+R425:425 RGCoq <> n:7 var
+def 486:503 <> rg_anomaly_measure
+R510:513 Corelib.Init.Datatypes <> bool ind
+binder 506:506 <> x:8
+R518:521 Corelib.Init.Datatypes <> bool ind
+R528:530 RGCoq <> not def
+R532:532 RGCoq <> x:8 var
+def 593:610 <> rg_entropy_measure
+R617:619 Corelib.Init.Datatypes <> nat ind
+binder 613:613 <> n:9
+R624:626 Corelib.Init.Datatypes <> nat ind
+R634:636 Corelib.Init.Peano <> ::nat_scope:x_'*'_x not
+R633:633 RGCoq <> n:9 var
+def 694:707 <> rg_fixed_point
+binder 710:710 <> A:10
+R726:729 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R725:725 RGCoq <> A:10 var
+R730:730 RGCoq <> A:10 var
+binder 721:721 <> f:11
+R738:738 RGCoq <> A:10 var
+binder 734:734 <> x:12
+R743:743 RGCoq <> A:10 var
+R750:750 RGCoq <> f:11 var
+R752:752 RGCoq <> x:12 var
+def 810:824 <> rg_flow_inverse
+binder 827:827 <> A:13
+binder 829:829 <> B:14
+R845:848 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R844:844 RGCoq <> A:13 var
+R849:849 RGCoq <> B:14 var
+binder 840:840 <> f:15
+R857:857 RGCoq <> A:13 var
+binder 853:853 <> x:16
+R862:862 RGCoq <> B:14 var
+R869:869 RGCoq <> f:15 var
+R871:871 RGCoq <> x:16 var
+def 934:953 <> rg_consistency_check
+R960:963 Corelib.Init.Datatypes <> bool ind
+binder 956:956 <> x:17
+R968:971 Corelib.Init.Datatypes <> bool ind
+R978:981 Corelib.Init.Datatypes <> true constr
+def 1047:1069 <> rg_anomaly_cancellation
+R1076:1079 Corelib.Init.Datatypes <> bool ind
+binder 1072:1072 <> x:18
+R1084:1087 Corelib.Init.Datatypes <> bool ind
+R1094:1097 Corelib.Init.Datatypes <> true constr
+def 1157:1173 <> rg_entropy_bounds
+R1180:1183 Corelib.Init.Datatypes <> bool ind
+binder 1176:1176 <> x:19
+R1188:1191 Corelib.Init.Datatypes <> bool ind
+R1198:1201 Corelib.Init.Datatypes <> true constr
+def 1270:1295 <> rg_fixed_point_convergence
+R1302:1305 Corelib.Init.Datatypes <> bool ind
+binder 1298:1298 <> x:20
+R1310:1313 Corelib.Init.Datatypes <> bool ind
+R1320:1323 Corelib.Init.Datatypes <> true constr
+prf 1367:1383 <> rg_flow_preserves
+binder 1394:1394 <> A:21
+binder 1396:1396 <> B:22
+R1404:1407 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R1403:1403 RGCoq <> A:21 var
+R1408:1408 RGCoq <> B:22 var
+binder 1399:1399 <> f:23
+R1416:1416 RGCoq <> A:21 var
+binder 1412:1412 <> x:24
+R1433:1435 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R1422:1428 RGCoq <> rg_flow def
+R1432:1432 RGCoq <> x:24 var
+R1430:1430 RGCoq <> f:23 var
+R1436:1436 RGCoq <> f:23 var
+R1438:1438 RGCoq <> x:24 var
+R1475:1481 RGCoq <> rg_flow def
+prf 1511:1531 <> rg_anomaly_involutive
+R1547:1550 Corelib.Init.Datatypes <> bool ind
+binder 1543:1543 <> x:25
+R1597:1599 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R1556:1573 RGCoq <> rg_anomaly_measure def
+R1576:1593 RGCoq <> rg_anomaly_measure def
+R1595:1595 RGCoq <> x:25 var
+R1600:1600 RGCoq <> x:25 var
+R1631:1648 RGCoq <> rg_anomaly_measure def

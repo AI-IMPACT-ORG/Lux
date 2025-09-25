@@ -1,0 +1,14 @@
+# Racket package lock file
+# This file pins dependencies for reproducible builds
+
+# Core dependencies
+base: "8.13"
+typed-racket: "8.13"
+rackunit: "8.13"
+scribble-lib: "8.13"
+
+# Development dependencies
+racket-doc: "8.13"
+
+
+

@@ -1,0 +1,240 @@
+\appendix
+\section{Notation Guide}
+\label{app:notation}
+
+This appendix provides a comprehensive guide to the notation used throughout this paper, along with concrete worked examples connecting our theoretical framework to the implementation.
+
+\subsection{Basic Mathematical Notation}
+\begin{itemize}
+\item $\mathbb{N}$: Natural numbers $\{0, 1, 2, \ldots\}$
+\item $\mathbb{Z}$: Integers $\{\ldots, -2, -1, 0, 1, 2, \ldots\}$
+\item $\mathbb{R}$: Real numbers
+\item $\mathbb{C}$: Complex numbers
+\item $\mathbb{R}^+$: Positive real numbers
+\item $\mathbb{C}^3$: Three-dimensional complex space
+\item $[0,1]$: Closed interval from 0 to 1
+\item $(0,1]$: Half-open interval from 0 to 1 (excluding 0)
+\end{itemize}
+
+\subsection{Set Theory and Logic}
+\begin{itemize}
+\item $\in$: Element of
+\item $\subseteq$: Subset of
+\item $\cup$: Union
+\item $\cap$: Intersection
+\item $\emptyset$: Empty set
+\item $\{x : P(x)\}$: Set comprehension
+\item $\forall$: Universal quantifier (for all)
+\item $\exists$: Existential quantifier (there exists)
+\item $\Rightarrow$: Implication
+\item $\Leftrightarrow$: If and only if
+\item $\neg$: Negation
+\item $\wedge$: Conjunction (and)
+\item $\vee$: Disjunction (or)
+\end{itemize}
+
+\subsection{Function and Operator Notation}
+\begin{itemize}
+\item $f: A \to B$: Function from set $A$ to set $B$
+\item $f(x)$: Function application
+\item $\lambda x.M$: Lambda abstraction
+\item $M[x := N]$: Substitution of $N$ for $x$ in $M$
+\item $\mathsf{INC}(R_i)$: Increment register $R_i$
+\item $\mathsf{DEC}(R_i)$: Decrement register $R_i$
+\item $\mathsf{IFZERO}(R_i, j)$: If register $R_i$ is zero, jump to instruction $j$
+\item $\mathsf{Halts}_\tau(t)$: Halting predicate with threshold $\tau$
+\end{itemize}
+
+\subsection{Computational Paradigms}
+\begin{itemize}
+\item $\mathsf{TM}$: Turing machine
+\item $\mathsf{Minsky}$: Minsky machine
+\item $\lambda$: Lambda calculus
+\item $\mathsf{F}$: Feynman (quantum) computation
+\item $\mathsf{AGT}$: Alday-Gaiotto-Tachikawa correspondence
+\end{itemize}
+
+\subsection{Generating Function Notation}
+\begin{itemize}
+\item $G(z,\bar{z};q_1,q_2,q_3,\Lambda)$: Generating function
+\item $z, \bar{z}$: Complex variables (computational registers)
+\item $q_1, q_2, q_3$: Grading parameters
+\item $\Lambda$: Scale parameter
+\item $\mathcal{Z}_{n,m}(q_1,q_2,q_3)$: Computational weights
+\item $n, m$: Virasoro levels
+\item $\ell$: Virasoro mode indices
+\end{itemize}
+
+\subsection{Renormalization Group Notation}
+\begin{itemize}
+\item $\beta_i(q_1,q_2,q_3)$: Beta functions ($i = 1,2,3$)
+\item $\gamma(q_1,q_2,q_3)$: Gamma function
+\item $\epsilon_T, \epsilon_C, \epsilon_F$: Regulators (Turing, Church, Feynman)
+\item $\delta q_i$: Counterterms
+\item $q_i^{(0)}$: Bare parameters
+\item $G_{\text{reg}}$: Regularized generating function
+\item $G_{\text{ren}}$: Renormalized generating function
+\end{itemize}
+
+\subsection{Formal Logic Notation}
+\begin{itemize}
+\item $\mathsf{G}_6$: Arity-6 operator
+\item $\mathsf{Reg}$: Register sort
+\item $\mathsf{Grad}$: Grading sort
+\item $\mathsf{Scale}$: Scale sort
+\item $\Gamma \vdash t \equiv u : \mathsf{Reg}$: Judgement
+\item $\Gamma \vdash t : \tau$: Well-typedness
+\item $\llbracket t \rrbracket$: Denotation of term $t$
+\item $\mathsf{Obs}$: Observable function
+\item $\mathsf{Truth}$: Truth predicate
+\end{itemize}
+
+\subsection{Logic Transformer Notation}
+\begin{itemize}
+\item $\mathcal{T}$: Logic transformer
+\item $\ker(\mathcal{T})$: Kernel of logic transformer
+\item $\text{coker}(\mathcal{T})$: Cokernel of logic transformer
+\item $\sigma(\mathcal{T})$: Spectrum of logic transformer
+\item $\lambda_{\min}, \lambda_{\max}$: Spectral bounds
+\end{itemize}
+
+\subsection{Effective Logic Notation}
+\begin{itemize}
+\item $\mathcal{L}_i$: Logic at level $i$ ($i = 0,1,2,3$)
+\item $\mathcal{F}$: Formal system
+\item $\mathcal{L}$: Logic
+\item $\mathcal{M}$: Model
+\item $\rho_\kappa$: Corner functor for paradigm $\kappa$
+\item $\mathbf{c}_\kappa$: Corner parameters for paradigm $\kappa$
+\end{itemize}
+
+\subsection{Quantum and Physics Notation}
+\begin{itemize}
+\item $|n,m\rangle$: Computational basis states
+\item $|0\rangle$: Vacuum state
+\item $\hat{W}(\vec{q})$: Evolution operator
+\item $\hat{H}_{\text{comp}}$: Computational Hamiltonian
+\item $L_\ell, \bar{L}_\ell$: Virasoro generators
+\item $\alpha_\ell, \bar{\alpha}_\ell, \beta_\ell$: Evolution parameters
+\item $\langle n,m|$: Bra states
+\item $|\psi\rangle$: Quantum state
+\item $U(t)$: Unitary evolution operator
+\end{itemize}
+
+\subsection{LLM and Scaling Notation}
+\begin{itemize}
+\item $L(N, D, C)$: Loss function
+\item $N$: Model size (number of parameters)
+\item $D$: Data size
+\item $C$: Compute resources
+\item $\alpha, \beta_N, \beta_D, \beta_C$: Scaling exponents
+\item $\mathcal{L}_{\text{conv}}$: Convolved logic system
+\item $\star$: Convolution operator
+\end{itemize}
+
+\subsection{Spectral Gap Notation}
+\begin{itemize}
+\item $\zeta(s)$: Riemann zeta function
+\item $H$: Hilbert-Polya operator
+\item $H^*$: Adjoint of Hilbert-Polya operator
+\item $\Re(s)$: Real part of complex number $s$
+\item $\text{crit}$: Critical line $\Re(s) = \frac{1}{2}$
+\item $L(s, \chi)$: L-function
+\item $\chi$: Dirichlet character
+\end{itemize}
+
+\subsection{Category Theory Notation}
+\begin{itemize}
+\item $\mathbf{C}$: Category
+\item $\text{Ob}(\mathbf{C})$: Objects of category $\mathbf{C}$
+\item $\text{Mor}(\mathbf{C})$: Morphisms of category $\mathbf{C}$
+\item $f: A \to B$: Morphism from object $A$ to object $B$
+\item $\text{id}_A$: Identity morphism on object $A$
+\item $g \circ f$: Composition of morphisms $f$ and $g$
+\item $\mathbf{Fun}(\mathbf{C}, \mathbf{D})$: Functor category
+\item $F: \mathbf{C} \to \mathbf{D}$: Functor from category $\mathbf{C}$ to $\mathbf{D}$
+\item $\eta: F \Rightarrow G$: Natural transformation from functor $F$ to $G$
+\end{itemize}
+
+\subsection{Special Symbols and Operators}
+\begin{itemize}
+\item $\sum$: Summation
+\item $\prod$: Product
+\item $\lim$: Limit
+\item $\to$: Arrow (function, morphism, or limit)
+\item $\mapsto$: Maps to
+\item $\infty$: Infinity
+\item $\partial$: Partial derivative
+\item $\nabla$: Gradient
+\item $\Delta$: Laplacian
+\item $\star$: Convolution or Hodge star
+\item $\otimes$: Tensor product
+\item $\oplus$: Direct sum
+\item $\times$: Cartesian product
+\end{itemize}
+
+\subsection{Abbreviations}
+\begin{itemize}
+\item QFT: Quantum Field Theory
+\item CFT: Conformal Field Theory
+\item RG: Renormalization Group
+\item LLM: Large Language Model
+\item MDE: Model-Driven Engineering
+\item AGT: Alday-Gaiotto-Tachikawa
+\item TM: Turing Machine
+\item CPU: Central Processing Unit
+\item UV: Ultraviolet
+\item IR: Infrared
+\item dS: de Sitter
+\item AdS: Anti-de Sitter
+\end{itemize}
+
+\subsection{Concrete Worked Example: Paper $\leftrightarrow$ Implementation}
+
+To demonstrate the connection between our theoretical framework and the implementation, consider our running toy example from Figure~\ref{fig:toy-example}. Here's how it maps to the implementation:
+
+\begin{example}[Concrete Implementation Mapping]
+\label{ex:implementation-mapping}
+Consider the two-node graph with $\Sigma_6$ edge:
+\begin{verbatim}
+; Typed Racket implementation (m3d.graph.rkt)
+(define toy-graph
+  (TGraph
+   (list (Node 'A 'input-type)
+         (Node 'B 'output-type))
+   (list (Edge 'A 'B 'Sigma6))))
+
+; PGC formula evaluation (m2d.pgc-core.rkt)
+(define toy-formula
+  (Exists 'x (MatchX 'Sigma6 'x)))
+
+; Semiring evaluation (m2d.semiring.rkt)
+(define result
+  (pgc-eval toy-formula toy-graph BoolRig))
+\end{verbatim}
+
+This corresponds to our theoretical framework as:
+\begin{itemize}
+\item \textbf{Graph}: \texttt{toy-graph} $\leftrightarrow$ typed graph model
+\item \textbf{Formula}: \texttt{toy-formula} $\leftrightarrow$ PGC theory
+\item \textbf{Evaluation}: \texttt{result} $\leftrightarrow$ semiring satisfaction
+\item \textbf{Observable}: \texttt{q-global-fast} $\leftrightarrow$ RG observable $\mathcal{O}(\Lambda)$
+\end{itemize}
+\end{example}
+
+\subsection{Symbol Crosswalk Table}
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+Paper symbol & Meaning / (suggested) code hook \\
+\midrule
+$\mathsf{G}_6$ & 6-ary connective (arity $(3,3)$); inputs $\phi,\bar{\phi}\in\mathsf{Reg}$, $\vec{q}\in\mathsf{Grad}$, $\Lambda\in\mathsf{Scale}$; output in $\mathsf{Obs}$ \\
+$\mathcal{Z}_{n,m}$ & Coefficient aggregator (paths of bidegree $(n,m)$) \\
+$\mathcal{R}_\Lambda$ & Renormalization map on coefficients/models \\
+$\partial_{\text{in/out}}$ & Boundary extractors (domain/codomain) \\
+$\mathcal{O}(\Lambda)$ & Global observable used for $\beta$'s \\
+$\mathcal{T}_\Lambda$ & Transfer operator for spectral analysis \\
+\bottomrule
+\end{tabular}
+\end{center}

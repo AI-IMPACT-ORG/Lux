@@ -1,0 +1,325 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{url}
+\usepackage{cite}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage{siunitx}
+\usepackage{braket}
+\usepackage{bm}
+\usepackage{bussproofs}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{hyperref}
+\usepackage{cleveref}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{physics}
+
+% Theorem environments
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{example}{Example}[section]
+\newtheorem{remark}{Remark}[section]
+
+% Custom commands
+\newcommand{\arith}[3]{(#1, #2, #3)}
+\newcommand{\arity}[3]{\arith{L}{R}{K}}
+\newcommand{\logictrans}{\mathcal{T}}
+\newcommand{\selfeval}{\mathcal{E}}
+\newcommand{\substitution}{\sigma}
+\newcommand{\encoding}{\mathcal{E}}
+\newcommand{\decoding}{\mathcal{D}}
+\newcommand{\projection}{\mathcal{P}}
+\newcommand{\observer}{\mathcal{O}}
+\newcommand{\channel}{\mathcal{C}}
+\newcommand{\boundary}{\mathcal{B}}
+\newcommand{\holographic}{\mathcal{H}}
+\newcommand{\symmetry}{\mathcal{S}}
+\newcommand{\moduli}{\mathcal{M}}
+\newcommand{\institution}{\mathcal{I}}
+\newcommand{\church}{\mathcal{C}}
+\newcommand{\turing}{\mathcal{T}}
+
+% Title and author information
+\title{Renormalization Semantics for Computation: A Logic-Theoretic Foundation}
+\author{Rutger Boels\\Independent Researcher}
+\date{\today}
+
+\begin{document}
+
+% Title page
+\maketitle
+
+% Abstract
+\begin{abstract}
+Experimental results are formally dominant in fundamental science. In practice there are typically large tapestries of techniques to connect multiple theories to multiple experiments. In particle physics for instance a wealth of theories, techniques, formalisms and results exist based on various different approaches, paired with a wealth of experimental data. The actual bottleneck to progress seems to be connecting these two worlds more efficiently and effectively as the current pipelines are very long and sometimes convoluted. The chance that something is missing or has been missed in that pipeline is not zero. 
+
+The greatest common denominator between the already closely aligned fields of physics, computation and mathematics is logic. Logic is designed to be independent of domain application. I.e. the logic of number theory is related to, but not necessarily the same as the logic of differential geometry or that of quantum field theory. In this article we show results of using AI tooling to construct logic systems systematically. A logic is a formal system with a notion of "truth". Since formal systems can be formulated inside mature computer algebra systems, this is a natural approach that provides a in-build sanity check on LLM "reasoning" to the strength of the implementation of then formal system. There are very close parallels between the construction of formal systems and the construction of QFT theories; both involve a choice of coordinates for one: essentially free fields for QFT and free logic symbols for logic. Interactions in logic are through definitions; in physics through coupling constants. The main difference is that logic is inherently exact by construction - if it is consistent. Consistent truth systems are severely restricted by powerfull, well-known theorems due to Gödel, Löb, Turing and Rice. These express fundamental constraints on maps of logic systems to themselves. These maps can not be total.  
+
+As a first step along the effective logic for physics programm, we explore the theory of computation. Computation can be understood as the composition of encoding, function application(s), decoding as well as normalisation. Classically, normalisation can occur at any stage (i.e. commutes as an operator). This is the basic compiler pattern of the theory of programming languages. We argue that the classic Turing, Church and Feynman views on computation can be modelled as different, partial representations of the same basic logic theory. As a first step, we show how they all relate to each other using a novel generating functional approach deeply related to CFT conformal blocks. This is already somewhat computationally universal, which we demonstrate by showing equivalence between Church and Turing views in this framework: this is the well-known Church-Turing thesis. We conjecture a specialisation of this observation that encompasses all views on computation naturally. We show this pattern also naturally appears in the AGT correspondence. 
+
+Central is the observation that the different parameter sets in this construction have to be mapped to each other, but the generating functionals are so far formal only. This is a problem as the normalisation step in the quantum case is no longer freely commuting. Hence we introduce (3+1) natural regulators, including an overall "scale" parameter, that make the formal expansions well-defined. We show there is a precise analogue of the usual renormalisation programm, including an extension of the RG equation to several commuting flows natural in the Toda hierarchy. This includes the use of normalisation conditions to fix the parameters to their semantic interpretation as natural numbers (semirings). Interestingly, there is an fundamental imbalance between the number of beta functions (3) and gamma functions (1). We conjecture natural generalisations of the a-functions and the c-functions through the AGT correspondence using the natural analog of the Fisher information metric (c theorem) and XXXXXXXX (a-theorem).
+
+To explain this construction we construct a concrete logic system. A logic system describing chruch-style computation exists - this is the content of the Curry-Howard-Lambek correspondence. We argue we have here a generalisation of this correspondence to irreversible computation or, in other words, the general theory of programming languages. Basically, the theory of computation outlined above is conjectured to be a model of the logic system we construct in the paper. If our construction through computer algebra is consistent, then, we argue, this construction proves the conjecture. Verifying this is non-trivial, as the needed computer algebra is quite involved. For safety, we provide full implementations in agda, coq, isabelle, as well as a partial one in metamath.
+
+In logic we argue these notions of regularisation and renormalisation conform to a very particular and peculiar conservative extension of basically any logic. This extension can be understood as a natural "hierarchical" deformation of the truth system of any logic, together with some of its subsystems. The deformation changes the truth system to a fundamentally asymmetric notion of equality (implication weighted by local weights), and we relate the undeformed truth to the kernel of a pair of natural ternary operator constructed inside the deformed logic that combine into an arity $(2,2)$ operator we call a "logic transformer". This logic transformer is basically a polymorphic generalization of the notion of a scaling operator in physics. Interestingly, this operator is known in the formal theory of programming languages as a "partial self-evaluation" operator directly tied to the notion of compilation, and in logic itself as a part of the diagonal lemma proof. In this construction the kernel of the transformer is naturally related to the set of all true theorems inside the undeformed logic. Moreover, we show that the spectrum of the logic transformer has a natural symmetry related gap between kernel and co-kernel. In computation, this is the difference between reversible and irreversible computation. In information theory, this is the basis of lossy compression. 
+
+We show there is a natural notion of two boundaries-with-direction that arise inside the construction and show that there are two partial natural maps that can be constructed using the logic transformer as Green's function. Holographic renormalization in the dS/CFT context is a natural interpretation of this, and this motivates the question if we can construct a system that admits two subsystems that are each other's boundaries as natural mirrors. The logic system we construct is exactly this system, at the threshold of logic consistency. In the renormalisation semantics this corresponds to showing the formal system is "renormalisable" - a notion intimately tied to the existence of a system wide truth system. 
+
+We derive a swath of cross-checks will well-known results and conjectures in the literature. For instance, we prove a theorem inside the system that, we argue, generalises the Rice theorem. As corrolaries, Gödel, Löb, Turing and Tarksi results follow, as well as some well-knownresults in the PL literature. We argue for an analog of the Noether theorem (both theorems as well as the converse Noether Theorem), which we interpret as the consequence of global invariance of the logic of its presentation, and of local invariance of the logic of one of the sub-systems of its own interpretations. 
+
+We prove a general theorem that basically states that the logic transformer provides a general translation mechanism between any two logics identified by a choice of four axioms with mild structural assumptions. We argue this is the natural way to think about the translation between logic and computation if one of the logics is identified as an actual physical representation of computation (i.e. a "CPU").
+
+We work out a theory of computational complexity. Technically we identify that the Blum axioms hold for the generating functional of invariants. P vs NP for instance reduces to a topological classification of the logic transformer spectrum that directly connects to the symmetry-induced gap between kernel and co-kernel. In a domain map to theory of functions on number fields we argue the logic transformer provides a natural Hilbert-Polya operator, with a zeta-function interpretation of the natural heat-kernel regulator. We show this indeed conforms to the Hilbert-Polya scenario. We briefly discuss the role of the spectral gap in the context of the mass-gap theorem of quantum field theory. We argue these results are general for any domain map - if the logic checks out.
+
+As a direct concrete application to experiment, we discuss the training of LLMs and point out that training scaling laws can be understood within this framework, as is the double dip phenomenon, which we argue is basically the discovery of effective (partial) representations of information through lossy compression. The technical engine of this is to study convolutions of the basic formal system as extensions of that system - this switches on additional coupling constants as an effective theory of computation. As formal systems, among others, define a formal language, this basically models large language models as (a controllable extension of) convolutions of a basic class of formal language models. We propose a stability analysis toolset closely aligned with RG flow ideas to study language model characteristics independent of model.
+\end{abstract}
+
+% Keywords
+\textbf{Keywords:} renormalization group, computation semantics, formal logic, quantum field theory, large language models, AGT correspondence
+
+% Table of contents
+\tableofcontents
+\newpage
+
+% Main content
+\section{Three Paradigms of Computation: From Arithmetic to AGT}
+\label{sec:computation-paradigms}
+
+\subsection{Motivation: The Computational Trinity}
+Computation, at its most fundamental level, can be understood through three distinct yet deeply related paradigms. Each paradigm offers a different lens through which to view the same underlying mathematical reality. To illustrate this unity, we will examine how each paradigm approaches a simple, concrete problem: \textbf{integer arithmetic}.
+
+The three paradigms are:
+\begin{itemize}
+\item \textbf{Turing's View}: Computation as discrete state transitions
+\item \textbf{Church's View}: Computation as functional composition  
+\item \textbf{Feynman's View}: Computation as quantum interference
+\end{itemize}
+
+\subsection{The Unifying Example: Integer Arithmetic}
+Consider the problem of computing $f(x,y) = x + y$ for integers $x, y \in \mathbb{Z}$. This simple operation will serve as our Rosetta stone, revealing how each computational paradigm approaches the same fundamental task.
+
+\subsection{Turing's View: Computation as State Machines}
+\subsubsection{The Minsky Machine Model}
+Turing's insight was that computation can be understood as the manipulation of discrete states according to deterministic rules. The simplest model that captures this essence is the \textbf{Minsky machine}—a two-register machine that can increment, decrement, and test for zero.
+
+\begin{definition}[Minsky Machine]
+A Minsky machine $M$ is defined by:
+\begin{itemize}
+\item Two registers: $R_1, R_2$ (initially containing non-negative integers)
+\item A finite set of instructions: $\{I_1, I_2, \ldots, I_n\}$
+\item Each instruction is one of:
+  \begin{itemize}
+  \item $\mathsf{INC}(R_i)$: Increment register $R_i$
+  \item $\mathsf{DEC}(R_i)$: Decrement register $R_i$ (if $R_i > 0$)
+  \item $\mathsf{IFZERO}(R_i, j)$: If $R_i = 0$, jump to instruction $I_j$
+  \end{itemize}
+\end{itemize}
+\end{definition}
+
+\subsubsection{The State Space Perspective}
+The Minsky machine operates in a discrete state space $\mathcal{S} = \mathbb{N} \times \mathbb{N}$, where each state $(n,m)$ represents the contents of registers $R_1, R_2$. Computation proceeds through a sequence of state transitions.
+
+\subsection{Church's View: Computation as Functional Composition}
+\subsubsection{The Lambda Calculus Model}
+Church's insight was that computation can be understood as the manipulation of functions through composition and application. The \textbf{lambda calculus} provides the simplest model of this functional approach.
+
+\begin{definition}[Lambda Calculus]
+The lambda calculus consists of:
+\begin{itemize}
+\item \textbf{Variables}: $x, y, z, \ldots$
+\item \textbf{Abstraction}: $\lambda x.M$ (function definition)
+\item \textbf{Application}: $MN$ (function application)
+\end{itemize}
+The fundamental computation rule is \textbf{$\beta$-reduction}:
+$$(\lambda x.M)N \to_\beta M[x := N]$$
+\end{definition}
+
+\subsection{Feynman's View: Computation as Quantum Interference}
+\subsubsection{The Quantum Circuit Model}
+Feynman's insight was that computation can be understood as the evolution of quantum states through unitary transformations. The \textbf{quantum circuit} model provides the simplest framework for this quantum approach.
+
+\begin{definition}[Quantum Circuit]
+A quantum circuit consists of:
+\begin{itemize}
+\item \textbf{Qubits}: Quantum bits in superposition states
+\item \textbf{Gates}: Unitary transformations acting on qubits
+\item \textbf{Measurement}: Projection onto computational basis
+\end{itemize}
+\end{definition}
+
+\subsection{The AGT Connection}
+The three computational paradigms naturally connect to the Alday-Gaiotto-Tachikawa (AGT) correspondence, which relates 4D $\mathcal{N}=2$ supersymmetric gauge theories to 2D conformal field theories. This connection will be crucial for our renormalization framework.
+
+\section{Regularization and Renormalization Conditions}
+\label{sec:regularization}
+
+\subsection{The Need for Regularization}
+The generating functionals introduced in the previous section are formal only—they require regularization to be well-defined. We introduce natural regulators corresponding to the three computational paradigms.
+
+\subsection{Three Regulators}
+\begin{itemize}
+\item \textbf{Turing Regulator}: Corresponds to discrete state transitions
+\item \textbf{Church Regulator}: Corresponds to functional composition
+\item \textbf{Feynman Regulator}: Corresponds to quantum interference
+\end{itemize}
+
+\subsection{Scale Parameter and Normalization Conditions}
+The overall scale parameter $\Lambda$ serves as the coupling strength, and normalization conditions fix the parameters to their semantic interpretation as natural numbers.
+
+\section{RG Flow}
+\label{sec:rg-flow}
+
+\subsection{RG Flow Classification}
+\begin{itemize}
+\item \textbf{Converging Flow}: Preserves information, enables reversibility
+\item \textbf{Diverging Flow}: Destroys information through nonlinear corrections
+\item \textbf{Marginal Flow}: Undecidable behavior (infinite cycles)
+\end{itemize}
+
+\subsection{RG Flow as Truth Predicate}
+The crucial insight is that \textbf{renormalization group flow} can serve as a truth predicate for computation:
+\begin{itemize}
+\item \textbf{Converging RG flow} → Reversible computation → Truth
+\item \textbf{Diverging RG flow} → Irreversible computation → Falsehood  
+\item \textbf{Marginal RG flow} → Undecidable computation → Undefined
+\end{itemize}
+
+\section{Renormalization of "Divergences" - Self-Consistency}
+\label{sec:renormalization}
+
+\subsection{Divergence Absorption}
+How divergences are absorbed through the renormalization process.
+
+\subsection{Self-Consistency Conditions}
+The conditions under which the renormalization procedure is self-consistent.
+
+\subsection{Connection to the Arity-6 Operator}
+How the renormalization process connects to the arity-6 operator that will be introduced in the formal logic section.
+
+\section{Formal Systems and Logic (Zwischenschritt)}
+\label{sec:formal-systems}
+
+\subsection{Introduction to Formal Systems}
+Brief introduction to formal systems and their role in computation.
+
+\subsection{The Arity-6 Operator $\mathsf{G}_6$}
+The central logical primitive that unifies all computational paradigms.
+
+\subsection{Denotational Semantics}
+How the arity-6 operator provides denotational semantics for computation.
+
+\section{Truth as Fixed Point: RG Flow as Logical Semantics}
+\label{sec:truth-fixed-point}
+
+\subsection{Regularization as Deformation}
+How regularization deforms formal systems.
+
+\subsection{Truth as Fixed Point}
+Truth as fixed point under RG flow.
+
+\subsection{The Logic Transformer}
+The logic transformer as a polymorphic generalization of scaling operators.
+
+\section{Effective Logic as MDE-Pyramid of Logics}
+\label{sec:effective-logic}
+
+\subsection{Definition of Effective Logic}
+What constitutes an effective logic in our framework.
+
+\subsection{Hierarchy of Logics}
+The MDE (Model-Driven Engineering) pyramid structure.
+
+\subsection{Connection to Previous Sections}
+How the effective logic framework connects to the renormalization and computation frameworks.
+
+\section{Consistency, Compactness - Relation to Known Theorems}
+\label{sec:consistency}
+
+\subsection{Consistency Results}
+Gödel, Tarski, Löb results in our framework.
+
+\subsection{Conservation Results}
+Noether theorem and its generalizations.
+
+\subsection{Undecidability Results}
+Rice theorem and computational undecidability.
+
+\subsection{Compactness Results}
+Model theory and compactness in our framework.
+
+\section{Renormalization and Double Self-Boundary Maps}
+\label{sec:boundary-maps}
+
+\subsection{Self-Boundary Maps}
+The construction of self-boundary maps using the logic transformer.
+
+\subsection{Holographic Renormalization}
+Connection to dS/CFT holographic renormalization.
+
+\subsection{Double Boundary Interpretation}
+The double boundary interpretation of our logic system.
+
+\section{Large Language Models: Training, Scaling, and Renormalization}
+\label{sec:llms}
+
+\subsection{Training Scaling Laws}
+How training scaling laws fit within our renormalization framework.
+
+\subsection{The Double Dip Phenomenon}
+The double dip phenomenon as discovery of effective representations through lossy compression.
+
+\subsection{Convolutions as System Extensions}
+How convolutions extend the basic formal system.
+
+\subsection{Stability Analysis Tools}
+RG flow tools for studying language model characteristics.
+
+\subsection{Connection to Formal Systems}
+How LLMs relate to the formal systems framework.
+
+\section{Spectral Gap Theorem and Applications}
+\label{sec:spectral-gap}
+
+\subsection{Function Theory on Number Fields}
+Applications to function theory on number fields.
+
+\subsection{Hilbert-Polya Operator}
+The logic transformer as a natural Hilbert-Polya operator.
+
+\subsection{Mass Gap Theorem}
+Connection to the mass gap theorem in quantum field theory.
+
+\subsection{P vs NP Connection}
+How the spectral gap connects to computational complexity.
+
+\section{Conclusions and Future Work}
+\label{sec:conclusions}
+
+\subsection{Main Contributions}
+Summary of the main contributions of this work.
+
+\subsection{Future Directions}
+Future research directions and applications.
+
+% Bibliography
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}

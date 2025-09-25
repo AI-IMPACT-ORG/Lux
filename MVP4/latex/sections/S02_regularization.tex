@@ -1,0 +1,229 @@
+\section{The Regulator View: Understanding Compilation}
+\label{sec:regularization}
+
+Having established the basic computational framework in Section~\ref{sec:computation-paradigms}, we now explore how regularization provides the mathematical foundation for making the formal expansions well-defined. 
+
+\paragraph{Hand-off from Section~\ref{sec:computation-paradigms}}
+This section assumes the following structure from Section~\ref{sec:computation-paradigms}:
+\begin{itemize}
+\item \textbf{6-ary connective} $\mathsf{G}_6$ with arity $(3,3)$ and signature $\mathsf{Reg} \times \mathsf{Reg} \times \mathbb{R}^3 \times \mathbb{R}_+ \to \mathsf{Obs}$
+\item \textbf{Generating function} $\mathcal{G}(z,\bar{z};\vec{q},\Lambda)$ from equation~\eqref{eq:generating-function}
+\item \textbf{Grading parameters} $\vec{q} = (q_1, q_2, q_3)$ encoding computational paradigms
+\item \textbf{Scale parameter} $\Lambda > 0$ controlling computational precision
+\item \textbf{Correlator coefficients} $\mathcal{Z}_{n,m}(\vec{q})$ as matrix elements in graded Fock basis
+\end{itemize}
+
+\paragraph{What this section adds}
+We introduce:
+\begin{itemize}
+\item \textbf{Regulator hierarchy} with four levels of computational control
+\item \textbf{Normalization operator} $N$ with idempotency $N^2 = N$
+\item \textbf{Encoders/decoders} $E_{i\to j}$ between computational paradigms
+\item \textbf{Termination observable} $\tau \in (0,1]$ as paradigm-independent stopping criterion
+\item \textbf{Moduli space} $\mathcal{M}$ of normalized programs up to equivalence
+\end{itemize}
+
+The normalization step in our computational cycle corresponds precisely to choosing regulators that control the behavior of the generating function in equation~\eqref{eq:generating-function}.
+
+\subsection{The Regulator View of Computation}
+
+The computational process encoding $\to$ operator application $\to$ normalization (regularization) $\to$ decoding corresponds directly to compilation, where the normalization step plays a crucial role in making the formal expansions well-defined. The regularization map can be expressed as:
+\[
+\mathcal{R}_\Lambda: \mathcal{G} \mapsto \mathcal{G}_{\text{reg}} = \sum_{n,m\ge0}\frac{z^n\bar{z}^{\,m}}{n!\,m!}\,\mathcal{Z}_{n,m}(\vec{q})\,\Lambda^{-(n+m)} \cdot \Theta(n+m \leq K)
+\]
+where $K \in \mathbb{N}$ is the \textbf{degree cutoff} (integer-valued) and $\Lambda \in \mathbb{R}_+$ is the \textbf{physical scale}. We use smooth regulators to avoid artifacts:
+\[
+\mathcal{G}_{\text{reg}} = \sum_{n,m\ge0}\frac{z^n\bar{z}^{\,m}}{n!\,m!}\,\mathcal{Z}_{n,m}(\vec{q})\,\Lambda^{-(n+m)} \cdot e^{-(n+m)/K}
+\]
+This avoids scheme dependence issues that arise with sharp cutoffs $\Theta(n+m \leq K)$.
+where $\Theta$ is a cutoff function. This section explores how regularization provides the mathematical foundation for understanding computation, revealing the deep connection between compilation theory and renormalization.
+
+\subsection{Regulator Hierarchy}
+
+Our framework introduces a natural hierarchy of regulators that control the computational process, providing a systematic way to understand how different levels of regularization interact:
+
+\begin{definition}[Regulator Hierarchy]
+\label{def:regulator-hierarchy}
+The regulator structure follows a natural hierarchy:
+\begin{align}
+\text{Conceptual regulator} &: \text{Boundary at } \infty \text{ (universal computation)} \\
+\text{Operational regulator} &: \text{Overall scale parameter } \Lambda \\
+\text{Grading parameters} &: \text{Three grading parameters } (q_1, q_2, q_3) \\
+\text{State regulator} &: \text{Virasoro levels } n, m
+\end{align}
+\end{definition}
+
+This hierarchy implements our framework's moduli space structure, with the boundary at infinity serving as the overall regulator and additional regulators emerging naturally from the generating function structure in equation~\eqref{eq:generating-function}.
+
+We distinguish \textbf{syntactic} regulators (typing/arity, grammar) from \textbf{semantic} regulators (observable choice, evaluation budget).
+
+\subsection{Termination Condition as Regularization}
+
+\begin{definition}[Termination Observable]
+\label{def:termination-observable}
+Let $P_{\mathrm{vac}}:=|0\rangle\langle 0|$. Define the \textbf{termination observable} as a supermartingale:
+\[
+X_t := \langle \psi(t)|P_{\mathrm{vac}}|\psi(t)\rangle, \quad \text{where } |\psi(t)\rangle=e^{-it\hat T_{\mathrm{comp}}}|\psi_0\rangle
+\]
+A run \textbf{halts at the first hitting time}:
+\[
+T_{\text{halt}} := \inf\{t \geq 0 : X_t \geq \tau\}
+\]
+for a fixed $\tau\in(0,1]$. The supermartingale property ensures monotonicity: $\mathbb{E}[X_{t+s}|\mathcal{F}_t] \leq X_t$ for $s \geq 0$, preventing "re-unhalting" oscillations. This lives in the same observable space $\mathsf{Obs}$ used by $\mathcal{G}$ in §1; the threshold $\tau\in(0,1]$ is a \textbf{normalization choice} carried forward as a renormalization condition in §3.
+\end{definition}
+
+The termination condition effectively imposes a canonical normalization on the computational process. The evolution of the vacuum overlap follows:
+\[
+\frac{d}{dt}\langle \psi(t)|P_{\mathrm{vac}}|\psi(t)\rangle = -i\langle \psi(t)|[P_{\mathrm{vac}}, \hat{T}_{\mathrm{comp}}]|\psi(t)\rangle
+\]
+By requiring the projection onto the vacuum subspace to exceed the threshold $\tau$, we ensure that the computational state has evolved sufficiently close to a well-defined reference state, providing a natural stopping criterion that is independent of the specific computational paradigm. This condition plays a role analogous to convergence criteria in numerical analysis.
+
+\subsection{Regularization Principles}
+
+Regularization manifests differently across computational paradigms, but follows universal principles that transcend the specific implementation:
+
+\paragraph{Two kinds of regularization.}
+\textit{Syntactic} (typing/arity, grammar constraints) vs. \textit{Semantic} (observable choice, evaluation budget). Write $\llbracket\phi\rrbracket_{\Lambda}^{\text{syn},\text{sem}}$.
+
+\begin{itemize}
+\item \textbf{Boundary conditions} provide natural stopping criteria for computational processes
+\item \textbf{Normalization procedures} ensure well-defined results across all paradigms
+\item \textbf{Scale parameters} control the computational process through the generating function
+\end{itemize}
+
+\begin{definition}[Program to Coefficient Map]
+\label{def:program-coefficient-map}
+The map from programs to coefficients $\mathcal{Z}_{n,m}$ is given by:
+\[
+\mathcal{Z}_{n,m}(\vec{q}) = \sum_{\text{paths }p:\,|p|=(n,m)} w(p;\vec{q}),
+\]
+where $w(p;\vec{q})$ is the weight of path $p$ under grading $\vec{q}$, and
+\[
+\mathcal{G} = \sum_{n,m\ge0}\frac{z^n\bar{z}^{\,m}}{n!\,m!}\,\mathcal{Z}_{n,m}(\vec{q})\,\Lambda^{-(n+m)}.
+\]
+\end{definition}
+
+Each paradigm implements these principles through different mathematical structures, yet they are unified by our generating function framework. The detailed paradigm-specific regularization procedures will be discussed in Section~\ref{sec:renormalization}.
+
+\subsection{Axioms aligning computational views and universality up to normalization}
+
+We consider four categories of programs/derivations:
+$\mathbf{TM}$ (Turing/cellular), $\mathbf{\Lambda}$ (typed $\lambda$),
+$\mathbf{Path}$ (path-integral amplitudes), and $\mathbf{Circ}$ (circuits/rewrites).
+A normalization comonad $N$ on each category identifies presentations that differ by
+gauge/scale conventions.
+
+\begin{definition}[Normalization]
+\label{def:normalization}
+On each $\mathbf{C}\in\{\mathbf{TM},\mathbf{\Lambda},\mathbf{Path},\mathbf{Circ}\}$,
+$N:\mathbf{C}\to\mathbf{C}$ is an \textbf{idempotent comonad} with:
+\begin{itemize}
+\item \textbf{Counit}: $\epsilon:N\Rightarrow \mathrm{Id}$ (natural transformation)
+\item \textbf{Comultiplication}: $\delta:N\Rightarrow N\circ N$ (natural transformation)
+\item \textbf{Idempotency}: $N\circ N = N$ (equality of functors)
+\end{itemize}
+The $N$-coalgebras $(X,\alpha:X\to NX)$ represent "gauge choices" where $\alpha$ is a section of $\epsilon_X$. Objects in the same $N$-coalgebra are identified up to gauge equivalence. The \emph{normalized} category is the Karoubi envelope $\mathbf{C}[N^{-1}]$ where morphisms are inverted if they become isomorphisms after applying $N$.
+\end{definition}
+
+\begin{axiom}[Encoding/decoding (essential surjectivity up to $N$)]
+\label{ax:encdec}
+There are functors $E_{i\to j}:\mathbf{C}_i\to\mathbf{C}_j$ with explicit natural isomorphisms:
+\begin{align}
+\eta_{i\to j} &: E_{j\to i}\circ E_{i\to j} \Rightarrow N_i \\
+\eta_{j\to i} &: E_{i\to j}\circ E_{j\to i} \Rightarrow N_j
+\end{align}
+These satisfy the \textbf{triangle identities}:
+\begin{align}
+\epsilon_i \circ \eta_{i\to j} &= \mathrm{id}_{E_{i\to j}} \\
+\epsilon_j \circ \eta_{j\to i} &= \mathrm{id}_{E_{j\to i}}
+\end{align}
+where $\epsilon_i, \epsilon_j$ are the counits of the normalization comonads.
+\end{axiom}
+
+\begin{axiom}[RG-compatibility]
+\label{ax:rg}
+Each $\mathbf{C}_i$ carries an RG endofunctor $\mathcal{R}_\Lambda$ with natural isomorphism:
+\[
+\zeta_{i\to j,\Lambda} : E_{i\to j}\circ \mathcal{R}_\Lambda \Rightarrow \mathcal{R}_\Lambda \circ E_{i\to j}
+\]
+This isomorphism is \textbf{natural in $\Lambda$} and satisfies the \textbf{semigroup law}:
+\[
+\zeta_{i\to j,\Lambda_1 \cdot \Lambda_2} = \zeta_{i\to j,\Lambda_1} \circ \zeta_{i\to j,\Lambda_2}
+\]
+where $\Lambda$ acts as an object in $\mathsf{Scale}$ with strict monoidal action $(\mathbb{R}_+, \cdot, 1)$.
+\end{axiom}
+
+\begin{axiom}[Observable preservation]
+\label{ax:obs}
+There is a common observable functor $\mathcal{O}:\mathbf{C}_i\to\mathbf{Obs}$ s.t.
+$\mathcal{O}\circ E_{i\to j}\cong \mathcal{O}$ and $\mathcal{O}\circ N\cong \mathcal{O}$.
+\end{axiom}
+
+\begin{axiom}[Conservativity on the base language]
+\label{ax:cons}
+Each $E_{i\to j}$ is conservative on a shared fragment (sub-logic) $\mathcal{L}_0$
+(i.e. reflects isomorphisms/provability on $\mathcal{L}_0$).
+\end{axiom}
+
+\begin{conjecture}[Alignment and universality up to normalization]
+\label{conj:alignment}
+Under Axioms~\ref{ax:encdec}–\ref{ax:cons}, the normalized categories
+$\mathbf{TM}[N^{-1}],\mathbf{\Lambda}[N^{-1}],\mathbf{Path}[N^{-1}],\mathbf{Circ}[N^{-1}]$
+are equivalent:
+\[
+\mathbf{TM}[N^{-1}] \;\simeq\; \mathbf{\Lambda}[N^{-1}] \;\simeq\; \mathbf{Path}[N^{-1}] \;\simeq\; \mathbf{Circ}[N^{-1}].
+\]
+Equivalently, they embed as reflective subcategories of a universal glued category
+$\mathcal{U}$ obtained as a bicategorical colimit of the four via the encoders.
+\end{conjecture}
+
+\paragraph{Motivation.}
+This equivalence says that, \emph{up to normalization}, the four computational views
+carry the same content; renormalization (Section~\ref{sec:rg-flow}) is then the natural
+mechanism organizing this equivalence along scales.
+
+\begin{definition}[Moduli of normalized programs]
+\label{def:moduli}
+Let $\mathfrak{P}$ be parameter space (couplings, encoders, presentation choices).
+The moduli space is the quotient (stack) $\mathcal{M} := [\mathfrak{P} / \sim]$ where
+$(\text{program},\text{data})\sim(\text{program}',\text{data}')$ iff they are related
+by normalization $N$ and RG-preserving isomorphisms. Points $[P]\in\mathcal{M}$ are
+\emph{universal programs} up to normalization.
+\end{definition}
+
+\subsection{Example: Peano universality across views}
+\label{subsec:peano-moduli}
+Let $\mathbf{PA}$ be the Lawvere theory of a natural numbers object (NNO)
+with constants $0$ and successor $S$, and induction.
+
+\paragraph{Four presentations.}
+\begin{itemize}
+\item $\mathbf{TM}$: a register machine for $S$ and primitive recursion on $\mathbb{N}$;
+\item $\mathbf{\Lambda}$: Church numerals with $0,\;S,\;$ and a recursor $R$;
+\item $\mathbf{Path}$: a path-integral model with amplitudes supported on unary steps $n\to n+1$;
+\item $\mathbf{Circ}$: a symmetric monoidal presentation with generators $0,S$ and recursion combinators.
+\end{itemize}
+
+\paragraph{Encoders and normalization.}
+There are encoders $E_{i\to j}$ (Section~\ref{conj:alignment}) sending each presentation to another,
+with $E_{j\to i}\circ E_{i\to j}\simeq N$.
+All four presentations define the same point $[\mathbf{PA}]\in\mathcal{M}$.
+
+\begin{proposition}[Peano equivalence up to normalization]
+Each presentation of $\mathbf{PA}$ yields the same normalized correlators for
+the generating function $G$, i.e.\ $\mathcal{O}(\Lambda)$ (Def.~\ref{def:global-observable})
+is invariant under encoders and normalization. Hence all four belong to the same moduli point.
+\end{proposition}
+
+\subsection{Summary and Outlook}
+
+This section established the regulator view of computation:
+
+\begin{enumerate}
+\item Normalization step corresponds to choosing appropriate regulators
+\item Regulator hierarchy controls computational process at multiple scales
+\item Termination condition provides paradigm-independent normalization criterion
+\item Traditional models are different regularization choices within our unified framework
+\end{enumerate}
+
+The regulator view unifies compile-time and runtime aspects through the generating function structure. The next section develops RG machinery showing how regulators evolve toward fixed points (Section~\ref{sec:rg-flow}).

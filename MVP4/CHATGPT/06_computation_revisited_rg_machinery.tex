@@ -1,0 +1,230 @@
+% Computation Revisited: Using RG Machinery
+% Cleaner version of the computation story using developed renormalization machinery
+
+\section{Computation Revisited: The RG Machinery Perspective}
+\label{sec:computation-revisited}
+
+Having developed the complete renormalisation group machinery in Sections \ref{sec:regulator-view} through \ref{sec:generalized-rg-flows}, this section provides a sophisticated account of the three computational paradigms, contrasting with the traditional presentation in Section \ref{sec:S01_computation_invitation} through the computational isomorphism.
+
+\subsection{The Traditional Textbook View vs. RG Machinery}
+
+\subsubsection{Traditional Textbook View (Section \ref{sec:S01_computation_invitation})}
+
+The traditional approach treats the three computational paradigms as separate, independent theories:
+\begin{itemize}
+\item \textbf{Turing Machines}: Discrete state transitions with explicit halting states
+\item \textbf{Lambda Calculus}: Functional composition with $\beta$-reduction
+\item \textbf{Path Integrals}: Quantum interference over all computational paths
+\end{itemize}
+
+Each paradigm is presented with its own formalism, notation, and theoretical framework, with connections established only through equivalence theorems (Church-Turing thesis).
+
+\subsubsection{RG Machinery View (This Section)}
+
+The RG machinery reveals that all three paradigms are different parameterizations of the same underlying generating function structure, unified through the renormalisation group flow.
+
+\begin{definition}[Parameter Mappings]
+\label{def:parameter-mappings}
+\begin{align}
+\text{Turing Machines} &: \vec{q} = (1, 0, 0) \leftrightarrow \text{Discrete state transitions} \\
+\text{Lambda Calculus} &: \vec{q} = (0, 1, 0) \leftrightarrow \text{Functional composition} \\
+\text{Path Integrals} &: \vec{q} = (0, 0, 1) \leftrightarrow \text{Quantum interference} \\
+\text{AGT Correspondence} &: \vec{q} = (a_1, a_2, a_3) \leftrightarrow \text{Coulomb parameters}
+\end{align}
+where $(a_1, a_2, a_3)$ are Coulomb branch parameters in the 4D gauge theory.
+\end{definition}
+
+\subsection{Concrete Example: $5 - 3 = 2$ Revisited}
+
+\begin{example}[Parameter Mapping: $5 - 3 = 2$]
+\label{ex:5-3-2-rg}
+Let us consider how the same computation $5 - 3 = 2$ appears across all three paradigms, now understood through the RG machinery:
+
+\textbf{Turing Machines} $\vec{q} = (1, 0, 0)$: Discrete state transitions
+\begin{align}
+\text{Encoding: } &(5,3) \mapsto z^5 \bar{z}^3 \\
+\text{Application: } &\text{State transition } (5,3) \to (2,0) \\
+\text{Normalization: } &\text{Halting criterion (boundary at } 0\text{)} \\
+\text{Decoding: } &(2,0) \mapsto 2
+\end{align}
+
+\textbf{Lambda Calculus} $\vec{q} = (0, 1, 0)$: Functional composition
+\begin{align}
+\text{Encoding: } &(5,3) \mapsto z^5 \bar{z}^3 \\
+\text{Application: } &\text{Function composition } \lambda x. x-3 \circ \lambda y. y+5 \\
+\text{Normalization: } &\text{$\beta$-reduction to normal form} \\
+\text{Decoding: } &\text{Result } 2
+\end{align}
+
+\textbf{Path Integrals} $\vec{q} = (0, 0, 1)$: Quantum interference
+\begin{align}
+\text{Encoding: } &(5,3) \mapsto z^5 \bar{z}^3 \\
+\text{Application: } &\text{All paths with phases } e^{iS/\hbar} \\
+\text{Normalization: } &\text{Amplitude normalization via } \Lambda \\
+\text{Decoding: } &\text{Measurement } \mathcal{M}: \mathbb{C} \to \mathbb{Z} \text{ yields } 2
+\end{align}
+\end{example}
+
+The RG machinery reveals that all three represent the same computation $5-3=2$, but with different mathematical structures unified through the generating function approach.
+
+\subsection{From Traditional Turing Machines to Generating Functions: The Minsky Connection}
+
+The most natural connection between traditional Turing machines and our generating function approach emerges through Minsky's register machine model. This reveals both the tight interrelation and the fundamental differences between the approaches.
+
+\begin{definition}[Minsky Register Machine]
+\label{def:minsky-machine}
+A Minsky register machine is a tuple $R = (Q, \Sigma, \delta, q_0, q_{\text{halt}})$ where:
+\begin{itemize}
+\item $Q$ is a finite set of states
+\item $\Sigma = \{R_1, R_2, \ldots, R_k\}$ is a finite set of registers (each storing a non-negative integer)
+\item $\delta: Q \times \Sigma \to Q \times \Sigma \times \{+, -, \text{halt}\}$ is the transition function
+\item $q_0 \in Q$ is the initial state
+\item $q_{\text{halt}} \in Q$ is the halting state
+\end{itemize}
+Each instruction either increments a register, decrements a register (if positive), or halts.
+\end{definition}
+
+The key insight is that our generating function $G(z, \bar{z}; q_1=1, q_2=0, q_3=0, \Lambda)$ naturally encodes Minsky register machines where:
+\begin{itemize}
+\item $z$ represents the first register $R_1$ (with exponent $n$ giving the register value)
+\item $\bar{z}$ represents the second register $R_2$ (with exponent $m$ giving the register value)
+\item The computational weights $\mathcal{Z}_{n,m}(1,0,0)$ encode the transition rules
+\end{itemize}
+
+\begin{example}[Minsky Machine: $5-3=2$]
+\label{ex:minsky-5-3-2}
+Consider a Minsky machine computing $5-3=2$:
+\begin{align}
+\text{Initial state: } &R_1 = 5, R_2 = 3 \\
+\text{Instructions: } &\text{while } R_2 > 0: R_1 \leftarrow R_1-1, R_2 \leftarrow R_2-1 \\
+\text{Final state: } &R_1 = 2, R_2 = 0
+\end{align}
+
+In our generating function framework:
+\begin{align}
+\text{Encoding: } &(5,3) \mapsto z^5 \bar{z}^3 \\
+\text{Application: } &\mathcal{Z}_{5,3}(1,0,0) \text{ encodes the decrement operations} \\
+\text{Normalization: } &\text{Halting when } R_2 = 0 \text{ (boundary condition)} \\
+\text{Decoding: } &(2,0) \mapsto 2
+\end{align}
+\end{example}
+
+\textbf{Fundamental Differences from Traditional Turing Machines:}
+
+\begin{enumerate}
+\item \textbf{Continuous vs. Discrete}: Traditional Turing machines operate on discrete tape symbols; our generating function operates on continuous variables $z, \bar{z}$ that encode register values as exponents.
+
+\item \textbf{Global vs. Local}: Traditional Turing machines have local tape operations; our approach considers global state evolution through the generating function.
+
+\item \textbf{Deterministic vs. Probabilistic}: While both are deterministic, traditional Turing machines have explicit state transitions; our approach encodes transitions probabilistically through $\mathcal{Z}_{n,m}(1,0,0)$.
+
+\item \textbf{Finite vs. Infinite}: Traditional Turing machines have finite state spaces; our generating function naturally handles infinite state spaces through the power series expansion.
+
+\item \textbf{Explicit vs. Implicit Halting}: Traditional Turing machines have explicit halting states; our approach has implicit halting through boundary conditions and the termination criterion $\|P_{\text{vac}}|\psi\rangle\|^2 \ge \tau$.
+\end{enumerate}
+
+The generating function approach thus provides a \emph{unified mathematical framework} that naturally encompasses traditional computational models while revealing deeper structural connections to physics and logic.
+
+\subsection{Unified Computational Dynamics}
+
+\begin{theorem}[Unified Computational Dynamics]
+\label{thm:unified-dynamics}
+All three computational paradigms emerge from the same underlying dynamics governed by the generating function:
+\[
+G(z, \bar{z}; \vec{q}, \Lambda) = \sum_{n,m=0}^{\infty} \frac{z^n \bar{z}^m}{n! m!} \cdot \mathcal{Z}_{n,m}(\vec{q}) \cdot \Lambda^{-(n+m)}
+\]
+where the computational paradigm is determined by the RG flow behavior of the weights $\mathcal{Z}_{n,m}(\vec{q})$.
+\end{theorem}
+
+\subsection{RG Flow Classification of Computational Paradigms}
+
+\begin{definition}[RG Flow Classification]
+\label{def:rg-classification}
+The three computational paradigms are classified by their RG flow behavior:
+
+\begin{align}
+\text{Turing Machines} &: \lim_{\Lambda \to \infty} \mathcal{Z}_{n,m}(1,0,0) \text{ converges deterministically} \\
+\text{Lambda Calculus} &: \lim_{\Lambda \to \infty} \mathcal{Z}_{n,m}(0,1,0) \text{ converges functionally} \\
+\text{Path Integrals} &: \lim_{\Lambda \to \infty} \mathcal{Z}_{n,m}(0,0,1) \text{ converges quantum mechanically}
+\end{align}
+\end{definition}
+
+\subsection{RG Machinery and Renormalization}
+
+The RG machinery reveals that traditional computational models are already "renormalised" versions of their raw counterparts. The detailed renormalisation procedures are treated in Section \ref{sec:complete-renormalization}.
+
+\subsection{Information-Theoretic Classification}
+
+\begin{theorem}[Information-Theoretic Classification]
+\label{thm:info-classification}
+The three computational paradigms can be classified by their information-theoretic properties under RG flow:
+
+\begin{align}
+\text{Turing Machines} &: \text{Deterministic information preservation} \\
+\text{Lambda Calculus} &: \text{Functional information preservation} \\
+\text{Path Integrals} &: \text{Quantum information preservation}
+\end{align}
+\end{theorem}
+
+\subsection{Computational Universality Revisited}
+
+\begin{theorem}[Computational Universality via RG Flow]
+\label{thm:universality-rg}
+The Church-Turing thesis emerges naturally from the RG flow structure. All three paradigms are computationally universal because they all flow to the same fixed point under RG evolution:
+
+\[
+\lim_{\Lambda \to \infty} G_{\text{Turing}} = \lim_{\Lambda \to \infty} G_{\text{Church}} = \lim_{\Lambda \to \infty} G_{\text{Feynman}} = G_*
+\]
+where $G_*$ is the universal fixed point of the RG flow.
+\end{theorem}
+
+\subsection{The Four-Step Pipeline Revisited}
+
+\begin{definition}[RG-Enhanced Four-Step Pipeline]
+\label{def:rg-pipeline}
+The four-step computational pipeline takes on a deeper meaning in the RG framework:
+
+\begin{enumerate}
+\item \textbf{Encoding}: $(a,b) \mapsto z^a \bar{z}^b$ (introduction of computational registers)
+\item \textbf{Operator Application}: Repeated Virasoro operations under $\hat H_{\text{comp}}$ (RG flow evolution)
+\item \textbf{Normalization (Regularization)}: Choice of regulators and RG flow parameters (renormalization procedure)
+\item \textbf{Decoding}: Extraction of finite, renormalised results (removal of regulators)
+\end{enumerate}
+\end{definition}
+
+Each step corresponds to a specific aspect of the renormalization procedure.
+
+\subsection{Computational Complexity and RG Flow}
+
+The computational complexity of a problem is determined by its RG flow behavior. The spectral gap between kernel and co-kernel of the logic transformer provides the mathematical foundation for this classification. The comprehensive treatment is developed in Section \ref{sec:complete-renormalization}.
+
+\subsection{The Sextary Connective Revisited}
+
+\begin{definition}[Sextary Connective in RG Framework]
+\label{def:sextary-rg}
+The sextary connective $\mathsf{G}_6(\phi, \bar{\phi}; q_1, q_2, q_3; \Lambda)$ takes on a deeper meaning in the RG framework:
+
+\begin{itemize}
+\item \textbf{Input formulas} $\phi, \bar{\phi}$: Represent computational states
+\item \textbf{Grading parameters} $q_1, q_2, q_3$: Determine the computational paradigm
+\item \textbf{Scale parameter} $\Lambda$: Controls the RG flow evolution
+\item \textbf{Output}: The renormalised generating function $G(z, \bar{z}; \vec{q}, \Lambda)$
+\end{itemize}
+\end{definition}
+
+\subsection{The Unified Perspective}
+
+The RG machinery provides a unified perspective that reveals the deep structural connections between computational paradigms. Rather than treating them as separate theories, the RG framework shows how they emerge as different parameterizations of the same underlying mathematical structure, with computational universality arising naturally from RG flow convergence.
+
+\subsection{The Deep Structure}
+
+The RG machinery reveals that the three computational paradigms are not separate theories but different aspects of the same deep structure:
+
+\begin{itemize}
+\item \textbf{Unified Dynamics}: All governed by the same generating function
+\item \textbf{RG Flow Evolution}: All evolve according to the same RG equations
+\item \textbf{Information Preservation}: All preserve information through converging RG flow
+\item \textbf{Computational Universality}: All flow to the same universal fixed point
+\end{itemize}
+
+This unified perspective provides a much cleaner and more sophisticated understanding of computation, revealing the deep structural connections that are hidden in the traditional textbook presentation.

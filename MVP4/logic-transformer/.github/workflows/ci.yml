@@ -1,0 +1,29 @@
+name: ci
+on:
+  push: { branches: [ main ] }
+  pull_request: {}
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Install Racket
+      uses: Bogdanp/setup-racket@v1
+      with:
+        version: '8.13'
+        distribution: 'full'
+    - name: Bootstrap
+      run: scripts/bootstrap.csh
+      shell: csh
+    - name: Lint
+      run: scripts/lint.csh
+      shell: csh
+    - name: Tests
+      run: scripts/test.csh
+      shell: csh
+    - name: Build Docs
+      run: scripts/build-docs.csh
+      shell: csh
+
+
+

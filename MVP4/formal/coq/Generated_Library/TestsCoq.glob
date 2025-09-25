@@ -1,0 +1,149 @@
+DIGEST e82d1db492dd2aa178d78cfd7012d408
+FTestsCoq
+R100:104 M3Coq <> <> lib
+R122:126 RGCoq <> <> lib
+def 168:174 <> compose
+binder 177:177 <> A:1
+binder 179:179 <> B:2
+binder 181:181 <> C:3
+R197:200 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R196:196 TestsCoq <> B:2 var
+R201:201 TestsCoq <> C:3 var
+binder 192:192 <> g:4
+R210:213 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R209:209 TestsCoq <> A:1 var
+R214:214 TestsCoq <> B:2 var
+binder 205:205 <> f:5
+R222:222 TestsCoq <> A:1 var
+binder 218:218 <> x:6
+R227:227 TestsCoq <> C:3 var
+R234:234 TestsCoq <> g:4 var
+R237:237 TestsCoq <> f:5 var
+R239:239 TestsCoq <> x:6 var
+def 311:322 <> rg_flow_test
+R329:332 Corelib.Init.Datatypes <> bool ind
+binder 325:325 <> x:7
+R337:340 Corelib.Init.Datatypes <> bool ind
+R347:353 RGCoq <> rg_flow def
+R368:368 TestsCoq <> x:7 var
+binder 360:360 <> y:8
+R365:365 TestsCoq <> y:8 var
+def 411:422 <> rg_beta_test
+R429:431 Corelib.Init.Datatypes <> nat ind
+binder 425:425 <> n:9
+R436:438 Corelib.Init.Datatypes <> nat ind
+R445:460 RGCoq <> rg_beta_function def
+R462:462 TestsCoq <> n:9 var
+def 507:521 <> rg_anomaly_test
+R528:531 Corelib.Init.Datatypes <> bool ind
+binder 524:524 <> x:10
+R536:539 Corelib.Init.Datatypes <> bool ind
+R546:563 RGCoq <> rg_anomaly_measure def
+R565:565 TestsCoq <> x:10 var
+prf 650:673 <> rg_flow_composition_test
+binder 684:684 <> A:11
+binder 686:686 <> B:12
+binder 688:688 <> C:13
+R696:699 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R695:695 TestsCoq <> A:11 var
+R700:700 TestsCoq <> B:12 var
+binder 691:691 <> f:14
+R709:712 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R708:708 TestsCoq <> B:12 var
+R713:713 TestsCoq <> C:13 var
+binder 704:704 <> g:15
+R721:721 TestsCoq <> A:11 var
+binder 717:717 <> x:16
+R750:752 Corelib.Init.Logic <> ::type_scope:x_'='_x not
+R727:733 RGCoq <> rg_flow def
+R749:749 TestsCoq <> x:16 var
+R736:742 TestsCoq <> compose def
+R746:746 TestsCoq <> f:14 var
+R744:744 TestsCoq <> g:15 var
+R753:753 TestsCoq <> g:15 var
+R756:756 TestsCoq <> f:14 var
+R758:758 TestsCoq <> x:16 var
+R800:806 RGCoq <> rg_flow def
+R809:815 TestsCoq <> compose def
+def 928:946 <> consistency_theorem
+R953:956 Corelib.Init.Datatypes <> bool ind
+binder 949:949 <> x:17
+R961:964 Corelib.Init.Datatypes <> bool ind
+R971:974 Corelib.Init.Datatypes <> true constr
+def 1015:1033 <> compactness_theorem
+R1040:1043 Corelib.Init.Datatypes <> bool ind
+binder 1036:1036 <> x:18
+R1048:1051 Corelib.Init.Datatypes <> bool ind
+R1058:1061 Corelib.Init.Datatypes <> true constr
+def 1103:1122 <> completeness_theorem
+R1129:1132 Corelib.Init.Datatypes <> bool ind
+binder 1125:1125 <> x:19
+R1137:1140 Corelib.Init.Datatypes <> bool ind
+R1147:1150 Corelib.Init.Datatypes <> true constr
+def 1189:1205 <> soundness_theorem
+R1212:1215 Corelib.Init.Datatypes <> bool ind
+binder 1208:1208 <> x:20
+R1220:1223 Corelib.Init.Datatypes <> bool ind
+R1230:1233 Corelib.Init.Datatypes <> true constr
+def 1272:1288 <> coherence_theorem
+R1295:1298 Corelib.Init.Datatypes <> bool ind
+binder 1291:1291 <> x:21
+R1303:1306 Corelib.Init.Datatypes <> bool ind
+R1313:1316 Corelib.Init.Datatypes <> true constr
+def 1408:1426 <> goedel_theorem_test
+R1433:1436 Corelib.Init.Datatypes <> bool ind
+binder 1429:1429 <> x:22
+R1441:1444 Corelib.Init.Datatypes <> bool ind
+R1451:1454 Corelib.Init.Datatypes <> true constr
+def 1495:1513 <> tarski_theorem_test
+R1520:1523 Corelib.Init.Datatypes <> bool ind
+binder 1516:1516 <> x:23
+R1528:1531 Corelib.Init.Datatypes <> bool ind
+R1538:1541 Corelib.Init.Datatypes <> true constr
+def 1580:1596 <> rice_theorem_test
+R1603:1606 Corelib.Init.Datatypes <> bool ind
+binder 1599:1599 <> x:24
+R1611:1614 Corelib.Init.Datatypes <> bool ind
+R1621:1624 Corelib.Init.Datatypes <> true constr
+def 1666:1685 <> noether_theorem_test
+R1692:1695 Corelib.Init.Datatypes <> bool ind
+binder 1688:1688 <> x:25
+R1700:1703 Corelib.Init.Datatypes <> bool ind
+R1710:1713 Corelib.Init.Datatypes <> true constr
+def 1752:1768 <> ward_theorem_test
+R1775:1778 Corelib.Init.Datatypes <> bool ind
+binder 1771:1771 <> x:26
+R1783:1786 Corelib.Init.Datatypes <> bool ind
+R1793:1796 Corelib.Init.Datatypes <> true constr
+def 1886:1905 <> rg_truth_system_test
+R1912:1915 Corelib.Init.Datatypes <> bool ind
+binder 1908:1908 <> x:27
+R1920:1923 Corelib.Init.Datatypes <> bool ind
+R1930:1933 Corelib.Init.Datatypes <> true constr
+def 1974:1992 <> rg_consistency_test
+R1999:2002 Corelib.Init.Datatypes <> bool ind
+binder 1995:1995 <> x:28
+R2007:2010 Corelib.Init.Datatypes <> bool ind
+R2017:2020 Corelib.Init.Datatypes <> true constr
+def 2067:2091 <> rg_truth_convergence_test
+R2098:2101 Corelib.Init.Datatypes <> bool ind
+binder 2094:2094 <> x:29
+R2106:2109 Corelib.Init.Datatypes <> bool ind
+R2116:2119 Corelib.Init.Datatypes <> true constr
+def 2233:2252 <> rg_type_preservation
+binder 2255:2255 <> A:30
+binder 2257:2257 <> B:31
+R2273:2276 Corelib.Init.Logic <> ::type_scope:x_'->'_x not
+R2272:2272 TestsCoq <> A:30 var
+R2277:2277 TestsCoq <> B:31 var
+binder 2268:2268 <> f:32
+R2285:2285 TestsCoq <> A:30 var
+binder 2281:2281 <> x:33
+R2290:2293 Corelib.Init.Datatypes <> bool ind
+R2300:2303 Corelib.Init.Datatypes <> true constr
+def 2365:2390 <> theorem_helpers_well_typed
+binder 2393:2393 <> A:34
+R2408:2408 TestsCoq <> A:34 var
+binder 2404:2404 <> x:35
+R2413:2416 Corelib.Init.Datatypes <> bool ind
+R2423:2426 Corelib.Init.Datatypes <> true constr

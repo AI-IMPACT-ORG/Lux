@@ -1,0 +1,105 @@
+\section{Truth as Fixed Point: RG Flow as Logical Semantics}
+\label{sec:truth-fixed-point}
+
+Having established the logic transformer framework in Section~\ref{sec:formal-systems}, we now present the core innovation of this work: \textbf{truth can be understood as a fixed point under renormalization group flow}. This connection between renormalization and logic provides the foundation for our computational semantics.
+
+\begin{theorem}[Truth as Fixed Point]
+\label{thm:truth-fixed-point}
+Let $(\mathsf{Obs},\preceq)$ be an $\omega$-cpo; assume $\mathcal{R}:\mathsf{Obs}\to\mathsf{Obs}$ is \textbf{monotone and $\omega$-continuous}. Then $\mathrm{lfp}(\mathcal{R})=\sup_n \mathcal{R}^n(\bot)$ exists (Kleene).
+\end{theorem}
+
+\begin{proof}[Proof Sketch]
+The proof follows from Kleene's fixed point theorem. Since $\mathcal{R}$ is monotone and $\omega$-continuous, the sequence $\{\mathcal{R}^n(\bot)\}_{n \geq 0}$ forms a chain in the $\omega$-cpo. By Kleene's theorem, this chain has a least upper bound which is the least fixed point.
+\end{proof}
+
+\begin{remark}[Connection to Implementation]
+\label{rem:implementation-connection}
+The RG operator iteration corresponds to iteration of \texttt{pgc-eval} under increasingly coarse guards in our implementation. The monotonicity condition is satisfied by the semiring operations in \texttt{m2d.semiring.rkt}, and the completeness follows from the $\omega$-cpo structure of our observable space.
+\end{remark}
+
+\subsection{Regularization as Deformation}
+
+Regularization deforms formal systems in a specific way, analogous to how temperature deforms crystal structures in condensed matter physics:
+
+\begin{definition}[Deformation of Formal Systems]
+Regularization induces a deformation of formal systems:
+\begin{itemize}
+\item \textbf{Undeformed system}: Standard formal logic with classical truth
+\item \textbf{Deformed system}: Logic with RG flow semantics
+\item \textbf{Deformation parameter}: The scale parameter $\Lambda$
+\end{itemize}
+\end{definition}
+
+For our HEP-TH audience, this deformation should feel familiar: just as we deform field theories by introducing regulators (like dimensional regularization), we deform logical systems by introducing computational regulators. The key insight is that the same mathematical structure—deformation theory—applies to both contexts.
+
+\subsection{Hierarchical Deformation of Truth Systems}
+
+The hierarchical deformation structure (Section~\ref{sec:formal-systems}) provides natural understanding of how truth emerges through RG flow deformation, with truth predicates $\text{True}_\alpha$ creating a hierarchy. The deformation can be expressed as:
+\[
+\text{True}_\alpha = \lim_{\Lambda \to \infty} \mathcal{R}_\Lambda(\text{True}_{\alpha-1})
+\]
+where $\alpha$ ranges over ordinals, creating a transfinite hierarchy of truth predicates.
+
+\subsection{Two Boundaries with Direction and Holographic Renormalization}
+
+\begin{definition}[Directed Boundaries]
+\label{def:directed-boundaries-truth}
+The logic transformer gives rise to input boundary (domain of $(\phi_1, \phi_2)$) and output boundary (codomain of $(\psi_1, \psi_2)$), providing holographic structure.
+\end{definition}
+
+\begin{remark}[Holographic Renormalization in dS/CFT]
+\label{rem:holographic-renorm-truth}
+The two-boundary structure with logic transformer as correlator interprets as holographic renormalization in dS/CFT context (detailed in Section~\ref{sec:boundary-maps}).
+\end{remark}
+
+\subsection{Spectral Gap and Computational Semantics}
+
+\begin{definition}[Spectral Gap]
+\label{def:spectral-gap-truth}
+The spectrum of the logic transformer $\mathcal{T}$ has a natural symmetry-related gap between kernel and co-kernel:
+\begin{itemize}
+\item \textbf{Kernel}: Reversible computations (information preserving)
+\item \textbf{Co-kernel}: Irreversible computations (information destroying)
+\item \textbf{Spectral Gap}: The difference between reversible and irreversible computation
+\end{itemize}
+\end{definition}
+
+This spectral gap is crucial for understanding the computational semantics of the logic transformer.
+
+\subsection{Truth as RG Fixed Point}
+
+\begin{theorem}[Truth as RG Fixed Point]
+\label{thm:truth-rg-fixed-point}
+A statement $\phi$ is true if and only if it corresponds to a fixed point under RG flow:
+\[
+\text{True}(\phi) \Leftrightarrow \lim_{\Lambda \to \infty} G(\llbracket\phi\rrbracket, \llbracket\bar{\phi}\rrbracket; \vec{q}, \Lambda) \text{ converges}
+\]
+where convergence of the RG flow corresponds to reversible computation (information preservation).
+\end{theorem}
+
+\subsection{Computational Semantics}
+
+\begin{definition}[Computational Semantics]
+\label{def:computational-semantics}
+The computational semantics of our framework assigns meaning to logical statements through RG flow behavior:
+\begin{itemize}
+\item \textbf{Truth}: Converging RG flow (reversible computation)
+\item \textbf{Falsehood}: Diverging RG flow (irreversible computation)
+\item \textbf{Undecidability}: Marginal RG flow (undecidable computation)
+\end{itemize}
+\end{definition}
+
+\subsection{Summary and Outlook}
+
+This section has established truth as a fixed point under RG flow, providing the computational semantics for our framework. The key observations are:
+
+\begin{enumerate}
+\item Regularization deforms formal systems through RG flow
+\item Hierarchical deformation creates a hierarchy of truth predicates
+\item Two boundaries with direction enable holographic renormalization
+\item The spectral gap distinguishes reversible from irreversible computation
+\item Truth corresponds to converging RG flow (fixed points)
+\item Computational semantics assigns meaning through RG flow behavior
+\end{enumerate}
+
+The connection between truth and RG flow provides a natural bridge between logic and physics. In the next section, we will develop the effective logic framework that unifies all computational paradigms through the MDE pyramid structure.

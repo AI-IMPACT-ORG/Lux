@@ -1,0 +1,86 @@
+% Definition of Renormalisation
+% Extracted from ChatGPT conversation on renormalization logic
+
+\section{Renormalisation: From Raw to Refined}
+\label{sec:renormalisation}
+
+The generating function framework introduced in Section \ref{sec:S01_computation_invitation} produces formal expansions that may contain divergences. This section develops the renormalisation isomorphism that transforms raw computational weights $\mathcal{Z}_{n,m}(\vec{q})$ into finite, well-defined quantities.
+
+\subsection{Unrenormalised vs Renormalised Green's Functions}
+
+In the context of the computational generating function framework, we distinguish between unrenormalised and renormalised Green's functions through their relationship to the RG flow developed in Section \ref{sec:rg-flow-behavior} and computational semantics.
+
+\subsection{Unrenormalised Green's Functions}
+
+\begin{definition}[Unrenormalised Green's Functions]
+\label{def:unrenormalised-greens}
+The unrenormalised Green's functions are the matrix elements $\mathcal{Z}_{n,m}(\vec{q})$ appearing directly in the generating function defined in Section \ref{sec:S01_computation_invitation}:
+\[
+G_{\text{unren}}(z, \bar{z}; \vec{q}, \Lambda) = \sum_{n,m=0}^{\infty} \frac{z^n \bar{z}^m}{n! m!} \cdot \mathcal{Z}_{n,m}(\vec{q}) \cdot \Lambda^{-(n+m)}
+\]
+where $\mathcal{Z}_{n,m}(\vec{q})$ are the bare matrix elements without any RG flow corrections.
+\end{definition}
+
+The unrenormalised Green's functions represent the raw computational weights before any renormalisation procedure is applied. They may contain divergences or exhibit pathological behavior under RG flow.
+
+\subsection{Renormalised Green's Functions}
+
+\begin{definition}[Renormalised Green's Functions]
+\label{def:renormalised-greens}
+The renormalised Green's functions are obtained by applying the RG map $\mathcal{R}_b$ to the unrenormalised functions:
+\[
+G_{\text{ren}}(z, \bar{z}; \vec{q}, \Lambda) = \lim_{b \to \infty} (\mathcal{R}_b G_{\text{unren}})(z, \bar{z}; \vec{q}, \Lambda)
+\]
+where the RG map acts on the weights as:
+\[
+(\mathcal{R}_b\mathcal{Z})_{n,m} = b^{-\Delta(n,m)}\,\mathcal{Z}_{\lfloor n/b\rfloor,\lfloor m/b\rfloor}
+\]
+\end{definition}
+
+The renormalised Green's functions represent the finite, well-defined computational weights after removing divergences through the renormalisation procedure.
+
+\subsection{Renormalisation Procedure}
+
+\begin{definition}[Renormalisation Procedure]
+\label{def:renormalisation-procedure}
+The renormalisation procedure consists of:
+\begin{enumerate}
+\item \textbf{Regularisation}: Introduce regulators (boundaries, scale $\Lambda$, grading parameters $\vec q$) to make the unrenormalised Green's functions well-defined
+\item \textbf{RG Flow}: Apply the RG map $\mathcal{R}_b$ to evolve the system from scale $\Lambda$ to scale $b\Lambda$
+\item \textbf{Renormalisation Conditions}: Impose conditions ensuring convergence to a fixed point
+\item \textbf{Removal of Regulators}: Take the limit $b \to \infty$ to obtain finite renormalised Green's functions
+\end{enumerate}
+\end{definition}
+
+\subsection{Renormalised vs Unrenormalised: Key Differences}
+
+\begin{theorem}[Renormalised vs Unrenormalised Green's Functions]
+\label{thm:renormalised-difference}
+The key differences between renormalised and unrenormalised Green's functions are:
+
+\begin{enumerate}
+\item \textbf{Finite vs Divergent}: Renormalised Green's functions are finite, while unrenormalised ones may diverge
+\item \textbf{RG Flow Behavior}: Renormalised functions exhibit converging RG flow, while unrenormalised ones may diverge or oscillate
+\item \textbf{Computational Semantics}: Renormalised functions correspond to reversible computations, while unrenormalised ones may correspond to irreversible or undecidable computations
+\item \textbf{Information Preservation}: Renormalised functions preserve information, while unrenormalised ones may destroy information
+\end{enumerate}
+\end{theorem}
+
+\subsection{Renormalisation Across Paradigms}
+
+The renormalisation procedure applies uniformly across all computational paradigms. Traditional computational models represent the renormalised versions of their raw counterparts.
+
+\subsection{Renormalisation Group Fixed Points}
+
+\begin{definition}[RG Fixed Points]
+\label{def:rg-fixed-points}
+A renormalised Green's function $G_{\text{ren}}$ is at an RG fixed point if:
+\[
+\mathcal{R}_b G_{\text{ren}} = G_{\text{ren}}
+\]
+for all $b > 1$. Fixed points correspond to scale-invariant computational processes.
+\end{definition}
+
+\subsection{Renormalisation and Truth}
+
+The renormalisation procedure serves as the bridge between the formal mathematical structure and computational truth. The comprehensive treatment is developed in Section \ref{sec:complete-renormalization}.

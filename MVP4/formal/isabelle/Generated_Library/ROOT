@@ -1,0 +1,8 @@
+chapter BootstrapPaper
+
+session BootstrapPaper = Main +
+  theories
+    M3
+    RG
+    Tests
+    BootstrapPaper
