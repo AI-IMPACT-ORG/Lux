@@ -3,7 +3,8 @@
 ;; This module implements entropy measures and optimization based on the theoretical framework
 ;; Following the ChatGPT design suggestions for mathematical strengthening
 
-(require "m3d.types.rkt" "m3d.graph.rkt" "m2d.pgc.rkt")
+(require racket/list
+         "m3d.types.rkt" "m3d.graph.rkt" "m2d.pgc.rkt")
 (provide ;; Entropy measures
          entropy-measure entropy-decreases? entropy-additive?
          entropy-measure-cached entropy-less-than?
@@ -11,6 +12,8 @@
          is-normalized? is-coarse-grained?
          ;; Mathematical invariants
          entropy-invariant? second-law-satisfied?
+         ;; Spectral analysis utilities
+         estimate-spectral-gap has-spectral-gap?
          ;; Global anomaly resolution
          CechCocycle CechCocycle? CechCocycle-c CechCocycle-s CechCocycle-B
          detect-global-anomaly resolve-global-truth regulate-divergence
@@ -119,6 +122,36 @@
 (: entropy-less-than? (-> TGraph TGraph Boolean))
 (define (entropy-less-than? G1 G2)
   (< (entropy-measure-cached G1) (entropy-measure-cached G2)))
+
+;; ============================================================================
+;; SPECTRAL GAP ESTIMATION
+;; ============================================================================
+
+(: node-degree (-> TGraph NodeId Natural))
+(define (node-degree G nid)
+  (define edges (TGraph-edges G))
+  (for/sum : Natural ([edge (in-hash-values edges)])
+    (define src-indices (vector->list (Edge-src edge)))
+    (define dst-indices (vector->list (Edge-dst edge)))
+    (define src-count (count (λ ([v : NodeId]) (= v nid)) src-indices))
+    (define dst-count (count (λ ([v : NodeId]) (= v nid)) dst-indices))
+    (+ src-count dst-count)))
+
+(: estimate-spectral-gap (-> TGraph Real))
+(define (estimate-spectral-gap G)
+  (define node-ids (hash-keys (TGraph-nodes G)))
+  (define degrees (map (λ ([nid : NodeId]) (node-degree G nid)) node-ids))
+  (cond
+    [(or (null? degrees) (null? (cdr degrees))) 0.0]
+    [else
+     (define sorted-degrees (sort degrees >))
+     (define top (first sorted-degrees))
+     (define second (second sorted-degrees))
+     (- (exact->inexact top) (exact->inexact second))]))
+
+(: has-spectral-gap? (-> TGraph Real Boolean))
+(define (has-spectral-gap? G epsilon)
+  (> (estimate-spectral-gap G) epsilon))
 
 ;; ============================================================================
 ;; GLOBAL ANOMALY RESOLUTION MECHANISM

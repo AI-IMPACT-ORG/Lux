@@ -1,0 +1,221 @@
+\appendix
+\section{Complete API Specifications and Implementation Details}
+\label{app:api-specifications}
+
+This appendix provides the complete API specifications and implementation details from the MDE pyramid implementation plan. These specifications are separated from the main text to maintain focus on the core logical framework while providing complete implementation guidance.
+
+\subsection{Design Crosswalk: Paper $\leftrightarrow$ Implementation}
+
+To anchor our theoretical development in concrete implementation, we provide the following correspondence between our paper's concepts and the explicit logic implementation:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+Paper Concept & Mathematical Definition & Racket Implementation \\
+\hline
+Signature $\Sigma$ & L/B/R sorts, primitive symbols & \texttt{M3\_types.rkt} \\
+BNF Grammar & File, Section, Term productions & \texttt{M3\_graph.rkt} \\
+Boundary semirings & $\oplus_*, \otimes_* : * \times * \to *$ & \texttt{M2\_pgc.rkt} \\
+Bulk log-semiring & $\oplus_B, \otimes_B : B \times B \to B$ & \texttt{M3\_rules.rkt} \\
+Braided duals & $\text{ad}_i : B \to B$, $F_{ij} : I \to B$ & \texttt{M3\_rules.rkt} \\
+$\mathsf{Gen4}$ primitive & $\mathsf{Gen4} : B^4 \to B$ & \texttt{M3\_types.rkt} \\
+Equality layers & $\equiv_L, \equiv_B, \equiv_R, \equiv_{\text{loc}}, \equiv_{\text{meta}}, \equiv_\star$ & \texttt{M2\_cert.rkt} \\
+Context grammars & $C_L[-], C_R[-], C_B[-]$ & Type checker in \texttt{M3\_graph.rkt} \\
+Derived functionals & Noe5, CS5, Rice6, NR6 & \texttt{M1\_logic.rkt} \\
+Normalization & $\mathsf{Gen4}(\bar{a}) \equiv 0_B$ & \texttt{M3\_rules.rkt} \\
+Proof procedures & \texttt{prove/L}, \texttt{prove/B}, \texttt{prove/R} & \texttt{M2\_cert.rkt} \\
+Exporters & Agda, Coq, Metamath, Lean & \texttt{generators/*.rkt} \\
+\hline
+\end{tabular}
+\caption{Comprehensive correspondence between paper concepts, mathematical definitions, and actual Racket implementation}
+\label{tab:design-crosswalk}
+\end{table}
+
+\subsection{MDE Pyramid Implementation Structure}
+
+The MDE pyramid implementation follows the L/B/R architecture with atomic kernels and selective saturation:
+
+\subsubsection{Layer L — Presentation \& Boundary DSLs (Atomic, Light Saturation)}
+\begin{itemize}
+\item Provide two minimal boundary DSLs: L-DSL and R-DSL (boolean semirings with $\oplus_*, \otimes_*$)
+\item Parsing/pretty-printing for L/R formulas; explicit L/R arity checks
+\item Thin wrappers for couplers $\iota_L, \iota_R$ into bulk terms
+\item Optional: developer REPL helpers (tactics) that build bulk diagrams from boundary data
+\end{itemize}
+
+\subsubsection{Layer B — Core Engine (Atomic Kernel + Selective Saturation)}
+\begin{itemize}
+\item Atomic kernel:
+  \begin{itemize}
+  \item Term data types (SMC), type checker (objects, L/R arity), symbol table
+  \item Equational kernel for bulk \& boundaries, braided rewriting (NC1, NC2)
+  \item Congruence engines for $\equiv_{\text{scale}}, \equiv_{\text{hel}}$, with combined $\equiv_*$
+  \item Primitive $\mathsf{Gen4}$, plus macros Noe5/CS5/Rice6/NR6
+  \end{itemize}
+\item Saturation services (opt-in):
+  \begin{itemize}
+  \item AC canon for $\oplus_B$; monomial canon for $\otimes_B$
+  \item Braiding normalizer (bubble $\text{ad}_i$ to a chosen total order; accumulate $F_{ij}$; reduce 3-cycles)
+  \item Memoized normalization (hash-consing) and critical-pair checker (if $\mathcal{R}$ is enabled, enforce YBE tiles)
+  \end{itemize}
+\end{itemize}
+
+\subsubsection{Layer R — Backends \& Exporters (Saturated Views)}
+\begin{itemize}
+\item Pretty printers/emitters for: Agda, Coq, Metamath (.mm), Lean, plain LaTeX
+\item Model stubs (non-binding): numerics, logging hooks (to demo semantics without coupling into logic core)
+\item Packaging: codegen scaffolds (project templates) for proofs in each target
+\end{itemize}
+
+\subsection{Racket Module Organization}
+
+The complete Racket module structure follows the MDE pyramid:
+
+\begin{verbatim}
+(module logic/signature       …)  ; ops, profiles, L/R arity, registry
+(module logic/syntax          …)  ; terms (SMC), typing, contexts
+(module logic/axioms          …)  ; equational axioms as rewrite rules
+(module logic/rewrite         …)  ; core rewriting + AC canon + braiding (NC1,NC2)
+(module logic/congruence      …)  ; ≡_scale, ≡_hel, and observational equalities
+(module logic/gen4            …)  ; primitive Gen4 + normalization basepoint
+(module logic/derived         …)  ; macros: Noe5, CS5, Rice6, NR6
+(module logic/check           …)  ; well-formedness, symbol hygiene, arity checks
+(module dsl/left              …)  ; L-DSL
+(module dsl/right             …)  ; R-DSL
+(module export/agda           …)  ; emit .agda
+(module export/coq            …)  ; emit .v
+(module export/metamath       …)  ; emit .mm
+(module export/lean           …)  ; optional
+(module tooling/repl          …)  ; dev REPL commands & tactics
+(module tooling/tests         …)  ; unit and property tests
+\end{verbatim}
+
+\subsection{Logic Library API (Complete Specification)}
+
+The Logic Library API provides the complete interface for Racket and codegen to Agda/Coq/Metamath/Lean:
+
+\subsubsection{Signature and Symbols}
+\begin{verbatim}
+;; -------------------------------
+;; Signature and Symbols
+;; -------------------------------
+(define-type Obj (U 'I 'L 'B 'R (Pairof Obj Obj))) ; ⊗ as pair-catenation
+(struct op   ([name : Symbol] [dom : (Listof Obj)] [cod : Obj] [larity : (Pairof Natural Natural)]) #:transparent)
+(struct konst([name : Symbol] [cod : Obj]) #:transparent)
+
+(define (make-signature) …) ; -> signature-handle
+(add-const!   sig (konst '0_B 'B))
+(add-op!      sig (op '⊕B (list 'B 'B) 'B (cons 0 0)))
+(add-op!      sig (op '⊗B (list 'B 'B) 'B (cons 0 0)))
+(add-axiom!   sig term-eq) ; term-eq: (→ Equation)
+\end{verbatim}
+
+\subsubsection{Terms, Typing, and Equalities}
+\begin{verbatim}
+;; -------------------------------
+;; Terms, Typing, and Equalities
+;; -------------------------------
+(struct var  ([name : Symbol] [type : Obj]) #:transparent)
+(struct app  ([op : op] [args : (Listof term)]) #:transparent)
+(struct tens ([l : term] [r : term]) #:transparent)
+(struct comp ([f : term] [g : term]) #:transparent)
+(define-type term (U var app tens comp))
+
+(type-check      : signature term -> (Option Obj))
+
+;; Gauge equalities (presentation)
+(equal-scale?    : signature term term -> Boolean)  ; ≡_scale (z⊗barz)
+(equal-hel?      : signature term term -> Boolean)  ; ≡_hel (z ↔ barz, balanced)
+
+;; Observational equalities (L/B/R + local + metalogical + reversible)
+(equal-L?        : signature term term -> Boolean)  ; ≡_L
+(equal-B?        : signature term term -> Boolean)  ; ≡_B
+(equal-R?        : signature term term -> Boolean)  ; ≡_R
+(equal-loc?      : signature term term -> Boolean)  ; ≡_loc = ≡_L ∧ ≡_R
+(equal-meta?     : signature term term -> Boolean)  ; ≡_meta (full contexts)
+(equal-star?     : signature term term -> Boolean)  ; ≡_⋆ (reversible core)
+\end{verbatim}
+
+\subsubsection{Feature Toggles}
+\begin{verbatim}
+;; Feature toggles
+(set-braiding!   : signature Boolean)               ; NC1/NC2 rewriting
+(set-r-matrix!   : signature Boolean)               ; enable YBE tiles in contexts
+(set-rg-quotient!: signature Boolean)               ; allow CS5-guarded RG quotient in ≡_meta
+\end{verbatim}
+
+\subsubsection{Generators and Derived Operators}
+\begin{verbatim}
+;; -------------------------------
+;; Generators and Derived Operators
+;; -------------------------------
+(gen4           : term term term term -> term)      ; Gen4 primitive
+(noe5           : Symbol term term term term -> term) ; dir ∈ {e0,e1,e2,e3}
+(cs5            : term term term term term -> term)
+(rice6          : (term -> term) term term -> term) ; P[−] as a term-context
+(nr6            : … -> term)
+\end{verbatim}
+
+\subsubsection{Normalization \& Proof}
+\begin{verbatim}
+;; -------------------------------
+;; Normalization & Proof
+;; -------------------------------
+(normalize/raw  : signature term -> term)           ; core axioms only
+(normalize/gauge: signature term -> term)           ; modulo ≡_scale, ≡_hel
+(normalize/L    : signature term -> term)           ; canonical rep for ≡_L
+(normalize/B    : signature term -> term)           ; canonical rep for ≡_B
+(normalize/R    : signature term -> term)           ; canonical rep for ≡_R
+
+(prove/L        : signature term term -> (U 'ok 'fail))
+(prove/B        : signature term term -> (U 'ok 'fail))
+(prove/R        : signature term term -> (U 'ok 'fail))
+(prove/loc      : signature term term -> (U 'ok 'fail))
+(prove/meta     : signature term term -> (U 'ok 'fail))
+(prove/star     : signature term term -> (U 'ok 'fail))
+\end{verbatim}
+
+\subsubsection{Exporters (Codegen)}
+\begin{verbatim}
+;; -------------------------------
+;; Exporters (codegen)
+;; -------------------------------
+(export-agda     : signature (Listof theorem) path-string -> Void)
+(export-coq      : signature (Listof theorem) path-string -> Void)
+(export-metamath : signature (Listof theorem) path-string -> Void)
+(export-lean     : signature (Listof theorem) path-string -> Void)
+\end{verbatim}
+
+\subsection{Domain API (Foundational Semantics)}
+
+The Domain API provides foundational semantics as an optional add-on:
+
+Separation of domains: The Domain API never feeds back into the logic kernel's derivability; it's for execution, numerics, and intuition.
+
+\begin{itemize}
+\item Transpilers and Provers: Use Logic API to generate Agda/Coq/Metamath artifacts
+\item Property Testing: Optionally, bind Domain API for property testing (QuickCheck-style) and counterexamples
+\end{itemize}
+
+\subsection{Performance Budgets}
+
+The implementation includes performance budgets for normalization and braiding:
+
+\begin{itemize}
+\item Unit tests per layer: Golden files for exporters; property tests for congruences
+\item Performance budgets: O(n log n) on term size with hash-consing
+\item Build \& CI: Automated testing and validation
+\end{itemize}
+
+\subsection{Implementation Notes}
+
+\begin{itemize}
+\item Atomic kernels: Small, focused modules with clear responsibilities
+\item Selective saturation: Opt-in services for performance optimization
+\item Hash-consing: Memoized normalization for efficiency
+\item Modular design: Clear separation between logic core and domain semantics
+\item Export capabilities: Multiple proof assistant targets with consistent semantics
+\end{itemize}
+
+This complete API specification provides the foundation for implementing the theoretical framework while maintaining the separation between core logic and implementation details.

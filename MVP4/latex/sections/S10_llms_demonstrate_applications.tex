@@ -2,6 +2,15 @@
 \label{sec:llm_rg}
 
 This section presents a hep-th–style renormalisation of training observables.
+We explicitly mark that we are now in the LLM application domain. The objects defined in earlier sections are reused with the identifications recorded on the domain ledger; no new logical machinery is introduced beyond those reinterpretations.
+
+\paragraph{Guide to the section.}
+\begin{itemize}
+  \item Imports from the logic layer: fixed-point semantics (Section~\ref{sec:truth-fixed-point}), MDE hierarchy (Section~\ref{sec:effective-logic}), and RG operators (Sections~\ref{sec:rg-flow}--\ref{sec:renormalization}).
+  \item Training-specific assumptions: stochastic gradient dynamics, architectural moduli $(N,D,C,T)$, variance trimming.
+  \item Exports back to computation: renormalised correlators and beta functions that fit into the logic transformer implementation (Sections~\ref{sec:formal-systems}--\ref{sec:consistency}).
+\end{itemize}
+
 We introduce fields, sources, and generating functionals exactly as in QFT:
 we define bare and renormalised Green's functions, $Z$-factors, and derive a
 Callan--Symanzik (CS) equation for training correlators. A one–loop–like
@@ -37,7 +46,7 @@ The training dynamics correspond to RG flow equations from Section~\ref{sec:rg-f
 where $t = \log T$ and the beta functions encode how model parameters evolve during training.
 
 \paragraph{Connection to Generating Function}
-The LLM generating function connects to our foundational framework via:
+\paragraph{Back to the logic ledger.} The LLM generating function connects to our foundational framework via:
 \begin{equation}
 \mathcal{G}_{\text{LLM}}(z, \bar{z}; \vec{q}_{\text{LLM}}, T) = \sum_{n,m\ge0}\frac{z^n\bar{z}^{\,m}}{n!\,m!}\,\mathcal{Z}_{n,m}^{\text{LLM}}(\vec{q}_{\text{LLM}})\,T^{-(n+m)} \label{eq:llm-generating-function}
 \end{equation}
@@ -182,9 +191,9 @@ where $(g_N^*, g_D^*, g_C^*)$ are the fixed-point values of the running coupling
 \label{prop:llm-truth-connection}
 LLM training corresponds to RG flow toward computational truth (Section~\ref{sec:rg-flow}):
 \begin{itemize}
-\item \textbf{Converging RG flow} $\leftrightarrow$ \textbf{Successful training} (reversible computation)
-\item \textbf{Diverging RG flow} $\leftrightarrow$ \textbf{Training instability} (irreversible computation)  
-\item \textbf{Marginal RG flow} $\leftrightarrow$ \textbf{Training plateau} (undecidable computation)
+\item Converging RG flow $\leftrightarrow$ Successful training (reversible computation)
+\item Diverging RG flow $\leftrightarrow$ Training instability (irreversible computation)  
+\item Marginal RG flow $\leftrightarrow$ Training plateau (undecidable computation)
 \end{itemize}
 The training loss $\mathcal{L}$ corresponds to the global observable $\mathcal{O}(\Lambda)$ from Definition~\ref{def:global-observable}.
 \end{proposition}
@@ -223,9 +232,9 @@ The scaling dimensions are determined by the fixed point values of the beta func
 \label{thm:universality_classes_training}
 Different LLM architectures belong to distinct universality classes characterized by their fixed point scaling dimensions:
 \begin{itemize}
-\item \textbf{GPT class}: $\Delta_\psi = 0.076$, $\gamma_\psi = 0.019$
-\item \textbf{BERT class}: $\Delta_\psi = 0.065$, $\gamma_\psi = 0.020$
-\item \textbf{T5 class}: $\Delta_\psi = 0.070$, $\gamma_\psi = 0.020$
+\item GPT class: $\Delta_\psi = 0.076$, $\gamma_\psi = 0.019$
+\item BERT class: $\Delta_\psi = 0.065$, $\gamma_\psi = 0.020$
+\item T5 class: $\Delta_\psi = 0.070$, $\gamma_\psi = 0.020$
 \end{itemize}
 Each class exhibits universal scaling behavior independent of implementation details.
 \end{theorem}
@@ -268,9 +277,9 @@ where $\beta_i$ are the beta functions and $g_j$ are the coupling constants.
 \label{thm:stability_classification_training}
 The stability of training depends on the eigenvalues $\lambda_k$ of the stability matrix:
 \begin{itemize}
-\item \textbf{Stable training}: All $\lambda_k < 0$ (converging RG flow)
-\item \textbf{Unstable training}: Any $\lambda_k > 0$ (diverging RG flow)
-\item \textbf{Critical behavior}: $\lambda_k \approx 0$ (marginal RG flow)
+\item Stable training: All $\lambda_k < 0$ (converging RG flow)
+\item Unstable training: Any $\lambda_k > 0$ (diverging RG flow)
+\item Critical behavior: $\lambda_k \approx 0$ (marginal RG flow)
 \end{itemize}
 \end{theorem}
 
@@ -278,9 +287,9 @@ The stability of training depends on the eigenvalues $\lambda_k$ of the stabilit
 \label{prop:double_dip_phase_transition}
 The double dip phenomenon corresponds to a phase transition in the RG flow:
 \begin{itemize}
-\item \textbf{First dip}: Stable phase with converging RG flow
-\item \textbf{Transition}: Critical point where eigenvalues cross zero
-\item \textbf{Second dip}: Marginal phase with slow RG flow
+\item First dip: Stable phase with converging RG flow
+\item Transition: Critical point where eigenvalues cross zero
+\item Second dip: Marginal phase with slow RG flow
 \end{itemize}
 \end{proposition}
 
@@ -289,16 +298,16 @@ The double dip phenomenon corresponds to a phase transition in the RG flow:
 This section has established a complete hep-th–style renormalisation framework for LLM training, explicitly connected to our foundational computational framework from Sections~\ref{sec:computation-paradigms}--\ref{sec:renormalization}:
 
 \begin{enumerate}
-\item \textbf{Parameter mapping}: LLM moduli space $(N,D,C,T)$ $\leftrightarrow$ computational parameters $\vec{q}_{\text{LLM}} = (\log N, \log D, \log C)$ and RG scale $T$
-\item \textbf{Generating functionals}: Proper QFT-style generating functionals with sources and fields, connected to equation~\eqref{eq:generating-function}
-\item \textbf{Bare and renormalised quantities}: $Z$-factors and renormalisation constants, following Section~\ref{sec:renormalization}
-\item \textbf{RG flow equations}: Training dynamics as RG evolution of computational parameters (equations~\eqref{eq:beta-N}--\eqref{eq:beta-C})
-\item \textbf{Callan--Symanzik equation}: RG flow equation for training correlators, analogous to Section~\ref{sec:rg-flow}
-\item \textbf{One-loop corrections}: $\tfrac12\Tr\log$ terms from integrating out high-variance modes
-\item \textbf{Scaling laws}: Empirical LLM scaling laws emerge from RG fixed points (Theorem~\ref{thm:llm-scaling-laws})
-\item \textbf{Computational truth}: Training success corresponds to converging RG flow toward computational truth (Proposition~\ref{prop:llm-truth-connection})
-\item \textbf{MSRJD representation}: Stochastic dynamics and dynamic RG
-\item \textbf{Stability analysis}: Phase transitions and critical behavior
+\item Parameter mapping: LLM moduli space $(N,D,C,T)$ $\leftrightarrow$ computational parameters $\vec{q}_{\text{LLM}} = (\log N, \log D, \log C)$ and RG scale $T$
+\item Generating functionals: Proper QFT-style generating functionals with sources and fields, connected to equation~\eqref{eq:generating-function}
+\item Bare and renormalised quantities: $Z$-factors and renormalisation constants, following Section~\ref{sec:renormalization}
+\item RG flow equations: Training dynamics as RG evolution of computational parameters (equations~\eqref{eq:beta-N}--\eqref{eq:beta-C})
+\item Callan--Symanzik equation: RG flow equation for training correlators, analogous to Section~\ref{sec:rg-flow}
+\item One-loop corrections: $\tfrac12\Tr\log$ terms from integrating out high-variance modes
+\item Scaling laws: Empirical LLM scaling laws emerge from RG fixed points (Theorem~\ref{thm:llm-scaling-laws})
+\item Computational truth: Training success corresponds to converging RG flow toward computational truth (Proposition~\ref{prop:llm-truth-connection})
+\item MSRJD representation: Stochastic dynamics and dynamic RG
+\item Stability analysis: Phase transitions and critical behavior
 \end{enumerate}
 
 The application to LLMs demonstrates how our renormalisation framework provides a **systematic, hep-th–style approach** to understanding modern AI systems through the lens of quantum field theory. The explicit parameter mappings ensure that LLM training dynamics are understood as a specific instance of our general computational RG flow, with training loss corresponding to the global observable $\mathcal{O}(\Lambda)$ and successful training corresponding to RG flow toward computational truth.

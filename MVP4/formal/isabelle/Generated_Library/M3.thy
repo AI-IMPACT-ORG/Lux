@@ -2,70 +2,76 @@ theory M3
   imports Main
 begin
 
-(* M3 Layer: Metametamodel Foundation with Resolved Metas *)
-(* All moduli parameters are explicitly instantiated *)
+(* μ₁ = 1 *)
+(* μ₂ = 2 *)
+(* μ₃ = 3 *)
+(* μ₄ = 4 *)
+(* μ₁★ = 1 *)
+(* μ₂★ = 2 *)
+(* μ₃★ = 3 *)
+(* μ₄★ = 4 *)
+(* λ = 1 *)
+(* λ★ = 1 *)
 
-(* Symbol type *)
-datatype Symbol = Port | Pin | Input | Output | Sigma6 | Tensor | Wire | Unit | Cast
+datatype Register =
+    InputReg
+    OutputReg
+    PortReg
 
-(* Arity specification *)
-datatype Arity = mkArity nat nat
+datatype EdgeKind =
+    Sigma6
+    Tensor
+    Wire
 
-(* Port sort *)
-datatype PortSort = Port Symbol | Pin Symbol | Input Symbol | Output Symbol
+record Arity =
+  inputs  :: nat
+  outputs :: nat
 
-(* Edge kind with Σ6 centrality *)
-datatype EdgeKind = Sigma6 | Tensor | Wire | Unit | Cast
+definition registers :: "Register list" where
+  "registers = [InputReg, OutputReg, PortReg]"
 
-(* Type graph *)
-datatype TypeGraph = mkTypeGraph "PortSort list" "EdgeKind list" "EdgeKind => Arity" "EdgeKind => PortSort list" "EdgeKind => PortSort list"
+definition edgeKinds :: "EdgeKind list" where
+  "edgeKinds = [Sigma6, Tensor, Wire]"
 
-(* Resolved ModuliSpace with concrete values *)
-datatype ModuliSpace = mkModuliSpace nat nat nat nat nat nat nat nat nat nat
+fun arity_of :: "EdgeKind ⇒ Arity" where
+  "arity_of Sigma6 = ⦇ inputs = 3, outputs = 3 ⦈"
+  "arity_of Tensor = ⦇ inputs = 2, outputs = 2 ⦈"
+  "arity_of Wire = ⦇ inputs = 2, outputs = 2 ⦈"
 
-(* Concrete moduli instantiation *)
-definition concrete_moduli :: ModuliSpace where
-  "concrete_moduli = mkModuliSpace 1 2 3 4 1 2 3 4 1 1"
+fun src_of :: "EdgeKind ⇒ Register list" where
+  "src_of Sigma6 = [PortReg, PortReg, PortReg]"
+  "src_of Tensor = [PortReg, PortReg]"
+  "src_of Wire = [InputReg, OutputReg]"
 
-(* Anomaly functional *)
-datatype AnomalyFunc = Anomaly nat
+fun dst_of :: "EdgeKind ⇒ Register list" where
+  "dst_of Sigma6 = [PortReg, PortReg, PortReg]"
+  "dst_of Tensor = [PortReg, PortReg]"
+  "dst_of Wire = [OutputReg, InputReg]"
 
-(* Anomaly measure *)
-fun anomaly_measure :: "AnomalyFunc => nat" where
-  "anomaly_measure (Anomaly n) = n"
+record TypeGraph =
+  tg_registers :: "Register list"
+  tg_edgeKinds :: "EdgeKind list"
+  tg_arityMap  :: "EdgeKind ⇒ Arity"
+  tg_srcMap    :: "EdgeKind ⇒ Register list"
+  tg_dstMap    :: "EdgeKind ⇒ Register list"
 
-(* Typed-arity discipline: Σ6 must have arity (3,3) *)
-definition sigma6_arity :: Arity where
-  "sigma6_arity = mkArity 3 3"
+definition sample_graph :: TypeGraph where
+  "sample_graph = ⦇ tg_registers = registers, tg_edgeKinds = edgeKinds,
+     tg_arityMap = arity_of, tg_srcMap = src_of, tg_dstMap = dst_of ⦈"
 
-(* Anomaly vanishes at M3 *)
-definition anomaly_vanishes_at_m3 :: "TypeGraph => bool" where
-  "anomaly_vanishes_at_m3 tg = True"
+lemma registers_length : length (tg_registers sample_graph) = 3
+  by (simp add: sample_graph_def registers_def)
 
-(* Accessor functions for moduli *)
-fun get_mu1 :: "ModuliSpace => nat" where
-  "get_mu1 (mkModuliSpace mu1 mu2 mu3 mu4 mu1star mu2star mu3star mu4star lambda lambdastar) = mu1"
+lemma edges_length : length (tg_edgeKinds sample_graph) = 3
+  by (simp add: sample_graph_def edgeKinds_def)
 
-fun get_mu2 :: "ModuliSpace => nat" where
-  "get_mu2 (mkModuliSpace mu1 mu2 mu3 mu4 mu1star mu2star mu3star mu4star lambda lambdastar) = mu2"
+lemma src_length_sigma6 : length (src_of Sigma6) = 3
+  by simp
 
-fun get_mu3 :: "ModuliSpace => nat" where
-  "get_mu3 (mkModuliSpace mu1 mu2 mu3 mu4 mu1star mu2star mu3star mu4star lambda lambdastar) = mu3"
+lemma src_length_tensor : length (src_of Tensor) = 2
+  by simp
 
-fun get_mu4 :: "ModuliSpace => nat" where
-  "get_mu4 (mkModuliSpace mu1 mu2 mu3 mu4 mu1star mu2star mu3star mu4star lambda lambdastar) = mu4"
-
-(* Moduli constraint proofs *)
-definition mu1_positive :: "ModuliSpace => bool" where
-  "mu1_positive ms = True"
-
-definition mu2_positive :: "ModuliSpace => bool" where
-  "mu2_positive ms = True"
-
-definition mu3_positive :: "ModuliSpace => bool" where
-  "mu3_positive ms = True"
-
-definition mu4_positive :: "ModuliSpace => bool" where
-  "mu4_positive ms = True"
+lemma src_length_wire : length (src_of Wire) = 2
+  by simp
 
 end

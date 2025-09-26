@@ -22,8 +22,9 @@
          ;; Backward compatibility
          Semiring Semiring? Logic Logic? Logic-name
          logic/boolean-top logic/boolean-maybe
-         BoolRig KleeneRig TropicalRig
-         pgc-eval satisfies^)
+         BoolRig KleeneRig TropicalRig ExpLogRig
+         logic/log-exp
+         pgc-eval satisfies^ guarded-negation)
 
 ;; ============================================================================
 ;; OPTIMIZED SEMIRING OPERATIONS
@@ -72,6 +73,13 @@
      (hash-set! memo-table key result)
      result]))
 
+(: logic-observer (-> Logic Symbol (-> Any Boolean) (-> Any Boolean)))
+(define (logic-observer L key fallback)
+  (define observers (Logic-observers L))
+  (if (hash-has-key? observers key)
+      (hash-ref observers key)
+      fallback))
+
 ;; ============================================================================
 ;; OPTIMIZED PGC EVALUATION
 ;; ============================================================================
@@ -86,6 +94,10 @@
     [(Top) one]
     [(MatchX X) one]  ; TODO: check X embeds into dom(γ)
     [(Exists i Y ψ) one]  ; TODO: check ∃m:Y→G with m∘i=ρ, then recurse
+    [(Not ψ)
+     (define value (pgc-eval-memoized L ops G γ ψ))
+     (define local (logic-observer L 'local q-local-fast))
+     (if (local value) zero one)]
     [(And a b) (memoized-mul ops (pgc-eval-memoized L ops G γ a) (pgc-eval-memoized L ops G γ b))]
     [(Or a b) (memoized-add ops (pgc-eval-memoized L ops G γ a) (pgc-eval-memoized L ops G γ b))]))
 
@@ -196,6 +208,34 @@
               BoolRig
               (hash 'local q-local-fast)))
 
+(define (log-exp-sum a b)
+  (cond
+    [(and (real? a) (real? b))
+     (define max-ab (max a b))
+     (cond
+       [(= max-ab -inf.0) -inf.0]
+       [else
+        (define sum (exp (- a max-ab)))
+        (define sum2 (+ sum (exp (- b max-ab))))
+        (+ max-ab (log sum2))])]
+    [else -inf.0]))
+
+(define (log-exp-prod a b)
+  (cond
+    [(and (real? a) (real? b)) (+ a b)]
+    [else -inf.0]))
+
+(define ExpLogRig (Semiring log-exp-sum log-exp-prod -inf.0 0.0))
+
+(define (log-exp-observer value)
+  (and (real? value) (not (= value -inf.0))))
+
+(: logic/log-exp Logic)
+(define logic/log-exp
+  (make-logic 'log-exp
+              ExpLogRig
+              (hash 'local log-exp-observer 'global log-exp-observer)))
+
 ;; Original pgc-eval function for compatibility
 (: pgc-eval (-> Logic TGraph GuardEnv PGC Any))
 (define (pgc-eval L G γ φ)
@@ -209,6 +249,10 @@
     [(Top) one]
     [(MatchX X) one]
     [(Exists i Y ψ) one]
+    [(Not ψ)
+     (define value (pgc-eval L G γ ψ))
+     (define local (logic-observer L 'local q-local-fast))
+     (if (local value) zero one)]
     [(And a b) (mul (pgc-eval L G γ a) (pgc-eval L G γ b))]
     [(Or a b) (add (pgc-eval L G γ a) (pgc-eval L G γ b))]))
 
@@ -221,3 +265,8 @@
   (define observer (hash-ref observers rule))
   (define result (pgc-eval L G γ φ))
   (observer result))
+
+(: guarded-negation (-> Logic TGraph GuardEnv PGC Boolean))
+(define (guarded-negation L G γ φ)
+  (define local (logic-observer L 'local q-local-fast))
+  (not (local (pgc-eval L G γ φ))))

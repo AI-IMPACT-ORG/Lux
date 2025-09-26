@@ -2,7 +2,7 @@
 \section{Notation Guide}
 \label{app:notation}
 
-This appendix provides a comprehensive guide to the notation used throughout this paper, along with concrete worked examples connecting our theoretical framework to the implementation.
+This appendix provides a comprehensive guide to the notation used throughout this paper, along with concrete worked examples connecting our theoretical framework to the implementation. Unless stated otherwise, every symbol listed here is domain-neutral: specialised usage in the physics, LLM, or number-theory domains is simply the ledger interpretation introduced in the main text.
 
 \subsection{Basic Mathematical Notation}
 \begin{itemize}
@@ -78,12 +78,21 @@ This appendix provides a comprehensive guide to the notation used throughout thi
 
 \subsection{Formal Logic Notation}
 \begin{itemize}
-\item $\mathsf{G}_6$: Arity-6 operator
-\item $\mathsf{Reg}$: Register sort
-\item $\mathsf{Grad}$: Grading sort
-\item $\mathsf{Scale}$: Scale sort
-\item $\Gamma \vdash t \equiv u : \mathsf{Reg}$: Judgement
-\item $\Gamma \vdash t : \tau$: Well-typedness
+\item $\mathsf{Gen4}$: Arity-4 generator primitive ($B^4 \to B$)
+\item $L, B, R$: Left boundary, Bulk, Right boundary sorts
+\item $I$: Unit object
+\item $\oplus_L, \otimes_L$: Left boundary semiring operations
+\item $\oplus_R, \otimes_R$: Right boundary semiring operations
+\item $\oplus_B, \otimes_B$: Bulk log-semiring operations
+\item $\iota_L, \iota_R$: Couplers from boundaries to bulk
+\item $\text{ad}_0, \text{ad}_1, \text{ad}_2, \text{ad}_3$: Braided duals
+\item $F_{ij}$: Braided curvature scalars
+\item $z, \bar{z}$: Auxiliary scalars (eliminable)
+\item $\equiv_L, \equiv_B, \equiv_R$: Boundary and bulk equalities
+\item $\equiv_{\text{loc}}, \equiv_{\text{meta}}, \equiv_\star$: Local, metalogical, and reversible equalities
+\item $\equiv_{\text{scale}}, \equiv_{\text{hel}}$: Presentation gauges
+\item $\Gamma \vdash t \equiv u : X$: Typed equation judgment
+\item $\Gamma \vdash t : \tau$: Well-typedness judgment
 \item $\llbracket t \rrbracket$: Denotation of term $t$
 \item $\mathsf{Obs}$: Observable function
 \item $\mathsf{Truth}$: Truth predicate
@@ -215,10 +224,10 @@ Consider the two-node graph with $\Sigma_6$ edge:
 
 This corresponds to our theoretical framework as:
 \begin{itemize}
-\item \textbf{Graph}: \texttt{toy-graph} $\leftrightarrow$ typed graph model
-\item \textbf{Formula}: \texttt{toy-formula} $\leftrightarrow$ PGC theory
-\item \textbf{Evaluation}: \texttt{result} $\leftrightarrow$ semiring satisfaction
-\item \textbf{Observable}: \texttt{q-global-fast} $\leftrightarrow$ RG observable $\mathcal{O}(\Lambda)$
+\item Graph: \texttt{toy-graph} $\leftrightarrow$ typed graph model
+\item Formula: \texttt{toy-formula} $\leftrightarrow$ PGC theory
+\item Evaluation: \texttt{result} $\leftrightarrow$ semiring satisfaction
+\item Observable: \texttt{q-global-fast} $\leftrightarrow$ RG observable $\mathcal{O}(\Lambda)$
 \end{itemize}
 \end{example}
 
@@ -229,12 +238,15 @@ This corresponds to our theoretical framework as:
 \toprule
 Paper symbol & Meaning / (suggested) code hook \\
 \midrule
-$\mathsf{G}_6$ & 6-ary connective (arity $(3,3)$); inputs $\phi,\bar{\phi}\in\mathsf{Reg}$, $\vec{q}\in\mathsf{Grad}$, $\Lambda\in\mathsf{Scale}$; output in $\mathsf{Obs}$ \\
-$\mathcal{Z}_{n,m}$ & Coefficient aggregator (paths of bidegree $(n,m)$) \\
+$\mathsf{Gen4}$ & Arity-4 generator primitive ($B^4 \to B$); core generating functional \\
+$\mathcal{Z}_{n,m,k,l}$ & Coefficient aggregator (paths of degree $(n,m,k,l)$) \\
 $\mathcal{R}_\Lambda$ & Renormalization map on coefficients/models \\
-$\partial_{\text{in/out}}$ & Boundary extractors (domain/codomain) \\
+$\partial_L, \partial_R$ & Left/right boundary extractors \\
 $\mathcal{O}(\Lambda)$ & Global observable used for $\beta$'s \\
 $\mathcal{T}_\Lambda$ & Transfer operator for spectral analysis \\
+$\equiv_L, \equiv_B, \equiv_R$ & Boundary and bulk observational equalities \\
+$\equiv_{\text{loc}}, \equiv_{\text{meta}}, \equiv_\star$ & Local, metalogical, and reversible equalities \\
+$\text{Noe5}, \text{CS5}, \text{Rice6}, \text{NR6}$ & Derived generating functionals \\
 \bottomrule
 \end{tabular}
 \end{center}

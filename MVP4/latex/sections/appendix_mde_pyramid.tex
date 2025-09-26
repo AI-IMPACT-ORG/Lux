@@ -1,195 +1,207 @@
 \appendix
-\section{Complete Formal Definition of the MDE Pyramid of Logic}
+\section{Complete MDE Pyramid Implementation Specification}
 \label{app:mde-pyramid}
 
-This appendix provides the complete formal definition of the MDE (Model-Driven Engineering) Pyramid of Logic introduced in Section 7.
+This appendix provides the complete formal definition and implementation specification of the MDE (Model-Driven Engineering) Pyramid of Logic introduced in Section~\ref{sec:effective-logic}. The definitions are presented using our rigorous logic definition with L/B/R structure, equality hierarchy, and the $\mathsf{Gen4}$ primitive, incorporating the complete implementation plan from the MDE pyramid specification.
 
-\subsection{Basic Definitions}
+\subsection{MDE Pyramid Architecture Overview}
 
-\begin{definition}[MDE Pyramid]
-The MDE Pyramid is a hierarchical structure $\mathcal{P} = (L_0, L_1, L_2, L_3, \preceq)$ where:
+The MDE pyramid follows a three-layer architecture (L/B/R) with atomic kernels and selective saturation:
+
+\begin{definition}[MDE Pyramid Architecture]
+\label{def:mde-pyramid-architecture}
+The MDE Pyramid is a hierarchical structure $\mathcal{P} = (M3, M2, M1, M0, \preceq)$ where:
 \begin{itemize}
-\item $L_0, L_1, L_2, L_3$ are logic systems
-\item $\preceq$ is a partial order relation such that $L_0 \preceq L_1 \preceq L_2 \preceq L_3$
-\item Each level $L_i$ is a logic system with truth predicate $\mathsf{Truth}_i$
+\item $M3, M2, M1, M0$ are logic layers corresponding to metametamodel, metamodel, model, and runtime
+\item $\preceq$ is a partial order relation such that $M3 \preceq M2 \preceq M1 \preceq M0$
+\item Each layer respects the L/B/R structure with equality hierarchy $\equiv_L, \equiv_B, \equiv_R, \equiv_{\text{loc}}, \equiv_{\text{meta}}, \equiv_\star$
+\item The $\mathsf{Gen4}$ primitive provides the core generating functional at each layer
+\item Goal: Balance atomicity (small kernels) with saturation (useful closures/indices)
 \end{itemize}
 \end{definition}
 
-\subsection{Level 0: Basic Logical Primitives}
+\subsection{Layer Architecture (L/B/R Implementation)}
 
-\begin{definition}[Level 0 Logic System $L_0$]
-The Level 0 logic system $L_0$ is defined as:
+\subsubsection{Layer L — Presentation \& Boundary DSLs (Atomic, Light Saturation)}
+\begin{itemize}
+\item Provide two minimal boundary DSLs: L-DSL and R-DSL (boolean semirings with $\oplus_*, \otimes_*$)
+\item Parsing/pretty-printing for L/R formulas; explicit L/R arity checks
+\item Thin wrappers for couplers $\iota_L, \iota_R$ into bulk terms
+\item Optional: developer REPL helpers (tactics) that build bulk diagrams from boundary data
+\end{itemize}
+
+\subsubsection{Layer B — Core Engine (Atomic Kernel + Selective Saturation)}
+\begin{itemize}
+\item Atomic kernel:
+  \begin{itemize}
+  \item Term data types (SMC), type checker (objects, L/R arity), symbol table
+  \item Equational kernel for bulk \& boundaries, braided rewriting (NC1, NC2)
+  \item Congruence engines for $\equiv_{\text{scale}}, \equiv_{\text{hel}}$, with combined $\equiv_*$
+  \item Primitive $\mathsf{Gen4}$, plus macros Noe5/CS5/Rice6/NR6
+  \end{itemize}
+\item Saturation services (opt-in):
+  \begin{itemize}
+  \item AC canon for $\oplus_B$; monomial canon for $\otimes_B$
+  \item Braiding normalizer (bubble $\text{ad}_i$ to a chosen total order; accumulate $F_{ij}$; reduce 3-cycles)
+  \item Memoized normalization (hash-consing) and critical-pair checker (if $\mathcal{R}$ is enabled, enforce YBE tiles)
+  \end{itemize}
+\end{itemize}
+
+\subsubsection{Layer R — Backends \& Exporters (Saturated Views)}
+\begin{itemize}
+\item Pretty printers/emitters for: Agda, Coq, Metamath (.mm), Lean, plain LaTeX
+\item Model stubs (non-binding): numerics, logging hooks (to demo semantics without coupling into logic core)
+\item Packaging: codegen scaffolds (project templates) for proofs in each target
+\end{itemize}
+
+\subsection{Racket Module Organization (Complete)}
+
+The complete Racket module structure follows the MDE pyramid:
+
+\begin{verbatim}
+(module logic/signature       …)  ; ops, profiles, L/R arity, registry
+(module logic/syntax          …)  ; terms (SMC), typing, contexts
+(module logic/axioms          …)  ; equational axioms as rewrite rules
+(module logic/rewrite         …)  ; core rewriting + AC canon + braiding (NC1,NC2)
+(module logic/congruence      …)  ; ≡_scale, ≡_hel, and observational equalities
+(module logic/gen4            …)  ; primitive Gen4 + normalization basepoint
+(module logic/derived         …)  ; macros: Noe5, CS5, Rice6, NR6
+(module logic/check           …)  ; well-formedness, symbol hygiene, arity checks
+(module dsl/left              …)  ; L-DSL
+(module dsl/right             …)  ; R-DSL
+(module export/agda           …)  ; emit .agda
+(module export/coq            …)  ; emit .v
+(module export/metamath       …)  ; emit .mm
+(module export/lean           …)  ; optional
+(module tooling/repl          …)  ; dev REPL commands & tactics
+(module tooling/tests         …)  ; unit and property tests
+\end{verbatim}
+
+\subsection{M3 Layer: Metametamodel Foundation}
+
+\begin{definition}[M3 Logic System (Complete)]
+\label{def:m3-complete}
+The M3 layer provides the foundation with signature, primitive symbols, and BNF grammar:
 \begin{align}
-L_0 &= (\Sigma_0, \mathcal{R}_0, \mathcal{M}_0, \mathsf{Truth}_0)
+M3 &= (\Sigma_{M3}, \mathcal{R}_{M3}, \mathcal{M}_{M3}, \mathsf{Truth}_{M3})
 \end{align}
 where:
 \begin{itemize}
-\item \textbf{Syntax} $\Sigma_0$:
+\item Signature $\Sigma_{M3}$:
   \begin{align}
-  \Sigma_0 &= \{\mathsf{Reg}, \mathsf{Grad}, \mathsf{Scale}\}\\
-  \text{Terms}_0 &= \{\mathsf{G}_6(\phi,\bar{\phi};q_1,q_2,q_3;\Lambda) : \phi,\bar{\phi} \in \mathsf{Reg}, q_i \in \mathsf{Grad}, \Lambda \in \mathsf{Scale}\}
+  \Sigma_{M3} &= \{L, B, R, I\} \text{ (sorts)} \\
+  &\cup \{\oplus_L, \otimes_L, \oplus_R, \otimes_R, \oplus_B, \otimes_B\} \text{ (semiring operations)} \\
+  &\cup \{\iota_L, \iota_R\} \text{ (couplers)} \\
+  &\cup \{\text{ad}_0, \text{ad}_1, \text{ad}_2, \text{ad}_3\} \text{ (braided duals)} \\
+  &\cup \{F_{ij}\} \text{ (curvature scalars)} \\
+  &\cup \{\mathsf{Gen4}\} \text{ (arity-4 generator)}
   \end{align}
-\item \textbf{Rules} $\mathcal{R}_0$:
-  \begin{align}
-  \text{Reflexivity} &: \Gamma \vdash t \equiv t : \mathsf{Reg}\\
-  \text{Symmetry} &: \frac{\Gamma \vdash t \equiv u : \mathsf{Reg}}{\Gamma \vdash u \equiv t : \mathsf{Reg}}\\
-  \text{Transitivity} &: \frac{\Gamma \vdash t \equiv u : \mathsf{Reg} \quad \Gamma \vdash u \equiv v : \mathsf{Reg}}{\Gamma \vdash t \equiv v : \mathsf{Reg}}\\
-  \text{Congruence} &: \frac{\Gamma \vdash \phi \equiv \phi' : \mathsf{Reg} \quad \Gamma \vdash \bar{\phi} \equiv \bar{\phi}' : \mathsf{Reg}}{\Gamma \vdash \mathsf{G}_6(\phi,\bar{\phi};\vec{q};\Lambda) \equiv \mathsf{G}_6(\phi',\bar{\phi}';\vec{q};\Lambda) : \mathsf{Reg}}
-  \end{align}
-\item \textbf{Models} $\mathcal{M}_0$:
-  \begin{align}
-  \mathcal{M}_0 &= \{\mathcal{M} = (\mathcal{H}, \hat{W}, \Lambda) : \mathcal{H} \text{ complex vector space}, \hat{W} \text{ operator}, \Lambda \in \mathbb{R}^+\}
-  \end{align}
-\item \textbf{Truth Predicate} $\mathsf{Truth}_0$:
-  \begin{align}
-  \mathsf{Truth}_0(t) &\Leftrightarrow \lim_{\Lambda \to \infty} \mathcal{T}_0(t, \Lambda) \text{ converges}
-  \end{align}
+\item Rules $\mathcal{R}_{M3}$: All axiom schemas from Section~\ref{sec:formal-systems}
+\item Models $\mathcal{M}_{M3}$: L/B/R semiring models
+\item Truth Predicate $\mathsf{Truth}_{M3}$: Respects $\equiv_\star$ equality
+\item Implementation: \texttt{M3\_types.rkt}, \texttt{M3\_graph.rkt}, \texttt{M3\_rules.rkt}
 \end{itemize}
 \end{definition}
 
-\subsection{Level 1: Computational Paradigms}
+\subsection{M2 Layer: Metamodel Structure}
 
-\begin{definition}[Level 1 Logic System $L_1$]
-The Level 1 logic system $L_1$ extends $L_0$ with computational paradigms:
+\begin{definition}[M2 Logic System (Complete)]
+\label{def:m2-complete}
+The M2 layer provides PGC evaluation and certificates:
 \begin{align}
-L_1 &= (\Sigma_1, \mathcal{R}_1, \mathcal{M}_1, \mathsf{Truth}_1)
+M2 &= (\Sigma_{M2}, \mathcal{R}_{M2}, \mathcal{M}_{M2}, \mathsf{Truth}_{M2})
 \end{align}
 where:
 \begin{itemize}
-\item \textbf{Syntax} $\Sigma_1$:
-  \begin{align}
-  \Sigma_1 &= \Sigma_0 \cup \{\mathsf{TM}, \mathsf{Church}, \mathsf{Feynman}\}\\
-  \text{Terms}_1 &= \text{Terms}_0 \cup \{\rho_{\mathrm{TM}}(t), \rho_{\lambda}(t), \rho_{\mathrm{F}}(t) : t \in \text{Terms}_0\}
-  \end{align}
-\item \textbf{Rules} $\mathcal{R}_1$:
-  \begin{align}
-  \mathcal{R}_1 &= \mathcal{R}_0 \cup \{\text{Corner Projection Rules}\}\\
-  \text{Corner Projection} &: \frac{\Gamma \vdash t : \mathsf{Reg}}{\Gamma \vdash \rho_\kappa(t) : \mathsf{Reg}} \quad \text{for } \kappa \in \{\mathrm{TM}, \lambda, \mathrm{F}\}
-  \end{align}
-\item \textbf{Models} $\mathcal{M}_1$:
-  \begin{align}
-  \mathcal{M}_1 &= \{\mathcal{M} \in \mathcal{M}_0 : \hat{W}(\vec{q}) = \hat{W}_\kappa \text{ for corner } \kappa\}
-  \end{align}
-\item \textbf{Truth Predicate} $\mathsf{Truth}_1$:
-  \begin{align}
-  \mathsf{Truth}_1(t) &\Leftrightarrow \mathsf{Truth}_0(t) \text{ and } \rho_\kappa(t) \text{ is well-defined for all } \kappa
-  \end{align}
+\item Signature $\Sigma_{M2}$: Extends $\Sigma_{M3}$ with equality hierarchy
+\item Rules $\mathcal{R}_{M2}$: Includes observational equalities $\equiv_L, \equiv_B, \equiv_R, \equiv_{\text{loc}}, \equiv_{\text{meta}}$
+\item Models $\mathcal{M}_{M2}$: Models respecting equality hierarchy
+\item Truth Predicate $\mathsf{Truth}_{M2}$: Respects $\equiv_{\text{meta}}$ equality
+\item Implementation: \texttt{M2\_pgc.rkt}, \texttt{M2\_cert.rkt}
+\item L/B/R Mapping:
+  \begin{itemize}
+  \item Left boundary $L$: \texttt{M2\_pgc.rkt} (PGC evaluation)
+  \item Bulk $B$: \texttt{M3\_rules.rkt} (computational dynamics)
+  \item Right boundary $R$: \texttt{M2\_cert.rkt} (certificates and witnesses)
+  \end{itemize}
 \end{itemize}
 \end{definition}
 
-\subsection{Level 2: Domain Models}
+\subsection{M1 Layer: Model Logic}
 
-\begin{definition}[Level 2 Logic System $L_2$]
-The Level 2 logic system $L_2$ extends $L_1$ with domain models:
+\begin{definition}[M1 Logic System (Complete)]
+\label{def:m1-complete}
+The M1 layer provides the single unified logic transformer:
 \begin{align}
-L_2 &= (\Sigma_2, \mathcal{R}_2, \mathcal{M}_2, \mathsf{Truth}_2)
+M1 &= (\Sigma_{M1}, \mathcal{R}_{M1}, \mathcal{M}_{M1}, \mathsf{Truth}_{M1})
 \end{align}
 where:
 \begin{itemize}
-\item \textbf{Syntax} $\Sigma_2$:
-  \begin{align}
-  \Sigma_2 &= \Sigma_1 \cup \{\mathsf{Comp}, \mathsf{Phys}, \mathsf{Math}\}\\
-  \text{Terms}_2 &= \text{Terms}_1 \cup \{\mathsf{Comp}(t), \mathsf{Phys}(t), \mathsf{Math}(t) : t \in \text{Terms}_1\}
-  \end{align}
-\item \textbf{Rules} $\mathcal{R}_2$:
-  \begin{align}
-  \mathcal{R}_2 &= \mathcal{R}_1 \cup \{\text{Domain Interpretation Rules}\}\\
-  \text{Domain Interpretation} &: \frac{\Gamma \vdash t : \mathsf{Reg}}{\Gamma \vdash \mathsf{Dom}(t) : \mathsf{Reg}} \quad \text{for } \mathsf{Dom} \in \{\mathsf{Comp}, \mathsf{Phys}, \mathsf{Math}\}
-  \end{align}
-\item \textbf{Models} $\mathcal{M}_2$:
-  \begin{align}
-  \mathcal{M}_2 &= \{\mathcal{M} \in \mathcal{M}_1 : \text{domain interpretations are consistent}\}
-  \end{align}
-\item \textbf{Truth Predicate} $\mathsf{Truth}_2$:
-  \begin{align}
-  \mathsf{Truth}_2(t) &\Leftrightarrow \mathsf{Truth}_1(t) \text{ and all domain interpretations are consistent}
-  \end{align}
+\item Signature $\Sigma_{M1}$: Extends $\Sigma_{M2}$ with derived functionals $\text{Noe5}, \text{CS5}, \text{Rice6}, \text{NR6}$
+\item Rules $\mathcal{R}_{M1}$: Includes derived functional definitions
+\item Models $\mathcal{M}_{M1}$: Models with derived functional interpretations
+\item Truth Predicate $\mathsf{Truth}_{M1}$: Respects $\equiv_{\text{loc}}$ equality
+\item Implementation: \texttt{M1\_logic.rkt} (single unified logic)
 \end{itemize}
 \end{definition}
 
-\subsection{Level 3: Applications}
+\subsection{M0 Layer: Runtime}
 
-\begin{definition}[Level 3 Logic System $L_3$]
-The Level 3 logic system $L_3$ extends $L_2$ with concrete applications:
+\begin{definition}[M0 Logic System (Complete)]
+\label{def:m0-complete}
+The M0 layer provides concrete implementations and applications:
 \begin{align}
-L_3 &= (\Sigma_3, \mathcal{R}_3, \mathcal{M}_3, \mathsf{Truth}_3)
+M0 &= (\Sigma_{M0}, \mathcal{R}_{M0}, \mathcal{M}_{M0}, \mathsf{Truth}_{M0})
 \end{align}
 where:
 \begin{itemize}
-\item \textbf{Syntax} $\Sigma_3$:
-  \begin{align}
-  \Sigma_3 &= \Sigma_2 \cup \{\mathsf{LLM}, \mathsf{Complexity}, \mathsf{NumberTheory}\}\\
-  \text{Terms}_3 &= \text{Terms}_2 \cup \{\mathsf{LLM}(t), \mathsf{Complexity}(t), \mathsf{NumberTheory}(t) : t \in \text{Terms}_2\}
-  \end{align}
-\item \textbf{Rules} $\mathcal{R}_3$:
-  \begin{align}
-  \mathcal{R}_3 &= \mathcal{R}_2 \cup \{\text{Application Rules}\}\\
-  \text{Application} &: \frac{\Gamma \vdash t : \mathsf{Reg}}{\Gamma \vdash \mathsf{App}(t) : \mathsf{Reg}} \quad \text{for } \mathsf{App} \in \{\mathsf{LLM}, \mathsf{Complexity}, \mathsf{NumberTheory}\}
-  \end{align}
-\item \textbf{Models} $\mathcal{M}_3$:
-  \begin{align}
-  \mathcal{M}_3 &= \{\mathcal{M} \in \mathcal{M}_2 : \text{applications are well-defined}\}
-  \end{align}
-\item \textbf{Truth Predicate} $\mathsf{Truth}_3$:
-  \begin{align}
-  \mathsf{Truth}_3(t) &\Leftrightarrow \mathsf{Truth}_2(t) \text{ and all applications are well-defined}
-  \end{align}
+\item Signature $\Sigma_{M0}$: Extends $\Sigma_{M1}$ with domain-specific interpretations
+\item Rules $\mathcal{R}_{M0}$: Includes domain-specific rules
+\item Models $\mathcal{M}_{M0}$: Concrete computational models
+\item Truth Predicate $\mathsf{Truth}_{M0}$: Respects $\equiv_L, \equiv_R$ equalities
+\item Implementation: Generated libraries (Agda, Coq, Metamath, Lean)
 \end{itemize}
 \end{definition}
 
-\subsection{Inter-level Mappings}
+\subsection{Build \& CI Infrastructure}
 
-\begin{definition}[Inter-level Mappings]
-The inter-level mappings are defined as:
-\begin{align}
-\iota_{0,1} &: L_0 \to L_1 \quad \text{(Parameter Specialization)}\\
-\iota_{1,2} &: L_1 \to L_2 \quad \text{(Domain Interpretation)}\\
-\iota_{2,3} &: L_2 \to L_3 \quad \text{(Concrete Instantiation)}
-\end{align}
-where each mapping preserves the structure of the logic systems.
-\end{definition}
-
-\subsection{Consistency and Completeness}
-
-\begin{theorem}[Consistency Across Levels]
-The MDE Pyramid is consistent across all levels:
-\begin{enumerate}
-\item \textbf{Level Consistency}: Each level $L_i$ is internally consistent
-\item \textbf{Inter-level Consistency}: Mappings $\iota_{i,j}$ preserve consistency
-\item \textbf{Global Consistency}: The entire pyramid is consistent
-\end{enumerate}
-\end{theorem}
-
-\begin{theorem}[Completeness Across Levels]
-The MDE Pyramid is complete across all levels:
-\begin{enumerate}
-\item \textbf{Level Completeness}: Each level $L_i$ is complete with respect to its semantics
-\item \textbf{Inter-level Completeness}: Mappings $\iota_{i,j}$ preserve completeness
-\item \textbf{Global Completeness}: The entire pyramid is complete
-\end{enumerate}
-\end{theorem}
-
-\subsection{Properties of the MDE Pyramid}
-
-\begin{proposition}[Monotonicity]
-The truth predicates are monotonic:
-$$\mathsf{Truth}_0(t) \Rightarrow \mathsf{Truth}_1(t) \Rightarrow \mathsf{Truth}_2(t) \Rightarrow \mathsf{Truth}_3(t)$$
-\end{proposition}
-
-\begin{proposition}[Preservation]
-The inter-level mappings preserve truth:
-$$\mathsf{Truth}_i(t) \Rightarrow \mathsf{Truth}_j(\iota_{i,j}(t))$$
-for $i \leq j$.
-\end{proposition}
-
-\subsection{Connection to Previous Sections}
-
-The MDE Pyramid connects to the previous sections as follows:
 \begin{itemize}
-\item \textbf{Level 0}: Incorporates the generating function from Section 1
-\item \textbf{Level 1}: Incorporates regularization from Section 2
-\item \textbf{Level 2}: Incorporates RG flow semantics from Section 3
-\item \textbf{Level 3}: Incorporates truth as fixed point from Section 6
+\item Unit tests per layer: Golden files for exporters; property tests for congruences
+\item Performance budgets: O(n log n) on term size with hash-consing
+\item Automated testing: Cross-verification across proof assistants
+\item Continuous integration: Automated build and validation
 \end{itemize}
 
-This provides the complete formal structure that unifies all computational paradigms under a single logical framework.
+\subsection{Performance Characteristics}
+
+\begin{itemize}
+\item Atomic kernels: Small, focused modules with clear responsibilities
+\item Selective saturation: Opt-in services for performance optimization
+\item Hash-consing: Memoized normalization for efficiency
+\item Braiding normalizer: O(n log n) complexity with proper ordering
+\item Critical-pair checker: Optional YBE tile enforcement
+\end{itemize}
+
+\subsection{Export Capabilities}
+
+The MDE pyramid provides comprehensive export capabilities:
+
+\begin{itemize}
+\item Agda: Complete formalization with dependent types
+\item Coq: Gallina specifications with proof tactics
+\item Metamath: .mm file generation with verification
+\item Lean: Modern theorem prover integration
+\item LaTeX: Pretty-printed mathematical notation
+\end{itemize}
+
+\subsection{Implementation Notes}
+
+\begin{itemize}
+\item Modular design: Clear separation between logic core and domain semantics
+\item Conservative extensions: All extensions preserve original logic
+\item Type safety: Comprehensive type checking at all levels
+\item Symbol hygiene: Clear notation conventions (⊗ vs ⊗B)
+\item Context grammars: Well-typed single-hole contexts for equality definitions
+\end{itemize}
+
+This complete MDE pyramid implementation specification provides the foundation for implementing the theoretical framework while maintaining the separation between core logic and implementation details.

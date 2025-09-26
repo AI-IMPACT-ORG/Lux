@@ -6,17 +6,17 @@ This appendix provides the necessary category theory background for understandin
 \subsection{Basic Category Theory}
 
 \begin{definition}[Category]
-A \textbf{category} $\mathbf{C}$ consists of:
+A category $\mathbf{C}$ consists of:
 \begin{itemize}
-\item A collection of \textbf{objects} $\text{Ob}(\mathbf{C})$
-\item For each pair of objects $A, B \in \text{Ob}(\mathbf{C})$, a collection of \textbf{morphisms} $\text{Mor}(A, B)$
-\item For each object $A$, an \textbf{identity morphism} $\text{id}_A: A \to A$
-\item For each triple of objects $A, B, C$, a \textbf{composition operation} $\circ: \text{Mor}(B, C) \times \text{Mor}(A, B) \to \text{Mor}(A, C)$
+\item A collection of objects $\text{Ob}(\mathbf{C})$
+\item For each pair of objects $A, B \in \text{Ob}(\mathbf{C})$, a collection of morphisms $\text{Mor}(A, B)$
+\item For each object $A$, an identity morphism $\text{id}_A: A \to A$
+\item For each triple of objects $A, B, C$, a composition operation $\circ: \text{Mor}(B, C) \times \text{Mor}(A, B) \to \text{Mor}(A, C)$
 \end{itemize}
 subject to the axioms:
 \begin{enumerate}
-\item \textbf{Associativity}: $(h \circ g) \circ f = h \circ (g \circ f)$
-\item \textbf{Identity}: $f \circ \text{id}_A = f = \text{id}_B \circ f$ for $f: A \to B$
+\item Associativity: $(h \circ g) \circ f = h \circ (g \circ f)$
+\item Identity: $f \circ \text{id}_A = f = \text{id}_B \circ f$ for $f: A \to B$
 \end{enumerate}
 \end{definition}
 
@@ -43,15 +43,15 @@ The category $\mathbf{Vect}$ has:
 \subsection{Functors}
 
 \begin{definition}[Functor]
-A \textbf{functor} $F: \mathbf{C} \to \mathbf{D}$ between categories consists of:
+A functor $F: \mathbf{C} \to \mathbf{D}$ between categories consists of:
 \begin{itemize}
 \item A function $F: \text{Ob}(\mathbf{C}) \to \text{Ob}(\mathbf{D})$
 \item For each pair of objects $A, B \in \mathbf{C}$, a function $F: \text{Mor}(A, B) \to \text{Mor}(F(A), F(B))$
 \end{itemize}
 subject to the axioms:
 \begin{enumerate}
-\item \textbf{Identity preservation}: $F(\text{id}_A) = \text{id}_{F(A)}$
-\item \textbf{Composition preservation}: $F(g \circ f) = F(g) \circ F(f)$
+\item Identity preservation: $F(\text{id}_A) = \text{id}_{F(A)}$
+\item Composition preservation: $F(g \circ f) = F(g) \circ F(f)$
 \end{enumerate}
 \end{definition}
 
@@ -66,7 +66,7 @@ The forgetful functor $U: \mathbf{Vect} \to \mathbf{Set}$ sends:
 \subsection{Natural Transformations}
 
 \begin{definition}[Natural Transformation]
-A \textbf{natural transformation} $\eta: F \Rightarrow G$ between functors $F, G: \mathbf{C} \to \mathbf{D}$ consists of:
+A natural transformation $\eta: F \Rightarrow G$ between functors $F, G: \mathbf{C} \to \mathbf{D}$ consists of:
 \begin{itemize}
 \item For each object $A \in \mathbf{C}$, a morphism $\eta_A: F(A) \to G(A)$
 \end{itemize}
@@ -78,7 +78,7 @@ for every morphism $f: A \to B$ in $\mathbf{C}$.
 \subsection{Adjoint Functors}
 
 \begin{definition}[Adjoint Functors]
-Functors $F: \mathbf{C} \to \mathbf{D}$ and $G: \mathbf{D} \to \mathbf{C}$ are \textbf{adjoint} (written $F \dashv G$) if there is a natural isomorphism:
+Functors $F: \mathbf{C} \to \mathbf{D}$ and $G: \mathbf{D} \to \mathbf{C}$ are adjoint (written $F \dashv G$) if there is a natural isomorphism:
 $$\text{Mor}(F(A), B) \cong \text{Mor}(A, G(B))$$
 for all objects $A \in \mathbf{C}$ and $B \in \mathbf{D}$.
 \end{definition}
@@ -86,7 +86,7 @@ for all objects $A \in \mathbf{C}$ and $B \in \mathbf{D}$.
 \subsection{Monads}
 
 \begin{definition}[Monad]
-A \textbf{monad} on a category $\mathbf{C}$ is a triple $(T, \eta, \mu)$ where:
+A monad on a category $\mathbf{C}$ is a triple $(T, \eta, \mu)$ where:
 \begin{itemize}
 \item $T: \mathbf{C} \to \mathbf{C}$ is a functor
 \item $\eta: \text{Id} \Rightarrow T$ is a natural transformation (unit)
@@ -94,9 +94,9 @@ A \textbf{monad} on a category $\mathbf{C}$ is a triple $(T, \eta, \mu)$ where:
 \end{itemize}
 subject to the monad laws:
 \begin{enumerate}
-\item \textbf{Left unit}: $\mu \circ T(\eta) = \text{id}_T$
-\item \textbf{Right unit}: $\mu \circ \eta_T = \text{id}_T$
-\item \textbf{Associativity}: $\mu \circ T(\mu) = \mu \circ \mu_T$
+\item Left unit: $\mu \circ T(\eta) = \text{id}_T$
+\item Right unit: $\mu \circ \eta_T = \text{id}_T$
+\item Associativity: $\mu \circ T(\mu) = \mu \circ \mu_T$
 \end{enumerate}
 \end{definition}
 
@@ -136,7 +136,7 @@ where $\mathcal{T}(L)$ is the logic system with RG flow semantics.
 \subsection{Institutions}
 
 \begin{definition}[Institution]
-An \textbf{institution} is a quadruple $(\mathbf{Sign}, \mathbf{Sen}, \mathbf{Mod}, \models)$ where:
+An institution is a quadruple $(\mathbf{Sign}, \mathbf{Sen}, \mathbf{Mod}, \models)$ where:
 \begin{itemize}
 \item $\mathbf{Sign}$ is a category of signatures
 \item $\mathbf{Sen}: \mathbf{Sign} \to \mathbf{Set}$ is a functor giving sentences
@@ -208,11 +208,11 @@ The continuation monad $T(A) = (A \to R) \to R$ where $R$ is the result type:
 The category theory provides the mathematical foundation for our logic framework:
 
 \begin{itemize}
-\item \textbf{Formal systems} form a category with structure-preserving maps
-\item \textbf{Logics} form a category with truth-preserving maps
-\item \textbf{Corner functors} provide the connection between paradigms
-\item \textbf{Natural transformations} implement the RG flow
-\item \textbf{Monads} capture computational effects
+\item Formal systems form a category with structure-preserving maps
+\item Logics form a category with truth-preserving maps
+\item Corner functors provide the connection between paradigms
+\item Natural transformations implement the RG flow
+\item Monads capture computational effects
 \end{itemize}
 
 This categorical structure ensures that our framework is mathematically rigorous and provides a solid foundation for the unification of computation, logic, and physics.

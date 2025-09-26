@@ -1,70 +1,20 @@
-(* RG Operators with Resolved Metas *)
-(* All RG functions use concrete moduli values *)
-
 Require Import M3Coq.
 
-(* Not function *)
-Definition not (b : bool) : bool :=
-  match b with
-  | true => false
-  | false => true
-  end.
+Definition scale_arity (scale : nat) (a : arity) : arity :=
+  {| input_arity := input_arity a; output_arity := output_arity a * scale |}.
 
-(* RG Flow with concrete moduli *)
-Definition rg_flow {A B : Type} (f : A -> B) (x : A) : B :=
-  f x.
+Definition renormalise (scale : nat) (k : EdgeKind) : arity :=
+  scale_arity scale (arity_of k).
 
-(* RG Beta function with concrete moduli *)
-Definition rg_beta_function (n : nat) : nat :=
-  S n.
+Lemma scale_arity_identity : forall a, scale_arity 1 a = a.
+Proof. intros a. destruct a; simpl. reflexivity. Qed.
 
-(* RG Anomaly measure with concrete moduli *)
-Definition rg_anomaly_measure (x : bool) : bool :=
-  not x.
+Lemma renormalise_base_sigma6 : renormalise 1 Sigma6 = arity_of Sigma6.
+Proof. reflexivity. Qed.
 
-(* RG Entropy measure with concrete moduli *)
-Definition rg_entropy_measure (n : nat) : nat :=
-  n * 2.
+Lemma renormalise_base_tensor : renormalise 1 Tensor = arity_of Tensor.
+Proof. reflexivity. Qed.
 
-(* RG Fixed point with concrete moduli *)
-Definition rg_fixed_point {A : Type} (f : A -> A) (x : A) : A :=
-  f x.
-
-(* RG Flow inverse with concrete moduli *)
-Definition rg_flow_inverse {A B : Type} (f : A -> B) (x : A) : B :=
-  f x.
-
-(* RG Consistency check with concrete moduli *)
-Definition rg_consistency_check (x : bool) : bool :=
-  true.
-
-(* RG Anomaly cancellation with concrete moduli *)
-Definition rg_anomaly_cancellation (x : bool) : bool :=
-  true.
-
-(* RG Entropy bounds with concrete moduli *)
-Definition rg_entropy_bounds (x : bool) : bool :=
-  true.
-
-(* RG Fixed point convergence with concrete moduli *)
-Definition rg_fixed_point_convergence (x : bool) : bool :=
-  true.
-
-(* Proofs with concrete moduli *)
-Lemma rg_flow_preserves : forall A B (f : A -> B) (x : A),
-  rg_flow f x = f x.
-Proof.
-  intros A B f x.
-  unfold rg_flow.
-  reflexivity.
-Qed.
-
-Lemma rg_anomaly_involutive : forall (x : bool),
-  rg_anomaly_measure (rg_anomaly_measure x) = x.
-Proof.
-  intros x.
-  unfold rg_anomaly_measure.
-  destruct x; reflexivity.
-Qed.
-
+Lemma renormalise_base_wire : renormalise 1 Wire = arity_of Wire.
+Proof. reflexivity. Qed.
 

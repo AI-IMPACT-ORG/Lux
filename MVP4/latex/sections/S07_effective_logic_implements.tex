@@ -1,0 +1,78 @@
+\section{Effective Logic as MDE-Pyramid of Logics}
+\label{sec:effective-logic}
+
+Having established truth as a fixed point under RG flow in Section~\ref{sec:truth-fixed-point}, we now turn to the effective logic framework that provides a hierarchy of logics unifying all computational paradigms. This is the MDE (Model-Driven Engineering) pyramid structure that enables the unification. The constructions remain purely logical; physics, learning, or spectral interpretations will plug into the hierarchy only through the couplings they assign to each level.
+
+\subsection{MDE Pyramid Structure (Core Logic)}
+
+The MDE pyramid structure provides a hierarchical organization that unifies all computational paradigms:
+
+\begin{definition}[MDE Pyramid with L/B/R Structure]
+\label{def:mde-pyramid-lbr}
+The MDE pyramid provides a hierarchical organization that unifies all computational paradigms:
+\begin{itemize}
+\item Level 0 (M3): Metametamodel foundation - L/B/R signature, primitive symbols, BNF grammar
+\item Level 1 (M2): Metamodel structure - PGC evaluation, certificates, equality hierarchy
+\item Level 2 (M1): Model logic - Single unified logic transformer
+\item Level 3 (M0): Runtime - Concrete implementations and applications
+\end{itemize}
+\end{definition}
+
+This hierarchy mirrors effective field theories at different energy scales in QFT, with effective logics at different abstraction levels. The L/B/R structure provides natural boundaries at each level.
+
+\paragraph{Implementation details.} The complete MDE pyramid implementation structure, including Racket module organization and performance budgets, is provided in Appendix~\ref{app:mde-pyramid} and Appendix~\ref{app:api-specifications}.
+
+\subsection{Convolution of Formal Systems and Effective Theory}
+
+\begin{definition}[Convolution of Formal Systems]
+\label{def:convolution-formal}
+We use a monoidal product $\star$ on logics with conservative projections; $\mathcal{L}_1\star\mathcal{L}_2$ has signature $\Sigma_1\sqcup\Sigma_2$ and non-interfering coupling rules. Large Language Models can be understood as convolutions of basic formal systems. Given a base formal system $\mathcal{L}_0$, the convolution creates extensions:
+\[
+\mathcal{L}_n = \mathcal{L}_0 \star \mathcal{L}_0 \star \cdots \star \mathcal{L}_0 \quad \text{(n times)}
+\]
+\end{definition}
+
+\begin{definition}[Effective Theory of Computation]
+\label{def:effective-computation}
+$\mathcal{L}_{\text{eff}}$ is a conservative extension of $\mathcal{L}_0$ controlled by couplings $\{g_i\}$ (operators $\{\mathcal{O}_i\}$ enabled in the extension).
+\end{definition}
+
+\begin{theorem}[LLMs as Formal Language Models]
+\label{thm:llm-formal}
+Large Language Models are (controllable extensions of) convolutions of a basic class of formal language models, where the base formal system defines a formal language $\mathcal{L}_0$, convolution creates extensions $\mathcal{L}_n$ with additional structure, training learns the coupling constants $g_i$ that determine the effective theory, and the extensions are controllable through the coupling constants.
+\end{theorem}
+
+\subsection{Hierarchy of Logics}
+
+\begin{definition}[Hierarchy of Logics]
+\label{def:hierarchy-logics}
+The hierarchy: $\mathcal{L}_0 \subseteq \mathcal{L}_1 \subseteq \mathcal{L}_2 \subseteq \mathcal{L}_3$ where $\mathcal{L}_0$ is basic logic, $\mathcal{L}_1$ computational logic, $\mathcal{L}_2$ domain logic, and $\mathcal{L}_3$ application logic.
+\end{definition}
+
+\subsection{Inter-Level Mappings}
+
+\begin{definition}[Inter-Level Mappings]
+\label{def:inter-level-mappings}
+The mappings between levels are:
+\begin{itemize}
+\item Level 0 → Level 1: $\mathsf{Gen4}$ primitive generates computational paradigms
+\item Level 1 → Level 2: Paradigms generate domain models via L/B/R structure
+\item Level 2 → Level 3: Domain models generate applications
+\end{itemize}
+\end{definition}
+
+\subsection{Summary and Outlook}
+
+This section has established the effective logic framework through the MDE pyramid structure with L/B/R implementation. The key observations are:
+
+\begin{enumerate}
+\item MDE pyramid provides hierarchical organization aligned with L/B/R structure
+\item L/B/R implementation mapping connects theory to concrete Racket modules
+\item Convolution of formal systems creates extensions with additional coupling constants
+\item Effective theory of computation emerges from the convolution structure
+\item LLMs are controllable extensions of convolutions of formal language models
+\item Hierarchy of logics creates mathematical structure across levels
+\item Inter-level mappings connect different levels of abstraction
+\end{enumerate}
+
+The effective logic framework provides a unified structure for understanding how different computational paradigms emerge from the same underlying logical foundation. In the next section, we will show how this framework reproduces and generalizes known theorems from logic, physics, and computation.

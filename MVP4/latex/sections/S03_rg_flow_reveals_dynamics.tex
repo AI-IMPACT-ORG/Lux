@@ -3,20 +3,22 @@
 
 Having established the regulator framework in Section~\ref{sec:regularization}, we now develop the renormalization group machinery that reveals how these regulators evolve and how the computational process flows toward fixed points.
 
+\paragraph{Domain preamble.} We remain in the physics domain: the RG flow described here is a physical dynamical system that nevertheless transports the computation-domain data introduced earlier. Phrases such as ``observable'' or ``beta function'' should therefore be read both physically and as logic transform rules.
+
 \paragraph{Hand-off from Section~\ref{sec:regularization}}
 This section carries forward the following RG data from Section~\ref{sec:regularization}:
 \begin{itemize}
-\item \textbf{Regulator hierarchy} with scale parameter $\Lambda$ and grading parameters $\vec{q}$
-\item \textbf{Normalization operator} $N$ and termination observable $\tau$
-\item \textbf{Generating function} $\mathcal{G}(z,\bar{z};\vec{q},\Lambda)$ and correlator coefficients $\mathcal{Z}_{n,m}(\vec{q})$
-\item \textbf{Moduli space} $\mathcal{M}$ of computational parameters
+\item Regulator hierarchy with scale parameter $\Lambda$ and grading parameters $\vec{q}$
+\item Normalization operator $N$ and termination observable $\tau$
+\item Generating function $\mathcal{G}(z,\bar{z};\vec{q},\Lambda)$ and correlator coefficients $\mathcal{Z}_{n,m}(\vec{q})$
+\item Moduli space $\mathcal{M}$ of computational parameters
 \end{itemize}
 
 \paragraph{RG flow observables vs renormalization conditions}
 We distinguish between:
 \begin{itemize}
-\item \textbf{RG flow observables} (evolve under RG): $\vec{q}_t$, $\mathcal{G}_t$, $\Lambda_t$, $\mathcal{Z}_{n,m}(\vec{q}_t)$
-\item \textbf{Renormalization conditions} (fixed): $\tau$ (termination threshold), normalization scheme choices
+\item RG flow observables (evolve under RG): $\vec{q}_t$, $\mathcal{G}_t$, $\Lambda_t$, $\mathcal{Z}_{n,m}(\vec{q}_t)$
+\item Renormalization conditions (fixed): $\tau$ (termination threshold), normalization scheme choices
 \end{itemize}
 
 The relationship between scale behavior and computational reversibility can be understood through how the scale parameter $\Lambda$ interacts with the three grading parameters $\vec{q} = (q_1, q_2, q_3)$ in our generating function from equation~\eqref{eq:generating-function}.
@@ -25,13 +27,13 @@ The relationship between scale behavior and computational reversibility can be u
 
 \begin{definition}[RG Flow Behavior Classification]
 \label{def:rg-flow-classification}
-Fix a class $\mathcal{A}$ of \textbf{admissible observables} closed under encoders and RG flow. A computational system exhibits different behaviors under RG flow as the scale parameter $\Lambda$ varies:
+Fix a class $\mathcal{A}$ of admissible observables closed under encoders and RG flow. A computational system exhibits different behaviors under RG flow as the scale parameter $\Lambda$ varies:
 \begin{align}
 \text{Converging flow} &: \lim_{\Lambda \to \infty} \mathcal{O}(\Lambda) \text{ exists and is finite for all } \mathcal{O} \in \mathcal{A} \\
 \text{Diverging flow} &: \lim_{\Lambda \to \infty} \mathcal{O}(\Lambda) \text{ diverges to infinity for some } \mathcal{O} \in \mathcal{A} \\
 \text{Marginal flow} &: \lim_{\Lambda \to \infty} \mathcal{O}(\Lambda) \text{ oscillates, cycles, or exhibits other non-convergent behavior for some } \mathcal{O} \in \mathcal{A}
 \end{align}
-The classification is \textbf{relative to the admissible class $\mathcal{A}$} and independent of the specific choice of observable within this class.
+The classification is relative to the admissible class $\mathcal{A$} and independent of the specific choice of observable within this class.
 \end{definition}
 
 \subsection{RG Flow-Computational Correspondence}
@@ -50,7 +52,7 @@ The scale parameter $\Lambda$ determines computational reversibility through the
 
 \begin{definition}[Information Monotone]
 \label{def:information-monotone}
-Define the \textbf{Shannon entropy} of the computational state distribution:
+Define the Shannon entropy of the computational state distribution:
 \[
 S(\Lambda) = -\sum_{n,m} p_{n,m}(\Lambda) \log p_{n,m}(\Lambda), \quad p_{n,m}(\Lambda) = \frac{|\mathcal{Z}_{n,m}(\vec{q})|}{\sum_{n',m'} |\mathcal{Z}_{n',m'}(\vec{q})|}
 \]
@@ -58,7 +60,7 @@ S(\Lambda) = -\sum_{n,m} p_{n,m}(\Lambda) \log p_{n,m}(\Lambda), \quad p_{n,m}(\
 
 \begin{theorem}[Entropy Monotonicity]
 \label{thm:entropy-monotonicity}
-Under RG flow, the entropy is non-increasing: $\frac{dS}{d\Lambda} \leq 0$. Equality holds if and only if the flow is \textbf{reversible} (converging RG flow).
+Under RG flow, the entropy is non-increasing: $\frac{dS}{d\Lambda} \leq 0$. Equality holds if and only if the flow is reversible (converging RG flow).
 \end{theorem}
 
 This provides a natural definition of truth: a statement is true if and only if it corresponds to converging RG flow with zero entropy dissipation, meaning the computation preserves information and is reversible. This fundamental connection between RG flow and truth will be developed comprehensively in Section~\ref{sec:renormalization}.
@@ -144,7 +146,7 @@ The Callan-Symanzik equation emerges as a "trace" of the general RG flow operato
 \[
 \left(\Lambda \frac{\partial}{\partial \Lambda} + \sum_{i=1}^3 \beta_i \frac{\partial}{\partial q_i} - \gamma\right) \mathcal{G}(z, \bar{z}; \vec{q}, \Lambda) = 0
 \]
-where $\gamma$ is the \textbf{anomalous dimension of the generating function} $\mathcal{G}$, arising from field rescaling counterterms. The sign convention follows standard CS form: $\gamma$ represents the scaling dimension shift due to renormalization. The beta functions $\beta_i$ are the traces of the corresponding RG flow components projected onto the $\{q_i, \Lambda\}$ subspace.
+where $\gamma$ is the anomalous dimension of the generating function $\mathcal{G}$, arising from field rescaling counterterms. The sign convention follows standard CS form: $\gamma$ represents the scaling dimension shift due to renormalization. The beta functions $\beta_i$ are the traces of the corresponding RG flow components projected onto the $\{q_i, \Lambda\}$ subspace.
 \end{theorem}
 
 \subsection{RG Fixed Points and Universality Classes}
@@ -158,9 +160,9 @@ An RG fixed point is where all beta functions vanish: $\beta_G = \vec{\beta}_q =
 \label{def:computational-universality}
 Systems belong to universality classes based on RG flow behavior:
 \begin{itemize}
-\item \textbf{Class I}: Converging RG flow (reversible computation)
-\item \textbf{Class II}: Diverging RG flow (irreversible computation)  
-\item \textbf{Class III}: Marginal RG flow (undecidable computation)
+\item Class I: Converging RG flow (reversible computation)
+\item Class II: Diverging RG flow (irreversible computation)  
+\item Class III: Marginal RG flow (undecidable computation)
 \end{itemize}
 \end{definition}
 
@@ -168,7 +170,7 @@ Systems belong to universality classes based on RG flow behavior:
 
 \begin{remark}[Speculative AGT Connection]
 \label{rem:agt-consequence}
-\textbf{[SPECULATIVE]} The AGT correspondence may appear as a consequence of the RG flow framework, with generating function structure extending to complex parameters and 4D gauge theory connections (Section~\ref{sec:boundary-maps}). This connection requires explicit construction of the functor $\mathcal{F}: \text{Computational RG} \to \text{AGT}$ and is not used in the main theorems.
+[SPECULATIVE] The AGT correspondence may appear as a consequence of the RG flow framework, with generating function structure extending to complex parameters and 4D gauge theory connections (Section~\ref{sec:boundary-maps}). This connection requires explicit construction of the functor $\mathcal{F}: \text{Computational RG} \to \text{AGT}$ and is not used in the main theorems.
 \end{remark}
 
 \subsection{Summary and Outlook}
@@ -184,4 +186,6 @@ This section established RG flow as a truth predicate for computation:
 
 The RG framework reveals deep connections between computation, information theory, and physics. The next section develops the complete renormalization procedure (Section~\ref{sec:renormalization}).
 
-\textbf{Adapter back to §1}: the flow $(\Lambda,\vec{q},z,\bar{z})\mapsto (b\Lambda,\vec{q}(b),b^{-1}z,b^{-1}\bar{z})$ preserves the parameter map fixed in §1.
+Adapter back to §1: the flow $(\Lambda,\vec{q},z,\bar{z})\mapsto (b\Lambda,\vec{q}(b),b^{-1}z,b^{-1}\bar{z})$ preserves the parameter map fixed in §1.
+
+\paragraph{Ledger note.} Every beta function, c-function, or universality class that appears in this section has a row on the computation ledger: the same algebraic data will resurface as consistency witnesses in Sections~\ref{sec:truth-fixed-point}--\ref{sec:consistency} and again when we specialise to the LLM and spectral domains. This keeps the logical core independent of the physical metaphors used here.

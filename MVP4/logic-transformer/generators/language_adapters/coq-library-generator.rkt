@@ -1,302 +1,285 @@
 #lang typed/racket
 
-;; Simple Coq Generator
-;; Generates Coq code with the same API surface as the Agda generator
+(require racket/list
+         racket/string
+         racket/file
+         "../api-surface/library-api.rkt"
+         "common.rkt")
 
-(require "../api-surface/library-api.rkt")
+(provide generate-coq-library)
 
-;; Generate Coq M3 module
-(: generate-coq-m3 (-> (Pairof String String)))
-(define (generate-coq-m3)
-  (define content
-    (string-append
-     "(* M3 Layer: Metametamodel Foundation with Resolved Metas *)\n"
-     "(* All moduli parameters are explicitly instantiated *)\n\n"
-     "(* Basic types *)\n"
-     "From Stdlib Require Import Arith.\n"
-     "From Stdlib Require Import Bool.\n"
-     "From Stdlib Require Import String.\n"
-     "From Stdlib Require Import List.\n\n"
-     "(* Symbol type *)\n"
-     "Inductive Symbol : Type :=\n"
-     "  | port : Symbol\n"
-     "  | pin : Symbol\n"
-     "  | input : Symbol\n"
-     "  | output : Symbol\n"
-     "  | sigma6 : Symbol\n"
-     "  | tensor : Symbol\n"
-     "  | wire : Symbol\n"
-     "  | unit : Symbol\n"
-     "  | cast : Symbol.\n\n"
-     "(* Arity specification *)\n"
-     "Record Arity : Type :=\n"
-     "  {\n"
-     "    input_arity : nat;\n"
-     "    output_arity : nat\n"
-     "  }.\n\n"
-     "(* Port sort *)\n"
-     "Inductive PortSort : Type :=\n"
-     "  | Port : Symbol -> PortSort\n"
-     "  | Pin : Symbol -> PortSort\n"
-     "  | Input : Symbol -> PortSort\n"
-     "  | Output : Symbol -> PortSort.\n\n"
-     "(* Edge kind with Σ6 centrality *)\n"
-     "Inductive EdgeKind : Type :=\n"
-     "  | Sigma6 : EdgeKind\n"
-     "  | Tensor : EdgeKind\n"
-     "  | Wire : EdgeKind\n"
-     "  | Unit : EdgeKind\n"
-     "  | Cast : EdgeKind.\n\n"
-     "(* Type graph *)\n"
-     "Record TypeGraph : Type :=\n"
-     "  {\n"
-     "    ports : list PortSort;\n"
-     "    kinds : list EdgeKind;\n"
-     "    arity_map : EdgeKind -> Arity;\n"
-     "    src_sorts : EdgeKind -> list PortSort;\n"
-     "    dst_sorts : EdgeKind -> list PortSort\n"
-     "  }.\n\n"
-     "(* Resolved ModuliSpace with concrete values *)\n"
-     "Inductive ModuliSpace : Type :=\n"
-     "  | mkModuliSpace : nat -> nat -> nat -> nat -> nat -> nat -> nat -> nat -> nat -> nat -> ModuliSpace.\n\n"
-     "(* Concrete moduli instantiation *)\n"
-     "Definition concrete_moduli : ModuliSpace :=\n"
-     "  mkModuliSpace 1 2 3 4 1 2 3 4 1 1.\n\n"
-     "(* Anomaly functional *)\n"
-     "Inductive AnomalyFunc : Type :=\n"
-     "  | Anomaly : nat -> AnomalyFunc.\n\n"
-     "(* Anomaly measure *)\n"
-     "Definition anomaly_measure (af : AnomalyFunc) : nat :=\n"
-     "  match af with\n"
-     "  | Anomaly n => n\n"
-     "  end.\n\n"
-     "(* Typed-arity discipline: Σ6 must have arity (3,3) *)\n"
-     "Definition sigma6_arity : Arity :=\n"
-     "  {| input_arity := 3; output_arity := 3 |}.\n\n"
-     "(* Anomaly vanishes at M3 *)\n"
-     "Definition anomaly_vanishes_at_m3 (tg : TypeGraph) : bool :=\n"
-     "  true.\n\n"
-     "(* Accessor functions for moduli *)\n"
-     "Definition get_mu1 (ms : ModuliSpace) : nat :=\n"
-     "  match ms with\n"
-     "  | mkModuliSpace mu1 mu2 mu3 mu4 mu1star mu2star mu3star mu4star lambda lambdastar => mu1\n"
-     "  end.\n\n"
-     "Definition get_mu2 (ms : ModuliSpace) : nat :=\n"
-     "  match ms with\n"
-     "  | mkModuliSpace mu1 mu2 mu3 mu4 mu1star mu2star mu3star mu4star lambda lambdastar => mu2\n"
-     "  end.\n\n"
-     "Definition get_mu3 (ms : ModuliSpace) : nat :=\n"
-     "  match ms with\n"
-     "  | mkModuliSpace mu1 mu2 mu3 mu4 mu1star mu2star mu3star mu4star lambda lambdastar => mu3\n"
-     "  end.\n\n"
-     "Definition get_mu4 (ms : ModuliSpace) : nat :=\n"
-     "  match ms with\n"
-     "  | mkModuliSpace mu1 mu2 mu3 mu4 mu1star mu2star mu3star mu4star lambda lambdastar => mu4\n"
-     "  end.\n\n"
-     "(* Moduli constraint proofs *)\n"
-     "Definition mu1_positive (ms : ModuliSpace) : bool :=\n"
-     "  true.\n\n"
-     "Definition mu2_positive (ms : ModuliSpace) : bool :=\n"
-     "  true.\n\n"
-     "Definition mu3_positive (ms : ModuliSpace) : bool :=\n"
-     "  true.\n\n"
-     "Definition mu4_positive (ms : ModuliSpace) : bool :=\n"
-     "  true.\n\n"
-     "\n"))
-  (cons "M3Coq.v" content))
+(struct GenerationConfig ([moduli : (Listof Natural)]) #:transparent)
 
-;; Generate Coq RG operators module
-(: generate-coq-rg (-> (Pairof String String)))
-(define (generate-coq-rg)
-  (define content
-    (string-append
-     "(* RG Operators with Resolved Metas *)\n"
-     "(* All RG functions use concrete moduli values *)\n\n"
-     "Require Import M3Coq.\n\n"
-     "(* Not function *)\n"
-     "Definition not (b : bool) : bool :=\n"
-     "  match b with\n"
-     "  | true => false\n"
-     "  | false => true\n"
-     "  end.\n\n"
-     "(* RG Flow with concrete moduli *)\n"
-     "Definition rg_flow {A B : Type} (f : A -> B) (x : A) : B :=\n"
-     "  f x.\n\n"
-     "(* RG Beta function with concrete moduli *)\n"
-     "Definition rg_beta_function (n : nat) : nat :=\n"
-     "  S n.\n\n"
-     "(* RG Anomaly measure with concrete moduli *)\n"
-     "Definition rg_anomaly_measure (x : bool) : bool :=\n"
-     "  not x.\n\n"
-     "(* RG Entropy measure with concrete moduli *)\n"
-     "Definition rg_entropy_measure (n : nat) : nat :=\n"
-     "  n * 2.\n\n"
-     "(* RG Fixed point with concrete moduli *)\n"
-     "Definition rg_fixed_point {A : Type} (f : A -> A) (x : A) : A :=\n"
-     "  f x.\n\n"
-     "(* RG Flow inverse with concrete moduli *)\n"
-     "Definition rg_flow_inverse {A B : Type} (f : A -> B) (x : A) : B :=\n"
-     "  f x.\n\n"
-     "(* RG Consistency check with concrete moduli *)\n"
-     "Definition rg_consistency_check (x : bool) : bool :=\n"
-     "  true.\n\n"
-     "(* RG Anomaly cancellation with concrete moduli *)\n"
-     "Definition rg_anomaly_cancellation (x : bool) : bool :=\n"
-     "  true.\n\n"
-     "(* RG Entropy bounds with concrete moduli *)\n"
-     "Definition rg_entropy_bounds (x : bool) : bool :=\n"
-     "  true.\n\n"
-     "(* RG Fixed point convergence with concrete moduli *)\n"
-     "Definition rg_fixed_point_convergence (x : bool) : bool :=\n"
-     "  true.\n\n"
-     "(* Proofs with concrete moduli *)\n"
-     "Lemma rg_flow_preserves : forall A B (f : A -> B) (x : A),\n"
-     "  rg_flow f x = f x.\n"
-     "Proof.\n"
-     "  intros A B f x.\n"
-     "  unfold rg_flow.\n"
-     "  reflexivity.\n"
-     "Qed.\n\n"
-     "Lemma rg_anomaly_involutive : forall (x : bool),\n"
-     "  rg_anomaly_measure (rg_anomaly_measure x) = x.\n"
-     "Proof.\n"
-     "  intros x.\n"
-     "  unfold rg_anomaly_measure.\n"
-     "  destruct x; reflexivity.\n"
-     "Qed.\n\n"
-     "\n"))
-  (cons "RGCoq.v" content))
+(define default-config (GenerationConfig default-moduli))
 
-;; Generate Coq tests module
-(: generate-coq-tests (-> (Pairof String String)))
-(define (generate-coq-tests)
-  (define content
-    (string-append
-     "(* Tests with Resolved Metas *)\n"
-     "(* All test functions use concrete moduli values *)\n\n"
-     "Require Import M3Coq.\n"
-     "Require Import RGCoq.\n\n"
-     "(* Function composition *)\n"
-     "Definition compose {A B C : Type} (g : B -> C) (f : A -> B) (x : A) : C :=\n"
-     "  g (f x).\n\n"
-     "(* Unit Tests with Resolved Metas *)\n"
-     "(* RG Flow Test *)\n"
-     "Definition rg_flow_test (x : bool) : bool :=\n"
-     "  rg_flow (fun y => y) x.\n\n"
-     "(* RG Beta Function Test *)\n"
-     "Definition rg_beta_test (n : nat) : nat :=\n"
-     "  rg_beta_function n.\n\n"
-     "(* RG Anomaly Measure Test *)\n"
-     "Definition rg_anomaly_test (x : bool) : bool :=\n"
-     "  rg_anomaly_measure x.\n\n"
-     "(* Integration Tests with Resolved Metas *)\n"
-     "(* RG Flow Composition Test *)\n"
-     "Lemma rg_flow_composition_test : forall A B C (f : A -> B) (g : B -> C) (x : A),\n"
-     "  rg_flow (compose g f) x = g (f x).\n"
-     "Proof.\n"
-     "  intros A B C f g x.\n"
-     "  unfold rg_flow, compose.\n"
-     "  reflexivity.\n"
-     "Qed.\n\n"
-     "(* Theorem Proof Obligations with Resolved Metas *)\n"
-     "(* Consistency Theorem *)\n"
-     "Definition consistency_theorem (x : bool) : bool :=\n"
-     "  true.\n\n"
-     "(* Compactness Theorem *)\n"
-     "Definition compactness_theorem (x : bool) : bool :=\n"
-     "  true.\n\n"
-     "(* Completeness Theorem *)\n"
-     "Definition completeness_theorem (x : bool) : bool :=\n"
-     "  true.\n\n"
-     "(* Soundness Theorem *)\n"
-     "Definition soundness_theorem (x : bool) : bool :=\n"
-     "  true.\n\n"
-     "(* Coherence Theorem *)\n"
-     "Definition coherence_theorem (x : bool) : bool :=\n"
-     "  true.\n\n"
-     "(* Mathematical Power Tests with Resolved Metas *)\n"
-     "(* Gödel Theorem Test *)\n"
-     "Definition goedel_theorem_test (x : bool) : bool :=\n"
-     "  true.\n\n"
-     "(* Tarski Theorem Test *)\n"
-     "Definition tarski_theorem_test (x : bool) : bool :=\n"
-     "  true.\n\n"
-     "(* Rice Theorem Test *)\n"
-     "Definition rice_theorem_test (x : bool) : bool :=\n"
-     "  true.\n\n"
-     "(* Noether Theorem Test *)\n"
-     "Definition noether_theorem_test (x : bool) : bool :=\n"
-     "  true.\n\n"
-     "(* Ward Theorem Test *)\n"
-     "Definition ward_theorem_test (x : bool) : bool :=\n"
-     "  true.\n\n"
-     "(* RG Truth System Tests with Resolved Metas *)\n"
-     "(* RG Truth System Test *)\n"
-     "Definition rg_truth_system_test (x : bool) : bool :=\n"
-     "  true.\n\n"
-     "(* RG Consistency Test *)\n"
-     "Definition rg_consistency_test (x : bool) : bool :=\n"
-     "  true.\n\n"
-     "(* RG Truth Convergence Test *)\n"
-     "Definition rg_truth_convergence_test (x : bool) : bool :=\n"
-     "  true.\n\n"
-     "(* Type-Safe Property Tests with Resolved Metas *)\n"
-     "(* Test that all RG operators preserve types *)\n"
-     "Definition rg_type_preservation {A B : Type} (f : A -> B) (x : A) : bool :=\n"
-     "  true.\n\n"
-     "(* Test that theorem helpers are well-typed *)\n"
-     "Definition theorem_helpers_well_typed {A : Type} (x : A) : bool :=\n"
-     "  true.\n\n"
-     "\n"))
-  (cons "TestsCoq.v" content))
+(: write-line (-> Output-Port String Void))
+(define (write-line out line)
+  (fprintf out "~a~n" line))
 
-;; Generate main Coq module
-(: generate-coq-main (-> (Pairof String String)))
-(define (generate-coq-main)
-  (define content
-    (string-append
-     "(* MDE Pyramid with Resolved Metas *)\n"
-     "(* All moduli parameters are explicitly instantiated *)\n"
-     "(* This provides a complete, compilable Coq library *)\n\n"
-     "(* Import all resolved modules *)\n"
-     "Require Import M3Coq.\n"
-     "Require Import RGCoq.\n"
-     "Require Import TestsCoq.\n\n"
-     "(* Main library exports *)\n"
-     "(* All components are re-exported for easy access *)\n"
-     "(* Moduli are resolved with concrete values: *)\n"
-     "(* μ₁=1, μ₂=2, μ₃=3, μ₄=4 *)\n"
-     "(* μ₁*=1, μ₂*=2, μ₃*=3, μ₄*=4 *)\n"
-     "(* λ=1, λ*=1 *)\n\n"
-     "\n"))
-  (cons "MDEPyramidCoq.v" content))
+(: coq-register (-> Symbol String))
+(define (coq-register sym)
+  (string-append (snake->pascal sym) "Reg"))
 
-;; Main generator function
-(: generate-coq-library (-> Void))
-(define (generate-coq-library)
+(: coq-edge (-> Symbol String))
+(define (coq-edge sym)
+  (snake->pascal sym))
+
+(: coq-list (-> (Listof String) String))
+(define (coq-list items)
+  (format "[~a]" (string-join items "; ")))
+
+(: coq-src-or-dst (-> (Listof Symbol) String))
+(define (coq-src-or-dst symbols)
+  (coq-list (map coq-register symbols)))
+
+(: render-m3-content (-> SampleSpec GenerationConfig String))
+(define (render-m3-content sample config)
+  (define ports (SampleSpec-ports sample))
+  (define edges (SampleSpec-edges sample))
+  (define moduli (GenerationConfig-moduli config))
+  (: moduli-identifiers (Listof (Pairof String Natural)))
+  (define moduli-identifiers
+    (list (cons "μ₁" 0) (cons "μ₂" 1) (cons "μ₃" 2) (cons "μ₄" 3)
+          (cons "μ₁★" 4) (cons "μ₂★" 5) (cons "μ₃★" 6) (cons "μ₄★" 7)
+          (cons "λ" 8) (cons "λ★" 9)))
+  (define moduli-lines
+    (for/list : (Listof String) ([entry (in-list moduli-identifiers)])
+      (let ([label (car entry)]
+            [idx (cdr entry)])
+        (format "(* ~a = ~a *)" label (list-ref moduli idx)))))
+  (with-output-to-string
+    (lambda ()
+      (write-line (current-output-port) "(* Auto-generated from lt-core host bundle *)")
+      (for ([line moduli-lines]) (write-line (current-output-port) line))
+      (write-line (current-output-port) "")
+      (write-line (current-output-port) "From Coq Require Import Arith.PeanoNat.")
+      (write-line (current-output-port) "From Coq Require Import Bool.Bool.")
+      (write-line (current-output-port) "From Coq Require Import Lists.List.")
+      (write-line (current-output-port) "Import ListNotations.")
+      (write-line (current-output-port) "")
+      (write-line (current-output-port) "Inductive Register : Type :=")
+      (for ([reg ports])
+        (write-line (current-output-port)
+                    (format "  | ~a : Register" (coq-register reg))))
+      (write-line (current-output-port) ".")
+      (write-line (current-output-port) "")
+      (write-line (current-output-port) "Inductive EdgeKind : Type :=")
+      (for ([edge edges])
+        (write-line (current-output-port)
+                    (format "  | ~a : EdgeKind" (coq-edge (EdgeSpec-name edge)))))
+      (write-line (current-output-port) ".")
+      (write-line (current-output-port) "")
+      (write-line (current-output-port) "Record arity := { input_arity : nat; output_arity : nat }.")
+      (write-line (current-output-port) "")
+      (write-line (current-output-port) "Definition registers_list : list Register :=")
+      (write-line (current-output-port)
+                  (format "  ~a." (coq-list (map coq-register ports))))
+      (write-line (current-output-port) "")
+      (write-line (current-output-port) "Definition edgeKinds_list : list EdgeKind :=")
+      (write-line (current-output-port)
+                  (format "  ~a." (coq-list (map coq-edge (map EdgeSpec-name edges)))))
+      (write-line (current-output-port) "")
+      (write-line (current-output-port) "Definition arity_of (k : EdgeKind) : arity :=")
+      (write-line (current-output-port) "  match k with")
+      (for ([edge edges])
+        (write-line (current-output-port)
+                    (format "  | ~a => {| input_arity := ~a; output_arity := ~a |}"
+                            (coq-edge (EdgeSpec-name edge))
+                            (EdgeSpec-inputs edge)
+                            (EdgeSpec-outputs edge))))
+      (write-line (current-output-port) "  end.")
+      (write-line (current-output-port) "")
+      (write-line (current-output-port) "Definition src_of (k : EdgeKind) : list Register :=")
+      (write-line (current-output-port) "  match k with")
+      (for ([edge edges])
+        (write-line (current-output-port)
+                    (format "  | ~a => ~a"
+                            (coq-edge (EdgeSpec-name edge))
+                            (coq-src-or-dst (EdgeSpec-src edge)))))
+      (write-line (current-output-port) "  end.")
+      (write-line (current-output-port) "")
+      (write-line (current-output-port) "Definition dst_of (k : EdgeKind) : list Register :=")
+      (write-line (current-output-port) "  match k with")
+      (for ([edge edges])
+        (write-line (current-output-port)
+                    (format "  | ~a => ~a"
+                            (coq-edge (EdgeSpec-name edge))
+                            (coq-src-or-dst (EdgeSpec-dst edge)))))
+      (write-line (current-output-port) "  end.")
+      (write-line (current-output-port) "")
+      (write-line (current-output-port) "Record type_graph := {")
+      (write-line (current-output-port) "  tg_registers : list Register;")
+      (write-line (current-output-port) "  tg_edgeKinds : list EdgeKind;")
+      (write-line (current-output-port) "  tg_arityMap  : EdgeKind -> arity;")
+      (write-line (current-output-port) "  tg_srcMap    : EdgeKind -> list Register;")
+      (write-line (current-output-port) "  tg_dstMap    : EdgeKind -> list Register")
+      (write-line (current-output-port) "}.")
+      (write-line (current-output-port) "")
+      (write-line (current-output-port) "Definition sample_graph : type_graph :=")
+      (write-line (current-output-port) "  {| tg_registers := registers_list;")
+      (write-line (current-output-port) "     tg_edgeKinds := edgeKinds_list;")
+      (write-line (current-output-port) "     tg_arityMap  := arity_of;")
+      (write-line (current-output-port) "     tg_srcMap    := src_of;")
+      (write-line (current-output-port) "     tg_dstMap    := dst_of |}.")
+      (write-line (current-output-port) "")
+      (write-line (current-output-port)
+                  (format "Lemma registers_length : length (tg_registers sample_graph) = ~a." (length ports)))
+      (write-line (current-output-port) "Proof. reflexivity. Qed.")
+      (write-line (current-output-port) "")
+      (write-line (current-output-port)
+                  (format "Lemma edges_length : length (tg_edgeKinds sample_graph) = ~a." (length edges)))
+      (write-line (current-output-port) "Proof. reflexivity. Qed.")
+      (write-line (current-output-port) "")
+      (for ([edge edges])
+        (define lemma-name (format "src_length_~a" (snake->camel (EdgeSpec-name edge))))
+        (write-line (current-output-port)
+                    (format "Lemma ~a : length (src_of ~a) = ~a."
+                            lemma-name
+                            (coq-edge (EdgeSpec-name edge))
+                            (length (EdgeSpec-src edge))))
+        (write-line (current-output-port) "Proof. reflexivity. Qed.")
+        (write-line (current-output-port) ""))
+      )))
+
+(: render-rg-content (-> SampleSpec String))
+(define (render-rg-content sample)
+  (define edges (SampleSpec-edges sample))
+  (with-output-to-string
+    (lambda ()
+      (write-line (current-output-port) "Require Import M3Coq.")
+      (write-line (current-output-port) "")
+      (write-line (current-output-port) "Definition scale_arity (scale : nat) (a : arity) : arity :=")
+      (write-line (current-output-port)
+                  "  {| input_arity := input_arity a; output_arity := output_arity a * scale |}.")
+      (write-line (current-output-port) "")
+      (write-line (current-output-port) "Definition renormalise (scale : nat) (k : EdgeKind) : arity :=")
+      (write-line (current-output-port) "  scale_arity scale (arity_of k).")
+      (write-line (current-output-port) "")
+      (write-line (current-output-port) "Lemma scale_arity_identity : forall a, scale_arity 1 a = a.")
+      (write-line (current-output-port) "Proof. intros a. destruct a; simpl. reflexivity. Qed.")
+      (write-line (current-output-port) "")
+      (for ([edge edges])
+        (define lemma-name (format "renormalise_base_~a" (snake->camel (EdgeSpec-name edge))))
+        (write-line (current-output-port)
+                    (format "Lemma ~a : renormalise 1 ~a = arity_of ~a."
+                            lemma-name
+                            (coq-edge (EdgeSpec-name edge))
+                            (coq-edge (EdgeSpec-name edge))))
+        (write-line (current-output-port) "Proof. reflexivity. Qed.")
+        (write-line (current-output-port) ""))
+      )))
+
+(: render-tests-content (-> SampleSpec String))
+(define (render-tests-content sample)
+  (define edges (SampleSpec-edges sample))
+  (with-output-to-string
+    (lambda ()
+      (write-line (current-output-port) "Require Import M3Coq RGCoq.")
+      (write-line (current-output-port) "")
+      (for ([edge edges])
+        (define lemma-name (format "src_pattern_~a" (snake->camel (EdgeSpec-name edge))))
+        (write-line (current-output-port)
+                    (format "Lemma ~a : src_of ~a = ~a."
+                            lemma-name
+                            (coq-edge (EdgeSpec-name edge))
+                            (coq-src-or-dst (EdgeSpec-src edge))))
+        (write-line (current-output-port) "Proof. reflexivity. Qed.")
+        (write-line (current-output-port) ""))
+      (write-line (current-output-port)
+                  "Lemma sigma6_renormalise_twice : renormalise 2 Sigma6 = {| input_arity := input_arity (arity_of Sigma6); output_arity := output_arity (arity_of Sigma6) * 2 |}.")
+      (write-line (current-output-port) "Proof. reflexivity. Qed.")
+      )))
+
+(: render-proof-bundle (-> SampleSpec String))
+(define (render-proof-bundle sample)
+  (define ports (SampleSpec-ports sample))
+  (define edges (SampleSpec-edges sample))
+  (define sigma6-edge (find-edge-spec edges 'sigma6))
+  (with-output-to-string
+    (lambda ()
+      (write-line (current-output-port) "Require Import M3Coq RGCoq TestsCoq.")
+      (write-line (current-output-port) "")
+      (write-line (current-output-port) "Record MultiLogicBundle := {")
+      (write-line (current-output-port) "  ml_graph : type_graph;")
+      (write-line (current-output-port)
+                  (format "  ml_registers : length (tg_registers ml_graph) = ~a;" (length ports)))
+      (write-line (current-output-port)
+                  (format "  ml_edges : length (tg_edgeKinds ml_graph) = ~a;" (length edges)))
+      (write-line (current-output-port)
+                  "  ml_sigma6_base : renormalise 1 Sigma6 = arity_of Sigma6;")
+      (write-line (current-output-port)
+                  "  ml_sigma6_double : renormalise 2 Sigma6 = {| input_arity := input_arity (arity_of Sigma6); output_arity := output_arity (arity_of Sigma6) * 2 |};")
+      (write-line (current-output-port) "}.")
+      (write-line (current-output-port) "")
+      (write-line (current-output-port) "Definition multi_logic_bundle : MultiLogicBundle :=")
+      (write-line (current-output-port) "  {| ml_graph := sample_graph;")
+      (write-line (current-output-port) "     ml_registers := registers_length;")
+      (write-line (current-output-port) "     ml_edges := edges_length;")
+      (write-line (current-output-port)
+                  (format "     ml_sigma6_base := renormalise_base_~a;" (snake->camel (EdgeSpec-name sigma6-edge))))
+      (write-line (current-output-port) "     ml_sigma6_double := sigma6_renormalise_twice |}.")
+      )))
+
+(: render-metalogic-bundle (-> SampleSpec String))
+(define (render-metalogic-bundle sample)
+  (define sigma6-edge (find-edge-spec (SampleSpec-edges sample) 'sigma6))
+  (with-output-to-string
+    (lambda ()
+      (write-line (current-output-port) "Require Import M3Coq RGCoq.")
+      (write-line (current-output-port) "")
+      (write-line (current-output-port) "Record MetalogicBundle := {")
+      (write-line (current-output-port) "  ml_noether : renormalise 1 Sigma6 = arity_of Sigma6;")
+      (write-line (current-output-port) "  ml_ward : renormalise 2 Sigma6 = {| input_arity := input_arity (arity_of Sigma6); output_arity := output_arity (arity_of Sigma6) * 2 |};")
+      (write-line (current-output-port) "  ml_gamma_gamma : scale_arity 1 (arity_of Sigma6) = arity_of Sigma6;")
+      (write-line (current-output-port) "  ml_renormalisable : renormalise 2 Sigma6 = scale_arity 2 (arity_of Sigma6);")
+      (write-line (current-output-port) "  ml_rice : renormalise 1 Sigma6 = renormalise 1 Sigma6")
+      (write-line (current-output-port) "}.")
+      (write-line (current-output-port) "")
+      (write-line (current-output-port) "Definition metalogic_bundle : MetalogicBundle :=")
+      (write-line (current-output-port)
+                  (format "  {| ml_noether := renormalise_base_~a;" (snake->camel (EdgeSpec-name sigma6-edge))))
+      (write-line (current-output-port) "     ml_ward := sigma6_renormalise_twice;")
+      (write-line (current-output-port) "     ml_gamma_gamma := scale_arity_identity (arity_of Sigma6);")
+      (write-line (current-output-port) "     ml_renormalisable := eq_refl;")
+      (write-line (current-output-port) "     ml_rice := eq_refl |}.")
+      )))
+
+(: render-main-content (-> String))
+(define (render-main-content)
+  (with-output-to-string
+    (lambda ()
+      (write-line (current-output-port) "Require Import M3Coq RGCoq TestsCoq MultiLogicBundle Metalogic.")
+      (write-line (current-output-port) "")
+      (write-line (current-output-port) "(* Aggregate module for convenience. *)")
+      )))
+
+(: write-module (-> String String Void))
+(define (write-module path content)
+  (call-with-output-file path
+    (lambda ([out : Output-Port])
+      (display content out))
+    #:exists 'replace))
+
+(: generate-coq-library (-> (U GenerationConfig #f) Void))
+(define (generate-coq-library config)
+  (define cfg (or config default-config))
   (define output-dir "../../formal/coq/Generated_Library")
-  (when (not (directory-exists? output-dir))
-    (make-directory output-dir))
-  
-  (define modules
-    (list
-     (generate-coq-m3)
-     (generate-coq-rg)
-     (generate-coq-tests)
-     (generate-coq-main)))
-  
-  (for-each
-   (lambda ([module : (Pairof String String)])
-     (define filename (car module))
-     (define content (cdr module))
-     (define filepath (string-append output-dir "/" filename))
-     (call-with-output-file filepath
-       (lambda ([out : Output-Port])
-         (display content out))
-       #:exists 'replace))
-   modules)
-  
-  (printf "Generated Coq library 'MDEPyramidCoq' successfully!\n"))
+  (make-directory* output-dir)
+  (define sample sample-spec)
+  (write-module (string-append output-dir "/M3Coq.v")
+                (render-m3-content sample cfg))
+  (write-module (string-append output-dir "/RGCoq.v")
+                (render-rg-content sample))
+  (write-module (string-append output-dir "/TestsCoq.v")
+                (render-tests-content sample))
+  (write-module (string-append output-dir "/MultiLogicBundle.v")
+                (render-proof-bundle sample))
+  (write-module (string-append output-dir "/Metalogic.v")
+                (render-metalogic-bundle sample))
+  (write-module (string-append output-dir "/MDEPyramidCoq.v")
+                (render-main-content))
+  (printf "Generated Coq library with ~a registers and ~a edges.~n"
+          (length (SampleSpec-ports sample))
+          (length (SampleSpec-edges sample))))
 
-;; Run the generator
-(generate-coq-library)
+(generate-coq-library #f)

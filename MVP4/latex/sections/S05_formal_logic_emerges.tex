@@ -1,0 +1,458 @@
+\section{Interacting Positive Logic: Formal Definition}
+\label{sec:formal-systems}
+
+Having established the renormalization framework in Section~\ref{sec:renormalization}, we now develop the formal logic structure that underlies it. From here onward the narrative lives in the logic layer: definitions and theorems are domain-neutral and can be instantiated in the computation, physics, learning, or number-theory domains by simply reinterpreting the symbols listed in the domain ledger. We consider conservative extensions of theories $T\subseteq\mathrm{Sent}(\Sigma)$ inside a fixed logic $\mathcal{L}=(\Sigma,\vdash)$; when proof rules change, we speak of a logic morphism. The logic transformer emerges as the central logical primitive that unifies all computational paradigms through a conservative extension of logic with hierarchical deformation of truth systems.
+
+\subsection{Signature and Syntax}
+
+The interacting positive logic is built on a three-layered structure: Left boundary ($L$), Bulk core ($B$), and Right boundary ($R$), with the unit object $I$. This structure naturally arises from the renormalization group flow and provides the mathematical foundation for all computational paradigms.
+
+\begin{definition}[Logic Signature]
+\label{def:logic-signature}
+The signature $\Sigma$ consists of:
+\begin{itemize}
+\item Sorts: $L$ (left boundary), $B$ (bulk), $R$ (right boundary), $I$ (unit)
+\item Objects: $Obj ::= I | L | B | R | (Obj \otimes Obj)$ where $\otimes$ is the SMC tensor
+\item Primitive symbols with L/R arity pairs $(\ell,r) \in \mathbb{N} \times \mathbb{N}$
+\end{itemize}
+\end{definition}
+
+\subsection{Complete BNF Grammar}
+
+The syntax is defined by the following complete Backus-Naur Form grammar, incorporating all primitive symbols and axiom schemas:
+
+\begin{definition}[Complete BNF Grammar]
+\label{def:bnf-grammar}
+\begin{align}
+\text{File} &\quad ::= \quad \text{Header Section}^* \\
+\text{Header} &\quad ::= \quad \text{'logic' IDENT ';'} \\
+\text{Section} &\quad ::= \quad \text{Signatures | Axioms | Rules | Theorems | (Models?)} \\
+&\quad \quad \quad \text{(Models optional, non-binding semantics)} \\
+\text{Signatures} &\quad ::= \quad \text{'signature' '{' SigItem}^* \text{'}'} \\
+\text{SigItem} &\quad ::= \quad \text{OpDecl ';'} \\
+\text{OpDecl} &\quad ::= \quad \text{'op' IDENT ':' Type ('arity' '(' INT ',' INT ')')?} \\
+&\quad | \quad \text{'const' IDENT ':' Type} \\
+\text{Type} &\quad ::= \quad \text{Obj '→' Obj | Obj ('×' Obj)+ '→' Obj} \\
+\text{Obj} &\quad ::= \quad \text{'I' | 'L' | 'B' | 'R' | '(' Obj '⊗' Obj ')'} \\
+\text{Axioms} &\quad ::= \quad \text{'axioms' '{' Equation}^* \text{'}'} \\
+\text{Equation} &\quad ::= \quad \text{Term '≡' Term '.'} \\
+\text{Rules} &\quad ::= \quad \text{'rules' '{' Rule}^* \text{'}'} \\
+\text{Rule} &\quad ::= \quad \text{'infer' IDENT ':' Premises '⇒' Conclusion '.'} \\
+\text{Premises} &\quad ::= \quad \text{(Judgment (',' Judgment)*)?} \\
+\text{Conclusion} &\quad ::= \quad \text{Judgment} \\
+\text{Judgment} &\quad ::= \quad \text{Context '⊢' Equation | Context '⊢' Typing} \\
+\text{Context} &\quad ::= \quad \text{'[' (Var ':' Type (',' Var ':' Type)*)? ']'} \\
+\text{Typing} &\quad ::= \quad \text{Term ':' Type} \\
+\text{Var} &\quad ::= \quad \text{IDENT} \\
+\text{Term} &\quad ::= \quad \text{IDENT} \quad \text{(variable or constant)} \\
+&\quad | \quad \text{IDENT '(' ArgList ')'} \quad \text{(application)} \\
+&\quad | \quad \text{Term '⊗' Term} \quad \text{(tensor)} \\
+&\quad | \quad \text{Term ';' Term} \quad \text{(composition)} \\
+\text{ArgList} &\quad ::= \quad \text{Term (',' Term)* | ε} \\
+\text{Theorems} &\quad ::= \quad \text{'theorems' '{' Thm}^* \text{'}'} \\
+\text{Thm} &\quad ::= \quad \text{IDENT ':' Formula '.'} \\
+\text{Formula} &\quad ::= \quad \text{Atom} \\
+&\quad | \quad \text{Formula '∧' Formula} \\
+&\quad | \quad \text{Formula '∨' Formula} \\
+&\quad | \quad \text{Formula '⊗' Formula} \\
+&\quad | \quad \text{'∃' Var ':' Obj '.' Formula} \\
+\text{Atom} &\quad ::= \quad \text{Term '≡' Term}
+\end{align}
+\end{definition}
+
+\paragraph{Notation hygiene and precedence.} We maintain strict notation hygiene: reserve $\otimes$ for the SMC tensor only; bulk multiplication is written $\otimes_B$ everywhere (operation symbol inside $B$). Types disambiguate usage automatically. Precedence: application $>$ $;$ (composition) $>$ $\otimes$ (tensor) $>$ bulk $\oplus_B,\otimes_B$ and boundary $\oplus_*,\otimes_*$.
+
+\subsection{Primitive Symbols (Complete Specification)}
+
+The logic includes the following primitive symbols that must exist in every signature, organized by the L/B/R structure:
+
+\begin{definition}[Primitive Symbols (Complete)]
+\label{def:primitive-symbols}
+Boundary semirings (boolean semirings):
+\begin{align}
+\text{const } 0_L &: I \to L \quad \text{const } 1_L : I \to L \\
+\text{op } \oplus_L &: L \times L \to L \quad \text{op } \otimes_L : L \times L \to L \\
+\text{const } 0_R &: I \to R \quad \text{const } 1_R : I \to R \\
+\text{op } \oplus_R &: R \times R \to R \quad \text{op } \otimes_R : R \times R \to R
+\end{align}
+
+Bulk log-semiring and couplers:
+\begin{align}
+\text{const } 0_B &: I \to B \quad \text{const } 1_B : I \to B \\
+\text{op } \oplus_B &: B \times B \to B \quad \text{op } \otimes_B : B \times B \to B \\
+\text{op } \iota_L &: L \to B \quad \text{op } \iota_R : R \to B
+\end{align}
+
+Glue parameters and duals:
+\begin{align}
+\text{const } a_0, a_1, a_2, a_3 &: I \to B \\
+\text{op } \text{ad}_0, \text{ad}_1, \text{ad}_2, \text{ad}_3 &: B \to B \\
+\text{const } F_{ij} &: I \to B \quad \text{for all } i \neq j \text{ in } \{0,1,2,3\} \\
+\text{const } z, \bar{z} &: I \to B \quad \text{(auxiliaries, eliminable; overall scale = } z \otimes_B \bar{z}\text{)}
+\end{align}
+
+Arity-4 generator (primitive):
+\begin{align}
+\text{op } \mathsf{Gen4} &: B \times B \times B \times B \to B
+\end{align}
+\end{definition}
+
+\paragraph{Notation consistency.} We use $\mathsf{Gen4}$ for the arity-4 generator as specified in the BNF grammar. This primitive provides the core generating functional for the logic. The auxiliary scalars $z, \bar{z}$ encode presentation gauges and are eliminable (conservative extension).
+
+\subsection{Axiom Schemas (Complete Specification)}
+
+The logic is governed by systematic axiom schemas organized by the L/B/R structure:
+
+\begin{definition}[Boundary Semiring Axioms (Complete)]
+\label{def:boundary-axioms}
+For both $L$ and $R$ boundaries:
+\begin{align}
+\text{L-monoid-}\oplus: &\quad \oplus_L \text{ is commutative idempotent with unit } 0_L \\
+\text{L-monoid-}\otimes: &\quad \otimes_L \text{ is commutative idempotent with unit } 1_L \\
+\text{L-dist:} &\quad x \otimes_L (y \oplus_L z) \equiv (x \otimes_L y) \oplus_L (x \otimes_L z) \\
+\text{L-absorb:} &\quad x \otimes_L (x \oplus_L y) \equiv x \\
+\text{R-monoid-}\oplus: &\quad \oplus_R \text{ is commutative idempotent with unit } 0_R \\
+\text{R-monoid-}\otimes: &\quad \otimes_R \text{ is commutative idempotent with unit } 1_R \\
+\text{R-dist:} &\quad x \otimes_R (y \oplus_R z) \equiv (x \otimes_R y) \oplus_R (x \otimes_R z) \\
+\text{R-absorb:} &\quad x \otimes_R (x \oplus_R y) \equiv x
+\end{align}
+\end{definition}
+
+\begin{definition}[Bulk Semiring Axioms (Complete)]
+\label{def:bulk-axioms}
+For the bulk log-semiring:
+\begin{align}
+\text{B-monoid-}\otimes_B: &\quad \otimes_B \text{ is commutative monoid with unit } 1_B \\
+\text{B-monoid-}\oplus_B: &\quad \oplus_B \text{ is commutative monoid with unit } 0_B \\
+\text{B-dist:} &\quad x \otimes_B (y \oplus_B z) \equiv (x \otimes_B y) \oplus_B (x \otimes_B z) \\
+\text{Coupler:} &\quad \iota_*(1_*) = 1_B \text{ and } \iota_*(0_*) = 0_B \text{ for } * \in \{L,R\}
+\end{align}
+\end{definition}
+
+\begin{definition}[Braided Dual Axioms (Complete)]
+\label{def:braided-axioms}
+For the braided structure:
+\begin{align}
+\text{NC1:} &\quad \text{ad}_i ; \text{ad}_j \equiv (\text{ad}_j ; \text{ad}_i) \otimes_B F_{ij}, \quad F_{ij} \otimes_B F_{ji} \equiv 1_B \\
+\text{NC2:} &\quad F_{ij} \otimes_B F_{jk} \otimes_B F_{ki} \equiv 1_B \text{ for all triples } (i,j,k)
+\end{align}
+\end{definition}
+
+\begin{definition}[Normalization Axiom (Complete)]
+\label{def:normalization-axiom}
+Choose a basepoint $\bar{a} \in B^4$; the normalization axiom states:
+\[
+\text{Norm:} \quad \mathsf{Gen4}(a_0, a_1, a_2, a_3) \equiv 0_B \text{ at a fixed basepoint } \bar{a}
+\]
+This axiom ensures that the generating functional vanishes at the chosen basepoint, providing a reference for the renormalization group flow.
+\end{definition}
+
+\subsection{Inference Rules}
+
+The logic includes systematic inference rules for reasoning about terms and formulas:
+
+\begin{definition}[Inference Rules]
+\label{def:inference-rules}
+SMC rules (id, comp, tensor, symmetry):
+\begin{align}
+\text{Identity:} &\quad \frac{}{\Gamma \vdash \text{id}_A : A \to A} \\
+\text{Composition:} &\quad \frac{\Gamma \vdash f : A \to B \quad \Gamma \vdash g : B \to C}{\Gamma \vdash f;g : A \to C} \\
+\text{Tensor:} &\quad \frac{\Gamma \vdash f : A \to C \quad \Gamma \vdash g : B \to D}{\Gamma \vdash f \otimes g : A \otimes B \to C \otimes D} \\
+\text{Symmetry:} &\quad \frac{\Gamma \vdash f : A \otimes B \to C}{\Gamma \vdash f \circ \sigma_{A,B} : B \otimes A \to C}
+\end{align}
+
+Congruence under context:
+\begin{align}
+\text{Congruence:} &\quad \frac{\Gamma \vdash t \equiv u : A}{\Gamma \vdash C[t] \equiv C[u] : B} \quad \text{for any context } C[-] : A \to B
+\end{align}
+
+Semiring reasoning in each core:
+\begin{align}
+\text{Associativity:} &\quad \frac{\Gamma \vdash t : A}{\Gamma \vdash (t \oplus_B u) \oplus_B v \equiv t \oplus_B (u \oplus_B v) : A} \\
+\text{Commutativity:} &\quad \frac{\Gamma \vdash t, u : A}{\Gamma \vdash t \oplus_B u \equiv u \oplus_B t : A}
+\end{align}
+
+Braided rewriting via (NC1)–(NC2):
+\begin{align}
+\text{NC1:} &\quad \frac{\Gamma \vdash t : B}{\Gamma \vdash \text{ad}_i; \text{ad}_j(t) \equiv (\text{ad}_j; \text{ad}_i \otimes_B F_{ij})(t) : B} \\
+\text{NC2:} &\quad \frac{\Gamma \vdash t : B}{\Gamma \vdash F_{ij} \otimes_B F_{jk} \otimes_B F_{ki}(t) \equiv t : B}
+\end{align}
+
+Quantifiers: $\exists$-intro/elim over typed wires:
+\begin{align}
+\text{$\exists$-intro:} &\quad \frac{\Gamma, x:A \vdash \phi}{\Gamma \vdash \exists x:A. \phi} \\
+\text{$\exists$-elim:} &\quad \frac{\Gamma \vdash \exists x:A. \phi \quad \Gamma, x:A, \phi \vdash \psi}{\Gamma \vdash \psi}
+\end{align}
+\end{definition}
+
+\subsection{Equality Layer Hierarchy}
+
+The logic features a sophisticated hierarchy of equality notions, aligned with the L/B/R structure. All observational equalities are computed modulo presentation gauges by default.
+
+\begin{definition}[Presentation Gauges]
+\label{def:presentation-gauges}
+The presentation gauges are always factored out internally:
+
+Scale gauge $\equiv_{\text{scale}}$: least congruence with generators $t \equiv t \otimes_B (z \otimes_B \bar{z})$ for all closed bulk scalars $t$.
+
+Helicity/phase gauge $\equiv_{\text{hel}}$: paired congruence generated by $(t,u) \sim (t \otimes_B z, u \otimes_B \bar{z})$ and $(t,u) \sim (t \otimes_B \bar{z}, u \otimes_B z)$.
+
+All observational equalities below are computed modulo $\equiv_{\text{scale}}$ and $\equiv_{\text{hel}}$ by default. Let $\equiv_*$ denote their intersection.
+\end{definition}
+
+\begin{definition}[Observational Equalities]
+\label{def:observational-equalities}
+For closed bulk scalars $t, u$, we define five notions of equality:
+
+Left-local equality $\equiv_L$:
+\[
+t \equiv_L u \quad :\Leftrightarrow \quad \forall C_L[-]: B \to L \text{ built from } \{\iota_L, \oplus_L, \otimes_L\} \text{ and bulk ops: } C_L[t] \equiv C_L[u]
+\]
+
+Bulk equality $\equiv_B$:
+\[
+t \equiv_B u \quad :\Leftrightarrow \quad \forall C_B[-]: B \to B \text{ from } \{\oplus_B, \otimes_B, \text{ad}_i, F_{ij}, \mathsf{Gen4}\}: C_B[t] \equiv_* C_B[u]
+\]
+
+Right-local equality $\equiv_R$:
+\[
+t \equiv_R u \quad :\Leftrightarrow \quad \forall C_R[-]: B \to R \text{ built from } \{\iota_R, \oplus_R, \otimes_R\} \text{ and bulk ops: } C_R[t] \equiv C_R[u]
+\]
+
+Local-agreement equality $\equiv_{\text{loc}}$:
+\[
+t \equiv_{\text{loc}} u \quad :\Leftrightarrow \quad (t \equiv_L u) \land (t \equiv_R u)
+\]
+
+Metalogical global equality $\equiv_{\text{meta}}$:
+\[
+t \equiv_{\text{meta}} u \quad :\Leftrightarrow \quad \forall C[-]: B \to B \text{ built from entire signature: } C[t] \equiv_* C[u]
+\]
+\end{definition}
+
+\begin{definition}[Reversible Equality]
+\label{def:reversible-equality}
+The reversible equality $\equiv_\star$ is the largest congruence generated by invertible rewrites only:
+\begin{itemize}
+\item SMC structural isomorphisms (associativity/unit/symmetry)
+\item Braided commutations $\text{ad}_i; \text{ad}_j \leftrightarrow \text{ad}_j; \text{ad}_i \otimes_B F_{ij}$ when $F_{ij}$ has an inverse
+\item Elimination/insertions of $1_B$ and of paired $z/\bar{z}$ with zero net effect
+\end{itemize}
+
+Reversible Collapse Theorem: $\equiv_\star \subseteq (\equiv_{\text{loc}} \cap \equiv_{\text{meta}})$, and every $\equiv_\star$-step is computationally reversible (no information loss). In the flat subtheory ($F_{ij} = 1_B$), $\equiv_\star$ coincides with SMC isomorphism equivalence.
+\end{definition}
+
+\subsection{Context Grammars (Complete Specification)}
+
+The equality definitions rely on well-typed, single-hole contexts. These are defined by the following complete context grammars:
+
+\begin{definition}[Context Grammars (Complete)]
+\label{def:context-grammars}
+Left contexts $C_L[-]$:
+\begin{align}
+C_L[-] &::= \iota_L ; C_B[-] \quad \text{(lift bulk to L via coupler)} \\
+&\quad | \quad \oplus_L(C_L[-], t_L) \quad | \quad \oplus_L(t_L, C_L[-]) \\
+&\quad | \quad \otimes_L(C_L[-], t_L) \quad | \quad \otimes_L(t_L, C_L[-]) \\
+&\quad | \quad C_L[-] ; \text{id}_L \quad | \quad \text{id}_L ; C_L[-]
+\end{align}
+
+Right contexts $C_R[-]$:
+\begin{align}
+C_R[-] &::= \iota_R ; C_B[-] \\
+&\quad | \quad \oplus_R(C_R[-], t_R) \quad | \quad \oplus_R(t_R, C_R[-]) \\
+&\quad | \quad \otimes_R(C_R[-], t_R) \quad | \quad \otimes_R(t_R, C_R[-]) \\
+&\quad | \quad C_R[-] ; \text{id}_R \quad | \quad \text{id}_R ; C_R[-]
+\end{align}
+
+Bulk contexts $C_B[-]$:
+\begin{align}
+C_B[-] &::= \oplus_B(C_B[-], t_B) \quad | \quad \oplus_B(t_B, C_B[-]) \\
+&\quad | \quad \otimes_B(C_B[-], t_B) \quad | \quad \otimes_B(t_B, C_B[-]) \\
+&\quad | \quad \text{ad}_i(C_B[-]) \\
+&\quad | \quad \mathsf{Gen4}(u, u, u, C_B[-]) \quad | \quad \mathsf{Gen4}(u, u, C_B[-], u) \quad | \quad \ldots \\
+&\quad | \quad (C_B[-]) ; \text{id}_B \quad | \quad \text{id}_B ; (C_B[-])
+\end{align}
+
+where $t_L, t_R, t_B, u$ range over closed terms of the corresponding sorts.
+\end{definition}
+
+\paragraph{Context grammar completeness.} These context grammars provide the complete specification for well-typed, single-hole contexts used in the equality hierarchy definitions. Each context type corresponds to a specific equality notion in the L/B/R structure.
+
+\subsection{Derived Generating Functionals}
+
+The logic includes derived operators of arity 5 and 6 that provide higher-order structure:
+
+\begin{definition}[Derived Generating Functionals]
+\label{def:derived-functionals}
+Noe5: $\text{Noe5}: \text{Dir} \times B^4 \to B$ where $\text{Dir} = \{e_0, e_1, e_2, e_3\}$.
+\[
+\text{Noe5}(e_i, a) = 0_B \quad \text{iff all braided insertions of elementary } \text{ad}_i\text{-flow around } \mathsf{Gen4}(a) \text{ agree modulo } \equiv_*
+\]
+
+CS5: $\text{CS5}: B^4 \times B \to B$ expressing RG stationarity.
+\[
+\text{CS5}(a, \mu) = 0_B \quad \text{(covariant insertion using braided calculus)}
+\]
+
+Rice6: $\text{Rice6}(P[-], a, \mu): B$ where $P[-]$ is a term-context.
+\[
+\text{Rice6}(P[-], a, \mu) = \begin{cases}
+0_B & \text{if } \exists \text{ total positive discriminator deciding } P[\mathsf{Gen4}(a)] \text{ uniformly along RG} \\
+-\infty & \text{else}
+\end{cases}
+\]
+
+NR6: The macro combining all three:
+\[
+\text{NR6} := \text{Noe5} \oplus_B \text{Rice6} \oplus_B (\text{CS5})^{\otimes_B 2}
+\]
+\end{definition}
+
+\subsection{Implementation Correspondence}
+
+The theoretical framework maps to concrete implementation through the MDE pyramid structure. The complete implementation details, including Racket module organization, API specifications, and performance budgets, are provided in Appendix~\ref{app:api-specifications}.
+
+\subsection{Core Theorems}
+
+The logic satisfies several fundamental theorems that establish its mathematical properties:
+
+\begin{theorem}[Core Theorems]
+\label{thm:core-theorems}
+The following theorems hold in our logic:
+
+1. YBE Coherence (optional). With $\mathcal{R}$, $\mathsf{Gen4}$ is path-coherent modulo $\equiv_*$.
+
+2. Noether. $\text{Noe5}(e_i,a) = 0_B$ iff invariance under the $\text{ad}_i$ flow (and the $e_i$ component drops from $\text{CS5}$).
+
+3. Callan-Symanzik Equality. Derivability depends only on $\equiv_*$ class under scale/phase gauges.
+
+4. Rice (Positive). No total positive discriminator exists for nontrivial projectors on $\text{Im}(\mathsf{Gen4})$; $\text{Rice6} = -\infty$ generically.
+
+5. Noether-Rice Partiality. Forcing all overlaps of $\vdash_{gg}, \vdash_{g\ell}, \vdash_{\ell\ell}$ to coincide collapses the model; partiality is necessary.
+
+6. Asymmetry. With semantic sign + braiding, $\vdash_{gL} \neq \vdash_{gR}$ and boundary asymmetry persists; no automorphism swaps them preserving $\equiv_*$.
+
+7. Uniqueness up to presentation. Derivability is invariant under global presentation (scale $z \otimes_B \bar{z}$, helicity exchange $z \leftrightarrow \bar{z}$, optional braid homotopies).
+\end{theorem}
+
+\subsection{Eliminability of Auxiliaries (Conservativity)}
+
+\begin{theorem}[Eliminability of $z, \bar{z}$]
+\label{thm:eliminability-auxiliaries}
+For every sentence $\phi$ in the extended language (with $z, \bar{z}$) there is a sentence $\phi'$ in the base language such that $\phi$ and $\phi'$ are interderivable modulo $\equiv_*$. Adding $z, \bar{z}$ is a conservative definitional extension.
+\end{theorem}
+
+This theorem ensures that the auxiliary scalars $z, \bar{z}$ do not introduce new logical content but merely provide presentation conveniences that can be eliminated without affecting the core logic.
+
+\subsection{Conservative Extension of Logic}
+
+\begin{definition}[Conservative Extension of Logic]
+\label{def:conservative-extension}
+A conservative extension of a logic $\mathcal{L}$ is a logic $\mathcal{L}'$ such that:
+\begin{enumerate}
+\item $\mathcal{L} \subseteq \mathcal{L}'$ (syntactic extension)
+\item For any formula $\phi$ in the language of $\mathcal{L}$: $\mathcal{L} \vdash \phi$ if and only if $\mathcal{L}' \vdash \phi$ (semantic conservation)
+\item $\mathcal{L}'$ introduces new vocabulary and axioms that do not affect the truth of statements in the original language
+\end{enumerate}
+The conservativity condition can be expressed as:
+\[
+\forall \phi \in \text{Sent}(\Sigma): \quad \mathcal{L} \vdash \phi \Leftrightarrow \mathcal{L}' \vdash \phi
+\]
+where $\text{Sent}(\Sigma)$ denotes the sentences in the original signature $\Sigma$.
+\end{definition}
+
+\begin{example}[Concrete Conservative Extension]
+\label{ex:conservative-extension}
+Consider extending our base logic $\mathcal{L}_0$ (PGC over \texttt{TGraph} with Boolean semiring) by adding \texttt{cast} edges (cf. \texttt{m3d.types.rkt} natural casts). The extension $\mathcal{L}_1$ adds the syntax:
+\[
+\text{cast}: \mathcal{T}_1 \to \mathcal{T}_2
+\]
+with typing rules ensuring type safety. The extension is conservative because:
+\begin{itemize}
+\item Boolean satisfaction on old formulas is preserved: $\mathcal{L}_0 \models \phi \Leftrightarrow \mathcal{L}_1 \models \phi$
+\item New \texttt{cast} operations don't affect the truth of existing statements
+\item The extension maintains the same proof system for the original language
+\end{itemize}
+\end{example}
+
+\subsection{Hierarchical Deformation of Truth Systems}
+
+\begin{definition}[Hierarchical Deformation]
+\label{def:hierarchical-deformation}
+A hierarchical deformation of a truth system is a family of truth predicates $\text{True}_\alpha$ indexed by ordinals $\alpha$ such that:
+\begin{align}
+\text{True}_0(\phi) &\Leftrightarrow \text{True}(\phi) \quad \text{(original truth)} \\
+\text{True}_{\alpha+1}(\phi) &\Leftrightarrow \text{True}_\alpha(\phi) \land \text{Consistent}_\alpha(\phi) \\
+\text{True}_\lambda(\phi) &\Leftrightarrow \forall \alpha < \lambda: \text{True}_\alpha(\phi) \quad \text{(limit case)}
+\end{align}
+where $\text{Consistent}_\alpha(\phi)$ ensures consistency at level $\alpha$.
+\end{definition}
+
+\subsection{The Logic Transformer}
+
+\begin{definition}[Logic Transformer]
+\label{def:logic-transformer}
+The logic transformer is a polymorphic generalization of scaling operators in physics. It is an arity $(2,2)$ operator $\mathcal{T}$ that acts on pairs of formulas and returns pairs of formulas:
+\[
+\mathcal{T}: \mathcal{L} \times \mathcal{L} \to \mathcal{L} \times \mathcal{L}
+\]
+where the transformation preserves the logical structure while introducing scaling behavior. The operator satisfies:
+\begin{align}
+\mathcal{T}(\phi_1, \phi_2) &= (\mathcal{T}_1(\phi_1, \phi_2), \mathcal{T}_2(\phi_1, \phi_2)) \\
+\mathcal{T}(\text{True}, \text{True}) &= (\text{True}, \text{True}) \quad \text{(preserves truth)}
+\end{align}
+\end{definition}
+
+\subsection{Kernel, Co-kernel, and Spectrum}
+
+\begin{definition}[Kernel and Co-kernel]
+\label{def:kernel-cokernel}
+The kernel $\ker(\mathcal{T}) = \{(\phi_1, \phi_2) : \mathcal{T}(\phi_1, \phi_2) = (\text{True}, \text{True})\}$ and co-kernel $\text{coker}(\mathcal{T}) = \{(\psi_1, \psi_2) : \exists (\phi_1, \phi_2), \mathcal{T}(\phi_1, \phi_2) = (\psi_1, \psi_2)\}$ correspond to reversible and irreversible computations respectively.
+\end{definition}
+
+\begin{definition}[Logic Transformer Spectrum]
+\label{def:logic-spectrum}
+The spectrum consists of eigenvalues $\lambda$ where $\mathcal{T}(\phi_1, \phi_2) = \lambda (\phi_1, \phi_2)$, with a spectral gap between kernel (reversible) and co-kernel (irreversible) computations.
+\end{definition}
+
+\subsection{Connections to Programming Languages and Logic}
+
+\begin{remark}[Partial Self-Evaluation Operator]
+\label{rem:partial-self-evaluation}
+The logic transformer is a "partial self-evaluation" operator in programming language theory, implementing compilation as logical transformation.
+\end{remark}
+
+\begin{remark}[Diagonal Lemma Connection]
+\label{rem:diagonal-lemma}
+The logic transformer implements self-referential construction for Gödel's incompleteness theorems, providing the mechanism for undecidable statements.
+\end{remark}
+
+\subsection{Correlator Interpretation}
+
+\begin{definition}[Logic Transformer as Correlator]
+\label{def:logic-correlator}
+The logic transformer acts as a correlator for logical propagation: $(\psi_1, \psi_2) = \mathcal{T}(\phi_1, \phi_2)$ where $(\psi_1, \psi_2)$ represents the logical state after transformation.
+\end{definition}
+
+\subsection{Holographic Renormalization}
+
+\begin{definition}[Holographic Renormalization]
+\label{def:holographic-renorm}
+The logic transformer gives rise to two boundaries with direction, leading to holographic renormalization (detailed in Section~\ref{sec:boundary-maps}).
+\end{definition}
+
+\subsection{Summary and Outlook}
+
+This section established the logic transformer framework:
+
+\begin{enumerate}
+\item Conservative extension of logic provides syntactic foundation
+\item Hierarchical deformation of truth systems enables logical structure
+\item Logic transformer is the central arity (2,2) operator
+\item Kernel/co-kernel correspond to reversible/irreversible computation
+\item Spectral gap measures computational complexity
+\end{enumerate}
+
+The logic transformer provides the mathematical foundation unifying computation, logic, and physics. The next section establishes truth as a fixed point under RG flow (Section~\ref{sec:truth-fixed-point}).
+
+Spectral notions refer to the transfer operator on correlators (defined in §11), not to the proof calculus itself.

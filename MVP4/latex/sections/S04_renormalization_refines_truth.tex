@@ -1,17 +1,17 @@
 \section{Renormalization: From Raw to Refined}
 \label{sec:renormalization}
 
-Having established the RG flow machinery in Section~\ref{sec:rg-flow}, we now develop the complete renormalization procedure that handles computational divergences and ensures self-consistency. The central observation is that our generating functionals are initially formal only, requiring natural regulators to make the expansions well-defined, leading to a precise analogue of the usual renormalization program in quantum field theory.
+Having established the RG flow machinery in Section~\ref{sec:rg-flow}, we now develop the complete renormalization procedure that handles computational divergences and ensures self-consistency. The central observation is that our $\mathsf{G}_6$ generating functionals are initially formal only, requiring natural regulators to make the expansions well-defined, leading to a precise analogue of the usual renormalization program in quantum field theory. We continue to work primarily in the physics domain but highlight, where relevant, which constructions are preserved when we move back to computation or on to learning.
 
 \subsection{Unrenormalized vs Renormalized Correlators}
 
-In the context of our computational generating function framework, we distinguish between unrenormalized and renormalized correlators through their relationship to the RG flow and computational semantics. This distinction is crucial for understanding how computational processes can be made well-defined.
+In the context of our computational generating function framework, we distinguish between unrenormalized and renormalized correlators through their relationship to the RG flow and computational semantics. This distinction is crucial for understanding how computational processes can be made well-defined within the L/B/R structure.
 
 \begin{definition}[Unrenormalized Correlators]
 \label{def:unrenormalized-greens}
-The unrenormalized correlators are the matrix elements $\mathcal{Z}_{n,m}(\vec{q})$ appearing directly in our generating function from equation~\eqref{eq:generating-function}:
+The unrenormalized correlators are the matrix elements $\mathcal{Z}_{n,m}(\vec{q})$ appearing directly in our $\mathsf{G}_6$ generating function:
 \[
-\mathcal{G}_{\text{unren}}(z, \bar{z}; \vec{q}, \Lambda) = \sum_{n,m=0}^{\infty} \frac{z^n \bar{z}^m}{n! m!} \cdot \mathcal{Z}_{n,m}(\vec{q}) \cdot \Lambda^{-(n+m)}
+\mathsf{G}_6^{\text{unren}}(z, \bar{z}; \vec{q}, \Lambda) = \sum_{n,m=0}^{\infty} \frac{z^n \bar{z}^m}{n! m!} \cdot \mathcal{Z}_{n,m}(\vec{q}) \cdot \Lambda^{-(n+m)}
 \]
 where $\mathcal{Z}_{n,m}(\vec{q}) = \langle n,m|\hat{W}(\vec{q})|0\rangle$ are the bare matrix elements without any RG flow corrections.
 \end{definition}
@@ -20,7 +20,7 @@ where $\mathcal{Z}_{n,m}(\vec{q}) = \langle n,m|\hat{W}(\vec{q})|0\rangle$ are t
 \label{def:renormalized-greens}
 The renormalized correlators are obtained by applying the RG map $\mathcal{R}_b$ to the unrenormalized functions:
 \[
-\mathcal{G}_{\text{ren}}(z, \bar{z}; \vec{q}, \Lambda) = \lim_{b \to \infty} (\mathcal{R}_b \mathcal{G}_{\text{unren}})(z, \bar{z}; \vec{q}, \Lambda)
+\mathsf{G}_6^{\text{ren}}(z, \bar{z}; \vec{q}, \Lambda) = \lim_{b \to \infty} (\mathcal{R}_b \mathsf{G}_6^{\text{unren}})(z, \bar{z}; \vec{q}, \Lambda)
 \]
 where the RG map acts on the weights as:
 \[
@@ -31,7 +31,7 @@ We fix a bi-degree scaling $\Delta:\mathbb{N}^2\to\mathbb{R}$; the coarse map is
 
 The unrenormalized correlators represent the raw computational weights before any renormalization procedure is applied, while the renormalized correlators represent the finite, well-defined computational weights after removing divergences. The relationship between them can be expressed through the Callan-Symanzik equation:
 \[
-\left(\Lambda \frac{\partial}{\partial \Lambda} + \beta_{\mathcal{G}} \frac{\partial}{\partial \mathcal{G}} + \vec{\beta}_q \cdot \frac{\partial}{\partial \vec{q}} + \gamma\right) \mathcal{G}_{\text{ren}} = 0
+\left(\Lambda \frac{\partial}{\partial \Lambda} + \beta_{\mathsf{G}_6} \frac{\partial}{\partial \mathsf{G}_6} + \vec{\beta}_q \cdot \frac{\partial}{\partial \vec{q}} + \gamma\right) \mathsf{G}_6^{\text{ren}} = 0
 \]
 where $\gamma$ is the anomalous dimension.
 
@@ -41,10 +41,10 @@ where $\gamma$ is the anomalous dimension.
 \label{def:complete-renormalization}
 The complete renormalization procedure consists of:
 \begin{enumerate}
-\item \textbf{Regularization}: Introduce regulators (boundaries, scale $\Lambda$, grading parameters $\vec{q}$) to make the unrenormalized correlators well-defined
-\item \textbf{RG Flow}: Apply the RG map $\mathcal{R}_b$ to evolve the system from scale $\Lambda$ to scale $b\Lambda$
-\item \textbf{Renormalization Conditions}: Impose conditions ensuring convergence to a fixed point
-\item \textbf{Removal of Regulators}: Take the limit $b \to \infty$ to obtain finite renormalized correlators
+\item Regularization: Introduce regulators (boundaries, scale $\Lambda$, grading parameters $\vec{q}$) to make the unrenormalized correlators well-defined
+\item RG Flow: Apply the RG map $\mathcal{R}_b$ to evolve the system from scale $\Lambda$ to scale $b\Lambda$
+\item Renormalization Conditions: Impose conditions ensuring convergence to a fixed point
+\item Removal of Regulators: Take the limit $b \to \infty$ to obtain finite renormalized correlators
 \end{enumerate}
 \end{definition}
 
@@ -54,10 +54,10 @@ The complete renormalization procedure consists of:
 \label{thm:renormalised-difference}
 The key differences between renormalised and unrenormalised correlators are:
 \begin{enumerate}
-\item \textbf{Finite vs Divergent}: Renormalised correlators are finite, while unrenormalised ones may diverge
-\item \textbf{RG Flow Behavior}: Renormalised correlators exhibit converging RG flow, while unrenormalised ones may diverge or oscillate
-\item \textbf{Computational Semantics}: Renormalised correlators correspond to reversible computations, while unrenormalised ones may correspond to irreversible or undecidable computations
-\item \textbf{Information Preservation}: Renormalised correlators preserve information, while unrenormalised ones may destroy information
+\item Finite vs Divergent: Renormalised correlators are finite, while unrenormalised ones may diverge
+\item RG Flow Behavior: Renormalised correlators exhibit converging RG flow, while unrenormalised ones may diverge or oscillate
+\item Computational Semantics: Renormalised correlators correspond to reversible computations, while unrenormalised ones may correspond to irreversible or undecidable computations
+\item Information Preservation: Renormalised correlators preserve information, while unrenormalised ones may destroy information
 \end{enumerate}
 \end{theorem}
 
@@ -94,7 +94,7 @@ The counterterm $C_{1,0}(\Lambda) = \frac{1}{\Lambda}$ removes the divergent con
 
 The renormalization procedure applies uniformly across all computational paradigms, with each paradigm implementing the same underlying principle through different mathematical structures. Traditional computational models (Turing machines, lambda calculus, path integrals) represent the renormalized versions of their raw, unrenormalized counterparts.
 
-Finite reparametrizations of $\vec{q}$ and $\tau$ encode \textbf{normalization choices from §1}; different schemes correspond to transporting those choices along the flow.
+Finite reparametrizations of $\vec{q}$ and $\tau$ encode normalization choices from §1; different schemes correspond to transporting those choices along the flow.
 
 \subsection{Renormalization Group Equations}
 
@@ -121,3 +121,7 @@ This section established the complete renormalization procedure:
 \end{enumerate}
 
 The renormalization procedure bridges formal mathematical structure and semantic computational truth. The next section develops the formal logic framework underlying this structure (Section~\ref{sec:formal-systems}).
+
+\paragraph{Log-domain semiring.} The lt-core now exposes a `log-exp` semiring whose addition is the log-sum-exp operator and whose multiplication is additive. This provides a faithful coding of the logarithmic RG algebra used above: counterterms and coarse-grained weights are combined exactly as the renormalisation equations dictate, and the code generator can emit log-domain libraries for Coq, Agda, or Isabelle whenever a domain needs those identities.
+
+\paragraph{Ledger note.} The four-step renormalisation routine is recorded as a reusable logic pattern: in later sections we will call upon the same steps to argue consistency (Section~\ref{sec:consistency}) and to characterise LLM training flows (Section~\ref{sec:llm_rg}). Only the domain-specific interpretation of the weights changes; the logical skeleton remains domain-neutral.

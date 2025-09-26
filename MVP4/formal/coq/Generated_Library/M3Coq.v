@@ -1,114 +1,88 @@
-(* M3 Layer: Metametamodel Foundation with Resolved Metas *)
-(* All moduli parameters are explicitly instantiated *)
+(* Auto-generated from lt-core host bundle *)
+(* μ₁ = 1 *)
+(* μ₂ = 2 *)
+(* μ₃ = 3 *)
+(* μ₄ = 4 *)
+(* μ₁★ = 1 *)
+(* μ₂★ = 2 *)
+(* μ₃★ = 3 *)
+(* μ₄★ = 4 *)
+(* λ = 1 *)
+(* λ★ = 1 *)
 
-(* Basic types *)
-From Stdlib Require Import Arith.
-From Stdlib Require Import Bool.
-From Stdlib Require Import String.
-From Stdlib Require Import List.
+From Coq Require Import Arith.PeanoNat.
+From Coq Require Import Bool.Bool.
+From Coq Require Import Lists.List.
+Import ListNotations.
 
-(* Symbol type *)
-Inductive Symbol : Type :=
-  | port : Symbol
-  | pin : Symbol
-  | input : Symbol
-  | output : Symbol
-  | sigma6 : Symbol
-  | tensor : Symbol
-  | wire : Symbol
-  | unit : Symbol
-  | cast : Symbol.
+Inductive Register : Type :=
+  | InputReg : Register
+  | OutputReg : Register
+  | PortReg : Register
+.
 
-(* Arity specification *)
-Record Arity : Type :=
-  {
-    input_arity : nat;
-    output_arity : nat
-  }.
-
-(* Port sort *)
-Inductive PortSort : Type :=
-  | Port : Symbol -> PortSort
-  | Pin : Symbol -> PortSort
-  | Input : Symbol -> PortSort
-  | Output : Symbol -> PortSort.
-
-(* Edge kind with Σ6 centrality *)
 Inductive EdgeKind : Type :=
   | Sigma6 : EdgeKind
   | Tensor : EdgeKind
   | Wire : EdgeKind
-  | Unit : EdgeKind
-  | Cast : EdgeKind.
+.
 
-(* Type graph *)
-Record TypeGraph : Type :=
-  {
-    ports : list PortSort;
-    kinds : list EdgeKind;
-    arity_map : EdgeKind -> Arity;
-    src_sorts : EdgeKind -> list PortSort;
-    dst_sorts : EdgeKind -> list PortSort
-  }.
+Record arity := { input_arity : nat; output_arity : nat }.
 
-(* Resolved ModuliSpace with concrete values *)
-Inductive ModuliSpace : Type :=
-  | mkModuliSpace : nat -> nat -> nat -> nat -> nat -> nat -> nat -> nat -> nat -> nat -> ModuliSpace.
+Definition registers_list : list Register :=
+  [InputReg; OutputReg; PortReg].
 
-(* Concrete moduli instantiation *)
-Definition concrete_moduli : ModuliSpace :=
-  mkModuliSpace 1 2 3 4 1 2 3 4 1 1.
+Definition edgeKinds_list : list EdgeKind :=
+  [Sigma6; Tensor; Wire].
 
-(* Anomaly functional *)
-Inductive AnomalyFunc : Type :=
-  | Anomaly : nat -> AnomalyFunc.
-
-(* Anomaly measure *)
-Definition anomaly_measure (af : AnomalyFunc) : nat :=
-  match af with
-  | Anomaly n => n
+Definition arity_of (k : EdgeKind) : arity :=
+  match k with
+  | Sigma6 => {| input_arity := 3; output_arity := 3 |}
+  | Tensor => {| input_arity := 2; output_arity := 2 |}
+  | Wire => {| input_arity := 2; output_arity := 2 |}
   end.
 
-(* Typed-arity discipline: Σ6 must have arity (3,3) *)
-Definition sigma6_arity : Arity :=
-  {| input_arity := 3; output_arity := 3 |}.
-
-(* Anomaly vanishes at M3 *)
-Definition anomaly_vanishes_at_m3 (tg : TypeGraph) : bool :=
-  true.
-
-(* Accessor functions for moduli *)
-Definition get_mu1 (ms : ModuliSpace) : nat :=
-  match ms with
-  | mkModuliSpace mu1 mu2 mu3 mu4 mu1star mu2star mu3star mu4star lambda lambdastar => mu1
+Definition src_of (k : EdgeKind) : list Register :=
+  match k with
+  | Sigma6 => [PortReg; PortReg; PortReg]
+  | Tensor => [PortReg; PortReg]
+  | Wire => [InputReg; OutputReg]
   end.
 
-Definition get_mu2 (ms : ModuliSpace) : nat :=
-  match ms with
-  | mkModuliSpace mu1 mu2 mu3 mu4 mu1star mu2star mu3star mu4star lambda lambdastar => mu2
+Definition dst_of (k : EdgeKind) : list Register :=
+  match k with
+  | Sigma6 => [PortReg; PortReg; PortReg]
+  | Tensor => [PortReg; PortReg]
+  | Wire => [OutputReg; InputReg]
   end.
 
-Definition get_mu3 (ms : ModuliSpace) : nat :=
-  match ms with
-  | mkModuliSpace mu1 mu2 mu3 mu4 mu1star mu2star mu3star mu4star lambda lambdastar => mu3
-  end.
+Record type_graph := {
+  tg_registers : list Register;
+  tg_edgeKinds : list EdgeKind;
+  tg_arityMap  : EdgeKind -> arity;
+  tg_srcMap    : EdgeKind -> list Register;
+  tg_dstMap    : EdgeKind -> list Register
+}.
 
-Definition get_mu4 (ms : ModuliSpace) : nat :=
-  match ms with
-  | mkModuliSpace mu1 mu2 mu3 mu4 mu1star mu2star mu3star mu4star lambda lambdastar => mu4
-  end.
+Definition sample_graph : type_graph :=
+  {| tg_registers := registers_list;
+     tg_edgeKinds := edgeKinds_list;
+     tg_arityMap  := arity_of;
+     tg_srcMap    := src_of;
+     tg_dstMap    := dst_of |}.
 
-(* Moduli constraint proofs *)
-Definition mu1_positive (ms : ModuliSpace) : bool :=
-  true.
+Lemma registers_length : length (tg_registers sample_graph) = 3.
+Proof. reflexivity. Qed.
 
-Definition mu2_positive (ms : ModuliSpace) : bool :=
-  true.
+Lemma edges_length : length (tg_edgeKinds sample_graph) = 3.
+Proof. reflexivity. Qed.
 
-Definition mu3_positive (ms : ModuliSpace) : bool :=
-  true.
+Lemma src_length_sigma6 : length (src_of Sigma6) = 3.
+Proof. reflexivity. Qed.
 
-Definition mu4_positive (ms : ModuliSpace) : bool :=
-  true.
+Lemma src_length_tensor : length (src_of Tensor) = 2.
+Proof. reflexivity. Qed.
 
+Lemma src_length_wire : length (src_of Wire) = 2.
+Proof. reflexivity. Qed.
 

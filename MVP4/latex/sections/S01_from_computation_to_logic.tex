@@ -1,50 +1,45 @@
 \section{An Invitation to Computation: Three Views Unified}
 \label{sec:computation-paradigms}
 
-This section serves as our gateway from classical computational literature to a novel generating functional approach. We demonstrate how the three foundational paradigms of computation—Turing machines, Church's lambda calculus, and Feynman path integrals—can be elegantly unified as different parameterizations of a single generating function. This unification reveals deep structural connections that are obscured in traditional presentations.
+This section serves as our gateway from classical computational literature to a novel generating functional approach. We demonstrate how the three foundational paradigms of computation—Turing machines, Church's lambda calculus, and Feynman path integrals—can be elegantly unified as different parameterizations of a single generating function. This unification reveals deep structural connections that are obscured in traditional presentations. From this point forward we explicitly label the computation domain as the ambient setting: all objects introduced here live on the computation ledger and remain valid when we later reinterpret them inside physics or learning.
 
 \subsection{The Computational Cycle}
 
-At its core, computation can be understood as the composition of four fundamental operations: \textbf{encoding} $\to$ \textbf{function application} $\to$ \textbf{normalization} $\to$ \textbf{decoding}. This four-step pipeline appears consistently across all computational paradigms, with normalization playing a crucial role in ensuring well-defined results. The computational cycle can be expressed as:
+At its core, computation can be understood as the composition of four fundamental operations: encoding $\to$ function application $\to$ normalization $\to$ decoding. This four-step pipeline appears consistently across all computational paradigms, with normalization playing a crucial role in ensuring well-defined results. The computational cycle can be expressed as:
 \[
 \text{Encode}(x) \circ \text{Apply}(f) \circ \text{Normalize}(N) \circ \text{Decode}(y) = y
 \]
 where $N$ is a normalization operator satisfying $N^2 = N$ (idempotency). In classical treatments, normalization can occur at any stage (commuting as an operator), which forms the foundation of compiler theory in programming languages.
 
-Our central innovation is the introduction of a logical primitive—a 6-ary connective—whose denotation is a generating function that naturally interpolates between the three classical computational models:
+Our central innovation is the introduction of a logical primitive—the $\mathsf{Gen4}$ primitive from our BNF grammar—whose denotation is a generating function that naturally interpolates between the three classical computational models:
 
-\begin{definition}[6-ary Connective $\mathsf{G}_6$]
-\label{def:sixary-connective}
-The 6-ary connective $\mathsf{G}_6$ is a functor with signature:
+\begin{definition}[$\mathsf{Gen4}$ Primitive]
+\label{def:g6-primitive}
+The $\mathsf{Gen4}$ primitive is defined in our BNF grammar as:
 \[
-\mathsf{G}_6 : \mathbf{Types}^{\mathrm{op}} \times \mathbf{Types} \times \mathsf{Grad} \times \mathsf{Scale} \to \mathsf{Obs}
+\text{op } \mathsf{Gen4} : B \times B \times B \times B \to B
 \]
-where:
-\begin{itemize}
-\item $\mathbf{Types}$ is the category of computational types (objects: register types, morphisms: type coercions)
-\item $\mathsf{Grad} = \mathbb{R}^3$ is the grading space (poset with componentwise ordering)
-\item $\mathsf{Scale} = \mathbb{R}_+$ is the scale space (poset with standard ordering)
-\item $\mathsf{Obs}$ is the observable space (symmetric monoidal category with tensor product $\otimes$)
-\end{itemize}
-The connective acts on two register terms $\phi,\bar{\phi}\in\mathbf{Types}$ with grading $\vec{q}\in\mathsf{Grad}$ at scale $\Lambda\in\mathsf{Scale}$, producing an observable in $\mathsf{Obs}$:
+This primitive acts on four bulk terms $a_1, a_2, a_3, a_4 \in B$ and produces a bulk term $\mathsf{Gen4}(a_1, a_2, a_3, a_4) \in B$. The primitive satisfies the normalization axiom:
 \[
-\mathsf{G}_6(\phi,\bar{\phi};\,\vec{q};\Lambda) \in \mathsf{Obs}
+\mathsf{Gen4}(\bar{a}) \equiv 0_B
 \]
+for some chosen basepoint $\bar{a} \in B^4$.
 \end{definition}
-The denotation of this connective is given by:
+
+The denotation of this primitive is given by:
 \[
-\llbracket \mathsf{G}_6(\phi,\bar{\phi};\vec{q};\Lambda)\rrbracket = \mathcal{G}\!\big(\llbracket\phi\rrbracket,\llbracket\bar{\phi}\rrbracket;\vec{q},\Lambda\big)
+\llbracket \mathsf{Gen4}(a_1, a_2, a_3, a_4)\rrbracket = \mathcal{G}\!\big(\llbracket a_1\rrbracket,\llbracket a_2\rrbracket,\llbracket a_3\rrbracket,\llbracket a_4\rrbracket;\vec{q},\Lambda\big)
 \]
 where the generating function takes the form:
 \begin{equation}
-\mathcal{G}(z,\bar{z};\vec{q},\Lambda) = \sum_{n,m\ge0}\frac{z^n\bar{z}^{\,m}}{n!\,m!}\,\mathcal{Z}_{n,m}(\vec{q})\,\Lambda^{-(n+m)}.
-\label{eq:generating-function}
+\mathcal{G}(z_1,z_2,z_3,z_4;\vec{q},\Lambda) = \sum_{n,m\ge0}\frac{z_1^n z_2^m z_3^k z_4^l}{n!\,m!\,k!\,l!}\,\mathcal{Z}_{n,m,k,l}(\vec{q})\,\Lambda^{-(n+m+k+l)}.
+\label{eq:generating-function-g6}
 \end{equation}
-This is an \textbf{exponential generating function (EGF)} because the coefficients $\mathcal{Z}_{n,m}(\vec{q})$ count \textbf{labeled structures} (computational paths with distinguishable steps). The factorial weights $n!\,m!$ arise from the derivative structure: $\mathcal{Z}_{n,m}(\vec{q}) = \frac{\partial^{n+m}\mathcal{G}}{\partial z^n \partial \bar{z}^m}\big|_{z=\bar{z}=0}$.
+This is an exponential generating function (EGF) because the coefficients $\mathcal{Z}_{n,m}(\vec{q})$ count labeled structures (computational paths with distinguishable steps). The factorial weights $n!\,m!$ arise from the derivative structure: $\mathcal{Z}_{n,m}(\vec{q}) = \frac{\partial^{n+m}\mathcal{G}}{\partial z^n \partial \bar{z}^m}\big|_{z=\bar{z}=0}$.
 
-\textbf{Units}: If $\Lambda$ has mass dimension $[L]^{-1}$, then $\mathcal{Z}_{n,m}(\vec{q})$ must have mass dimension $[L]^{n+m}$ to make $\mathcal{G}$ dimensionless. Here $n,m$ are the \textbf{bi-degree counters} (writes/reads / redex counts / insertions), and $\mathcal{Z}_{n,m}(\vec{q})$ are correlator coefficients (matrix elements) invariant under normalization.
+Units: If $\Lambda$ has mass dimension $[L]^{-1}$, then $\mathcal{Z}_{n,m}(\vec{q})$ must have mass dimension $[L]^{n+m}$ to make $\mathcal{G}$ dimensionless. Here $n,m$ are the bi-degree counters (writes/reads / redex counts / insertions), and $\mathcal{Z}_{n,m}(\vec{q})$ are correlator coefficients (matrix elements) invariant under normalization.
 
-\textbf{Toy}: with $\vec{q}=(1,0,0)$ and one active rewrite, $\mathcal{Z}_{1,0}=1$, others $0$; then $\mathcal{G}=z$. We reuse this toy in §3.
+Toy: with $\vec{q}=(1,0,0)$ and one active rewrite, $\mathcal{Z}_{1,0}=1$, others $0$; then $\mathcal{G}=z$. We reuse this toy in §3.
 
 \paragraph{Parameter Dependence and Input/Output Structure}
 The generating function $\mathcal{G}$ has explicit parameter dependence that we make transparent:
@@ -85,9 +80,9 @@ with $a_{-n}=a_n\in\mathbb{R}$ ensuring boundedness and rapid decay in $n$, ensu
 
 The grading parameters $\vec{q}$ in equation~\eqref{eq:generating-function} select specific corners of our computational landscape, corresponding to the three classical paradigms:
 \begin{itemize}
-\item \textbf{Turing Machines} $\vec{q} = (1,0,0)$: Discrete state transitions with finite control
-\item \textbf{Lambda Calculus} $\vec{q} = (0,1,0)$: Functional composition and $\beta$-reduction  
-\item \textbf{Path Integrals} $\vec{q} = (0,0,1)$: Quantum interference between computational paths
+\item Turing Machines $\vec{q} = (1,0,0)$: Discrete state transitions with finite control
+\item Lambda Calculus $\vec{q} = (0,1,0)$: Functional composition and $\beta$-reduction  
+\item Path Integrals $\vec{q} = (0,0,1)$: Quantum interference between computational paths
 \end{itemize}
 
 The paradigm selection is governed by the weight function:
@@ -100,16 +95,16 @@ where $n_i$ counts the number of operations of type $i$ in path $p$. Generic val
 
 To illustrate the power of our unified framework, let us trace the computation $5-3=2$ across all three paradigms, demonstrating how the same logical operation manifests through different mathematical structures:
 
-\begin{example}[One-step $\beta$-reduction via $\mathsf{G}_6$]
+\begin{example}[One-step $\beta$-reduction via $\mathsf{Gen4}$]
 \label{ex:concrete-reduction}
 Let $q_2=1$ and $q_1=q_3=0$. With registers $\phi=(\lambda x.M)$ and $\bar{\phi}=N$,
 \[
-\mathsf{G}_6(\phi,\bar{\phi};\vec{q};\Lambda) \leadsto M[x:=N] \quad \text{(single $\Lambda$-step)}.
+\mathsf{Gen4}(\phi,\bar{\phi};\vec{q};\Lambda) \leadsto M[x:=N] \quad \text{(single $\Lambda$-step)}.
 \]
 This demonstrates how the 6-ary connective recovers lambda calculus $\beta$-reduction through appropriate parameter choices. The grading parameter $q_2$ controls $\beta$-like rewrites measured in $\mathcal{Z}_{n,m}$.
 \end{example}
 
-\begin{example}[DFA transition via $\mathsf{G}_6$]
+\begin{example}[DFA transition via $\mathsf{Gen4}$]
 \label{ex:dfa-reduction}
 Consider our running toy example from Figure~\ref{fig:toy-example}. A single step of a deterministic finite automaton (DFA) can be encoded as:
 \begin{align}
@@ -117,9 +112,9 @@ Consider our running toy example from Figure~\ref{fig:toy-example}. A single ste
 \text{Transition via } \Sigma_6 &: \text{applies } \mathcal{Z}_{5,3}(\vec{q}) \\
 \text{Output state } B &: \text{decoded as } z^2 \bar{z}^0
 \end{align}
-The $\mathsf{G}_6$ connective with $\vec{q} = (1,0,0)$ (Turing machine paradigm) implements this as:
+The $\mathsf{Gen4}$ connective with $\vec{q} = (1,0,0)$ (Turing machine paradigm) implements this as:
 \[
-\mathsf{G}_6(z^5\bar{z}^3, \vec{q}=(1,0,0), \Lambda) \mapsto z^2\bar{z}^0
+\mathsf{Gen4}(z^5\bar{z}^3, \vec{q}=(1,0,0), \Lambda) \mapsto z^2\bar{z}^0
 \]
 This demonstrates how the 6-ary connective recovers standard machine models through appropriate parameter choices.
 \end{example}
@@ -142,12 +137,28 @@ The factorial prefactors $\frac{1}{n!m!}$ in equation~\eqref{eq:generating-funct
 This section established our unified computational framework:
 
 \begin{enumerate}
-\item 6-ary connective $\mathsf{G}_6$ provides the logical primitive whose denotation is the generating function
+\item 6-ary connective $\mathsf{Gen4}$ provides the logical primitive whose denotation is the generating function
 \item Generating function $\mathcal{G}(z, \bar{z}; \vec{q}, \Lambda)$ unifies the three computational paradigms
 \item Four-step pipeline (encode $\to$ operate $\to$ normalize $\to$ decode) appears consistently across paradigms
 \item Virasoro algebra provides the mathematical foundation for computational dynamics
 \end{enumerate}
 
-The three paradigms are different manifestations of the same structure, all governed by the same generating function and RG equations (developed in Section~\ref{sec:rg-flow}). This unified perspective reveals deep structural connections hidden in traditional presentations.
+\paragraph{Domain ledger.} Table~\ref{tab:domain-ledger} records the key artefacts introduced so far and the counterparts that will reappear when we move to other domains. It will be updated throughout the paper to keep the computation, physics, and application viewpoints aligned.
 
-The parameter map we use matches classical choices in Turing/Church/circuit models and CFT (central charge, weights)—what is \textbf{new here} is elevating \textbf{normalization} to a first-class, cross-view unifier; §3 turns these into \textbf{renormalization conditions}.
+\begin{table}[h]
+  \centering
+  \begin{tabular}{@{}lll@{}}
+    \toprule
+    Logic primitive & Computation instantiation & Later domain reuse \\
+    \midrule
+    $\mathsf{Gen4}$ & Generating function, Eq.~\eqref{eq:generating-function} & Green's function (Sec.~\ref{sec:regularization}), training correlators (Sec.~\ref{sec:llm_rg}) \\
+    Normalisation $N$ & Compiler-style idempotent operator & RG scheme choice, learning regulariser \\
+    Grading $\vec{q}$ & Paradigm parameters $(q_1,q_2,q_3)$ & Scale couplings, model moduli \\
+    Scale $\Lambda$ & Computational precision & Physical cutoff, training horizon \\
+    \bottomrule
+  \end{tabular}
+  \caption{Domain ledger linking computation artefacts to future domain interpretations.}
+  \label{tab:domain-ledger}
+\end{table}
+
+The three paradigms are different manifestations of the same structure, all governed by the same generating function and RG equations (developed in Section~\ref{sec:rg-flow}). This unified perspective reveals deep structural connections hidden in traditional presentations. The parameter map we use matches classical choices in Turing/Church/circuit models and CFT (central charge, weights)—what is new here is elevating normalization to a first-class, cross-view unifier; §3 turns these into renormalization conditions.
