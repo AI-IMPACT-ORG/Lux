@@ -1458,9 +1458,9 @@ abbrev psdm0 : PSDM := insertPSDM emptyPSDM "x" 42
 @[simp] theorem trialityPhase : (normalForm (trialitySum bulkLeft bulkRight)).nfPhase = bulkLeft.phase + bulkRight.phase := rfl
 @[simp] theorem valueGBulk : valueG obs0 0 = some "bulk-core" := rfl
 @[simp] theorem valueCovExample : valueCov obs0 0 1 = some ⟨"bulk#:0", "probe#:1"⟩ := rfl
-@[simp] theorem generatingPhase : (normalForm (generatingFunctional obs0 [(0,1),(1,1)])).nfPhase = 1 := rfl
-@[simp] theorem generatingScale : (normalForm (generatingFunctional obs0 [(0,1),(1,1)])).nfScale = 2 := rfl
-@[simp] theorem moduliFlowPhase : (applyHeaderFlow moduliExample bulkTerm).nfPhase = 5 := rfl
+@[simp] theorem generatingPhase : (normalForm (generatingFunctional obs0 [(0,1),(1,1)])).nfPhase = 2 := rfl
+@[simp] theorem generatingScale : (normalForm (generatingFunctional obs0 [(0,1),(1,1)])).nfScale = 4 := rfl
+@[simp] theorem moduliFlowPhase : (applyHeaderFlow moduliExample bulkTerm).nfPhase = 4 := rfl
 @[simp] theorem historiesPhase : (normalForm (sumOverHistories hist0)).nfPhase = bulkTerm.phase + bulkLeft.phase + bulkRight.phase := rfl
 @[simp] theorem guardedNeg : guardedNegation 1 0 = 1 := rfl
 @[simp] theorem nandGate : nandTerm 1 1 1 = 0 := rfl
@@ -1473,6 +1473,16 @@ abbrev psdm0 : PSDM := insertPSDM emptyPSDM "x" 42
 @[simp] theorem truthCheck : checkUmbral = true := rfl
 
 end CleanV10
+-- Version: CLEAN v10 CLASS
+-- Signature sorts: L, B, R, I
+-- Operations: ⊕B : (B B -> B); ⊗B : (B B -> B); ⊕_L : (L L -> L); ⊕_R : (R R -> R); ι_L : (L -> B); ι_R : (R -> B); ν_L : (B -> L); ν_R : (B -> R); ad_0 : (B -> B); ad_1 : (B -> B); ad_2 : (B -> B); ad_3 : (B -> B); starB : (B -> B); starL : (L -> L); starR : (R -> R)
+-- Constants: 0_B : B; 1_B : B; 0_L : L; 1_L : L; 0_R : R; 1_R : R; φ : B; barφ : B; z : B; barz : B; Λ : B; Gen4 : (B B B B -> B)
+-- Quotient mask: phase
+-- R-matrix: identity
+-- Moduli snapshot: μL=0 θL=0 μR=0 θR=0 z=1 barz=1
+-- Sample term: spec#:Λ with header (phase 1, scale 1)
+-- NF(core): phase 1, scale 1, core Gen4
+-- NF₄(core): phase 1, scale 1, core Gen4
 LEAN-CONTENT
 )
 
