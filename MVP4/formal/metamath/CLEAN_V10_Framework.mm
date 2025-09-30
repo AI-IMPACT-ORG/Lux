@@ -10,7 +10,7 @@ Sample term: spec#:_ with header (phase 1, scale 1)
 NF(core): phase 1, scale 1, core Gen4
 NF_(core): phase 1, scale 1, core Gen4
 $)
-$c ( ) + 0 1 2 3 4 42 = InfoflowPort L LambdaPort agnostic applyHeaderFlow booleanPort booleanPortEval bulkLeft bulkRight bulkTerm bulk_0 bulk_0_l bulk_0_r bulk_core checkUmbral emptyObservables emptyPSDM flowPhase g0 g1 genTerm0 genTerm1 gen_0 gen_1 generatingFunctional guardedNegation hist0 histPair infoPort infoflowFlux insertObs keyX l_boundary lambdaNormalise lambdaPort mkBooleanPort mkCov mkModuli mkTerm moduliExample nandTerm nfPhase nfScale normalForm obs0 obsGen observerValue phase probeTerm probe_1 probe_core propOrdering psdm0 psdmDefine psdmLookup qftPort qftPortCtor qftPropagator r_boundary reconstitute residual sourceList sourceList01 sumOverHistories time_ordered trialitySum true umbralCommutesWithNF valueCov valueG zeroL |- $.
+$c ( ) + 0 1 2 3 4 42 = InfoflowPort L LambdaPort agnostic applyHeaderFlow booleanPort booleanPortEval bulkLeft bulkRight bulkTerm bulk_0 bulk_0_l bulk_0_r bulk_core checkUmbral emptyObservables emptyPSDM flowPhase g0 g1 genTerm0 genTerm1 gen_0 gen_1 generatingFunctional guardedNegation hist0 histPair infoPort infoflowFlux insertObs keyX l_boundary lambdaNormalise lambdaPort mkBooleanPort mkCov mkModuli mkTerm moduliExample nandTerm nfPhase nfScale normalForm obs0 obsGen observerValue phase probeTerm probe_1 probe_core propOrdering psdm0 psdmDefine psdmLookup qftPort qftPortCtor qftPropagator r_boundary reconstitute residualTerm sourceList sourceList01 sumOverHistories time_ordered trialitySum true umbralCommutesWithNF valueCov valueG zeroL |- $.
 ax-def-bulkTerm $a |- bulkTerm = ( mkTerm bulk_0 2 1 bulk_core ) $.
 ax-def-bulkLeft $a |- bulkLeft = ( mkTerm bulk_0_l 2 1 l_boundary ) $.
 ax-def-bulkRight $a |- bulkRight = ( mkTerm bulk_0_r 2 1 r_boundary ) $.
@@ -30,7 +30,7 @@ ax-def-qftPort $a |- qftPort = ( qftPortCtor agnostic time_ordered ) $.
 ax-nfphase-bulk $a |- nfPhase ( normalForm bulkTerm ) = 2 $.
 ax-nfscale-bulk $a |- nfScale ( normalForm bulkTerm ) = 1 $.
 ax-reconstitute-left $a |- observerValue ( reconstitute bulkTerm ) L = bulkLeft $.
-ax-residual-left $a |- observerValue ( residual bulkTerm ) L = zeroL $.
+ax-residual-left $a |- observerValue ( residualTerm bulkTerm ) L = zeroL $.
 ax-triality-phase $a |- nfPhase ( normalForm ( trialitySum bulkLeft bulkRight ) ) = phase bulkLeft + phase bulkRight $.
 ax-valueG-bulk $a |- valueG obs0 0 = bulk_core $.
 ax-valueCov $a |- valueCov obs0 0 1 = ( mkCov bulk_0 probe_1 ) $.

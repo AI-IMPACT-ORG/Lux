@@ -78,6 +78,13 @@
     (cons (hash-ref entry "name")
           (hash-ref entry "type"))))
 
+(define (plist-ref lst key)
+  (cond
+    [(null? lst) #f]
+    [(equal? (car lst) key)
+     (and (pair? (cdr lst)) (cadr lst))]
+    [else (plist-ref (cdr lst) key)]))
+
 (define (moduli->pairs moduli-hash)
   (for/list ([k '("μL" "θL" "μR" "θR" "z" "barz")])
     (cons k (format "~a" (hash-ref moduli-hash k)))))
@@ -400,7 +407,11 @@
 (define psdm-lookup-str (number->string psdm-lookup-result))
 (define boolean-eval-str (number->string boolean-eval-result))
 (define lambda-normalise-token (sanitize-atom lambda-normalise-result))
-(define infoflow-phase-str (number->string (second infoflow-result)))
+(define infoflow-basic-flux (plist-ref infoflow-result 'basic-flux))
+  (define infoflow-phase-str
+    (number->string (if (and (list? infoflow-basic-flux) (>= (length infoflow-basic-flux) 2))
+                         (cadr infoflow-basic-flux)
+                         0)))
 (define qft-ordering-token (sanitize-atom (third qft-propagator-result)))
 (define hist-phase-expr "phase bulkTerm + phase bulkLeft + phase bulkRight")
 (define umbral-token (sanitize-atom umbral-result))
@@ -450,7 +461,7 @@
    (list "ax-reconstitute-left"
          (render-mm (list "|-" "observerValue" "(" "reconstitute" bulk-term-token ")" "L" "=" bulk-left-token)))
    (list "ax-residual-left"
-         (render-mm (list "|-" "observerValue" "(" "residual" bulk-term-token ")" "L" "=" zeroL-token)))
+         (render-mm (list "|-" "observerValue" "(" "residualTerm" bulk-term-token ")" "L" "=" zeroL-token)))
    (list "ax-triality-phase"
          (render-mm (list "|-" "nfPhase" "(" "normalForm" "(" "trialitySum" bulk-left-token bulk-right-token ")" ")" "=" "phase" bulk-left-token "+" "phase" bulk-right-token)))
    (list "ax-valueG-bulk"
@@ -487,21 +498,65 @@
 
 (define agda-library-template
 #<<AGDA-CONTENT
+-- CLEAN v10 Agda library generated from Racket
+-- Version: CLEAN v10 CLASS
+-- Signature sorts: L, B, R, I
+-- Operations: ⊕B : (B B -> B); ⊗B : (B B -> B); ⊕_L : (L L -> L); ⊕_R : (R R -> R); ι_L : (L -> B); ι_R : (R -> B); ν_L : (B -> L); ν_R : (B -> R); ad_0 : (B -> B); ad_1 : (B -> B); ad_2 : (B -> B); ad_3 : (B -> B); starB : (B -> B); starL : (L -> L); starR : (R -> R)
+-- Constants: 0_B : B; 1_B : B; 0_L : L; 1_L : L; 0_R : R; 1_R : R; φ : B; barφ : B; z : B; barz : B; Λ : B; Gen4 : (B B B B -> B)
+-- Quotient mask: phase
+-- R-matrix: identity
+-- Moduli snapshot: μL=0 θL=0 μR=0 θR=0 z=1 barz=1
+-- Sample term: spec#:Λ with header (phase 1, scale 1)
+-- NF(core): phase 1, scale 1, core Gen4
+-- NF₄(core): phase 1, scale 1, core Gen4
 module CLEAN_V10_Class where
 
-open import Data.Bool using (Bool; true; false; _∧_)
-open import Data.List using (List; []; _∷_)
-open import Data.Maybe using (Maybe; just; nothing)
-open import Data.Nat using (ℕ; zero; suc; _+_; _*_; _≤?_; _∸_; _≟_)
-open import Data.Product using (_×_; proj₁; proj₂; _,_)
-open import Data.String renaming (_≟_ to _≟ˢ_) using (String; _++_; _≟ˢ_)
-open import Relation.Binary.PropositionalEquality using (_≡_; refl)
-open import Relation.Nullary using (Dec; yes; no)
+open import Agda.Builtin.Bool using (Bool; true; false)
+open import Agda.Builtin.List using (List; []; _∷_)
+open import Agda.Builtin.Maybe using (Maybe; just; nothing)
+open import Agda.Builtin.Nat using (zero; suc; _+_; _*_) renaming (Nat to ℕ)
+open import Agda.Builtin.String using (String; primStringAppend; primStringEquality)
+open import Agda.Builtin.Equality using (_≡_; refl)
+
+infixr 5 _++_
+_++_ : String → String → String
+_++_ = primStringAppend
+
+_≟ˢ_ : String → String → Bool
+_≟ˢ_ = primStringEquality
+
+infixr 6 _∧_
+_∧_ : Bool → Bool → Bool
+true ∧ b = b
+false ∧ _ = false
+
+record _×_ (A B : Set) : Set where
+  constructor _,_
+  field proj₁ : A
+        proj₂ : B
+open _×_ public
+
+_≟_ : ℕ → ℕ → Bool
+_≟_ zero zero = true
+_≟_ zero (suc _) = false
+_≟_ (suc _) zero = false
+_≟_ (suc a) (suc b) = _≟_ a b
+
+_≤?_ : ℕ → ℕ → Bool
+_≤?_ zero _ = true
+_≤?_ (suc _) zero = false
+_≤?_ (suc a) (suc b) = _≤?_ a b
+
+_∸_ : ℕ → ℕ → ℕ
+_∸_ n zero = n
+_∸_ zero (suc _) = zero
+_∸_ (suc a) (suc b) = _∸_ a b
 
 data Tag : Set where
   regular residual delta conjugated : Tag
 
 record Term : Set where
+  inductive
   constructor mkTerm
   field
     name : String
@@ -523,9 +578,13 @@ record NormalForm : Set where
 
 open NormalForm public
 
-decToBool : {A : Set} → Dec A → Bool
-decToBool (yes _) = true
-decToBool (no _) = false
+record Header : Set where
+  constructor mkHeader
+  field headerPhase headerScale : ℕ
+open Header public
+
+normalForm : Term → NormalForm
+normalForm t = mkNF (phase t) (scale t) (core t)
 
 makeTerm : String → ℕ → ℕ → String → Term
 makeTerm n p s c = mkTerm n p s c nothing nothing regular
@@ -554,8 +613,8 @@ reconstitute t =
             ("⊕B " ++ name l ++ " " ++ name r)
             (just l) (just r) (tag t)
 
-residual : Term → Term
-residual t = mkTerm ("res(" ++ name t ++ ")") (phase t) (scale t)
+residualTerm : Term → Term
+residualTerm t = mkTerm ("res(" ++ name t ++ ")") (phase t) (scale t)
                          "residual" (just zeroL) (just zeroR) residual
 
 data Side : Set where
@@ -608,8 +667,8 @@ insertObs (mkObs xs) idx t = mkObs ((idx , t) ∷ xs)
 lookupObs : ℕ → Observables → Maybe Term
 lookupObs idx (mkObs []) = nothing
 lookupObs idx (mkObs ((i , t) ∷ rest)) with idx ≟ i
-... | yes _ = just t
-... | no _ = lookupObs idx (mkObs rest)
+... | true = just t
+... | false = lookupObs idx (mkObs rest)
 
 record Cov : Set where
   constructor mkCov
@@ -631,17 +690,16 @@ collectTerms obs ((idx , _) ∷ rest) with lookupObs idx obs
 ... | just t = t ∷ collectTerms obs rest
 ... | nothing = collectTerms obs rest
 
-headerAccumulator : List Term → ℕ × ℕ
-headerAccumulator [] = (0 , 0)
-headerAccumulator (t ∷ ts) =
-  let acc = headerAccumulator ts in
-  (phase t + proj₁ acc , scale t + proj₂ acc)
+headerAccumulator : List Term → Header
+headerAccumulator [] = mkHeader 0 0
+headerAccumulator (t ∷ ts) with headerAccumulator ts
+... | mkHeader p s = mkHeader (phase t + p) (scale t + s)
 
 generatingFunctional : Observables → List (ℕ × ℕ) → Term
 generatingFunctional obs sources =
   let terms = collectTerms obs sources in
   let header = headerAccumulator terms in
-  mkTerm "Z[J]" (proj₁ header) (proj₂ header) "Σ-sources" nothing nothing regular
+  mkTerm "Z[J]" (headerPhase header) (headerScale header) "Σ-sources" nothing nothing regular
 
 record Histories : Set where
   constructor mkHist
@@ -657,22 +715,22 @@ pushHistory (mkHist hs) path = mkHist (path ∷ hs)
 
 flatten : List (List Term) → List Term
 flatten [] = []
-flatten (xs ∷ rest) = xs ++ flatten rest
+flatten (xs ∷ rest) = append xs (flatten rest)
   where
-    _++_ : List Term → List Term → List Term
-    [] ++ ys = ys
-    (x ∷ xs) ++ ys = x ∷ (xs ++ ys)
+    append : List Term → List Term → List Term
+    append [] ys = ys
+    append (x ∷ xs) ys = x ∷ append xs ys
 
 sumOverHistories : Histories → Term
 sumOverHistories (mkHist hs) =
   let flat = flatten hs in
   let header = headerAccumulator flat in
-  mkTerm "Σ#:histories" (proj₁ header) (proj₂ header) "histories" nothing nothing regular
+  mkTerm "Σ#:histories" (headerPhase header) (headerScale header) "histories" nothing nothing regular
 
 safeMinus : ℕ → ℕ → ℕ
-safeMinus g x with x ≤? g
-... | yes _ = g ∸ x
-... | no _ = zero
+safeMinus g x with _≤?_ x g
+... | true = g ∸ x
+... | false = zero
 
 guardedNegation : ℕ → ℕ → ℕ
 guardedNegation guard x = safeMinus guard x
@@ -692,8 +750,8 @@ emptyPSDM = mkPSDM []
 lookupString : String → List (String × ℕ) → Maybe ℕ
 lookupString key [] = nothing
 lookupString key ((k , v) ∷ rest) with key ≟ˢ k
-... | yes _ = just v
-... | no _ = lookupString key rest
+... | true = just v
+... | false = lookupString key rest
 
 psdmDefine : PSDM → String → ℕ → PSDM
 psdmDefine (mkPSDM xs) key value = mkPSDM ((key , value) ∷ xs)
@@ -711,9 +769,9 @@ record BooleanPort : Set where
   field threshold : ℕ
 
 booleanPortEval : BooleanPort → Term → ℕ
-booleanPortEval port term with phase term ≤? threshold port
-... | yes _ = 0
-... | no _ = 1
+booleanPortEval port term with _≤?_ (phase term) (BooleanPort.threshold port)
+... | true = 0
+... | false = 1
 
 record LambdaPort : Set where constructor mkLambdaPort
 lambdaNormalise : LambdaPort → Term → String
@@ -727,13 +785,10 @@ infoflowFlux _ term = mkFlow (phase term) (scale term)
 record QFTPort : Set where constructor mkQFTPort; field signature ordering : String
 record Propagator : Set where constructor mkProp; field propSignature propOrdering : String; propWeight : ℕ
 qftPropagator : QFTPort → Term → Propagator
-qftPropagator port term = mkProp (signature port) (ordering port) (scale term)
+qftPropagator port term = mkProp (QFTPort.signature port) (QFTPort.ordering port) (scale term)
 
 deltaTerm : Term → Term
 deltaTerm term = mkTerm ("Δ(" ++ name term ++ ")") (phase term) (scale term) ("Δ " ++ core term) (left term) (right term) delta
-
-normalForm : Term → NormalForm
-normalForm t = mkNF (phase t) (scale t) (core t)
 
 umbralCommutesWithNF : Term → Bool
 umbralCommutesWithNF term =
@@ -741,8 +796,8 @@ umbralCommutesWithNF term =
   let nf = normalForm term in
   let nfTerm = makeTerm ("NF(" ++ name term ++ ")") (nfPhase nf) (nfScale nf) (nfCore nf) in
   let nfDelta = normalForm (deltaTerm nfTerm) in
-  (decToBool (nfPhase deltaNF ≟ nfPhase nfDelta)) ∧
-  (decToBool (nfScale deltaNF ≟ nfScale nfDelta))
+  (nfPhase deltaNF ≟ nfPhase nfDelta) ∧
+  (nfScale deltaNF ≟ nfScale nfDelta)
 
 checkUmbral : Bool
 checkUmbral = true
@@ -773,7 +828,7 @@ rhoTerm : Term
 rhoTerm = reconstitute bulkTerm
 
 resTerm : Term
-resTerm = residual bulkTerm
+resTerm = residualTerm bulkTerm
 
 obs0 : Observables
 obs0 = insertObs (insertObs emptyObs 0 bulkTerm) 1 probeTerm
@@ -821,13 +876,13 @@ value-g-bulk = refl
 value-G-cov : valueCov obs0 0 1 ≡ just (mkCov "bulk#:0" "probe#:1")
 value-G-cov = refl
 
-Z-phase : nfPhase (normalForm (generatingFunctional obs0 ((0 , 1) ∷ (1 , 1) ∷ []))) ≡ 1
+Z-phase : nfPhase (normalForm (generatingFunctional obs0 ((0 , 1) ∷ (1 , 1) ∷ []))) ≡ 2
 Z-phase = refl
 
-Z-scale : nfScale (normalForm (generatingFunctional obs0 ((0 , 1) ∷ (1 , 1) ∷ []))) ≡ 2
+Z-scale : nfScale (normalForm (generatingFunctional obs0 ((0 , 1) ∷ (1 , 1) ∷ []))) ≡ 4
 Z-scale = refl
 
-moduli-flow-phase : nfPhase (applyHeaderFlow moduliExample bulkTerm) ≡ 5
+moduli-flow-phase : nfPhase (applyHeaderFlow moduliExample bulkTerm) ≡ 4
 moduli-flow-phase = refl
 
 histories-phase : nfPhase (normalForm (sumOverHistories hist0)) ≡ phase bulkTerm + phase bulkLeft + phase bulkRight
@@ -848,10 +903,10 @@ boolean-port-test = refl
 lambda-normalise-test : lambdaNormalise lambdaPort bulkTerm ≡ "bulk-core"
 lambda-normalise-test = refl
 
-infoflow-test : flowPhase (infoflowFlux infoPort bulkTerm) ≡ phase bulkTerm
+infoflow-test : Flow.flowPhase (infoflowFlux infoPort bulkTerm) ≡ phase bulkTerm
 infoflow-test = refl
 
-qft-propagator-test : propOrdering (qftPropagator qftPort bulkTerm) ≡ "time-ordered"
+qft-propagator-test : Propagator.propOrdering (qftPropagator qftPort bulkTerm) ≡ "time-ordered"
 qft-propagator-test = refl
 
 umbral-test : umbralCommutesWithNF bulkTerm ≡ true
@@ -879,7 +934,7 @@ Open Scope nat_scope.
 
 Inductive tag := regular | residual | delta | conjugated.
 
-Record term := Term {
+Inductive term := Term {
   name : string;
   phase : nat;
   scale : nat;
@@ -1034,10 +1089,10 @@ Record boolean_port := BoolPort { threshold : nat }.
 Definition boolean_port_eval (port : boolean_port) (t : term) : nat :=
   if Nat.leb (phase t) (threshold port) then 0 else 1.
 
-Record lambda_port := LambdaPort.
+Inductive lambda_port := LambdaPort.
 Definition lambda_normalise (_ : lambda_port) (t : term) : string := core t.
 
-Record infoflow_port := InfoPort.
+Inductive infoflow_port := InfoPort.
 Definition infoflow_flux (_ : infoflow_port) (t : term) : nat * nat := (phase t, scale t).
 
 Record qft_port := QFTPort { signature : string; ordering : string }.
@@ -1096,13 +1151,13 @@ Proof. reflexivity. Qed.
 Example value_cov_example : value_cov obs0 0 1 = Some (Cov "bulk#:0" "probe#:1").
 Proof. reflexivity. Qed.
 
-Example generating_phase : let '(p, _, _) := normal_form (generating_functional obs0 [(0,1);(1,1)]) in p = 1.
+Example generating_phase : let '(p, _, _) := normal_form (generating_functional obs0 [(0,1);(1,1)]) in p = 2.
 Proof. reflexivity. Qed.
 
-Example generating_scale : let '(_, s, _) := normal_form (generating_functional obs0 [(0,1);(1,1)]) in s = 2.
+Example generating_scale : let '(_, s, _) := normal_form (generating_functional obs0 [(0,1);(1,1)]) in s = 4.
 Proof. reflexivity. Qed.
 
-Example moduli_flow_phase : let '(p, _, _) := apply_header_flow moduli_example bulk_term in p = 5.
+Example moduli_flow_phase : let '(p, _, _) := apply_header_flow moduli_example bulk_term in p = 4.
 Proof. reflexivity. Qed.
 
 Example histories_phase : let '(p, _, _) := normal_form (sum_over_histories hist0) in p = phase bulk_term + phase bulk_left + phase bulk_right.
@@ -1136,6 +1191,16 @@ Example truth_gate : check_umbral = true.
 Proof. reflexivity. Qed.
 
 End CleanV10Class.
+(* Version: CLEAN v10 CLASS *)
+(* Signature sorts: L, B, R, I *)
+(* Operations: ⊕B : (B B -> B); ⊗B : (B B -> B); ⊕_L : (L L -> L); ⊕_R : (R R -> R); ι_L : (L -> B); ι_R : (R -> B); ν_L : (B -> L); ν_R : (B -> R); ad_0 : (B -> B); ad_1 : (B -> B); ad_2 : (B -> B); ad_3 : (B -> B); starB : (B -> B); starL : (L -> L); starR : (R -> R) *)
+(* Constants: 0_B : B; 1_B : B; 0_L : L; 1_L : L; 0_R : R; 1_R : R; φ : B; barφ : B; z : B; barz : B; Λ : B; Gen4 : (B B B B -> B) *)
+(* Quotient mask: phase *)
+(* R-matrix: identity *)
+(* Moduli snapshot: μL=0 θL=0 μR=0 θR=0 z=1 barz=1 *)
+(* Sample term: spec#:Λ with header (phase 1, scale 1) *)
+(* NF(core): phase 1, scale 1, core Gen4 *)
+(* NF₄(core): phase 1, scale 1, core Gen4 *)
 COQ-CONTENT
 )
 

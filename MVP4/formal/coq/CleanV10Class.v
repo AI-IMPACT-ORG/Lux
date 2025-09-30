@@ -13,7 +13,7 @@ Open Scope nat_scope.
 
 Inductive tag := regular | residual | delta | conjugated.
 
-Record term := Term {
+Inductive term := Term {
   name : string;
   phase : nat;
   scale : nat;
@@ -168,10 +168,10 @@ Record boolean_port := BoolPort { threshold : nat }.
 Definition boolean_port_eval (port : boolean_port) (t : term) : nat :=
   if Nat.leb (phase t) (threshold port) then 0 else 1.
 
-Record lambda_port := LambdaPort.
+Inductive lambda_port := LambdaPort.
 Definition lambda_normalise (_ : lambda_port) (t : term) : string := core t.
 
-Record infoflow_port := InfoPort.
+Inductive infoflow_port := InfoPort.
 Definition infoflow_flux (_ : infoflow_port) (t : term) : nat * nat := (phase t, scale t).
 
 Record qft_port := QFTPort { signature : string; ordering : string }.
@@ -230,13 +230,13 @@ Proof. reflexivity. Qed.
 Example value_cov_example : value_cov obs0 0 1 = Some (Cov "bulk#:0" "probe#:1").
 Proof. reflexivity. Qed.
 
-Example generating_phase : let '(p, _, _) := normal_form (generating_functional obs0 [(0,1);(1,1)]) in p = 1.
+Example generating_phase : let '(p, _, _) := normal_form (generating_functional obs0 [(0,1);(1,1)]) in p = 2.
 Proof. reflexivity. Qed.
 
-Example generating_scale : let '(_, s, _) := normal_form (generating_functional obs0 [(0,1);(1,1)]) in s = 2.
+Example generating_scale : let '(_, s, _) := normal_form (generating_functional obs0 [(0,1);(1,1)]) in s = 4.
 Proof. reflexivity. Qed.
 
-Example moduli_flow_phase : let '(p, _, _) := apply_header_flow moduli_example bulk_term in p = 5.
+Example moduli_flow_phase : let '(p, _, _) := apply_header_flow moduli_example bulk_term in p = 4.
 Proof. reflexivity. Qed.
 
 Example histories_phase : let '(p, _, _) := normal_form (sum_over_histories hist0) in p = phase bulk_term + phase bulk_left + phase bulk_right.
@@ -270,6 +270,16 @@ Example truth_gate : check_umbral = true.
 Proof. reflexivity. Qed.
 
 End CleanV10Class.
+(* Version: CLEAN v10 CLASS *)
+(* Signature sorts: L, B, R, I *)
+(* Operations: ⊕B : (B B -> B); ⊗B : (B B -> B); ⊕_L : (L L -> L); ⊕_R : (R R -> R); ι_L : (L -> B); ι_R : (R -> B); ν_L : (B -> L); ν_R : (B -> R); ad_0 : (B -> B); ad_1 : (B -> B); ad_2 : (B -> B); ad_3 : (B -> B); starB : (B -> B); starL : (L -> L); starR : (R -> R) *)
+(* Constants: 0_B : B; 1_B : B; 0_L : L; 1_L : L; 0_R : R; 1_R : R; φ : B; barφ : B; z : B; barz : B; Λ : B; Gen4 : (B B B B -> B) *)
+(* Quotient mask: phase *)
+(* R-matrix: identity *)
+(* Moduli snapshot: μL=0 θL=0 μR=0 θR=0 z=1 barz=1 *)
+(* Sample term: spec#:Λ with header (phase 1, scale 1) *)
+(* NF(core): phase 1, scale 1, core Gen4 *)
+(* NF₄(core): phase 1, scale 1, core Gen4 *)
 (* Version: CLEAN v10 CLASS *)
 (* Signature sorts: L, B, R, I *)
 (* Operations: ⊕B : (B B -> B); ⊗B : (B B -> B); ⊕_L : (L L -> L); ⊕_R : (R R -> R); ι_L : (L -> B); ι_R : (R -> B); ν_L : (B -> L); ν_R : (B -> R); ad_0 : (B -> B); ad_1 : (B -> B); ad_2 : (B -> B); ad_3 : (B -> B); starB : (B -> B); starL : (L -> L); starR : (R -> R) *)

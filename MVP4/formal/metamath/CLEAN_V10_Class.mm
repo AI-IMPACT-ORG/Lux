@@ -3,7 +3,7 @@ $[ CLEAN_V10_Framework.mm $]
 thm-nfphase-bulk $p |- nfPhase ( normalForm bulkTerm ) = 2 $= ax-nfphase-bulk $.
 thm-nfscale-bulk $p |- nfScale ( normalForm bulkTerm ) = 1 $= ax-nfscale-bulk $.
 thm-reconstitute-left $p |- observerValue ( reconstitute bulkTerm ) L = bulkLeft $= ax-reconstitute-left $.
-thm-residual-left $p |- observerValue ( residual bulkTerm ) L = zeroL $= ax-residual-left $.
+thm-residual-left $p |- observerValue ( residualTerm bulkTerm ) L = zeroL $= ax-residual-left $.
 thm-triality-phase $p |- nfPhase ( normalForm ( trialitySum bulkLeft bulkRight ) ) = phase bulkLeft + phase bulkRight $= ax-triality-phase $.
 thm-valueG-bulk $p |- valueG obs0 0 = bulk_core $= ax-valueG-bulk $.
 thm-valueCov $p |- valueCov obs0 0 1 = ( mkCov bulk_0 probe_1 ) $= ax-valueCov $.
