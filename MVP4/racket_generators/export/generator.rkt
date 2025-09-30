@@ -487,6 +487,17 @@
 
 (define agda-library-template
 #<<AGDA-CONTENT
+module CLEAN_V10_Class where
+
+open import Data.Bool using (Bool; true; false; _∧_)
+open import Data.List using (List; []; _∷_)
+open import Data.Maybe using (Maybe; just; nothing)
+open import Data.Nat using (ℕ; zero; suc; _+_; _*_; _≤?_; _∸_; _≟_)
+open import Data.Product using (_×_; proj₁; proj₂; _,_)
+open import Data.String renaming (_≟_ to _≟ˢ_) using (String; _++_; _≟ˢ_)
+open import Relation.Binary.PropositionalEquality using (_≡_; refl)
+open import Relation.Nullary using (Dec; yes; no)
+
 data Tag : Set where
   regular residual delta conjugated : Tag
 
@@ -680,7 +691,7 @@ emptyPSDM = mkPSDM []
 
 lookupString : String → List (String × ℕ) → Maybe ℕ
 lookupString key [] = nothing
-lookupString key ((k , v) ∷ rest) with key ≟ k
+lookupString key ((k , v) ∷ rest) with key ≟ˢ k
 ... | yes _ = just v
 ... | no _ = lookupString key rest
 
@@ -854,6 +865,8 @@ AGDA-CONTENT
 (define coq-library-template
 #<<COQ-CONTENT
 (* CLEAN v10 Coq library generated from Racket *)
+
+Module CleanV10Class.
 
 From Coq Require Import Strings.String.
 From Coq Require Import Lists.List.
@@ -1121,6 +1134,8 @@ Proof. reflexivity. Qed.
 
 Example truth_gate : check_umbral = true.
 Proof. reflexivity. Qed.
+
+End CleanV10Class.
 COQ-CONTENT
 )
 

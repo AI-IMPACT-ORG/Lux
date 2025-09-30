@@ -1,5 +1,7 @@
 (* CLEAN v10 Coq library generated from Racket *)
 
+Module CleanV10Class.
+
 From Coq Require Import Strings.String.
 From Coq Require Import Lists.List.
 From Coq Require Import Bool.Bool.
@@ -266,6 +268,8 @@ Proof. reflexivity. Qed.
 
 Example truth_gate : check_umbral = true.
 Proof. reflexivity. Qed.
+
+End CleanV10Class.
 (* Version: CLEAN v10 CLASS *)
 (* Signature sorts: L, B, R, I *)
 (* Operations: ⊕B : (B B -> B); ⊗B : (B B -> B); ⊕_L : (L L -> L); ⊕_R : (R R -> R); ι_L : (L -> B); ι_R : (R -> B); ν_L : (B -> L); ν_R : (B -> R); ad_0 : (B -> B); ad_1 : (B -> B); ad_2 : (B -> B); ad_3 : (B -> B); starB : (B -> B); starL : (L -> L); starR : (R -> R) *)
