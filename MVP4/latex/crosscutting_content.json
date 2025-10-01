@@ -1,0 +1,387 @@
+{
+  "metadata_schema_version": "1.0",
+  "threads": [
+    {
+      "thread_id": "computational_unification",
+      "label": "Unified Computation Ledger",
+      "description": "Introduces the shared computational ledger, G4 primitive, and fundamental anomalous choice constraint that ground the entire manuscript.",
+      "sections": [
+        "S01",
+        "S02"
+      ],
+      "supporting_appendices": [
+        "APP_NOTATION"
+      ],
+      "storyline_beats": [
+        "establish_unified_computation",
+        "introduce_regulator_framework",
+        "establish_symbol_distinction"
+      ],
+      "depends_on_threads": [
+        "notation_reference"
+      ],
+      "feeds_threads": [
+        "regularization_rg",
+        "logic_foundations",
+        "symbol_organization"
+      ]
+    },
+    {
+      "thread_id": "regularization_rg",
+      "label": "Regulators and RG Preparation",
+      "description": "Builds the regulator hierarchy and RG flow machinery that make the generating functional well defined.",
+      "sections": [
+        "S02",
+        "S03",
+        "S04"
+      ],
+      "supporting_appendices": [],
+      "storyline_beats": [
+        "introduce_regulator_framework",
+        "analyze_rg_flow",
+        "establish_divergence_mapping",
+        "complete_renormalization"
+      ],
+      "depends_on_threads": [
+        "computational_unification"
+      ],
+      "feeds_threads": [
+        "renormalization",
+        "learning_application",
+        "truth_fixed_points",
+        "divergence_mapping"
+      ]
+    },
+    {
+      "thread_id": "renormalization",
+      "label": "Renormalized Correlators",
+      "description": "Completes the renormalization program to obtain finite correlators that feed the logic layer.",
+      "sections": [
+        "S04"
+      ],
+      "supporting_appendices": [],
+      "storyline_beats": [
+        "complete_renormalization"
+      ],
+      "depends_on_threads": [
+        "regularization_rg"
+      ],
+      "feeds_threads": [
+        "logic_foundations",
+        "truth_fixed_points"
+      ]
+    },
+    {
+      "thread_id": "logic_foundations",
+      "label": "Interacting Positive Logic Core",
+      "description": "Formalises the syntax, semantics, and equality hierarchy that organise subsequent reasoning.",
+      "sections": [
+        "S01",
+        "S03",
+        "S05",
+        "S06",
+        "S07",
+        "S08"
+      ],
+      "supporting_appendices": [
+        "APP_CAT",
+        "APP_NOTATION"
+      ],
+      "storyline_beats": [
+        "define_positive_logic",
+        "fix_truth_via_rg",
+        "construct_effective_logic_hierarchy",
+        "validate_against_classics"
+      ],
+      "depends_on_threads": [
+        "computational_unification",
+        "renormalization",
+        "foundations_background",
+        "notation_reference"
+      ],
+      "feeds_threads": [
+        "mde_pyramid",
+        "truth_fixed_points",
+        "consistency_validation"
+      ]
+    },
+    {
+      "thread_id": "mde_pyramid",
+      "label": "MDE Pyramid Hierarchy",
+      "description": "Develops the multi-level logic hierarchy that supports implementation and applications.",
+      "sections": [
+        "S05",
+        "S07"
+      ],
+      "supporting_appendices": [
+        "APP_API_SPEC",
+        "APP_MDE"
+      ],
+      "storyline_beats": [
+        "construct_effective_logic_hierarchy"
+      ],
+      "depends_on_threads": [
+        "logic_foundations"
+      ],
+      "feeds_threads": [
+        "learning_application",
+        "boundary_morphisms",
+        "implementation_support"
+      ]
+    },
+    {
+      "thread_id": "truth_fixed_points",
+      "label": "Truth as RG Fixed Point",
+      "description": "Identifies logical truth with fixed points of RG operators, enabling semantic transfer across domains.",
+      "sections": [
+        "S06"
+      ],
+      "supporting_appendices": [],
+      "storyline_beats": [
+        "fix_truth_via_rg"
+      ],
+      "depends_on_threads": [
+        "logic_foundations",
+        "renormalization"
+      ],
+      "feeds_threads": [
+        "boundary_morphisms",
+        "consistency_validation"
+      ]
+    },
+    {
+      "thread_id": "consistency_validation",
+      "label": "Classical Validation Layer",
+      "description": "Reconciles the framework with classical results, ensuring internal consistency and motivating spectral conjectures.",
+      "sections": [
+        "S08",
+        "S09"
+      ],
+      "supporting_appendices": [],
+      "storyline_beats": [
+        "validate_against_classics",
+        "build_boundary_maps"
+      ],
+      "depends_on_threads": [
+        "logic_foundations",
+        "truth_fixed_points"
+      ],
+      "feeds_threads": [
+        "domain_morphisms",
+        "number_theory_application"
+      ]
+    },
+    {
+      "thread_id": "boundary_morphisms",
+      "label": "Interoperability Maps",
+      "description": "Constructs the double boundary maps that move ledger entries between computation, physics, learning, and number theory.",
+      "sections": [
+        "S09",
+        "S10",
+        "S11"
+      ],
+      "supporting_appendices": [
+        "APP_API_SPEC",
+        "APP_MDE"
+      ],
+      "storyline_beats": [
+        "build_boundary_maps",
+        "apply_to_learning",
+        "synthesize_domain_morphisms"
+      ],
+      "depends_on_threads": [
+        "truth_fixed_points",
+        "mde_pyramid"
+      ],
+      "feeds_threads": [
+        "learning_application",
+        "domain_morphisms"
+      ]
+    },
+    {
+      "thread_id": "learning_application",
+      "label": "LLM Renormalisation",
+      "description": "Applies the RG machinery to learning systems with explicit parameter mappings.",
+      "sections": [
+        "S10"
+      ],
+      "supporting_appendices": [
+        "APP_API_SPEC",
+        "APP_MDE"
+      ],
+      "storyline_beats": [
+        "apply_to_learning"
+      ],
+      "depends_on_threads": [
+        "boundary_morphisms",
+        "regularization_rg",
+        "mde_pyramid"
+      ],
+      "feeds_threads": [
+        "domain_morphisms"
+      ]
+    },
+    {
+      "thread_id": "domain_morphisms",
+      "label": "Universal Domain Bridges",
+      "description": "Packages the logic transformer into morphisms that expose universal invariants across domains.",
+      "sections": [
+        "S11",
+        "S12"
+      ],
+      "supporting_appendices": [
+        "APP_MECH"
+      ],
+      "storyline_beats": [
+        "synthesize_domain_morphisms",
+        "establish_divergence_mapping",
+        "probe_number_theory_complexity"
+      ],
+      "depends_on_threads": [
+        "boundary_morphisms",
+        "consistency_validation",
+        "learning_application",
+        "divergence_mapping"
+      ],
+      "feeds_threads": [
+        "number_theory_application",
+        "mechanization_artifacts"
+      ]
+    },
+    {
+      "thread_id": "number_theory_application",
+      "label": "Spectral Number Theory",
+      "description": "Connects the framework to Hilbert-Polya operators and complexity spectra.",
+      "sections": [
+        "S12"
+      ],
+      "supporting_appendices": [
+        "APP_MECH",
+        "APP_NOTATION"
+      ],
+      "storyline_beats": [
+        "probe_number_theory_complexity"
+      ],
+      "depends_on_threads": [
+        "domain_morphisms",
+        "consistency_validation"
+      ],
+      "feeds_threads": [
+        "mechanization_artifacts"
+      ]
+    },
+    {
+      "thread_id": "implementation_support",
+      "label": "Implementation Guidance",
+      "description": "Captures the engineering directives required to build the logic transformer stack.",
+      "sections": [
+        "APP_API_SPEC",
+        "APP_MDE",
+        "APP_MECH"
+      ],
+      "supporting_appendices": [],
+      "storyline_beats": [
+        "supporting_resources"
+      ],
+      "depends_on_threads": [
+        "mde_pyramid"
+      ],
+      "feeds_threads": [
+        "mechanization_artifacts"
+      ]
+    },
+    {
+      "thread_id": "foundations_background",
+      "label": "Category-Theoretic Background",
+      "description": "Provides categorical preliminaries that justify the L/B/R and monoidal structures.",
+      "sections": [
+        "APP_CAT"
+      ],
+      "supporting_appendices": [],
+      "storyline_beats": [
+        "supporting_resources"
+      ],
+      "depends_on_threads": [],
+      "feeds_threads": [
+        "logic_foundations"
+      ]
+    },
+    {
+      "thread_id": "mechanization_artifacts",
+      "label": "Mechanisation Catalogue",
+      "description": "Tracks the formal artefacts and exporter modules supporting reproducibility.",
+      "sections": [
+        "APP_MECH"
+      ],
+      "supporting_appendices": [],
+      "storyline_beats": [
+        "supporting_resources"
+      ],
+      "depends_on_threads": [
+        "implementation_support",
+        "domain_morphisms",
+        "number_theory_application"
+      ],
+      "feeds_threads": []
+    },
+    {
+      "thread_id": "notation_reference",
+      "label": "Notation Reference",
+      "description": "Maintains a shared notation vocabulary serving the cross-domain ledger.",
+      "sections": [
+        "APP_NOTATION"
+      ],
+      "supporting_appendices": [],
+      "storyline_beats": [
+        "supporting_resources"
+      ],
+      "depends_on_threads": [],
+      "feeds_threads": [
+        "computational_unification",
+        "logic_foundations",
+        "number_theory_application"
+      ]
+    },
+    {
+      "thread_id": "symbol_organization",
+      "label": "Symbol Organization Framework",
+      "description": "Establishes the four-regulator system (ad0-ad3) and true moduli space (a0-a3) with clear distinctions.",
+      "sections": [
+        "S02",
+        "S03"
+      ],
+      "supporting_appendices": [
+        "APP_NOTATION"
+      ],
+      "storyline_beats": [
+        "establish_symbol_distinction"
+      ],
+      "depends_on_threads": [
+        "computational_unification"
+      ],
+      "feeds_threads": [
+        "regularization_rg",
+        "logic_foundations"
+      ]
+    },
+    {
+      "thread_id": "divergence_mapping",
+      "label": "Divergence Mapping Framework",
+      "description": "Maps logical inconsistencies to domain-specific divergences through domain morphisms.",
+      "sections": [
+        "S03",
+        "S11"
+      ],
+      "supporting_appendices": [],
+      "storyline_beats": [
+        "establish_divergence_mapping"
+      ],
+      "depends_on_threads": [
+        "regularization_rg",
+        "logic_foundations"
+      ],
+      "feeds_threads": [
+        "domain_morphisms",
+        "consistency_validation"
+      ]
+    }

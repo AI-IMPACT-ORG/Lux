@@ -14,6 +14,7 @@
 \usepackage{float}
 \usepackage{subcaption}
 \usepackage{siunitx}
+\usepackage{physics}
 \usepackage{braket}
 \usepackage{bm}
 \usepackage{bussproofs}
@@ -25,7 +26,16 @@
 \usepackage{xcolor}
 \usepackage{tikz}
 \usepackage{pgfplots}
-\usepackage{physics}
+
+% Package compatibility fixes
+\pgfplotsset{compat=1.18}
+\sisetup{detect-all,separate-uncertainty=false}
+
+% Hyperref configuration
+\hypersetup{
+    pdfborder={0 0 0},
+    hidelinks
+}
 
 % Theorem environments
 \theoremstyle{definition}
@@ -67,6 +77,12 @@
 % Define axiom environment
 \newtheorem{axiom}{Axiom}[section]
 
+% Define assumption environment
+\newtheorem{assumption}{Assumption}[section]
+
+% Define notation environment
+\newtheorem{notation}{Notation}[section]
+
 % Formatting macros for consistent terminology
 \newcommand{\localinst}{Local institution}
 \newcommand{\globalinst}{Global institution}
@@ -92,14 +108,14 @@
 % Listings setup
 \lstset{
     basicstyle=\ttfamily\small,
-    keywordstyle=\color{blue},
-    commentstyle=\color{gray},
-    stringstyle=\color{red},
+    keywordstyle=\colour{blue},
+    commentstyle=\colour{gray},
+    stringstyle=\colour{red},
     numbers=left,
     numberstyle=\tiny,
     stepnumber=1,
     numbersep=5pt,
-    backgroundcolor=\color{gray!10},
+    backgroundcolor=\colour{gray!10},
     showspaces=false,
     showstringspaces=false,
     showtabs=false,
@@ -112,7 +128,7 @@
 }
 
 % Title and author information
-\title{Renormalization Logic is Effective Logic}
+\title{Effective logic is a consistent, coherent and effective foundational model of logic}
 \author{Rutger Boels\\AI.IMPACT GmbH\\Neuer Jungfernstieg 5\\Hamburg}
 \date{\today}
 
@@ -125,7 +141,7 @@
 \input{abstract}
 
 % Keywords
-Keywords: renormalization group, computation semantics, formal logic, quantum field theory, large language models, AGT correspondence
+Keywords: umbral domain map, truncation compatibility, conservative extension, renormalisation group, computation semantics, formal logic, quantum field theory, large language models, AGT correspondence, z→1-z duality
 
 % Table of contents
 \tableofcontents
@@ -133,31 +149,38 @@ Keywords: renormalization group, computation semantics, formal logic, quantum fi
 
 % Main content
 \input{introduction}
-\input{sections/S01_from_computation_to_logic}
-\input{sections/S02_regularization_makes_formal}
-\input{sections/S03_rg_flow_reveals_dynamics}
-\input{sections/S04_renormalization_refines_truth}
-\input{sections/S05_formal_logic_emerges}
-\input{sections/S06_truth_as_fixed_point}
-\input{sections/S07_effective_logic_implements}
-\input{sections/S08_consistency_validates}
-\input{sections/S09_boundary_maps_connect}
-\input{sections/S10_llms_demonstrate_applications}
-\input{sections/S11_domain_morphisms_unify}
-\input{sections/S12_applications_reveal_fundamentals}
+
+% Act 1: Establish Foundations
+\input{sections/S00}  % Universal Domain Translation Map
+\input{sections/S01}  % Unified Computation Ledger (G4 generating functional)
+\input{sections/S02}  % Regulator Framework (four-regulator system)
+\input{sections/S03}  % RG Flow and Truncation Compatibility
+\input{sections/S03A} % An Invitation to Scattering: CLEAN–S(Λ)
+\input{sections/S04}  % renormalisation Domain
+
+% Act 2: Build the Logic Transformer
+\input{sections/S05}  % Interacting Positive Logic
+\input{sections/S06}  % Truth Domain Semantics (RG fixed points)
+\input{sections/S07}  % Effective Logic Conservative Extension
+
+% Act 3: Validate and Apply
+\input{sections/S08}  % Consistency and RC Conservation
+\input{sections/S09}  % Boundary Maps and Holographic Duality
+\input{sections/S10}  % LLM Domain Morphisms
+\input{sections/S11}  % Universal Domain Morphisms
+\input{sections/S12}  % Spectral Duality
 
 \input{conclusion}
 \input{discussion}
 \input{acknowledgements}
 
 % Appendices
-\input{sections/appendix_notation}
-\input{sections/appendix_mde_pyramid}
-\input{sections/appendix_api_specifications}
-\input{sections/appendix_category_theory}
+\input{sections/appendix_implementation}
+\input{sections/appendix_mathematical_background}
+\input{sections/appendix_technical_derivations}
 
 % Bibliography
 \bibliographystyle{plain}
-\bibliography{references}
+\bibliography{bibliography}
 
 \end{document}

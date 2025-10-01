@@ -1,0 +1,29 @@
+\section{An Invitation to Scattering: CLEAN–S($\Lambda$)}
+\label{sec:scattering-invitation}
+
+Having established the computational framework in Section~\ref{sec:computation-paradigms}, we now specialise to the physics domain through S-matrix semantics. This section demonstrates how the universal $\mathsf{Gen4}$ primitive and L/B/R structure naturally accommodate scattering theory with cosmological constant $\Lambda$.
+
+Let the port fix a $G_\Lambda$–action (ISO(1,3), SO(1,4), SO(2,3) by sign of $\Lambda$) on L/R boundary data. Define for integer regulator $N$:
+\[
+\boxed{S_N(\Lambda) := \nu_R \circ NF_{\mu_L,\theta_L,\mu_R,\theta_R} \circ K^N \circ \iota_L,}
+\]
+and, when it exists, $S(\Lambda)=\lim_{N\to\infty}S_N(\Lambda)$. Here $K$ is the step‑kernel supplied by the port, and $NF_{\cdots}$ is the four‑moduli parametric normaliser from CLASS (§4). The port also supplies a complete channel family $\{P_\alpha\}\subset\mathrm{End}(R)$ (PSDM/POVM). Then the \textbf{regulated cross‑section} for channel $\alpha$ is the \textbf{partial norm}
+\[
+\boxed{\sigma_{\alpha;N}(\Lambda) := \big|P_\alpha S_N(\Lambda) \psi_{\mathrm{in}}\big|^2,}
+\]
+which is stable under regulator inclusion and compatible with moduli flows (PSDM stability + idempotent scheme headers). This packages:
+
+\begin{itemize}
+\item \textbf{(S1) $\Lambda$‑covariance.} $(U_R(g),S_N=S_N,U_L(g))$ for $g\in G_\Lambda$.
+\item \textbf{(S2) Locality (observable form).} If two left insertions are spacelike (per port geometry), $\nu_R([\mathcal O_1,\mathcal O_2])=0_R$.
+\item \textbf{(S3) Partial unitarity / optical identity.} $\sum_\alpha|P_\alpha S_N\psi|^2=|\psi|^2$. Forward‑channel reduction is the optical identity; its RG trace is your CS equation (§5.8).
+\item \textbf{(S4) Moduli‑analyticity \& crossing.} Amplitudes in complexified moduli extend holomorphically on the port domain; triality/conjugations implement crossing (§§3,7,11).
+\item \textbf{(S5) Cluster/factorisation along flows.} Factorisation holds along large‑separation or block‑$k$ flows compatible with $NF$ (§5).
+\item \textbf{(S6) Flow‑consistency of $\sigma_{\alpha;N}$.} Regulator inclusions and moduli updates change $\sigma_{\alpha;N}$ only within the port's truncation error (PSDM ``stable in inclusions''). (Anchors: §4.1 normaliser; §4.2 regulator map; §4.6 normalisation axioms.)
+\end{itemize}
+
+\textbf{$\Lambda>0$ / $\Lambda=0$ / $\Lambda<0$.} For $\Lambda>0$ (dS), interpret $S$ as \textbf{transfer} between temporal boundaries (or static‑patch isometry); for $\Lambda=0$, standard scattering; for $\Lambda<0$ (AdS), \textbf{extract $S$} as a flat‑space limit of boundary correlators (port obligation). This keeps the Core constructive and the residual invisible (bulk = two boundaries). (Anchors: §7.19 ``Holographic renormalisation''; §11 ``Double self‑boundary maps''.)
+
+\textit{Pointer:} The universal generator $G(z,\bar z;\vec q,\Lambda)$ already provides the observable envelope (§2); $S_N$ is just the domain‑specialised composite of your existing maps.
+
+This scattering framework will inform our understanding of RG flow (Section~\ref{sec:rg-flow}), where the optical identity connects to the Callan–Symanzik equation, and renormalisation (Section~\ref{sec:renormalisation}), where LSZ-type limits extract physical observables from boundary correlators.

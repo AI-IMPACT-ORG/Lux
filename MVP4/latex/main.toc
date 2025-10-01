@@ -1,155 +1,173 @@
-\contentsline {section}{\numberline {1}Introduction}{8}{section.1}%
-\contentsline {paragraph}{Terminology conventions.}{9}{section*.2}%
-\contentsline {subsection}{\numberline {1.1}Running Toy Example}{9}{subsection.1.1}%
-\contentsline {subsection}{\numberline {1.2}Terminology at a Glance}{10}{subsection.1.2}%
-\contentsline {subsection}{\numberline {1.3}Data Dictionary: Symbols, Domains, and Dimensions}{10}{subsection.1.3}%
-\contentsline {paragraph}{Physical Interpretation.}{10}{section*.5}%
-\contentsline {paragraph}{Computational Interpretation.}{11}{section*.6}%
-\contentsline {subsection}{\numberline {1.4}What This Paper Is Not}{11}{subsection.1.4}%
-\contentsline {section}{\numberline {2}An Invitation to Computation: Three Views Unified}{11}{section.2}%
-\contentsline {subsection}{\numberline {2.1}The Computational Cycle}{11}{subsection.2.1}%
-\contentsline {paragraph}{Parameter Dependence and Input/Output Structure}{12}{section*.7}%
+\contentsline {section}{\numberline {1}Introduction}{9}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Models of logic}{9}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Generating functions}{9}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}About this paper}{9}{subsection.1.3}%
+\contentsline {paragraph}{Contributions.}{10}{section*.2}%
+\contentsline {paragraph}{Normative stance.}{10}{section*.3}%
+\contentsline {section}{\numberline {2}Universal Domain Translation Map}{11}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Core Generating Function Structure}{11}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Comprehensive Domain Translation Table}{11}{subsection.2.2}%
+\contentsline {section}{\numberline {3}An Invitation to Computation: Three Views Unified}{11}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Unified Computational Framework}{12}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Reversibility Constraint (RC†)}{12}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}The Universal Computational Cycle}{12}{subsection.3.3}%
+\contentsline {paragraph}{Parameter Relationships and Green's Functions}{12}{section*.6}%
+\contentsline {paragraph}{Parameter Dependence and Input/Output Structure}{13}{section*.7}%
 \contentsline {paragraph}{Fixed Operator Insertion Correlator}{13}{section*.8}%
-\contentsline {paragraph}{Virasoro representation (for hep-th readers)}{13}{section*.9}%
-\contentsline {subsection}{\numberline {2.2}Three Computational Paradigms}{13}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}Example: The Church-Turing Equivalence}{14}{subsection.2.3}%
-\contentsline {subsection}{\numberline {2.4}Summary and Outlook}{15}{subsection.2.4}%
-\contentsline {section}{\numberline {3}The Regulator View: Understanding Compilation}{15}{section.3}%
-\contentsline {paragraph}{Hand-off from Section~\ref {sec:computation-paradigms}}{15}{section*.10}%
-\contentsline {paragraph}{What this section adds}{15}{section*.11}%
-\contentsline {subsection}{\numberline {3.1}The Regulator View of Computation}{16}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Regulator Hierarchy}{16}{subsection.3.2}%
-\contentsline {subsection}{\numberline {3.3}Termination Condition as Regularization}{17}{subsection.3.3}%
-\contentsline {subsection}{\numberline {3.4}Regularization Principles}{17}{subsection.3.4}%
-\contentsline {paragraph}{Two kinds of regularization.}{17}{section*.12}%
-\contentsline {subsection}{\numberline {3.5}Axioms aligning computational views and universality up to normalization}{18}{subsection.3.5}%
-\contentsline {paragraph}{Motivation.}{19}{section*.13}%
-\contentsline {subsection}{\numberline {3.6}Example: Peano universality across views}{19}{subsection.3.6}%
-\contentsline {paragraph}{Four presentations.}{19}{section*.14}%
-\contentsline {paragraph}{Encoders and normalization.}{20}{section*.15}%
-\contentsline {subsection}{\numberline {3.7}Summary and Outlook}{20}{subsection.3.7}%
-\contentsline {section}{\numberline {4}RG Flow and Computational Behavior}{20}{section.4}%
-\contentsline {paragraph}{Hand-off from Section~\ref {sec:regularization}}{20}{section*.16}%
-\contentsline {paragraph}{RG flow observables vs renormalization conditions}{21}{section*.17}%
-\contentsline {subsection}{\numberline {4.1}RG Flow Behavior Classification}{21}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}RG Flow-Computational Correspondence}{21}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}The General RG Flow Operator}{22}{subsection.4.3}%
-\contentsline {subsection}{\numberline {4.4}RG Flow Equations}{22}{subsection.4.4}%
-\contentsline {subsection}{\numberline {4.5}Computational Beta Functions}{22}{subsection.4.5}%
-\contentsline {subsection}{\numberline {4.6}Callan-Symanzik Equation as Trace}{23}{subsection.4.6}%
-\contentsline {subsection}{\numberline {4.7}RG Fixed Points and Universality Classes}{24}{subsection.4.7}%
-\contentsline {subsection}{\numberline {4.8}Speculative AGT Connection}{24}{subsection.4.8}%
-\contentsline {subsection}{\numberline {4.9}Summary and Outlook}{24}{subsection.4.9}%
-\contentsline {section}{\numberline {5}Renormalization: From Raw to Refined}{24}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Unrenormalized vs Renormalized Correlators}{25}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}Complete Renormalization Procedure}{25}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}Key Differences and RG Fixed Points}{26}{subsection.5.3}%
-\contentsline {subsection}{\numberline {5.4}Renormalization Group Equations}{27}{subsection.5.4}%
-\contentsline {subsection}{\numberline {5.5}Summary and Outlook}{27}{subsection.5.5}%
-\contentsline {section}{\numberline {6}Logic Transformer Framework}{27}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Design Crosswalk: Paper $\leftrightarrow $ Implementation}{27}{subsection.6.1}%
-\contentsline {subsection}{\numberline {6.2}Conservative Extension of Logic}{28}{subsection.6.2}%
-\contentsline {subsection}{\numberline {6.3}Hierarchical Deformation of Truth Systems}{28}{subsection.6.3}%
-\contentsline {subsection}{\numberline {6.4}The Logic Transformer}{29}{subsection.6.4}%
-\contentsline {subsection}{\numberline {6.5}Kernel, Co-kernel, and Spectrum}{29}{subsection.6.5}%
-\contentsline {subsection}{\numberline {6.6}Connections to Programming Languages and Logic}{29}{subsection.6.6}%
-\contentsline {subsection}{\numberline {6.7}Correlator Interpretation}{29}{subsection.6.7}%
-\contentsline {subsection}{\numberline {6.8}Holographic Renormalization}{29}{subsection.6.8}%
-\contentsline {subsection}{\numberline {6.9}Summary and Outlook}{30}{subsection.6.9}%
-\contentsline {section}{\numberline {7}Truth as Fixed Point: RG Flow as Logical Semantics}{30}{section.7}%
-\contentsline {subsection}{\numberline {7.1}Regularization as Deformation}{30}{subsection.7.1}%
-\contentsline {subsection}{\numberline {7.2}Hierarchical Deformation of Truth Systems}{31}{subsection.7.2}%
-\contentsline {subsection}{\numberline {7.3}Two Boundaries with Direction and Holographic Renormalization}{31}{subsection.7.3}%
-\contentsline {subsection}{\numberline {7.4}Spectral Gap and Computational Semantics}{31}{subsection.7.4}%
-\contentsline {subsection}{\numberline {7.5}Truth as RG Fixed Point}{32}{subsection.7.5}%
-\contentsline {subsection}{\numberline {7.6}Computational Semantics}{32}{subsection.7.6}%
-\contentsline {subsection}{\numberline {7.7}Summary and Outlook}{32}{subsection.7.7}%
-\contentsline {section}{\numberline {8}Effective Logic as MDE-Pyramid of Logics}{32}{section.8}%
-\contentsline {subsection}{\numberline {8.1}Convolution of Formal Systems and Effective Theory}{33}{subsection.8.1}%
-\contentsline {subsection}{\numberline {8.2}MDE Pyramid Structure}{33}{subsection.8.2}%
-\contentsline {subsection}{\numberline {8.3}Hierarchy of Logics}{33}{subsection.8.3}%
-\contentsline {subsection}{\numberline {8.4}Inter-Level Mappings}{34}{subsection.8.4}%
-\contentsline {subsection}{\numberline {8.5}Summary and Outlook}{34}{subsection.8.5}%
-\contentsline {section}{\numberline {9}Consistency, Compactness - Relation to Known Theorems}{34}{section.9}%
-\contentsline {subsection}{\numberline {9.1}Blum Axioms and P vs NP Classification}{34}{subsection.9.1}%
-\contentsline {subsection}{\numberline {9.2}Hilbert-Polya Operator and Zeta-Function Interpretation}{35}{subsection.9.2}%
-\contentsline {subsection}{\numberline {9.3}Mass-Gap Theorem Connection}{36}{subsection.9.3}%
-\contentsline {subsection}{\numberline {9.4}Domain Maps and Generality}{36}{subsection.9.4}%
-\contentsline {subsection}{\numberline {9.5}Summary and Outlook}{36}{subsection.9.5}%
-\contentsline {section}{\numberline {10}Renormalization and Double Self-Boundary Maps}{36}{section.10}%
-\contentsline {subsection}{\numberline {10.1}CFT Conformal Blocks and AGT Correspondence}{37}{subsection.10.1}%
-\contentsline {subsection}{\numberline {10.2}Virasoro Algebra and AGT Correspondence}{37}{subsection.10.2}%
-\contentsline {subsection}{\numberline {10.3}Parameter Mappings and Extended RG Equations}{38}{subsection.10.3}%
-\contentsline {subsection}{\numberline {10.4}Beta and Gamma Functions}{38}{subsection.10.4}%
-\contentsline {subsection}{\numberline {10.5}a-functions and c-functions}{38}{subsection.10.5}%
-\contentsline {subsection}{\numberline {10.6}Conformal Blocks and Information Theory}{39}{subsection.10.6}%
-\contentsline {subsection}{\numberline {10.7}Summary and Outlook}{39}{subsection.10.7}%
-\contentsline {section}{\numberline {11}Learning as Renormalisation of Correlators}{40}{section.11}%
-\contentsline {paragraph}{Dictionary (physics $\leftrightarrow $ training).}{40}{section*.19}%
-\contentsline {paragraph}{Parameter Map: LLM Moduli Space $\leftrightarrow $ Computational Framework}{40}{section*.20}%
-\contentsline {paragraph}{Connection to Generating Function}{40}{section*.21}%
-\contentsline {subsection}{\numberline {11.1}Generating functionals and Green's functions}{41}{subsection.11.1}%
-\contentsline {subsection}{\numberline {11.2}Renormalisation and $Z$-factors}{41}{subsection.11.2}%
-\contentsline {subsection}{\numberline {11.3}Effective action and RG flow}{42}{subsection.11.3}%
-\contentsline {subsection}{\numberline {11.4}LLM Training as Computational RG Flow}{42}{subsection.11.4}%
-\contentsline {subsection}{\numberline {11.5}Concrete example: GPT scaling laws}{43}{subsection.11.5}%
-\contentsline {subsection}{\numberline {11.6}MSRJD representation and stochastic dynamics}{44}{subsection.11.6}%
-\contentsline {subsection}{\numberline {11.7}Stability analysis and phase transitions}{44}{subsection.11.7}%
-\contentsline {subsection}{\numberline {11.8}Summary and outlook}{45}{subsection.11.8}%
-\contentsline {section}{\numberline {12}Spectral Gap Theorem and Applications}{45}{section.12}%
-\contentsline {subsection}{\numberline {12.1}Hilbert-Polya Operator and Zeta-Function Interpretation}{46}{subsection.12.1}%
-\contentsline {subsection}{\numberline {12.2}Spectral Gap and Information Theory}{46}{subsection.12.2}%
-\contentsline {subsection}{\numberline {12.3}Domain Map Generality}{46}{subsection.12.3}%
-\contentsline {subsection}{\numberline {12.4}Mass-Gap Theorem Connection}{47}{subsection.12.4}%
-\contentsline {subsection}{\numberline {12.5}Applications to Number Theory and Function Theory}{47}{subsection.12.5}%
-\contentsline {subsection}{\numberline {12.6}Spectral Gap and Computational Complexity}{47}{subsection.12.6}%
-\contentsline {subsection}{\numberline {12.7}Summary and Outlook}{47}{subsection.12.7}%
-\contentsline {section}{\numberline {13}Conclusions and Future Work}{48}{section.13}%
-\contentsline {section}{\numberline {14}Discussion}{49}{section.14}%
-\contentsline {section}{\numberline {A}Notation Guide}{51}{appendix.A}%
-\contentsline {subsection}{\numberline {A.1}Basic Mathematical Notation}{51}{subsection.A.1}%
-\contentsline {subsection}{\numberline {A.2}Set Theory and Logic}{51}{subsection.A.2}%
-\contentsline {subsection}{\numberline {A.3}Function and Operator Notation}{52}{subsection.A.3}%
-\contentsline {subsection}{\numberline {A.4}Computational Paradigms}{52}{subsection.A.4}%
-\contentsline {subsection}{\numberline {A.5}Generating Function Notation}{52}{subsection.A.5}%
-\contentsline {subsection}{\numberline {A.6}Renormalization Group Notation}{53}{subsection.A.6}%
-\contentsline {subsection}{\numberline {A.7}Formal Logic Notation}{53}{subsection.A.7}%
-\contentsline {subsection}{\numberline {A.8}Logic Transformer Notation}{53}{subsection.A.8}%
-\contentsline {subsection}{\numberline {A.9}Effective Logic Notation}{54}{subsection.A.9}%
-\contentsline {subsection}{\numberline {A.10}Quantum and Physics Notation}{54}{subsection.A.10}%
-\contentsline {subsection}{\numberline {A.11}LLM and Scaling Notation}{54}{subsection.A.11}%
-\contentsline {subsection}{\numberline {A.12}Spectral Gap Notation}{55}{subsection.A.12}%
-\contentsline {subsection}{\numberline {A.13}Category Theory Notation}{55}{subsection.A.13}%
-\contentsline {subsection}{\numberline {A.14}Special Symbols and Operators}{55}{subsection.A.14}%
-\contentsline {subsection}{\numberline {A.15}Abbreviations}{56}{subsection.A.15}%
-\contentsline {subsection}{\numberline {A.16}Concrete Worked Example: Paper $\leftrightarrow $ Implementation}{56}{subsection.A.16}%
-\contentsline {subsection}{\numberline {A.17}Symbol Crosswalk Table}{57}{subsection.A.17}%
-\contentsline {section}{\numberline {A}Complete Formal Definition of the MDE Pyramid of Logic}{57}{appendix.A}%
-\contentsline {subsection}{\numberline {A.1}Basic Definitions}{57}{subsection.A.1}%
-\contentsline {subsection}{\numberline {A.2}Level 0: Basic Logical Primitives}{58}{subsection.A.2}%
-\contentsline {subsection}{\numberline {A.3}Level 1: Computational Paradigms}{58}{subsection.A.3}%
-\contentsline {subsection}{\numberline {A.4}Level 2: Domain Models}{59}{subsection.A.4}%
-\contentsline {subsection}{\numberline {A.5}Level 3: Applications}{60}{subsection.A.5}%
-\contentsline {subsection}{\numberline {A.6}Inter-level Mappings}{60}{subsection.A.6}%
-\contentsline {subsection}{\numberline {A.7}Consistency and Completeness}{60}{subsection.A.7}%
-\contentsline {subsection}{\numberline {A.8}Properties of the MDE Pyramid}{61}{subsection.A.8}%
-\contentsline {subsection}{\numberline {A.9}Connection to Previous Sections}{61}{subsection.A.9}%
-\contentsline {section}{\numberline {B}Category Theory Background}{61}{appendix.B}%
-\contentsline {subsection}{\numberline {B.1}Basic Category Theory}{62}{subsection.B.1}%
-\contentsline {subsection}{\numberline {B.2}Functors}{62}{subsection.B.2}%
-\contentsline {subsection}{\numberline {B.3}Natural Transformations}{63}{subsection.B.3}%
-\contentsline {subsection}{\numberline {B.4}Adjoint Functors}{63}{subsection.B.4}%
-\contentsline {subsection}{\numberline {B.5}Monads}{63}{subsection.B.5}%
-\contentsline {subsection}{\numberline {B.6}Applications to Logic}{63}{subsection.B.6}%
-\contentsline {subsubsection}{\numberline {B.6.1}Category of Logic Systems}{63}{subsubsection.B.6.1}%
-\contentsline {subsubsection}{\numberline {B.6.2}Functors in Our Framework}{64}{subsubsection.B.6.2}%
-\contentsline {subsubsection}{\numberline {B.6.3}Natural Transformations}{64}{subsubsection.B.6.3}%
-\contentsline {subsection}{\numberline {B.7}Institutions}{64}{subsection.B.7}%
-\contentsline {subsection}{\numberline {B.8}Applications to Our Framework}{64}{subsection.B.8}%
-\contentsline {subsubsection}{\numberline {B.8.1}Category of Formal Systems}{64}{subsubsection.B.8.1}%
-\contentsline {subsubsection}{\numberline {B.8.2}Category of Logics}{65}{subsubsection.B.8.2}%
-\contentsline {subsubsection}{\numberline {B.8.3}Functor from Formal Systems to Logics}{65}{subsubsection.B.8.3}%
-\contentsline {subsection}{\numberline {B.9}Monads in Computation}{65}{subsection.B.9}%
-\contentsline {subsubsection}{\numberline {B.9.1}State Monad}{65}{subsubsection.B.9.1}%
-\contentsline {subsubsection}{\numberline {B.9.2}Continuation Monad}{65}{subsubsection.B.9.2}%
-\contentsline {subsection}{\numberline {B.10}Connection to Our Framework}{65}{subsection.B.10}%
+\contentsline {subsection}{\numberline {3.4}Three Computational Paradigms}{13}{subsection.3.4}%
+\contentsline {section}{\numberline {4}The Regulator View: Understanding Compilation}{14}{section.4}%
+\contentsline {paragraph}{What this section adds}{14}{section*.9}%
+\contentsline {subsection}{\numberline {4.1}Four-Moduli Parametric Normaliser}{14}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}The Regulator View of Computation in L/B/R Structure}{15}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Regulator Hierarchy}{15}{subsection.4.3}%
+\contentsline {paragraph}{Syntactic vs semantic regulators:}{15}{section*.10}%
+\contentsline {subsection}{\numberline {4.4}Termination Condition as Regularization}{15}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}Regularization Principles}{15}{subsection.4.5}%
+\contentsline {subsection}{\numberline {4.6}Example: Peano universality across views}{16}{subsection.4.6}%
+\contentsline {paragraph}{Four presentations.}{16}{section*.11}%
+\contentsline {paragraph}{Encoders and normalisation.}{16}{section*.12}%
+\contentsline {subsection}{\numberline {4.7}Summary and Outlook}{16}{subsection.4.7}%
+\contentsline {paragraph}{Back to the computation ledger.}{17}{section*.13}%
+\contentsline {section}{\numberline {5}RG Flow and Computational Behavior}{17}{section.5}%
+\contentsline {paragraph}{RG flow observables vs renormalisation conditions}{17}{section*.14}%
+\contentsline {subsection}{\numberline {5.1}Dimensionless Couplings and RG Flow}{17}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}RG Operator and $\beta $-System}{18}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Single Observable $\mathcal {O}(\Lambda )$}{18}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Callan–Symanzik Equation as Trace}{19}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5.5}RG Fixed Points and Universality Classes}{19}{subsection.5.5}%
+\contentsline {subsection}{\numberline {5.6}AGT Connection (Interpretation)}{19}{subsection.5.6}%
+\contentsline {subsection}{\numberline {5.7}Summary and Outlook}{19}{subsection.5.7}%
+\contentsline {paragraph}{Ledger note.}{20}{section*.16}%
+\contentsline {section}{\numberline {6}An Invitation to Scattering: CLEAN–S($\Lambda $)}{20}{section.6}%
+\contentsline {section}{\numberline {7}renormalisation: From Raw to Refined}{21}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Scale and Phase Scalars}{21}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Bare vs Renormalized Correlators}{22}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Complete renormalisation Procedure}{22}{subsection.7.3}%
+\contentsline {subsection}{\numberline {7.4}Key Differences and RG Fixed Points}{23}{subsection.7.4}%
+\contentsline {subsection}{\numberline {7.5}renormalisation Group Equations}{24}{subsection.7.5}%
+\contentsline {subsection}{\numberline {7.6}Summary and Outlook}{24}{subsection.7.6}%
+\contentsline {paragraph}{Log-domain semiring.}{24}{section*.17}%
+\contentsline {paragraph}{Ledger note.}{24}{section*.18}%
+\contentsline {section}{\numberline {8}Interacting Positive Logic: Formal Definition}{25}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Primitive Symbol Set}{25}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}Domain Translation Architecture}{25}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8.3}Design Principles}{26}{subsection.8.3}%
+\contentsline {paragraph}{Detailed Axioms.}{26}{section*.19}%
+\contentsline {subsection}{\numberline {8.4}Core Theorems}{26}{subsection.8.4}%
+\contentsline {subsection}{\numberline {8.5}Simplified Equality Hierarchy}{26}{subsection.8.5}%
+\contentsline {subsection}{\numberline {8.6}Context Grammars}{27}{subsection.8.6}%
+\contentsline {paragraph}{Context grammar completeness.}{27}{section*.20}%
+\contentsline {subsection}{\numberline {8.7}Derived Generating Functionals}{27}{subsection.8.7}%
+\contentsline {subsection}{\numberline {8.8}Implementation Correspondence}{28}{subsection.8.8}%
+\contentsline {subsection}{\numberline {8.9}Conservativity Theorem}{28}{subsection.8.9}%
+\contentsline {subsection}{\numberline {8.10}Hierarchical Deformation of Truth Systems}{28}{subsection.8.10}%
+\contentsline {subsection}{\numberline {8.11}The Logic Transformer}{28}{subsection.8.11}%
+\contentsline {subsection}{\numberline {8.12}Kernel, Co-kernel, and Spectrum}{29}{subsection.8.12}%
+\contentsline {subsection}{\numberline {8.13}Connections to Programming Languages and Logic}{29}{subsection.8.13}%
+\contentsline {subsection}{\numberline {8.14}Correlator Interpretation}{29}{subsection.8.14}%
+\contentsline {subsection}{\numberline {8.15}Holographic renormalisation}{29}{subsection.8.15}%
+\contentsline {section}{\numberline {9}Truth as Fixed Point: RG Flow as Logical Semantics}{29}{section.9}%
+\contentsline {subsection}{\numberline {9.1}Observable Metric and Contractivity}{30}{subsection.9.1}%
+\contentsline {subsection}{\numberline {9.2}Regularization as Deformation of L/B/R Structure}{31}{subsection.9.2}%
+\contentsline {subsection}{\numberline {9.3}Equality Layers and Deformation}{31}{subsection.9.3}%
+\contentsline {subsection}{\numberline {9.4}Spectral Gap and Computational Semantics}{31}{subsection.9.4}%
+\contentsline {subsection}{\numberline {9.5}Truth as RG Fixed Point}{31}{subsection.9.5}%
+\contentsline {subsection}{\numberline {9.6}Computational Semantics}{32}{subsection.9.6}%
+\contentsline {subsection}{\numberline {9.7}Summary and Outlook}{32}{subsection.9.7}%
+\contentsline {section}{\numberline {10}Effective Logic as MDE-Pyramid of Logics}{33}{section.10}%
+\contentsline {subsection}{\numberline {10.1}MDE Pyramid Structure}{33}{subsection.10.1}%
+\contentsline {subsection}{\numberline {10.2}Convolution of Formal Systems}{33}{subsection.10.2}%
+\contentsline {subsection}{\numberline {10.3}Hierarchy of Logics}{34}{subsection.10.3}%
+\contentsline {subsection}{\numberline {10.4}Inter-Level Mappings}{34}{subsection.10.4}%
+\contentsline {subsection}{\numberline {10.5}Derived Generating Functionals}{34}{subsection.10.5}%
+\contentsline {subsection}{\numberline {10.6}Domain Translation Architecture}{34}{subsection.10.6}%
+\contentsline {section}{\numberline {11}Consistency, Compactness - Relation to Known Theorems}{35}{section.11}%
+\contentsline {subsection}{\numberline {11.1}Seven Core Theorems}{35}{subsection.11.1}%
+\contentsline {subsection}{\numberline {11.2}Internal complexity via the equality hierarchy (mechanised evidence)}{35}{subsection.11.2}%
+\contentsline {subsection}{\numberline {11.3}Generalised Rice Theorem for $\mathsf {Gen4}$ Generating Functions}{36}{subsection.11.3}%
+\contentsline {subsection}{\numberline {11.4}Hilbert–Pólya Operator and Zeta-Function Interpretation}{37}{subsection.11.4}%
+\contentsline {subsection}{\numberline {11.5}Mass-Gap Theorem Connection}{38}{subsection.11.5}%
+\contentsline {subsection}{\numberline {11.6}Domain Maps and Generality}{38}{subsection.11.6}%
+\contentsline {section}{\numberline {12}renormalisation and Double Self-Boundary Maps}{38}{section.12}%
+\contentsline {paragraph}{Domain map summary.}{39}{section*.22}%
+\contentsline {subsection}{\numberline {12.1}L/B/R Structure and Boundary Maps}{39}{subsection.12.1}%
+\contentsline {subsection}{\numberline {12.2}CFT Conformal Blocks and AGT Correspondence (Interpretation)}{39}{subsection.12.2}%
+\contentsline {subsection}{\numberline {12.3}Virasoro Algebra and AGT Correspondence (Interpretation)}{40}{subsection.12.3}%
+\contentsline {subsection}{\numberline {12.4}Parameter Mappings and Extended RG Equations}{40}{subsection.12.4}%
+\contentsline {subsection}{\numberline {12.5}Beta and Gamma Functions}{41}{subsection.12.5}%
+\contentsline {subsection}{\numberline {12.6}a-functions and c-functions}{41}{subsection.12.6}%
+\contentsline {subsection}{\numberline {12.7}Conformal Blocks and Information Theory}{41}{subsection.12.7}%
+\contentsline {subsection}{\numberline {12.8}Summary and Outlook}{42}{subsection.12.8}%
+\contentsline {section}{\numberline {13}Learning as renormalisation of Correlators}{43}{section.13}%
+\contentsline {subsection}{\numberline {13.1}LLM Parameter Mapping}{43}{subsection.13.1}%
+\contentsline {subsection}{\numberline {13.2}LLM Generating Function}{43}{subsection.13.2}%
+\contentsline {subsection}{\numberline {13.3}Training Correlators and renormalisation}{44}{subsection.13.3}%
+\contentsline {subsection}{\numberline {13.4}Callan–Symanzik Equation for Training}{44}{subsection.13.4}%
+\contentsline {subsection}{\numberline {13.5}Scaling Laws and RG Fixed Points}{44}{subsection.13.5}%
+\contentsline {subsection}{\numberline {13.6}MSRJD Representation and Stochastic Dynamics}{45}{subsection.13.6}%
+\contentsline {subsection}{\numberline {13.7}Connection to Universal Framework}{45}{subsection.13.7}%
+\contentsline {paragraph}{Technical Details.}{45}{section*.24}%
+\contentsline {section}{\numberline {14}Domain Morphisms and Universal Invariants}{46}{section.14}%
+\contentsline {paragraph}{Domain recap.}{46}{section*.25}%
+\contentsline {subsection}{\numberline {14.1}Representation Data Required}{46}{subsection.14.1}%
+\contentsline {subsection}{\numberline {14.2}Domain Morphisms and Universal Invariants}{46}{subsection.14.2}%
+\contentsline {subsection}{\numberline {14.3}Universal Invariants and Information Measures}{47}{subsection.14.3}%
+\contentsline {subsection}{\numberline {14.4}Multiple Entropy Types}{47}{subsection.14.4}%
+\contentsline {subsection}{\numberline {14.5}Two-Observer Information Exchange Model}{48}{subsection.14.5}%
+\contentsline {subsection}{\numberline {14.6}G6 Modal Convolution Framework}{48}{subsection.14.6}%
+\contentsline {subsection}{\numberline {14.7}Universal Truth Criteria}{48}{subsection.14.7}%
+\contentsline {subsection}{\numberline {14.8}Epistemic Status and Applications}{49}{subsection.14.8}%
+\contentsline {subsection}{\numberline {14.9}Mathematical Structure as Fundamental Reality}{49}{subsection.14.9}%
+\contentsline {section}{\numberline {15}Applications to Number Theory and Computational Complexity}{50}{section.15}%
+\contentsline {subsection}{\numberline {15.1}Reversibility Constraint RC† and Spectral Applications}{50}{subsection.15.1}%
+\contentsline {subsection}{\numberline {15.2}Hilbert–Pólya Operator and Zeta-Function Interpretation}{50}{subsection.15.2}%
+\contentsline {subsection}{\numberline {15.3}Spectral Gap and Information Theory}{52}{subsection.15.3}%
+\contentsline {subsection}{\numberline {15.4}Domain Map Generality}{52}{subsection.15.4}%
+\contentsline {subsection}{\numberline {15.5}Mass-Gap Theorem Connection}{53}{subsection.15.5}%
+\contentsline {subsection}{\numberline {15.6}Applications to Number Theory and Function Theory}{53}{subsection.15.6}%
+\contentsline {subsection}{\numberline {15.7}Spectral Gap and Computational Complexity}{54}{subsection.15.7}%
+\contentsline {section}{\numberline {16}Conclusions and Future Work}{55}{section.16}%
+\contentsline {section}{\numberline {17}Discussion}{56}{section.17}%
+\contentsline {section}{\numberline {A}Implementation and Mechanization}{58}{appendix.A}%
+\contentsline {subsection}{\numberline {A.1}API Specifications}{58}{subsection.A.1}%
+\contentsline {subsection}{\numberline {A.2}Test Suite}{58}{subsection.A.2}%
+\contentsline {subsection}{\numberline {A.3}Mechanization Artifacts}{58}{subsection.A.3}%
+\contentsline {subsection}{\numberline {A.4}Design Crosswalk: Paper $\leftrightarrow $ Implementation}{59}{subsection.A.4}%
+\contentsline {subsection}{\numberline {A.5}MDE Pyramid Implementation Structure}{59}{subsection.A.5}%
+\contentsline {subsubsection}{\numberline {A.5.1}M3 Layer: Metametamodel Foundation}{59}{subsubsection.A.5.1}%
+\contentsline {subsubsection}{\numberline {A.5.2}M2 Layer: Metamodel Structure}{59}{subsubsection.A.5.2}%
+\contentsline {subsubsection}{\numberline {A.5.3}M1 Layer: Model Logic}{59}{subsubsection.A.5.3}%
+\contentsline {subsubsection}{\numberline {A.5.4}M0 Layer: Runtime}{59}{subsubsection.A.5.4}%
+\contentsline {subsection}{\numberline {A.6}Submitted File Structure}{59}{subsection.A.6}%
+\contentsline {subsubsection}{\numberline {A.6.1}Core Logic Specifications}{59}{subsubsection.A.6.1}%
+\contentsline {subsubsection}{\numberline {A.6.2}Racket Module Specifications}{60}{subsubsection.A.6.2}%
+\contentsline {subsubsection}{\numberline {A.6.3}Exporter Modules}{60}{subsubsection.A.6.3}%
+\contentsline {subsection}{\numberline {A.7}Performance Characteristics}{60}{subsection.A.7}%
+\contentsline {subsection}{\numberline {A.8}Export Capabilities}{60}{subsection.A.8}%
+\contentsline {section}{\numberline {B}Mathematical Background and Notation}{60}{appendix.B}%
+\contentsline {subsection}{\numberline {B.1}Basic Mathematical Notation}{61}{subsection.B.1}%
+\contentsline {subsection}{\numberline {B.2}Set Theory and Logic}{61}{subsection.B.2}%
+\contentsline {subsection}{\numberline {B.3}Function and Operator Notation}{62}{subsection.B.3}%
+\contentsline {subsection}{\numberline {B.4}Computational Paradigms}{62}{subsection.B.4}%
+\contentsline {subsection}{\numberline {B.5}Generating Function Notation}{62}{subsection.B.5}%
+\contentsline {subsection}{\numberline {B.6}renormalisation Group Notation}{63}{subsection.B.6}%
+\contentsline {subsection}{\numberline {B.7}Formal Logic Notation}{63}{subsection.B.7}%
+\contentsline {subsection}{\numberline {B.8}Category Theory Background}{63}{subsection.B.8}%
+\contentsline {subsubsection}{\numberline {B.8.1}Basic Definitions}{63}{subsubsection.B.8.1}%
+\contentsline {subsubsection}{\numberline {B.8.2}Examples}{64}{subsubsection.B.8.2}%
+\contentsline {subsection}{\numberline {B.9}Implicit Functional Arguments Convention}{64}{subsection.B.9}%
+\contentsline {section}{\numberline {C}Technical Derivations and Detailed Analysis}{65}{appendix.C}%
+\contentsline {subsection}{\numberline {C.1}LLM Technical Derivations}{65}{subsection.C.1}%
+\contentsline {subsubsection}{\numberline {C.1.1}MSRJD Representation}{65}{subsubsection.C.1.1}%
+\contentsline {subsubsection}{\numberline {C.1.2}Beta Function Calculations}{65}{subsubsection.C.1.2}%
+\contentsline {subsubsection}{\numberline {C.1.3}Scaling Law Derivation}{66}{subsubsection.C.1.3}%
+\contentsline {subsection}{\numberline {C.2}Spectral Gap Analysis}{66}{subsection.C.2}%
+\contentsline {subsubsection}{\numberline {C.2.1}Hilbert–Pólya Operator Construction}{66}{subsubsection.C.2.1}%
+\contentsline {subsubsection}{\numberline {C.2.2}Spectral Gap Classification}{66}{subsubsection.C.2.2}%
+\contentsline {subsection}{\numberline {C.3}renormalisation Group Flow Analysis}{67}{subsection.C.3}%
+\contentsline {subsubsection}{\numberline {C.3.1}Callan–Symanzik Equation Derivation}{67}{subsubsection.C.3.1}%
+\contentsline {subsubsection}{\numberline {C.3.2}Fixed Point Analysis}{67}{subsubsection.C.3.2}%
+\contentsline {subsection}{\numberline {C.4}Information-Theoretic Measures}{67}{subsection.C.4}%
+\contentsline {subsubsection}{\numberline {C.4.1}Fisher Information Metric Calculation}{67}{subsubsection.C.4.1}%
+\contentsline {subsubsection}{\numberline {C.4.2}c-Function and a-Function}{68}{subsubsection.C.4.2}%
+\contentsline {subsection}{\numberline {C.5}Entropy Hierarchy Derivation}{68}{subsection.C.5}%

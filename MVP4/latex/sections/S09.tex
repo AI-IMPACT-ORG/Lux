@@ -1,0 +1,197 @@
+\section{renormalisation and Double Self-Boundary Maps}
+\label{sec:boundary-maps}
+
+Having established the consistency results in Section~\ref{sec:consistency}, we now present the construction of self-boundary maps using the $\mathsf{Gen4}$ primitive within the L/B/R structure. This section builds on the formal logic framework from Section~\ref{sec:formal-systems} and the truth semantics from Section~\ref{sec:truth-fixed-point}. In the physics domain, these boundary maps correspond to holographic duality and the AdS/CFT correspondence.
+
+This provides a deep mathematical structure that connects to holographic renormalisation \cite{henningson1998,deharo2001} and boundary physics. Recent work on holographic duality and algebraic structures \cite{costello2023} provides additional context for these connections. The interoperability map connects the logic layer to each domain through systematic translation maps. The boundary maps directly implement the Green's functions hierarchy through conformal blocks and holographic renormalisation.
+
+\paragraph{Domain map summary.} The interoperability map connects:
+\begin{itemize}
+  \item Computation $\to$ Physics: computation structures map to physics data (conformal blocks, AGT weights)
+  \item Physics $\to$ Learning: RG observables map to training correlators
+  \item Computation $\to$ Number Theory: spectral data maps to transfer operators relevant to the Riemann Hypothesis
+\end{itemize}
+
+\subsection{L/B/R Structure and Boundary Maps}
+
+\begin{definition}[Bulk = Two Boundaries Principle]
+\label{def:bulk-equals-boundaries}
+For any bulk term $t \in B$, the observable content equals the sum of boundary projections: $\nu_*(t) = \nu_*([L]t \oplus_B [R]t)$ for $* \in \{L,R\}$, where $[L]t = \iota_L \nu_L(t)$ and $[R]t = \iota_R \nu_R(t)$ are the boundary projectors. This is normative per the CLEAN v10 CLASS specification and ensures that bulk residuals remain invisible to observers.
+\end{definition}
+
+The L/B/R structure provides natural boundaries for the $\mathsf{Gen4}$ primitive:
+
+\begin{definition}[L/B/R Boundary Structure]
+\label{def:lbr-boundary}
+The $\mathsf{Gen4}$ primitive acts within the L/B/R structure as:
+\begin{itemize}
+\item Left boundary $L$: Input boundary with $\equiv_L$ equality
+\item Bulk $B$: Computational dynamics with $\equiv_B$ equality  
+\item Right boundary $R$: Output boundary with $\equiv_R$ equality
+\end{itemize}
+The primitive $\mathsf{Gen4} : B^4 \to B$ provides correlators between these boundaries, with all comparisons computed modulo the active quotient mask $qmask \subseteq \{\text{phase}, \text{scale}\}$ (default $\{\text{phase}\}$). 
+
+See Table~\ref{tab:universal-domain-translation} for the canonical cross-domain dictionary used in this section.
+\end{definition}
+
+\subsection{CFT Conformal Blocks and AGT Correspondence (Interpretation)}
+
+\begin{definition}[CFT Conformal Blocks]
+\label{def:conformal-blocks}
+Conformal blocks are the building blocks of correlation functions in conformal field theory. For a 4-point correlation function:
+\[
+\langle \phi_1(z_1) \phi_2(z_2) \phi_3(z_3) \phi_4(z_4) \rangle = \sum_p C_{12p} C_{34p} \mathcal{F}_p(z_i)
+\]
+where $\mathcal{F}_p(z_i)$ are the conformal blocks and $C_{ijk}$ are the structure constants.
+\end{definition}
+
+\begin{proposition}[$\mathsf{Gen4}$ as Conformal Block (Interpretation)]
+\label{thm:gen4-conformal}
+In a regime where operator insertions/registers match AGT quantum numbers, the $\mathsf{Gen4}$ primitive maps to a conformal block in CFT under port assumptions. Specifically:
+\[
+\mathsf{Gen4}(a_1, a_2, a_3, a_4) \mapsto \mathcal{F}_{\vec{q}}(a_1, a_2, a_3, a_4; \Lambda)
+\]
+where $\mathcal{F}_{\vec{q}}$ is a conformal block with external weights determined by the bulk terms $a_1, a_2, a_3, a_4$, internal weights determined by the grading parameters $\vec{q} = (q_1,q_2,q_3)$, and modular parameter $\Lambda$ controlling the scale. Cross-domain meanings are consolidated in Table~\ref{tab:universal-domain-translation}. The implicit functional arguments $z, \bar{z}$ are understood to be present (see Appendix~\ref{app:mathematical-background}).
+\end{proposition}
+
+\subsection{Virasoro Algebra and AGT Correspondence (Interpretation)}
+
+\begin{definition}[Virasoro Conformal Blocks]
+\label{def:virasoro-blocks}
+The Virasoro conformal blocks are constructed using the Virasoro algebra generators \cite{virasoro1970} $L_n$:
+\[
+\mathcal{F}_h(z) = \langle h | \phi_1(z_1) \phi_2(z_2) | h \rangle
+\]
+where $|h\rangle$ is a primary state with conformal weight $h$, and the block is computed using the Virasoro algebra:
+\[
+[L_m, L_n] = (m-n)L_{m+n} + \frac{c}{12}(m^3-m)\delta_{m,-n}
+\]
+\end{definition}
+
+\begin{definition}[AGT Correspondence]
+\label{def:agt-correspondence}
+The AGT correspondence relates 4D $\mathcal{N}=2$ gauge theories to 2D CFTs, connecting conformal blocks to instanton partition functions under port assumptions. The correspondence maps as:
+\[
+Z_{\text{instanton}}(a, m, q) \mapsto \sum_{\lambda} q^{|\lambda|} \prod_{\square \in \lambda} \frac{1}{E_{\square}(a, m)}
+\]
+where $E_{\square}$ is the equivariant Euler class and $\lambda$ runs over Young diagrams.
+\end{definition}
+
+\begin{proposition}[AGT-Computational Correspondence via $\mathsf{Gen4}$ (under domain-map assumptions)]
+\label{prop:agt-computational-gen4}
+The AGT correspondence naturally appears in the computational framework through the $\mathsf{Gen4}$ primitive structure under port assumptions. The three computational paradigms map to different limits of the AGT correspondence:
+\begin{align}
+\text{Turing Machines} &\mapsto \text{Classical limit of AGT} \\
+\text{Lambda Calculus} &\mapsto \text{Quantum limit of AGT} \\
+\text{Path Integrals} &\mapsto \text{Full AGT correspondence}
+\end{align}
+
+We interpret $\vec{q}$ as external weights $(h,\bar{h})$ (or AGT masses), and $\Lambda$ as the modulus / instanton counting parameter; details are deferred. The implicit functional arguments $z, \bar{z}$ encode presentation gauges (see Section~\ref{sec:computation-paradigms}).
+\textbf{Note:} This correspondence is conditional on the domain-map assumptions and should not be over-generalised.
+\end{proposition}
+
+\subsection{Parameter Mappings and Extended RG Equations}
+
+\begin{definition}[AGT Parameter Mappings]
+\label{def:agt-parameters}
+The AGT correspondence provides explicit parameter mappings:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|}
+\hline
+\textbf{AGT Parameters} & \textbf{Computational Parameters} \\
+\hline
+Weights/Couplings & \\
+\quad Gauge coupling $g^2$ & Scale parameter $\Lambda$ \\
+\quad Mass parameters $m_i$ & Grading parameters $q_i$ \\
+\hline
+Scales/Instanton $q$ & \\
+\quad $\Omega$-background $\epsilon_1, \epsilon_2$ & Bulk terms $a_1, a_2$ \\
+\quad Instanton number $k$ & Virasoro levels $n, m$ \\
+\hline
+\end{tabular}
+\end{table}
+\end{definition}
+
+\begin{definition}[Extended RG Equations for $\mathsf{Gen4}$]
+\label{def:extended-rg-gen4}
+The extension of RG equations to several commuting flows natural in the Toda hierarchy takes the form:
+\begin{align}
+\frac{\partial \mathsf{Gen4}}{\partial t_1} &= \beta_1(\mathsf{Gen4}, \vec{q}, \Lambda) \\
+\frac{\partial \mathsf{Gen4}}{\partial t_2} &= \beta_2(\mathsf{Gen4}, \vec{q}, \Lambda) \\
+\frac{\partial \mathsf{Gen4}}{\partial t_3} &= \beta_3(\mathsf{Gen4}, \vec{q}, \Lambda) \\
+\frac{\partial \mathsf{Gen4}}{\partial \Lambda} &= \beta_\Lambda(\mathsf{Gen4}, \vec{q}, \Lambda)
+\end{align}
+where $t_i$ are the Toda hierarchy times and the flows commute:
+\[
+[\frac{\partial}{\partial t_i}, \frac{\partial}{\partial t_j}] = 0
+\]
+The implicit functional arguments $z, \bar{z}$ are understood to be present in all derivatives (see Section~\ref{sec:computation-paradigms}).
+\end{definition}
+
+\subsection{Beta and Gamma Functions}
+
+\begin{definition}[Beta and Gamma Functions]
+\label{def:beta-gamma}
+The renormalisation group equations involve 3 beta functions $\beta_i$ corresponding to the grading parameters $\vec{q}$ and 1 gamma function $\gamma$ corresponding to the overall scale $\Lambda$, creating a fundamental imbalance that reflects the asymmetry in the computational structure.
+\end{definition}
+
+\subsection{a-functions and c-functions}
+
+\begin{conjecture}[Generalized a-functions and c-functions]
+\label{conj:a-c-functions}
+Through the AGT correspondence, we can define natural generalizations of:
+\begin{itemize}
+\item a-functions: Related to the anomaly coefficients in 4D gauge theory
+\item c-functions: Related to the central charge in 2D CFT
+\end{itemize}
+These are constructed using the natural analog of the Fisher information metric (c-theorem) and provide measures of information flow in the computational system.
+\end{conjecture}
+
+\subsection{Conformal Blocks and Information Theory}
+
+\begin{theorem}[Conformal Blocks as Information Measures via $\mathsf{Gen4}$]
+\label{thm:blocks-information-gen4}
+The conformal blocks $\mathcal{F}_{n,m}(\vec{q})$ serve as information measures in the computational framework via the $\mathsf{Gen4}$ primitive:
+\begin{itemize}
+\item Converging blocks: Correspond to reversible computations (information preserving) - respect $\equiv_\star$ equality
+\item Diverging blocks: Correspond to irreversible computations (information destroying) - respect $\equiv_{\text{meta}} \setminus \equiv_\star$
+\item Marginal blocks: Correspond to undecidable computations - respect $\equiv_{\text{loc}} \setminus \equiv_\star$
+\end{itemize}
+The implicit functional arguments $z, \bar{z}$ encode presentation gauges that are factored out in all observational equalities (see Section~\ref{sec:formal-systems}).
+\end{theorem}
+
+\begin{definition}[L/B/R Boundary Functors]
+\label{def:lbr-boundary-functors}
+The L/B/R structure provides natural boundary functors:
+\begin{align}
+\partial_L &: B \to L \quad \text{(left boundary extraction)} \\
+\partial_R &: B \to R \quad \text{(right boundary extraction)} \\
+\partial_B &: B \to B \quad \text{(bulk dynamics)}
+\end{align}
+\end{definition}
+
+\begin{proposition}[L/B/R Boundary Adjunction]
+\label{prop:lbr-boundary-adjunction}
+If $\partial_L \dashv \partial_L^\dagger$ and $\mathcal{R}_\Lambda$ is monotone with respect to the equality hierarchy, then $\mathcal{H}_\Lambda := \partial_R \circ \mathcal{R}_\Lambda \circ \partial_L^\dagger$ is contractive on the L/B/R boundaries (w.r.t. the observable metric defined in §7).
+\end{proposition}
+
+\subsection{Summary and Outlook}
+
+This section has established the connection between our computational framework and CFT conformal blocks through the AGT correspondence via the $\mathsf{Gen4}$ primitive. The key observations are:
+
+\begin{enumerate}
+\item The $\mathsf{Gen4}$ primitive can be identified with CFT conformal blocks
+\item L/B/R structure provides natural boundaries for holographic renormalisation
+\item Virasoro algebra provides the mathematical structure for both contexts
+\item AGT correspondence naturally appears in the computational framework
+\item Parameter mappings connect gauge theory to computation via bulk terms
+\item Extended RG equations emerge from Toda hierarchy for $\mathsf{Gen4}$
+\item Beta/gamma function imbalance reflects computational asymmetry
+\item Conformal blocks serve as information measures via equality hierarchy
+\end{enumerate}
+
+The connection between CFT conformal blocks and computational paradigms via the $\mathsf{Gen4}$ primitive provides the mathematical foundation for understanding how the generating function approach unifies computation, logic, and physics through the AGT correspondence within the L/B/R structure. 
+
+\textbf{LLM convolution as port}: LLM convolution is a port via PSDM; no new axioms required. This follows from the CLASS specification's port interface design.

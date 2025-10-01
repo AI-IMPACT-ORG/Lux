@@ -1,56 +1,74 @@
 \section{Introduction}
 \label{sec:introduction}
 
-Symmetry governs fundamental physics through Noether's theorem \cite{noether1918}, elevating Lagrangian field theory and dimensional regularization as preferred formalisms. However, this symmetry-centric approach has created infinite families of theoretically equivalent 4D effective field theories while experimental particle physics remains remarkably stable—the standard model persists despite decades of theoretical development. The challenge lies not in abandoning symmetry, but in understanding how symmetry emerges from more fundamental structures.
+The bottleneck is linking theory$\leftrightarrow$computation efficiently. Our invariant: L/B/R triality with "bulk = two boundaries" + RG-truth as fixed point. See §2 for the universal map.  
+
+ 
+\subsection{Models of logic}
+
+In mathematics, a "bounty of models of logic" exists because logic results should be independent of presentation. A "model" = structure interpreting the signature; a "presentation" = generators/relations proof calculus. Unlike physics, there is no Lagrangian for logic—the structure itself provides the dynamics.
+
+Consider Boolean algebra as a crisp example. It requires only four axioms to capture all logical operations:
+\begin{enumerate}
+\item \textbf{Commutativity}: $a \vee b = b \vee a$ and $a \wedge b = b \wedge a$
+\item \textbf{Associativity}: $(a \vee b) \vee c = a \vee (b \vee c)$ and $(a \wedge b) \wedge c = a \wedge (b \wedge c)$
+\item \textbf{Distributivity}: $a \wedge (b \vee c) = (a \wedge b) \vee (a \wedge c)$ and $a \vee (b \wedge c) = (a \vee b) \wedge (a \vee c)$
+\item \textbf{Complementarity}: $a \vee \neg a = 1$ and $a \wedge \neg a = 0$
+\end{enumerate}
+
+From these four axioms, one derives the entire structure including De Morgan's laws and all logical equivalences. This demonstrates the profound efficiency of logical systems: minimal foundational assumptions generate maximal mathematical structure. The constructive core provides the normative foundation; see Appendix~\ref{app:mathematical-background} for the complete four-axiom list.
 
 
-\paragraph{The renormalization group as a universal principle.} The renormalization group (RG) provides a powerful framework for understanding how physical systems evolve across different energy scales. In quantum field theory, RG flow reveals how coupling constants change as we probe different length scales, leading to fixed points that characterize universality classes. This paper demonstrates that the same RG machinery applies to computation and logic, providing a unified framework for understanding information flow across different abstraction levels.
+\subsection{Generating functions}
 
-\paragraph{Computation as a physical process.} We show that computation can be understood as a physical process governed by RG flow, where different computational paradigms (Turing, Church, Feynman) correspond to different parameterizations of the same underlying generating functional. This connection reveals deep structural similarities between quantum field theory and computation theory, with the $\mathsf{Gen4}$ primitive playing the role of a correlator in a conformal field theory. 
+Can we internalise generating functionals as formal power series such that they generate consistent local sublogics while preserving global consistency? The variables $(z,\bar z)$ are presentation gauges and eliminable; all comparisons are modulo qmask (default: phase). See §4 for formal vs analytic usage.
 
-Mathematics faces analogous challenges: infinite spaces of logic models and morphisms create presentation independence but computational complexity. Unlike physics, logic lacks a "Lagrangian theory" generating observables through perturbation theory—only models exist, with ZFC set theory serving as the core presentation due to mathematical convenience rather than fundamental necessity. 
+It is known that self-reference leads to paradoxes. Most famously Gödel's incompleteness theorem \cite{godel1931}, Tarski's undefinability \cite{tarski1936}, Löb's theorem \cite{lob1955}, and the diagonal lemma. These constrain domain maps but are used only as constraints later.
 
-
-
-
-Proof complexity models computational complexity through theorem-preserving morphisms, while structure-preserving morphisms model general diffeomorphisms in relativity, with theorems as scalar invariants. Logic's remarkable efficiency is exemplified by Boolean algebra's four axioms generating all logical operations: commutativity, associativity, distributivity, and complementarity. From these minimal foundations emerge De Morgan's laws, absorption laws, and all logical equivalences—demonstrating how minimal assumptions generate maximal mathematical structure. 
+We answer by constructing Gen4 (§3) and an RG semantics (§5–§8). 
 
 
-Our framework combines Einstein's special relativity reasoning with Shannon's information theory, modeling communication where only theorems and proofs are shared, not their generators. Observers maintain private formal languages while accessing common languages for communication and verification. The communication channel itself becomes a logical system, with encoding/decoding as logical transformations \cite{shannon1948}, creating self-referential structures enabling partial self-evaluation—fundamentally connected to basic logic structures. 
+\subsection{About this paper}
 
+Mechanised proofs: see App. A; hypotheses always stated. 
 
-Results must be invariant under proof-preserving morphisms—a natural requirement for formal systems and physical systems alike. While proof length depends on step order (making local optimization ill-defined), the average proof steps within computational bounds is well-defined. We separate formal systems from their derivations, recognizing that locally optimal proofs may not be globally shortest. Verification in common languages remains computationally easier than derivation from axioms.
+\begin{notation}[Notation and Standing Assumptions (Ledger)]
+\label{not:notation-ledger}
+\centering
+\footnotesize
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Symbol} & \textbf{Meaning} \\
+\hline
+$\vec q=(q_1,q_2,q_3)$ & Grading parameters \\
+$\Lambda$ & Scale parameter \\
+$(z,\bar z)$ & Presentation gauges (eliminable) \\
+$\mu_L, \theta_L, \mu_R, \theta_R$ & Core moduli (scale/phase flows) \\
+$\mathcal{G}(z,\bar z;\vec q,\Lambda)$ & Generating functional \\
+$\mathcal{Z}_{n,m}(\vec q)$ & Correlator coefficients \\
+$[L],[R]$ & Boundary projectors \\
+$\nu_{L/R}$ & Observers \\
+$\oplus_B$ & Bulk monoidal sum \\
+$\equiv_\star$ & Observational equality \\
+$\equiv_B$ & Bulk equality \\
+$\equiv_{\text{meta}}$ & Meta equality \\
+qmask & Quotient mask (default: $\{\text{phase}\}$) \\
+$\operatorname{ad}_0\ldots\operatorname{ad}_3$ & Regulators (scheme choices) \\
+$a_0\ldots a_3$ & True moduli (flow under RG) \\
+RC† & Reversibility Constraint \\
+\hline
+\end{tabular}
 
+\textbf{Invariant:} bulk = two boundaries (normative Core statement). Cross-refs: §7.12 eliminability; §8 fixed points.
+\end{notation} 
 
-The role of fundamental limitations on truth and provability becomes particularly interesting when we consider both Gödel theorems \cite{godel1931}, as well as the Tarski undefinability theorem \cite{tarski1936}. Here we incorporate them into the framework by naturally restricting to the common language for communicating anything. This creates a natural "partiality" separation which will be made precise later. 
+\paragraph{Contributions.} We summarise the paper's contributions for a HEP-TH audience:
+\begin{itemize}
+\item \textbf{Core logic}: triality with \emph{bulk = two boundaries}, conservative auxiliaries $(z,\bar z)$, and an equality hierarchy ($\equiv_\star,\equiv_B,\equiv_{\text{meta}}$) anchored to the Core spec.
+\item \textbf{RG semantics}: truth as RG fixed point, with reversible/irreversible fragments made precise via entropy and flow conditions.
+\item \textbf{Ports/PSDM}: externalisation of irreversible semantics through ports and the PSDM interface; direction of mapping fixed (logical inconsistency $\Rightarrow$ domain divergence).
+\item \textbf{Mechanisation}: Racket core and Agda/Coq emitters; tests reference the spec's "truth theorems".
+\item \textbf{Cross-domain map}: a single domain ledger (Table~\ref{tab:universal-domain-translation}) linking computation, physics, learning, and number theory.
+\end{itemize}
 
-A fundamental problem in logic is that due to the logic o not having a canonical "generating functional" framework such as a path integral there is no known way of incorporating symmetry directly into the logic 
-
-
-We show by construction that Robinson's Q system \cite{robinson1950}, together with the diagonal lemma \cite{kleene1952}, can be written in such a way it has an explicit Z2xS3 syntactic symmetry group. We show this leads in principle to an infinite number of constraints. One solution are the usual Gödel \cite{godel1931}, Löb \cite{lob1955} and Tarski \cite{tarski1936} theorems, which are symmetry permuted here. We argue that these can only be added to the system as axioms as axiom schemas. In general this symmetry is almost always broken by individual terms. We argue this can be modeled cleanly as left, right arity on symbols that have strict local interactions in sentences. This leads to notions of invariance, equivariance as well as co- and contravariance under local presentation transformations. We argue the resource system plays the role of ghost particles to restore the local presentation symmetry. We argue that this partiality is not a limitation but a feature, enabling the system to adapt and evolve while maintaining consistency within its defined boundaries—a property that emerges naturally from the arity structure that governs information flow in both logical inference and computational processes.
-
-A natural Noether theorem analogue then naturally leads to generating functions for invariants of the system. We show the entire construction is consistent with the symmetries. 
-
-The generating functions have a natural modular symmetry, that lifts to a notion of "modular typing", which we implement for general container/component classes (modular typing for container, static typing for components). We show how to implement this for natural "propagators" as well as two natural "three point vertices". We show the resulting system is consistent using computer algebra -  even though the derivation is admittedly not very strict in places, the result is definite and verifiable. 
-
-We show the resulting system forms a birepresentation with the 5 axioms of NBG set theory \cite{von_neumann1925}. Moreover, we show that the proof systems coincide, when we construct a natural modular time-step operator and study its kernel in our system. This kernel coincides with the proof system of the NBG axioms, showing that NBG theorems are contained in our system - this instantly connects us to most of mathematics. We show there is a notion of spectrum for this operator and that it has a natural gap. We argue that for the computational interpretation, this shows the existence of algorithms that do not verifiably terminate \cite{turing1936}. The phase separation itself we show to be related to a fundamental difference between P and NP systems \cite{cook1971}. We argue for universality of this result. 
-
-The time-step operator is naturally related to what looks like an RG Flow operator. Flow consistency in various parameters induces towers of metalogical constraints, and shows that the moduli space set up by the modular parameters is in a real sense flat. We argue this means the system contains an integrable hierarchy and should be termed an integrable logic system. We identify some of the current algebra floating around, including a timelike Liouville theory, as well as a G2xG2 based Kac-Moody algebra. We show that the system is a natural candidate for a "string theory" in the sense of "causal", discretization of a 2D conformal field theory. Since the formal system can be extended arbitrarily so far, this is intriguing, but certainly no proof of anything. It mainly shows the majesty of mathematical consistency. We argue that in general the class of integrable systems we have identified could serve as a non-perturbative definition of string and field theory.  
-
-Finally in physics we speculate on the role of the time-step operator and its mass-gap as a solution to the mass-gap problem. We show analogues to Connes-Kreimer's Birkhoff decomposition \cite{connes_kreimer2000} of the renormalization group flow as well as reflection calculus. IR to UV consistency conditions can naturally be imposed as a version of S-duality. The consequence of integrable RG flow would be an immediate solution to the naturalness problem. We argue a rather funky identification of scaling and conformal time plays a natural role. We briefly show how the S-matrix may be recovered. 
-
-The technology uncovered here has many applications, we touch upon a select few:
-
-- We show a categorical lift of the whole construction is natural. This we relate directly to categorical Langlands duality.
-
-- We show the operator identified as the time-step operator has a natural interpretation in the generalized Riemann hypothesis \cite{riemann1859}. We offer machine checkable analysis. 
-
-- We briefly explore some mathematics theorems which are relevant to the theory of large language models and large language model training. This includes the universal translation of mechanizable formal languages theorem. We argue the local version of the Cook-Levin theorem \cite{cook1971} shows almost exactly the opposite result from the usual interpretation. We briefly comment on the role of order of derivations as well as the role of the metalogical constraints we have uncovered. 
-
-- A special section is dedicated to scaling analysis of large language model training, where we touch upon the double dip phenomenon as well as the Chinchilla scaling laws.
-
-The framework's broad applicability extends beyond pure mathematics to practical applications in AI and machine learning. As we will show, the same arity structure that governs logical inference also provides insights into large language model training, scaling laws, and the double dip phenomenon, revealing deep connections between the abstract mathematical framework and concrete computational systems.
-
-Finally, we include a section where we explain how these results were generated. 
-
-Much work is left to be done. Most urgent are checks of almost everything in the paper by people who are not me.
+\paragraph{Normative stance.} We treat the CLEAN v10 Core as normative for triality and bulk = two boundaries, and CLEAN v10 CLASS as normative for the four-moduli parametric normaliser, PSDM, and ports; the present paper develops derived, domain-mapped consequences and supplies compact proofs under explicit, local hypotheses (positivity/contractivity/$\omega$-cpo). Speculative identifications (AGT, Hilbert–Pólya, spectral complexity) are boxed and unused in proofs.

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.17)  25 SEP 2025 11:29
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.9.17)  1 OCT 2025 17:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -352,7 +352,19 @@ Package pdftexcmds Info: \pdfdraftmode found.
 \l__siunitx_unit_position_int=\count332
 \l__siunitx_unit_total_int=\count333
 )
-(/usr/local/texlive/2024/texmf-dist/tex/latex/braket/braket.sty)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/physics/physics.sty
+Package: physics 
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
+(/usr/local/texlive/2024/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2025-08-13 L3 programming layer (loader) 
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2025-06-09 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count334
+))
+Package: xparse 2024-08-16 L3 Experimental document command parser
+)) (/usr/local/texlive/2024/texmf-dist/tex/latex/braket/braket.sty)
 (/usr/local/texlive/2024/texmf-dist/tex/latex/tools/bm.sty
 Package: bm 2023/12/19 v1.2f Bold Symbol Support (DPC/FMi)
 \symboldoperators=\mathgroup6
@@ -365,8 +377,8 @@ LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 149.
 )
 (/usr/local/texlive/2024/texmf-dist/tex/latex/bussproofs/bussproofs.sty
 Proof Tree (bussproofs) style macros. Version 1.1.
-\theLevel=\count334
-\myMaxLevel=\count335
+\theLevel=\count335
+\myMaxLevel=\count336
 \myBoxA=\box71
 \myBoxB=\box72
 \myBoxC=\box73
@@ -395,9 +407,9 @@ Package: geometry 2020/01/02 v5.9 Page Geometry
 (/usr/local/texlive/2024/texmf-dist/tex/generic/iftex/ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 )
-\Gm@cnth=\count336
-\Gm@cntv=\count337
-\c@Gm@tempcnt=\count338
+\Gm@cnth=\count337
+\Gm@cntv=\count338
+\c@Gm@tempcnt=\count339
 \Gm@bindingoffset=\dimen276
 \Gm@wd@mp=\dimen277
 \Gm@odd@mp=\dimen278
@@ -436,7 +448,7 @@ MM)
 
 (/usr/local/texlive/2024/texmf-dist/tex/latex/lastpage/lastpagemodern.sty
 Package: lastpagemodern 2025-08-14 v2.1h Refers to last page's name (HMM; JPG)
-\c@lastpagecount=\count339
+\c@lastpagecount=\count340
 ) 
 )) (/usr/local/texlive/2024/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2025-07-12 v7.01o Hypertext links for LaTeX
@@ -465,15 +477,15 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
  (/usr/local/texlive/2024/texmf-dist/tex/latex/kvoptions/kvoptions.sty
 Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 ))
-\c@section@level=\count340
+\c@section@level=\count341
 )
 (/usr/local/texlive/2024/texmf-dist/tex/generic/stringenc/stringenc.sty
 Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
 )
 )
 \@linkdim=\dimen284
-\Hy@linkcounter=\count341
-\Hy@pagecounter=\count342
+\Hy@linkcounter=\count342
+\Hy@pagecounter=\count343
 
 (/usr/local/texlive/2024/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2025-07-12 v7.01o Hyperref: PDFDocEncoding definition (HO)
@@ -483,7 +495,7 @@ Now handling font encoding PD1 ...
 (/usr/local/texlive/2024/texmf-dist/tex/generic/intcalc/intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
-\Hy@SavedSpaceFactor=\count343
+\Hy@SavedSpaceFactor=\count344
 
 (/usr/local/texlive/2024/texmf-dist/tex/latex/hyperref/puenc.def
 File: puenc.def 2025-07-12 v7.01o Hyperref: PDF Unicode definition (HO)
@@ -497,7 +509,7 @@ Package hyperref Info: Plain pages OFF on input line 4210.
 Package hyperref Info: Backreferencing OFF on input line 4215.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4462.
-\c@Hy@tempcnt=\count344
+\c@Hy@tempcnt=\count345
 LaTeX Info: Redefining \url on input line 4801.
 \XeTeXLinkMargin=\dimen285
 
@@ -508,7 +520,7 @@ Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
-\Fld@menulength=\count345
+\Fld@menulength=\count346
 \Field@Width=\dimen286
 \Fld@charsize=\dimen287
 Package hyperref Info: Hyper figures OFF on input line 6078.
@@ -518,16 +530,16 @@ Package hyperref Info: backreferencing OFF on input line 6093.
 Package hyperref Info: Link coloring OFF on input line 6098.
 Package hyperref Info: Link coloring with OCG OFF on input line 6103.
 Package hyperref Info: PDF/A mode OFF on input line 6108.
-\Hy@abspage=\count346
-\c@Item=\count347
-\c@Hfootnote=\count348
+\Hy@abspage=\count347
+\c@Item=\count348
+\c@Hfootnote=\count349
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
 
 (/usr/local/texlive/2024/texmf-dist/tex/latex/hyperref/hpdftex.def
 File: hpdftex.def 2025-07-12 v7.01o Hyperref driver for pdfTeX
-\Fld@listcount=\count349
-\c@bookmark@seq@number=\count350
+\Fld@listcount=\count350
+\c@bookmark@seq@number=\count351
 
 (/usr/local/texlive/2024/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 Package: rerunfilecheck 2025-06-21 v1.11 Rerun checks for auxiliary files (HO)
@@ -616,14 +628,14 @@ tered.code.tex
 \pgf@yd=\dimen299
 \w@pgf@writea=\write3
 \r@pgf@reada=\read2
-\c@pgf@counta=\count351
-\c@pgf@countb=\count352
-\c@pgf@countc=\count353
-\c@pgf@countd=\count354
+\c@pgf@counta=\count352
+\c@pgf@countb=\count353
+\c@pgf@countc=\count354
+\c@pgf@countd=\count355
 \t@pgf@toka=\toks42
 \t@pgf@tokb=\toks43
 \t@pgf@tokc=\toks44
-\pgf@sys@id@count=\count355
+\pgf@sys@id@count=\count356
 
 (/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
 File: pgf.cfg 2025-08-29 v3.1.11a (3.1.11a)
@@ -641,8 +653,8 @@ File: pgfsys-common-pdf.def 2025-08-29 v3.1.11a (3.1.11a)
 (/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.
 code.tex
 File: pgfsyssoftpath.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgfsyssoftpath@smallbuffer@items=\count356
-\pgfsyssoftpath@bigbuffer@items=\count357
+\pgfsyssoftpath@smallbuffer@items=\count357
+\pgfsyssoftpath@bigbuffer@items=\count358
 )
 (/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.
 code.tex
@@ -654,7 +666,7 @@ Package: pgfcore 2025-08-29 v3.1.11a (3.1.11a)
 (/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
 (/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
 \pgfmath@dimen=\dimen300
-\pgfmath@count=\count358
+\pgfmath@count=\count359
 \pgfmath@box=\box78
 \pgfmath@toks=\toks45
 \pgfmath@stack@operand=\toks46
@@ -680,7 +692,7 @@ code.tex)
 erarithmetics.code.tex)
 (/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex)
 (/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
-\c@pgfmathroundto@lastzeros=\count359
+\c@pgfmathroundto@lastzeros=\count360
 )) (/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
 (/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.co
 de.tex
@@ -718,7 +730,7 @@ File: pgfcorescopes.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgfpic=\box79
 \pgf@hbox=\box80
 \pgf@layerbox@main=\box81
-\pgf@picture@serial@count=\count360
+\pgf@picture@serial@count=\count361
 )
 (/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicst
 ate.code.tex
@@ -753,8 +765,8 @@ File: pgfcorearrows.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 e.tex
 File: pgfcoreshade.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgf@max=\dimen324
-\pgf@sys@shading@range@num=\count361
-\pgf@shadingcount=\count362
+\pgf@sys@shading@range@num=\count362
+\pgf@shadingcount=\count363
 )
 (/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.cod
 e.tex
@@ -819,7 +831,7 @@ Package: tikz 2025-08-29 v3.1.11a (3.1.11a)
 (/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothan
 dlers.code.tex
 File: pgflibraryplothandlers.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgf@plot@mark@count=\count363
+\pgf@plot@mark@count=\count364
 \pgfplotmarksize=\dimen329
 )
 \tikz@lastx=\dimen330
@@ -834,19 +846,19 @@ File: pgflibraryplothandlers.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \tikz@figbox@bg=\box85
 \tikz@tempbox=\box86
 \tikz@tempbox@bg=\box87
-\tikztreelevel=\count364
-\tikznumberofchildren=\count365
-\tikznumberofcurrentchild=\count366
-\tikz@fig@count=\count367
+\tikztreelevel=\count365
+\tikznumberofchildren=\count366
+\tikznumberofcurrentchild=\count367
+\tikz@fig@count=\count368
 
 (/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/modules/pgfmodulematrix.cod
 e.tex
 File: pgfmodulematrix.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgfmatrixcurrentrow=\count368
-\pgfmatrixcurrentcolumn=\count369
-\pgf@matrix@numberofcolumns=\count370
+\pgfmatrixcurrentrow=\count369
+\pgfmatrixcurrentcolumn=\count370
+\pgf@matrix@numberofcolumns=\count371
 )
-\tikz@expandcount=\count371
+\tikz@expandcount=\count372
 
 (/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/frontendlayer/tikz/librarie
 s/tikzlibrarytopaths.code.tex
@@ -861,8 +873,8 @@ Package: pgfplots 2025/08/14 v1.18.2 Data Visualization (1.18.2)
 \t@pgfplots@tokb=\toks51
 \t@pgfplots@tokc=\toks52
 \pgfplots@tmpa=\dimen338
-\c@pgfplots@coordindex=\count372
-\c@pgfplots@scanlineindex=\count373
+\c@pgfplots@coordindex=\count373
+\c@pgfplots@scanlineindex=\count374
 
 (/usr/local/texlive/2024/texmf-dist/tex/generic/pgfplots/sys/pgfplotssysgeneric
 .code.tex))
@@ -882,13 +894,13 @@ liststructure.code.tex)
 liststructureext.code.tex)
 (/usr/local/texlive/2024/texmf-dist/tex/generic/pgfplots/liststructure/pgfplots
 array.code.tex
-\c@pgfplotsarray@tmp=\count374
+\c@pgfplotsarray@tmp=\count375
 )
 (/usr/local/texlive/2024/texmf-dist/tex/generic/pgfplots/liststructure/pgfplots
 matrix.code.tex)
 (/usr/local/texlive/2024/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstable
 shared.code.tex
-\c@pgfplotstable@counta=\count375
+\c@pgfplotstable@counta=\count376
 \t@pgfplotstable@a=\toks53
 )
 (/usr/local/texlive/2024/texmf-dist/tex/generic/pgfplots/liststructure/pgfplots
@@ -901,7 +913,7 @@ ta.code.tex))
 .code.tex)
 (/usr/local/texlive/2024/texmf-dist/tex/generic/pgfplots/libs/pgflibrarypgfplot
 s.surfshading.code.tex
-\c@pgfplotslibrarysurf@no=\count376
+\c@pgfplotslibrarysurf@no=\count377
 
 (/usr/local/texlive/2024/texmf-dist/tex/generic/pgfplots/sys/pgflibrarypgfplots
 .surfshading.pgfsys-pdftex.def)))
@@ -938,7 +950,7 @@ s.code.tex
 \pgfdecoratedinputsegmentcompleteddistance=\dimen341
 \pgfdecoratedinputsegmentremainingdistance=\dimen342
 \pgf@decorate@distancetomove=\dimen343
-\pgf@decorate@repeatstate=\count377
+\pgf@decorate@repeatstate=\count378
 \pgfdecorationsegmentamplitude=\dimen344
 \pgfdecorationsegmentlength=\dimen345
 )
@@ -954,7 +966,7 @@ s/tikzlibrarydecorations.pathreplacing.code.tex
 brarydecorations.pathreplacing.code.tex))
 (/usr/local/texlive/2024/texmf-dist/tex/generic/pgfplots/libs/tikzlibrarypgfplo
 ts.contourlua.code.tex)
-\pgfplots@numplots=\count378
+\pgfplots@numplots=\count379
 \pgfplots@xmin@reg=\dimen346
 \pgfplots@xmax@reg=\dimen347
 \pgfplots@ymin@reg=\dimen348
@@ -970,19 +982,21 @@ File: tikzlibraryplotmarks.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 ks.code.tex
 File: pgflibraryplotmarks.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )))
-(/usr/local/texlive/2024/texmf-dist/tex/latex/physics/physics.sty
-Package: physics 
 
-(/usr/local/texlive/2024/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
-(/usr/local/texlive/2024/texmf-dist/tex/latex/l3kernel/expl3.sty
-Package: expl3 2025-08-13 L3 programming layer (loader) 
+Package siunitx Info: Option "detect-all" has been deprecated in this release.
+(siunitx)             
+(siunitx)             Use "mode = match, propagate-math-font = true,
+(siunitx)             reset-math-version = false, reset-text-family = false,
+(siunitx)             reset-text-series = false, reset-text-shape = false,
+(siunitx)             text-family-to-math = true, text-series-to-math = true"
+(siunitx)             as a replacement.
 
-(/usr/local/texlive/2024/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
-File: l3backend-pdftex.def 2025-06-09 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count379
-))
-Package: xparse 2024-08-16 L3 Experimental document command parser
-))
+
+Package siunitx Info: Option "separate-uncertainty" has been deprecated in
+(siunitx)             this release.
+(siunitx)             
+(siunitx)             Use "uncertainty-mode = compact" as a replacement.
+
 \c@definition=\count380
 \c@theorem=\count381
 \c@lemma=\count382
@@ -992,42 +1006,44 @@ Package: xparse 2024-08-16 L3 Experimental document command parser
 \c@remark=\count386
 \c@conjecture=\count387
 \c@axiom=\count388
+\c@assumption=\count389
+\c@notation=\count390
 Package translations Info: No language package found. I am going to use `englis
-h' as default language. on input line 119.
+h' as default language. on input line 135.
  (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 119.
-LaTeX Font Info:    ... okay on input line 119.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 119.
-LaTeX Font Info:    ... okay on input line 119.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 119.
-LaTeX Font Info:    ... okay on input line 119.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 119.
-LaTeX Font Info:    ... okay on input line 119.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 119.
-LaTeX Font Info:    ... okay on input line 119.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 119.
-LaTeX Font Info:    ... okay on input line 119.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 119.
-LaTeX Font Info:    ... okay on input line 119.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 119.
-LaTeX Font Info:    ... okay on input line 119.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 119.
-LaTeX Font Info:    ... okay on input line 119.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 135.
+LaTeX Font Info:    ... okay on input line 135.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 135.
+LaTeX Font Info:    ... okay on input line 135.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 135.
+LaTeX Font Info:    ... okay on input line 135.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 135.
+LaTeX Font Info:    ... okay on input line 135.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 135.
+LaTeX Font Info:    ... okay on input line 135.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 135.
+LaTeX Font Info:    ... okay on input line 135.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 135.
+LaTeX Font Info:    ... okay on input line 135.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 135.
+LaTeX Font Info:    ... okay on input line 135.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 135.
+LaTeX Font Info:    ... okay on input line 135.
 
 (/usr/local/texlive/2024/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count389
+\scratchcounter=\count391
 \scratchdimen=\dimen352
 \scratchbox=\box89
-\nofMPsegments=\count390
-\nofMParguments=\count391
+\nofMPsegments=\count392
+\nofMParguments=\count393
 \everyMPshowfont=\toks54
-\MPscratchCnt=\count392
+\MPscratchCnt=\count394
 \MPscratchDim=\dimen353
-\MPnumerator=\count393
-\makeMPintoPDFobject=\count394
+\MPnumerator=\count395
+\makeMPintoPDFobject=\count396
 \everyMPtoPDFconversion=\toks55
 ) (/usr/local/texlive/2024/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -1038,7 +1054,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-\c@lstlisting=\count395
+\c@lstlisting=\count397
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
@@ -1061,7 +1077,7 @@ File: translations-basic-dictionary-english.trsl (english translation file `tra
 nslations-basic-dictionary')
 )
 Package translations Info: loading dictionary `translations-basic-dictionary' f
-or `english'. on input line 119.
+or `english'. on input line 135.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1097,24 +1113,21 @@ or `english'. on input line 119.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring OFF on input line 119.
+Package hyperref Info: Link coloring OFF on input line 135.
 (./main.out) (./main.out)
 \@outlinefile=\write4
 \openout4 = `main.out'.
 
 
+Package pgfplots notification 'compat/show suggested version=true': document ha
+s been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
 
-Package pgfplots Warning: running in backwards compatibility mode (unsuitable t
-ick labels; missing features). Consider writing \pgfplotsset{compat=1.18} into 
-your preamble.
- on input line 119.
-
-LaTeX Font Info:    Trying to load font information for U+msa on input line 123
+LaTeX Font Info:    Trying to load font information for U+msa on input line 139
 .
 (/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 123
+LaTeX Font Info:    Trying to load font information for U+msb on input line 139
 .
 
 (/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/umsb.fd
@@ -1126,232 +1139,647 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 {/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/loc
 al/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}]
 
-[2]) (./main.toc
+[2]
 
-[3]
+[3]) (./main.toc
 
-[4]
+[4{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc
+}]
 
 [5]
 
-[6])
+[6]
+
+[7])
 \tf@toc=\write5
 \openout5 = `main.toc'.
 
 
 
-[7] (./introduction.tex
-Overfull \hbox (8.85034pt too wide) in paragraph at lines 20--21
-[]\T1/cmr/m/n/10.95 This frame-work nat-u-rally in-cor-po-rates Gödel's in-com-
-plete-ness the-o-rems [[]2[]] and Tarski's
- []
-
-
-
-[8]
+[8] (./introduction.tex
 
 [9]
-Overfull \hbox (7.74837pt too wide) in paragraph at lines 107--108
-\T1/cmr/m/n/10.95 This sec-tion pro-vides a com-pre-hen-sive ref-er-ence for al
-l math-e-mat-i-cal sym-bols used through-
+Overfull \hbox (4.98166pt too wide) in paragraph at lines 71--72
+[]\T1/cmr/bx/n/10.95 Cross-domain map\T1/cmr/m/n/10.95 : a sin-gle do-main ledg
+er (Ta-ble []1[]) link-ing com-pu-ta-tion, physics,
+ []
+
+)
+Overfull \hbox (34.86641pt too wide) in paragraph at lines 74--152
+\T1/cmr/m/n/10.95 quences and sup-plies com-pact proofs un-der ex-plicit, lo-ca
+l hy-pothe-ses (positivity/contractivity/$\OML/cmm/m/it/10.95 !$\T1/cmr/m/n/10.
+95 -
+ []
+
+(./sections/S00.tex
+
+[10]
+Overfull \hbox (4.46483pt too wide) in paragraph at lines 41--41
+[]|\T1/cmr/bx/n/9 Computation| 
  []
 
 
-Overfull \hbox (182.73088pt too wide) in paragraph at lines 113--163
- [][] 
+Underfull \hbox (badness 10000) in paragraph at lines 41--42
+[]|\T1/cmr/bx/n/9 Number
  []
 
 
-LaTeX Warning: Float too large for page by 60.97499pt on input line 163.
+Overfull \hbox (3.71854pt too wide) in paragraph at lines 45--45
+[]|\T1/cmr/m/n/9 Computational| 
+ []
+
+
+Underfull \hbox (badness 2020) in paragraph at lines 45--45
+[]|\T1/cmr/m/n/9 Training cor-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--47
+[]|\T1/cmr/m/n/9 Register en-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 47--47
+[]|\T1/cmr/m/n/9 Feature em-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 49--49
+[]|\T1/cmr/m/n/9 Paradigm
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 49--50
+[]|\T1/cmr/m/n/9 Spectral pa-
+ []
+
+
+Underfull \hbox (badness 2894) in paragraph at lines 51--52
+[]|\T1/cmr/m/n/9 Spectral cut-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 53--53
+[]|\T1/cmr/m/n/9 Matrix el-e-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 53--53
+[]|\T1/cmr/m/n/9 Training
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 57--57
+[]|\T1/cmr/m/n/9 Conservation
+ []
+
+
+Underfull \hbox (badness 2809) in paragraph at lines 57--57
+[]|\T1/cmr/m/n/9 Training sta-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 57--58
+[]|\T1/cmr/m/n/9 Spectral in-
+ []
+
+
+Overfull \hbox (12.9663pt too wide) in paragraph at lines 59--59
+[]|\T1/cmr/m/n/9 Callan^^USymanzik| 
+ []
+
+
+Underfull \hbox (badness 3657) in paragraph at lines 59--59
+[]|\T1/cmr/m/n/9 Learning dy-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 61--61
+[]|\T1/cmr/m/n/9 Decoupling
+ []
+
+
+Underfull \hbox (badness 1688) in paragraph at lines 61--61
+[]|\T1/cmr/m/n/9 Model gen-er-
+ []
+
+
+Overfull \hbox (5.87009pt too wide) in paragraph at lines 63--63
+[]|\T1/cmr/m/n/9 renormalisation| 
+ []
+
+
+Overfull \hbox (1.81554pt too wide) in paragraph at lines 63--63
+[]|\T1/cmr/m/n/9 Regularization| 
+ []
+
+
+Underfull \hbox (badness 2020) in paragraph at lines 63--64
+[]|\T1/cmr/m/n/9 Spectral nor-
+ []
+
+
+Overfull \hbox (3.71854pt too wide) in paragraph at lines 67--67
+[]|\T1/cmr/m/n/9 Computational
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 67--67
+[]|\T1/cmr/m/n/9 QFT beta
+ []
+
+
+Underfull \hbox (badness 7613) in paragraph at lines 67--67
+[]|\T1/cmr/m/n/9 Training dy-
+ []
+
+
+Underfull \hbox (badness 2042) in paragraph at lines 67--68
+[]|\T1/cmr/m/n/9 Spectral evo-
+ []
+
+
+Overfull \hbox (3.71854pt too wide) in paragraph at lines 69--69
+[]|\T1/cmr/m/n/9 Computational
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 69--69
+[]|\T1/cmr/m/n/9 RG fixed
+ []
+
+
+Overfull \hbox (12.9663pt too wide) in paragraph at lines 71--71
+[]|\T1/cmr/m/n/9 Callan^^USymanzik| 
+ []
+
+
+Underfull \hbox (badness 1389) in paragraph at lines 71--72
+[]|\T1/cmr/m/n/9 Spectral con-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 73--73
+[]|\T1/cmr/m/n/9 Global ob-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 73--73
+[]|\T1/cmr/m/n/9 Physical ob-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 73--74
+[]|\T1/cmr/m/n/9 Spectral ob-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 75--75
+[]|\T1/cmr/m/n/9 Scaling di-
+ []
+
+
+Underfull \hbox (badness 5431) in paragraph at lines 77--77
+[]|\T1/cmr/m/n/9 Dagger sym-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 77--77
+[]|\T1/cmr/m/n/9 Information
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 81--81
+[]|\T1/cmr/m/n/9 Program
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 81--82
+[]|\T1/cmr/m/n/9 Spectral
+ []
+
+
+Underfull \hbox (badness 3179) in paragraph at lines 83--83
+[]|\T1/cmr/m/n/9 Bulk com-pu-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 85--85
+[]|\T1/cmr/m/n/9 Meta-
+ []
+
+
+Underfull \hbox (badness 3439) in paragraph at lines 89--89
+[]|\T1/cmr/m/n/9 Input en-cod-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 89--89
+[]|\T1/cmr/m/n/9 Boundary
+ []
+
+
+Underfull \hbox (badness 3386) in paragraph at lines 91--91
+[]|\T1/cmr/m/n/9 Core com-pu-
+ []
+
+
+Underfull \hbox (badness 1902) in paragraph at lines 91--91
+[]|\T1/cmr/m/n/9 Bulk dy-nam-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 93--93
+[]|\T1/cmr/m/n/9 Output de-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 97--97
+[]|\T1/cmr/m/n/9 Information
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 97--97
+[]|\T1/cmr/m/n/9 Central
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 97--97
+[]|\T1/cmr/m/n/9 Model com-
+ []
+
+
+Underfull \hbox (badness 4608) in paragraph at lines 99--99
+[]|\T1/cmr/m/n/9 Anomaly co-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 99--99
+[]|\T1/cmr/m/n/9 Trace
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 99--99
+\T1/cmr/m/n/9 anomaly
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 99--99
+[]|\T1/cmr/m/n/9 Learning
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 99--100
+[]|\T1/cmr/m/n/9 Spectral
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 101--101
+[]|\T1/cmr/m/n/9 Information
+ []
+
+
+Underfull \hbox (badness 1092) in paragraph at lines 101--101
+[]|\T1/cmr/m/n/9 Moduli space
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 101--101
+[]|\T1/cmr/m/n/9 Learning
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 105--105
+[]|\T1/cmr/m/n/9 Classical
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 105--105
+[]|\T1/cmr/m/n/9 Deterministic
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 105--106
+[]|\T1/cmr/m/n/9 Classical
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 107--107
+[]|\T1/cmr/m/n/9 Quantum
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 107--107
+[]|\T1/cmr/m/n/9 Probabilistic
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 107--108
+[]|\T1/cmr/m/n/9 Quantum
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 109--109
+[]|\T1/cmr/m/n/9 Feynman
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 109--109
+[]|\T1/cmr/m/n/9 Stochastic
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 111--111
+[]|\T1/cmr/m/n/9 Cross-sections
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 111--111
+\T1/cmr/m/n/9 = par-tial
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 111--111
+\T1/cmr/m/n/9 norms of
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 111--111
+\T1/cmr/m/n/9 channel-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 111--111
+\T1/cmr/m/n/9 projected
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 111--111
+\T1/cmr/m/n/9 out-puts;
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 111--111
+\T1/cmr/m/n/9 flows sup-ply
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 111--111
+\T1/cmr/m/n/9 fac-tori-sa-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 111--111
+\T1/cmr/m/n/9 tion/cross-ing
+ []
+
+
+Underfull \hbox (badness 2884) in paragraph at lines 111--111
+[]|\T1/cmr/m/n/9 S-matrix el-e-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 111--111
+[]|\T1/cmr/m/n/9 Channel
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 111--112
+[]|\T1/cmr/m/n/9 Scattering
+ []
+
+
+LaTeX Warning: Float too large for page by 274.46957pt on input line 116.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
+Overfull \hbox (3.08646pt too wide) in paragraph at lines 118--119
+\T1/cmr/m/n/10.95 This uni-ver-sal do-main trans-la-tion map elim-i-nates repet
+-i-tive do-main ex-pla-na-tions through-
+ []
 
-[10{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.en
-c}]) (./sections/S01_computation_paradigms.tex
+) (./sections/S01.tex
 
 [11]
+Overfull \hbox (92.66496pt too wide) in paragraph at lines 58--59
+[]\T1/cmr/bx/n/10.95 Definition 3.3 \T1/cmr/m/n/10.95 (Green's Func-tions Hi-er
+-ar-chy)\T1/cmr/bx/n/10.95 . []Bare\T1/cmr/m/n/10.95 : $\OMS/cmsy/m/n/10.95 G[]
+\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 z; []\OT1/cmr/m/n/10.95 ; []\OML/cmm/m/
+it/10.95 ; \OT1/cmr/m/n/10.95 ^^C) = [][] [] \OMS/cmsy/m/n/10.95 Z[]\OT1/cmr/m/
+n/10.95 ([]) ^^C[]$
+ []
+
+
 
 [12]
 
-[13]
-Overfull \hbox (1.69003pt too wide) in paragraph at lines 108--110
-\T1/cmr/m/n/10.95 This demon-strates how the 6-ary con-nec-tive re-cov-ers lamb
-da cal-cu-lus $\OML/cmm/m/it/10.95 ^^L$\T1/cmr/m/n/10.95 -reduction through
- []
+[13]) (./sections/S02.tex
 
+[14]
+LaTeX Font Info:    Trying to load font information for U+euf on input line 62.
 
-
-[14]) (./sections/S02_regularization.tex
-
-[15]
-
-[16]
-
-[17]
-
-[18]
-Overfull \hbox (6.91776pt too wide) in paragraph at lines 170--173
-[]\T1/cmr/bx/n/10.95 Conjecture 3.1 \T1/cmr/m/n/10.95 (Align-ment and uni-ver-s
-al-ity up to nor-mal-iza-tion)\T1/cmr/bx/n/10.95 . []\T1/cmr/m/n/10.95 Un-der A
-x-ioms []3.1[]^^U[]3.4[],
- []
-
-LaTeX Font Info:    Trying to load font information for U+euf on input line 187
-.
-(/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/ueuf.fd
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/ueuf.fd
 File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
 )
 
-[19]) (./sections/S03_rg_flow.tex
+[15]
 
-[20]
-Overfull \hbox (81.73305pt too wide) detected at line 33
-[]
+LaTeX Warning: Reference `conj:alignment' on page 16 undefined on input line 79
+.
+
+
+LaTeX Warning: Reference `def:global-observable' on page 16 undefined on input 
+line 85.
+
+) (./sections/S03.tex
+
+[16]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+
+[17]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 56.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\beta' on input line 56.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 56.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 78.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\Lambda' on input line 78.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 78.
+
+
+
+[18]
+Overfull \hbox (28.83275pt too wide) in paragraph at lines 148--149
+[]\T1/cmr/m/n/10.95 Converging flow $\OMS/cmsy/m/n/10.95 !$ \T1/cmr/m/n/10.95 r
+e-versible com-pu-ta-tion (truth) $\OMS/cmsy/m/n/10.95 $$ \T1/cmr/m/n/10.95 con
+-verg-ing flow and forward[]channel
  []
 
 
+
+[19]) (./sections/S03A.tex
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\Lambda' on input line 1.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1.
+
+
+Overfull \hbox (8.00598pt too wide) in paragraph at lines 19--20
+[]\T1/cmr/bx/n/10.95 (S3) Par-tial uni-tar-ity / op-ti-cal iden-tity. $[][] \OM
+S/cmsy/m/n/10.95 j\OML/cmm/m/it/10.95 P[]S[] \OMS/cmsy/m/n/10.95 j[] \OT1/cmr/m
+/n/10.95 = \OMS/cmsy/m/n/10.95 j\OML/cmm/m/it/10.95  \OMS/cmsy/m/n/10.95 j[]$\T
+1/cmr/m/n/10.95 . Forward[]channel
+ []
+
+
+Overfull \hbox (13.38242pt too wide) in paragraph at lines 21--22
+[]\T1/cmr/bx/n/10.95 (S5) Clus-ter/-fac-tori-sa-tion along flows. \T1/cmr/m/n/1
+0.95 Fac-tori-sa-tion holds along large[]separation
+ []
+
+
+
+[20]) (./sections/S04.tex
 
 [21]
 
 [22]
-
-[23]
-Overfull \hbox (29.11876pt too wide) in paragraph at lines 171--172
-\T1/cmr/m/n/10.95 tion []10[]). This con-nec-tion re-quires ex-plicit con-struc
--tion of the func-tor $\OMS/cmsy/m/n/10.95 F \OT1/cmr/m/n/10.95 : [] \OMS/cmsy/
-m/n/10.95 !
- []
-
-) (./sections/S04_renormalization.tex
-
-[24]
-
-[25]
-Overfull \hbox (31.92099pt too wide) in paragraph at lines 84--85
-[]\T1/cmr/bx/n/10.95 Proposition 5.1 \T1/cmr/m/n/10.95 (Scheme in-de-pen-dence 
+Overfull \hbox (31.92099pt too wide) in paragraph at lines 102--103
+[]\T1/cmr/bx/n/10.95 Proposition 7.2 \T1/cmr/m/n/10.95 (Scheme in-de-pen-dence 
 of ob-serv-ables)\T1/cmr/bx/n/10.95 . []\T1/cmr/m/n/10.95 If $\OML/cmm/m/it/10.
 95 C[]$ \T1/cmr/m/n/10.95 dif-fer by a fi-nite reparametriza-
  []
 
 
 
-[26]) (./sections/S05_formal_systems.tex
+[23]) (./sections/S05.tex
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 6.
+[24]
 
+[25]
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\leftrightarrow' on input line 6.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 6.
-
-
-Overfull \hbox (41.10796pt too wide) in paragraph at lines 12--26
- [][] 
+[26]
+Overfull \hbox (90.55942pt too wide) detected at line 111
+[]
  []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 
 [27]
 
-[28]
-Overfull \hbox (0.37776pt too wide) in paragraph at lines 124--125
-\T1/cmr/m/n/10.95 bound-aries with di-rec-tion, lead-ing to holo-graphic renor-
-mal-iza-tion (de-tailed in Sec-tion []10[]). 
- []
+[28]) (./sections/S06.tex
 
-
-
-[29]) (./sections/S06_truth_fixed_point.tex
+[29]
 
 [30]
 
-[31]) (./sections/S07_effective_logic.tex
+[31]
+Overfull \hbox (4.19716pt too wide) in paragraph at lines 107--108
+[]\T1/cmr/m/n/10.95 Computational se-man-tics as-signs mean-ing through RG flow
+ be-haviour within L/B/R
+ []
+
+) (./sections/S07.tex
 
 [32]
 
-[33]) (./sections/S08_consistency.tex
+[33]) (./sections/S08.tex
 
 [34]
-Overfull \hbox (7.92043pt too wide) in paragraph at lines 43--44
-[]\T1/cmr/bx/n/10.95 Conjecture 9.3 \T1/cmr/m/n/10.95 (Hilbert-Polya Con-nec-ti
-on)\T1/cmr/bx/n/10.95 . []\T1/cmr/m/n/10.95 The logic trans-former may pro-vide
- a Hilbert-
+Overfull \hbox (76.46701pt too wide) detected at line 37
+[]
  []
 
 
 
-[35]) (./sections/S09_boundary_maps.tex
+[35]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 59.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 59.
+
+
 
 [36]
+Overfull \hbox (34.5857pt too wide) in paragraph at lines 108--110
+[]\T1/cmr/bx/n/10.95 Conjecture 11.6 \T1/cmr/m/n/10.95 (Hilbert^^UPólya Sce-nar
+io)\T1/cmr/bx/n/10.95 . []\T1/cmr/m/n/10.95 The con-struc-tion may con-form to 
+the Hilbert^^UPólya
+ []
 
-[37]
 
-[38]) (./sections/S10_llms.tex
+
+[37]) (./sections/S09.tex
+
+[38]
 
 [39]
 
-LaTeX Warning: Reference `sec:semantics' on page 40 undefined on input line 21.
-
+LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 
 [40]
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 85.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 85.
-
-
-
-[41]
+[41]) (./sections/S10.tex
 
 [42]
 
 [43]
 
-[44]) (./sections/S11_spectral_gap.tex
-Overfull \hbox (77.24292pt too wide) in paragraph at lines 10--12
-\OT1/cmss/m/n/10.95 T[]\OML/cmm/m/it/10.95 f\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/1
-0.95 n; m\OT1/cmr/m/n/10.95 ) = [][] \OML/cmm/m/it/10.95 K[]\OT1/cmr/m/n/10.95 
-(\OML/cmm/m/it/10.95 n; m\OT1/cmr/m/n/10.95 ; \OML/cmm/m/it/10.95 n[]; m[]\OT1/
-cmr/m/n/10.95 ) \OML/cmm/m/it/10.95 f\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 n[
-]; m[]\OT1/cmr/m/n/10.95 )$\T1/cmr/m/n/10.95 , with in-ner prod-uct $\OMS/cmsy/
-m/n/10.95 h\OML/cmm/m/it/10.95 f; g\OMS/cmsy/m/n/10.95 i \OT1/cmr/m/n/10.95 = [
-][] \OML/cmm/m/it/10.95 ^^V\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 n; m\OT1/cmr
-/m/n/10.95 ) []\OML/cmm/m/it/10.95 g\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 n; 
-m\OT1/cmr/m/n/10.95 )$\T1/cmr/m/n/10.95 .
- []
-
-
+[44]) (./sections/S11.tex
 
 [45]
 
 [46]
 
-[47]) (./conclusion.tex) (./discussion.tex
+[47]
 
-[48]
-
-[49]) (./acknowledgements.tex
-Overfull \hbox (4.48958pt too wide) in paragraph at lines 5--6
-[]\T1/cmr/m/n/10.95 I would like to thank my col-leagues, col-lab-o-ra-tors and
- busi-ness part-ners at AI.IMPACT
+[48]) (./sections/S12.tex
+Overfull \hbox (9.11026pt too wide) in paragraph at lines 1--1
+[]\T1/cmr/bx/n/14.4 Applications to Num-ber The-ory and Com-pu-ta-tional Com-
  []
 
-) (./sections/appendix_notation.tex
+
+
+[49]
+Overfull \hbox (0.27437pt too wide) in paragraph at lines 14--15
+[]\T1/cmr/bx/n/10.95 Definition 15.1 \T1/cmr/m/n/10.95 (Re-versibil-ity Con-str
+aint RC\TS1/cmr/m/n/10.95 „ \T1/cmr/m/n/10.95 on Spec-tral Ap-pli-ca-tions)\T1/
+cmr/bx/n/10.95 . []\T1/cmr/m/n/10.95 The re-versibil-
+ []
+
+
 
 [50]
 
@@ -1359,122 +1787,87 @@ Overfull \hbox (4.48958pt too wide) in paragraph at lines 5--6
 
 [52]
 
-[53]
+[53])
+Overfull \hbox (1.80946pt too wide) in paragraph at lines 181--172
+\T1/cmr/m/n/10.95 demon-strates how our renor-mal-i-sa-tion ap-proach can ad-dr
+ess fun-da-men-tal ques-tions across
+ []
 
-[54]
+
+
+[54] (./conclusion.tex) (./discussion.tex
 
 [55]
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 192.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\leftrightarrow' on input line 192.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 192.
-
-
-
 [56]
-Overfull \hbox (71.60403pt too wide) in paragraph at lines 228--240
- [] 
+Overfull \hbox (7.34282pt too wide) in paragraph at lines 30--31
+\T1/cmr/m/n/10.95 transfer-operator pro-gramme. Presents one di-a-gram-matic ke
+r-nel/-cok-er-nel view; no claimed
  []
 
-) (./sections/appendix_mde_pyramid.tex
-pdfTeX warning (ext4): destination with the same identifier (name{appendix.A}) 
-has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.2 ...mal Definition of the MDE Pyramid of Logic}
-                                                  
-Overfull \hbox (3.00864pt too wide) in paragraph at lines 2--2
-[]\T1/cmr/bx/n/14.4 Complete For-mal Def-i-ni-tion of the MDE Pyra-mid of Logic
- 
+) (./acknowledgements.tex
+Overfull \hbox (4.48958pt too wide) in paragraph at lines 5--6
+[]\T1/cmr/m/n/10.95 I would like to thank my col-leagues, col-lab-o-ra-tors and
+ busi-ness part-ners at AI.IMPACT
  []
 
 
-pdfTeX warning (ext4): destination with the same identifier (name{subsection.A.
-1}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.7 \subsection{Basic Definitions}
-                                  
 
-[57]
-pdfTeX warning (ext4): destination with the same identifier (name{subsection.A.
-2}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.18 ...section{Level 0: Basic Logical Primitives}
-                                                  
-pdfTeX warning (ext4): destination with the same identifier (name{subsection.A.
-3}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.50 \subsection{Level 1: Computational Paradigms}
-                                                  
+[57]) (./sections/appendix_implementation.tex
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 38.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leftrightarrow' on input line 38.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 38.
+
+
+Overfull \hbox (11.53447pt too wide) in paragraph at lines 44--62
+ [][] 
+ []
+
+
 
 [58]
-pdfTeX warning (ext4): destination with the same identifier (name{subsection.A.
-4}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.80 \subsection{Level 2: Domain Models}
-                                        
-pdfTeX warning (ext4): destination with the same identifier (name{subsection.A.
-5}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.110 \subsection{Level 3: Applications}
-                                        
 
-[59]
-pdfTeX warning (ext4): destination with the same identifier (name{subsection.A.
-6}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.140 \subsection{Inter-level Mappings}
-                                       
-pdfTeX warning (ext4): destination with the same identifier (name{subsection.A.
-7}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.152 \subsection{Consistency and Completeness}
-                                               
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+
+[59]) (./sections/appendix_mathematical_background.tex
 
 [60]
-pdfTeX warning (ext4): destination with the same identifier (name{subsection.A.
-8}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.172 \subsection{Properties of the MDE Pyramid}
-                                                
-pdfTeX warning (ext4): destination with the same identifier (name{subsection.A.
-9}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.185 \subsection{Connection to Previous Sections}
-                                                  )
-(./sections/appendix_category_theory.tex
 
 [61]
 
 [62]
 
-[63]
+[63]) (./sections/appendix_technical_derivations.tex
 
-[64]) (./main.bbl
+[64]
 
-[65])
+[65]
 
 [66]
 
-[67]
+[67]) (./main.bbl
 
-[68] 
+[68]
+
+[69]
+
+[70])
+
+[71]
+
+[72]
+
+[73] 
 enddocument/afterlastpage (AED): lastpage setting LastPage.
 (./main.aux)
  ***********
@@ -1488,56 +1881,57 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
-
-Package rerunfilecheck Warning: File `main.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `main.out':
-(rerunfilecheck)             Before: 1C352B4F5328A40827F41E48166BE20A;29654
-(rerunfilecheck)             After:  8FFC55B0B785C8A6BA0D7CF99CAFEDBC;29636.
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: BCA9164FBB1ADE59875BC4CF46151211;34248.
  ) 
 Here is how much of TeX's memory you used:
- 43179 strings out of 467800
- 995879 string characters out of 5431882
- 1473327 words of memory out of 5000000
- 70562 multiletter control sequences out of 15000+600000
- 657790 words of font info for 130 fonts, out of 8000000 for 9000
+ 43305 strings out of 467800
+ 998237 string characters out of 5431882
+ 1498556 words of memory out of 5000000
+ 70699 multiletter control sequences out of 15000+600000
+ 663623 words of font info for 147 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,13n,87p,1431b,1305s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,13n,87p,1335b,1320s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb>
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
 /usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></
 usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></us
 r/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/
-local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/lo
-cal/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local
-/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/te
-xlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/tex
-live/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texl
-ive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texliv
-e/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/
-2024/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb></usr/local/texliv
-e/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/te
-xlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/loca
-l/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/local/
-texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb></usr/local/te
-xlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texl
-ive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texliv
-e/2024/texmf-dist/fonts/type1/public/cm-super/sfrm0600.pfb></usr/local/texlive/
-2024/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/20
-24/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/texlive/2024
-/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2024/t
-exmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/2024/tex
-mf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2024/texmf
--dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texlive/2024/texmf-d
-ist/fonts/type1/public/cm-super/sfti1095.pfb></usr/local/texlive/2024/texmf-dis
-t/fonts/type1/public/cm-super/sftt1095.pfb>
-Output written on main.pdf (68 pages, 706997 bytes).
+local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/lo
+cal/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/loca
+l/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/
+texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/tex
+live/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texliv
+e/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2
+024/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/20
+24/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/local/texlive/202
+4/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texlive/2024/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2024/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2024/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2024/texmf-d
+ist/fonts/type1/public/amsfonts/euler/eufm10.pfb></usr/local/texlive/2024/texmf
+-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2024/t
+exmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/20
+24/texmf-dist/fonts/type1/public/cm-super/sfbx0900.pfb></usr/local/texlive/2024
+/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/local/texlive/2024/t
+exmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb></usr/local/texlive/2024/tex
+mf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2024/texmf
+-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2024/texmf-d
+ist/fonts/type1/public/cm-super/sfrm0600.pfb></usr/local/texlive/2024/texmf-dis
+t/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/2024/texmf-dist/
+fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/texlive/2024/texmf-dist/fo
+nts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2024/texmf-dist/font
+s/type1/public/cm-super/sfrm1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/
+type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2024/texmf-dist/fonts/ty
+pe1/public/cm-super/sfrm1728.pfb></usr/local/texlive/2024/texmf-dist/fonts/type
+1/public/cm-super/sfti1095.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/
+public/cm-super/sftt1095.pfb>
+Output written on main.pdf (73 pages, 823664 bytes).
 PDF statistics:
- 1741 PDF objects out of 2073 (max. 8388607)
- 1588 compressed objects within 16 object streams
- 583 named destinations out of 1000 (max. 500000)
- 1117 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1910 PDF objects out of 2073 (max. 8388607)
+ 1741 compressed objects within 18 object streams
+ 561 named destinations out of 1000 (max. 500000)
+ 1245 words of extra memory for PDF output out of 10000 (max. 10000000)
 

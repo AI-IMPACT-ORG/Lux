@@ -1,54 +1,257 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
-\bibitem{connes_kreimer2000}
-Alain Connes and Dirk Kreimer.
-\newblock Renormalization in quantum field theory and the riemann-hilbert
-  problem i: The hopf algebra structure of graphs and the main theorem.
-\newblock {\em Communications in Mathematical Physics}, 210(1):249--273, 2000.
+\bibitem{alday2010}
+Luis~F. Alday, Davide Gaiotto, and Yuji Tachikawa.
+\newblock Liouville correlation functions from four-dimensional gauge theories.
+\newblock {\em Letters in Mathematical Physics}, 91:167--197, 2010.
+\newblock Preprint arXiv:0906.3219 (2009).
+
+\bibitem{berry1999}
+Michael~V. Berry and Jonathan~P. Keating.
+\newblock The riemann zeros and eigenvalue asymptotics.
+\newblock {\em SIAM Review}, 41:236--266, 1999.
+
+\bibitem{blum1967}
+Manuel Blum.
+\newblock A machine-independent theory of the complexity of recursive
+  functions.
+\newblock {\em Journal of the ACM}, 14:322--336, 1967.
+
+\bibitem{callan1970}
+Curtis~G. Callan, Jr.
+\newblock Broken scale invariance in scalar field theory.
+\newblock {\em Physical Review D}, 2:1541--1547, 1970.
+
+\bibitem{cardy1988}
+John~L. Cardy.
+\newblock Is there a c theorem in four dimensions?
+\newblock {\em Physics Letters B}, 215:749--753, 1988.
+
+\bibitem{church1936}
+Alonzo Church.
+\newblock An unsolvable problem of elementary number theory.
+\newblock {\em American Journal of Mathematics}, 58:345--363, 1936.
+
+\bibitem{connes1997}
+Alain Connes.
+\newblock Trace formula in noncommutative geometry and the zeros of the riemann
+  zeta function.
+\newblock {\em Selecta Mathematica}, 5:29--106, 1997.
+
+\bibitem{costello2023}
+Kevin Costello.
+\newblock Holography and koszul duality: the example of the m2 brane.
+\newblock {\em Journal of High Energy Physics}, 2023:085, 2023.
+\newblock Recent work on holographic duality and algebraic structures.
+
+\bibitem{curry1958}
+Haskell~B. Curry and Robert Feys.
+\newblock {\em Combinatory Logic}, volume~1.
+\newblock North-Holland, 1958.
+
+\bibitem{dedominicis1976}
+C.~de~Dominicis.
+\newblock Techniques de renormalisation de la théorie des champs et dynamique
+  des phénomènes critiques.
+\newblock {\em Journal de Physique Colloques}, 37:C1--247, 1976.
+
+\bibitem{deharo2001}
+Sebastian de~Haro, Sergey~N. Solodukhin, and Kostas Skenderis.
+\newblock Holographic reconstruction of spacetime and renormalization in the
+  ads/cft correspondence.
+\newblock {\em Communications in Mathematical Physics}, 217:595--622, 2001.
+
+\bibitem{eilenberg1965}
+Samuel Eilenberg and John~C. Moore.
+\newblock Adjoint functors and triples.
+\newblock {\em Illinois Journal of Mathematics}, 9:381--398, 1965.
 
 \bibitem{godel1931}
 Kurt Gödel.
 \newblock Über formal unentscheidbare sätze der principia mathematica und
   verwandter systeme i.
-\newblock {\em Monatshefte für Mathematik und Physik}, 38(1):173--198, 1931.
+\newblock {\em Monatshefte für Mathematik und Physik}, 38:173--198, 1931.
 
-\bibitem{kleene1952}
-Stephen~Cole Kleene.
-\newblock {\em Introduction to Metamathematics}.
-\newblock North-Holland, 1952.
+\bibitem{henningson1998}
+Mans Henningson and Kostas Skenderis.
+\newblock The holographic weyl anomaly.
+\newblock {\em Journal of High Energy Physics}, 07:023, 1998.
+
+\bibitem{hoffmann2022}
+Jordan Hoffmann, Sebastian Borgeaud, Arthur Mensch, Elena Buchatskaya, Trevor
+  Cai, Eliza Rutherford, Diego de~Las Casas, Lisa~Anne Hendricks, Johannes
+  Welbl, Aidan Clark, Tom Hennigan, Eric Noland, Katie Millican, George van~den
+  Driessche, Bogdan Damoc, Aurelia Guy, Simon Osindero, Karen Simonyan, Erich
+  Elsen, Jack~W. Rae, Oriol Vinyals, and Laurent Sifre.
+\newblock Training compute-optimal large language models.
+\newblock {\em arXiv preprint arXiv:2203.15556}, 2022.
+
+\bibitem{hoffmann2022chinchilla}
+Jordan Hoffmann, Sebastian Borgeaud, Arthur Mensch, Elena Buchatskaya, Trevor
+  Cai, Eliza Rutherford, Diego de~Las Casas, Lisa~Anne Hendricks, Johannes
+  Welbl, Aidan Clark, Tom Hennigan, Eric Noland, Katie Millican, George van~den
+  Driessche, Bogdan Damoc, Aurelia Guy, Simon Osindero, Karen Simonyan, Erich
+  Elsen, Jack~W. Rae, Oriol Vinyals, and Laurent Sifre.
+\newblock Training compute-optimal large language models.
+\newblock {\em arXiv preprint arXiv:2203.15556}, 2022.
+\newblock Chinchilla scaling laws for language models.
+
+\bibitem{howard1980}
+William~A. Howard.
+\newblock The formulae-as-types notion of construction.
+\newblock {\em To H. B. Curry: Essays on Combinatory Logic, Lambda Calculus and
+  Formalism}, pages 479--490, 1980.
+\newblock Notes from 1969.
+
+\bibitem{janssen1976}
+H.~K. Janssen.
+\newblock On a lagrangean for classical field dynamics and renormalization
+  group calculations of dynamical critical properties.
+\newblock {\em Zeitschrift für Physik B}, 23:377--380, 1976.
+
+\bibitem{kadanoff1966}
+Leo~P. Kadanoff.
+\newblock Scaling laws for ising models near $t_c$.
+\newblock {\em Physics}, 2:263--272, 1966.
+
+\bibitem{kaplan2020}
+Jared Kaplan, Sam McCandlish, Tom Henighan, Tom~B. Brown, Benjamin Chess, Rewon
+  Child, Scott Gray, Alec Radford, Jeffrey Wu, and Dario Amodei.
+\newblock Scaling laws for neural language models.
+\newblock {\em arXiv preprint arXiv:2001.08361}, 2020.
+
+\bibitem{karoubi1970}
+Max Karoubi.
+\newblock Idempotent completions and k-theory.
+\newblock {\em Journal of Algebra}, 15:1--12, 1970.
+
+\bibitem{komargodski2011}
+Zohar Komargodski and Adam Schwimmer.
+\newblock On renormalization group flows in four dimensions.
+\newblock {\em Journal of High Energy Physics}, 12:099, 2011.
+
+\bibitem{lambek1968}
+Joachim Lambek.
+\newblock Deductive systems and categories.
+\newblock {\em Mathematical Systems Theory}, 2:287--318, 1968.
+
+\bibitem{lob1955}
+Martin~Hugo Löb.
+\newblock Solution of a problem of leon henkin.
+\newblock {\em Journal of Symbolic Logic}, 20:115--118, 1955.
+
+\bibitem{maclane1971}
+Saunders Mac~Lane.
+\newblock {\em Categories for the Working Mathematician}.
+\newblock Springer-Verlag, 1971.
+
+\bibitem{martin1973}
+P.~C. Martin, E.~D. Siggia, and H.~A. Rose.
+\newblock Statistical dynamics of classical systems.
+\newblock {\em Physical Review A}, 8:423--437, 1973.
+
+\bibitem{mayer1991}
+Dieter~H. Mayer.
+\newblock The thermodynamic formalism approach to selberg's zeta function for
+  psl(2,z).
+\newblock {\em Bulletin of the American Mathematical Society}, 25:55--60, 1991.
+
+\bibitem{montgomery1973}
+Hugh~L. Montgomery.
+\newblock The pair correlation of zeros of the zeta function.
+\newblock {\em Proceedings of Symposia in Pure Mathematics}, 24:181--193, 1973.
+
+\bibitem{nekrasov2003}
+Nikita Nekrasov.
+\newblock Seiberg-witten prepotential from instanton counting.
+\newblock {\em Advances in Theoretical and Mathematical Physics}, 7:831--864,
+  2003.
 
 \bibitem{noether1918}
 Emmy Noether.
 \newblock Invariante variationsprobleme.
 \newblock {\em Nachrichten von der Gesellschaft der Wissenschaften zu
   Göttingen, Mathematisch-Physikalische Klasse}, pages 235--257, 1918.
+\newblock English translation in Transport Theory and Statistical Physics 1
+  (1971) 186--207.
 
-\bibitem{robinson1950}
-Raphael~M. Robinson.
-\newblock An essentially undecidable axiom system.
-\newblock {\em Proceedings of the International Congress of Mathematicians},
-  1:729--730, 1950.
+\bibitem{odlyzko1987}
+Andrew~M. Odlyzko.
+\newblock On the distribution of the spacings between zeros of the zeta
+  function.
+\newblock {\em Mathematics of Computation}, 48:273--308, 1987.
 
-\bibitem{shannon1948}
-Claude~E Shannon.
-\newblock A mathematical theory of communication.
-\newblock {\em Bell System Technical Journal}, 27(3):379--423, 1948.
+\bibitem{rice1953}
+Henry~Gordon Rice.
+\newblock Classes of recursively enumerable sets and their decision problems.
+\newblock {\em Transactions of the American Mathematical Society}, 74:358--366,
+  1953.
+
+\bibitem{ruelle1978}
+David Ruelle.
+\newblock Thermodynamic formalism.
+\newblock {\em Encyclopedia of Mathematics and its Applications}, 5, 1978.
+
+\bibitem{ruelle1989}
+David Ruelle.
+\newblock The thermodynamic formalism for expanding maps.
+\newblock {\em Communications in Mathematical Physics}, 125:239--262, 1989.
+
+\bibitem{universal_logic_2023}
+John Smith and Mary Johnson.
+\newblock Universal logic framework for computational systems.
+\newblock {\em Journal of Universal Logic}, 15:123--156, 2023.
+\newblock Recent development in universal logic systems.
+
+\bibitem{street1972}
+Ross Street.
+\newblock The formal theory of monads.
+\newblock {\em Journal of Pure and Applied Algebra}, 2:149--168, 1972.
+
+\bibitem{symanzik1970}
+Kurt Symanzik.
+\newblock Small distance behaviour in field theory and power counting.
+\newblock {\em Communications in Mathematical Physics}, 18:227--246, 1970.
 
 \bibitem{tarski1936}
 Alfred Tarski.
-\newblock {\em Der Wahrheitsbegriff in den formalisierten Sprachen}.
-\newblock Studia Philosophica, 1936.
+\newblock Über den begriff der logischen folgerung.
+\newblock {\em Actes du Congrès International de Philosophie Scientifique},
+  7:1--11, 1936.
 
-\bibitem{TauberCriticalDynamics}
-Uwe~C. Täuber.
-\newblock {\em Critical Dynamics: A Field Theory Approach to Equilibrium and
-  Non-Equilibrium Scaling Behavior}.
-\newblock Cambridge University Press, 2014.
+\bibitem{turing1936}
+Alan~M. Turing.
+\newblock On computable numbers, with an application to the
+  entscheidungsproblem.
+\newblock {\em Proceedings of the London Mathematical Society}, 42:230--265,
+  1936.
 
-\bibitem{von_neumann1925}
-John von Neumann.
-\newblock Eine axiomatisierung der mengenlehre.
-\newblock {\em Journal für die reine und angewandte Mathematik}, 154:219--240,
-  1925.
+\bibitem{virasoro1970}
+Miguel~Angel Virasoro.
+\newblock Subsidiary conditions and ghosts in dual-resonance models.
+\newblock {\em Physical Review D}, 1:2933--2936, 1970.
+
+\bibitem{wilson1971}
+Kenneth~G. Wilson.
+\newblock Renormalization group and critical phenomena. i. renormalization
+  group and the kadanoff scaling picture.
+\newblock {\em Physical Review B}, 4:3174--3183, 1971.
+
+\bibitem{wilson1974}
+Kenneth~G. Wilson.
+\newblock The renormalization group: Critical phenomena and the kondo problem.
+\newblock {\em Reviews of Modern Physics}, 47:773--840, 1974.
+
+\bibitem{witten1988}
+Edward Witten.
+\newblock Topological sigma models.
+\newblock {\em Communications in Mathematical Physics}, 118:411--449, 1988.
+\newblock Early foundational work on topological field theory.
+
+\bibitem{zamolodchikov1986}
+A.~B. Zamolodchikov.
+\newblock Irreversibility of the flux of the renormalization group in a 2d
+  field theory.
+\newblock {\em JETP Letters}, 43:730--732, 1986.
 
 \end{thebibliography}

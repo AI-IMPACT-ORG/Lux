@@ -1,0 +1,182 @@
+{
+  "metadata_schema_version": "1.0",
+  "acts": [
+    {
+      "act_id": "ACT1",
+      "label": "Establish Foundations",
+      "beats": [
+        {
+          "beat_id": "establish_unified_computation",
+          "summary": "Unifies classical computation paradigms via the G4 generating functional, introduces the L/B/R ledger, and establishes the fundamental anomalous choice constraint distinguishing 2D reversible from 4D irreversible cases.",
+          "sections": [
+            "S01"
+          ],
+          "content_threads": [
+            "computational_unification",
+            "logic_foundations"
+          ]
+        },
+        {
+          "beat_id": "introduce_regulator_framework",
+          "summary": "Introduces four-regulator system with ad0-ad3 as regulators and a0-a3 as true moduli.",
+          "sections": [
+            "S02"
+          ],
+          "content_threads": [
+            "computational_unification",
+            "regularization_rg",
+            "symbol_organization"
+          ]
+        },
+        {
+          "beat_id": "analyze_rg_flow",
+          "summary": "Develops RG flow machinery with moduli-regulator distinction and identifies divergences as logical inconsistencies.",
+          "sections": [
+            "S03"
+          ],
+          "content_threads": [
+            "regularization_rg",
+            "logic_foundations",
+            "divergence_mapping"
+          ]
+        },
+        {
+          "beat_id": "complete_renormalization",
+          "summary": "Completes renormalization to obtain finite correlators that prepare the logic layer.",
+          "sections": [
+            "S04"
+          ],
+          "content_threads": [
+            "regularization_rg",
+            "renormalization"
+          ]
+        }
+      ]
+    },
+    {
+      "act_id": "ACT2",
+      "label": "Build the Logic Transformer",
+      "beats": [
+        {
+          "beat_id": "define_positive_logic",
+          "summary": "Formally defines the interacting positive logic, grammar, and equality hierarchy.",
+          "sections": [
+            "S05"
+          ],
+          "content_threads": [
+            "logic_foundations",
+            "mde_pyramid"
+          ]
+        },
+        {
+          "beat_id": "fix_truth_via_rg",
+          "summary": "Identifies truth as an RG fixed point within the L/B/R structure.",
+          "sections": [
+            "S06"
+          ],
+          "content_threads": [
+            "logic_foundations",
+            "truth_fixed_points"
+          ]
+        },
+        {
+          "beat_id": "construct_effective_logic_hierarchy",
+          "summary": "Builds the MDE pyramid hierarchy and links it to effective logic transformations.",
+          "sections": [
+            "S07"
+          ],
+          "content_threads": [
+            "mde_pyramid",
+            "logic_foundations"
+          ]
+        }
+      ]
+    },
+    {
+      "act_id": "ACT3",
+      "label": "Validate and Apply",
+      "beats": [
+        {
+          "beat_id": "validate_against_classics",
+          "summary": "Demonstrates alignment with classical theorems and frames spectral conjectures.",
+          "sections": [
+            "S08"
+          ],
+          "content_threads": [
+            "consistency_validation",
+            "logic_foundations"
+          ]
+        },
+        {
+          "beat_id": "build_boundary_maps",
+          "summary": "Constructs boundary maps that transport ledger entries between domains.",
+          "sections": [
+            "S09"
+          ],
+          "content_threads": [
+            "boundary_morphisms",
+            "consistency_validation"
+          ]
+        },
+        {
+          "beat_id": "apply_to_learning",
+          "summary": "Applies the framework to LLM training through renormalised correlators and parameter dictionaries.",
+          "sections": [
+            "S10"
+          ],
+          "content_threads": [
+            "learning_application",
+            "boundary_morphisms"
+          ]
+        },
+        {
+          "beat_id": "synthesize_domain_morphisms",
+          "summary": "Synthesises cross-domain morphisms with divergence mapping framework and identifies universal invariants.",
+          "sections": [
+            "S11"
+          ],
+          "content_threads": [
+            "domain_morphisms",
+            "boundary_morphisms",
+            "divergence_mapping"
+          ]
+        },
+        {
+          "beat_id": "probe_number_theory_complexity",
+          "summary": "Applies the domain morphisms to number theory and complexity via spectral gaps.",
+          "sections": [
+            "S12"
+          ],
+          "content_threads": [
+            "number_theory_application",
+            "domain_morphisms"
+          ]
+        }
+      ]
+    },
+    {
+      "act_id": "ANNEX",
+      "label": "Supporting Resources",
+      "beats": [
+        {
+          "beat_id": "supporting_resources",
+          "summary": "Aggregates appendices covering implementation details, background, mechanisation, and notation.",
+          "sections": [
+            "APP_API_SPEC",
+            "APP_CAT",
+            "APP_MDE",
+            "APP_MECH",
+            "APP_NOTATION"
+          ],
+          "content_threads": [
+            "implementation_support",
+            "foundations_background",
+            "mechanization_artifacts",
+            "notation_reference",
+            "mde_pyramid"
+          ]
+        }
+      ]
+    }
+  ]
+}

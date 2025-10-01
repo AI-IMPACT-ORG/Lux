@@ -1,0 +1,177 @@
+\section{Domain Morphisms and Universal Invariants}
+\label{sec:unified-theory}
+
+Having established the complete framework spanning computation, logic, and physics through renormalisation group flow within the L/B/R structure, we now examine the domain morphisms that connect our logical framework to various mathematical domains. This section synthesizes the $\mathsf{Gen4}$ primitive from Section~\ref{sec:computation-paradigms}, the simplified equality hierarchy from Section~\ref{sec:formal-systems}, the truth semantics from Section~\ref{sec:truth-fixed-point}, and the boundary maps from Section~\ref{sec:boundary-maps}. In the physics domain, these morphisms correspond to effective field theory descriptions at different energy scales.
+
+The CLEAN–S($\Lambda$) façade of §3A realises the 'double self‑boundary' picture concretely: composition $K^N$ in the bulk, readout via $\nu_R$, channelised by PSDM; crossing is enacted by triality/conjugations of §7.
+
+These morphisms reveal universal invariants that provide consistency across different applications and offer machine-checkable routes to fundamental problems in mathematics and physics through systematic translation maps. The domain morphisms operate within the L/B/R triality structure, ensuring that all translations preserve the fundamental "bulk = two boundaries" principle (Definition~\ref{def:bulk-equals-boundaries}) while enabling systematic connections between computation, physics, learning, and number theory. The domain morphisms directly preserve the Green's functions hierarchy across all domains, ensuring that bare, dressed, and renormalized Green's functions translate consistently.
+
+\paragraph{Domain recap.} The contributions of each domain and the logic artefacts they instantiate are comprehensively documented in Table~\ref{tab:universal-domain-translation} (Section~\ref{sec:domain-translation-map}). This table serves as the complete domain ledger for navigating future extensions.
+
+\subsection{Representation Data Required}
+
+\begin{notation}[Representation Data Required (CFT/AGT)]
+\label{not:representation-data}
+For CFT/AGT interpretations \cite{alday2010,nekrasov2003}: unitary highest-weight $(\mathrm{Vir}\oplus\mathrm{Vir})$ modules, central charge $(c)$, external/internal weights, basis choice. Used only for intuition; not invoked in proofs.
+\end{notation}
+
+\subsection{Domain Morphisms and Universal Invariants}
+
+The domain morphisms provide the crucial bridge between logical inconsistencies and domain-specific divergences:
+
+\begin{definition}[Divergence Mapping via Domain Morphisms]
+\label{def:divergence-mapping}
+Under domain morphisms, logical inconsistencies are mapped to divergences as follows:
+\begin{align}
+\text{Logic layer: } &\text{Inconsistency in } \equiv_\star \text{ equality} \\
+\text{Computation domain: } &\text{Diverging RG flow } \mapsto \text{Irreversible computation} \\
+\text{Physics domain: } &\text{Diverging RG flow } \mapsto \text{UV divergences in QFT} \\
+\text{LLM domain: } &\text{Diverging RG flow } \mapsto \text{Training instability} \\
+\text{Number theory domain: } &\text{Diverging RG flow } \mapsto \text{Spectral gap collapse}
+\end{align}
+The direction is always: logical inconsistency $\mapsto$ domain-specific divergence. Divergences are semantic labels in the logic that acquire meaning through domain morphisms.
+\end{definition}
+
+\subsection{Universal Invariants and Information Measures}
+
+The framework provides several universal invariants that govern information flow across domains:
+
+\begin{definition}[Fisher Information Metric]
+\label{def:fisher-metric-gen4}
+The Fisher information metric for our $\mathsf{Gen4}$ primitive is:
+\[
+g_{ij}(\vec{q}) = \mathbb{E}\left[\frac{\partial \log \mathsf{Gen4}}{\partial q_i} \frac{\partial \log \mathsf{Gen4}}{\partial q_j}\right]
+\]
+where the expectation is taken over the computational state distribution, respecting the equality hierarchy $\equiv_\star, \equiv_B, \equiv_{\text{meta}}$.
+
+The Fisher metric and c-function are:
+\[
+g_{ij}(\vec q)=\mathbb E\left[\partial_{q_i}\log G\,\partial_{q_j}\log G\right],\qquad
+c(\Lambda)=\tfrac12\mathrm{Tr}\,g(\vec q(\Lambda))
+\]
+See Appendix C for curvature/a-function expressions.
+\end{definition}
+
+\begin{notation}[Hypotheses]
+\label{not:hypotheses-c-a}
+\textbf{Assumptions:} Fisher information metric is well-defined; RG flow equations hold; monotonicity theorems apply; RG fixed points exist.
+\end{notation}
+
+\begin{theorem}[c-Function and a-Function]
+\label{thm:c-a-functions}
+The c-function and a-function emerge from the Fisher information metric:
+\begin{align}
+c(\Lambda) &= \frac{1}{2} \text{Tr}(g_{ij}(\vec{q}(\Lambda))) \\
+a(\Lambda) &= \frac{1}{24\pi^2} \left[ \text{Tr}(R^2) - \frac{1}{4}\text{Tr}(R \wedge R) \right]
+\end{align}
+Both satisfy monotonicity theorems: $\frac{dc}{d\Lambda} \leq 0$ and $\frac{da}{d\Lambda} \leq 0$, with equality only at RG fixed points.
+\end{theorem}
+
+\subsection{Multiple Entropy Types}
+
+Our unified framework incorporates multiple entropy types, each playing a distinct role:
+
+\begin{definition}[Entropy Hierarchy]
+\label{def:entropy-hierarchy}
+The different entropy measures satisfy:
+\begin{align}
+S_{\text{thermo}}(\Lambda) &= k_B \log \Omega(\Lambda) \quad \text{(thermodynamic)} \\
+S_{\text{Shannon}}(\Lambda) &= -\sum_{n,m} p_{n,m}(\Lambda) \log p_{n,m}(\Lambda) \quad \text{(information)} \\
+S_{\text{vN}}(\Lambda) &= -\text{Tr}(\rho(\Lambda) \log \rho(\Lambda)) \quad \text{(quantum)} \\
+S_{\alpha}(\Lambda) &= \frac{1}{1-\alpha} \log \sum_{n,m} p_{n,m}(\Lambda)^\alpha \quad \text{(Rényi)}
+\end{align}
+These satisfy the hierarchy: $S_{\text{thermo}} \geq S_{\text{vN}} \geq S_{\text{Shannon}} \geq S_{\alpha} \geq S_{\infty}$.
+\end{definition}
+
+\subsection{Two-Observer Information Exchange Model}
+
+The fundamental framework for understanding computation as information exchange:
+
+\begin{definition}[Two-Observer Model]
+\label{def:two-observer-model}
+Computation is fundamentally an information exchange between two observers:
+\begin{itemize}
+\item Observer A: Encodes computational state into information
+\item Observer B: Decodes information back into computational state
+\item Information exchange: Mediated by the $\mathsf{Gen4}$ primitive
+\item Truth condition: Maximum information preservation in the exchange
+\end{itemize}
+\end{definition}
+
+\begin{notation}[Hypotheses]
+\label{not:hypotheses-info}
+\textbf{Assumptions:} RG flow equations hold; information measures are well-defined; conservation laws apply; thermodynamic entropy is finite.
+\end{notation}
+
+\begin{theorem}[Information Flow Conservation]
+\label{thm:info-flow-conservation}
+Under RG flow, the total information content is conserved:
+\[
+\frac{d}{d\Lambda} \left[ S_{\text{thermo}} + I(A;B) + c(\Lambda) + a(\Lambda) \right] = 0
+\]
+This provides a fundamental conservation law for information in computational systems.
+\end{theorem}
+
+\subsection{G6 Modal Convolution Framework}
+
+The G6 modal convolution provides the mathematical foundation for understanding LLM training dynamics:
+
+\begin{definition}[G6 Modal Convolution]
+\label{def:g6-convolution}
+The G6 modal convolution morphism $\Psi^{G6}$ maps our computational framework to convolution algebras:
+\[
+\Psi^{G6}: \mathsf{Gen4} \mapsto \sum_{n,m} w_{n,m} \cdot \mathsf{Gen4}_n \otimes \mathsf{Gen4}_m
+\]
+where $w_{n,m}$ are convolution weights encoding the modal structure of the computational system.
+\end{definition}
+
+This framework explains LLM training dynamics and scaling laws \cite{kaplan2020,hoffmann2022,hoffmann2022chinchilla} through analytic tools, providing a rigorous connection between our computational framework and modern machine learning.
+
+\subsection{Universal Truth Criteria}
+
+The multiple entropy measures provide a unified framework for understanding truth as an information-theoretic concept:
+
+\begin{definition}[Information-Theoretic Truth]
+\label{def:info-truth-lbr}
+A computational statement $\phi$ is true if and only if:
+\begin{enumerate}
+\item Thermodynamic condition: $S_{\text{thermo}}(\phi) = S_{\text{thermo}}(\text{vacuum})$ (respects $\equiv_\star$ equality)
+\item Information condition: $I(A;B|\phi) = \max$ (maximum mutual information)
+\item Conservation condition: $\frac{d}{d\Lambda}[S_{\text{thermo}} + I(A;B) + c(\Lambda) + a(\Lambda)] = 0$
+\end{enumerate}
+\end{definition}
+
+\subsection{Epistemic Status and Applications}
+
+The framework provides machine-checkable routes to fundamental problems:
+
+\begin{notation}[Hypotheses]
+\label{not:hypotheses-applications}
+\textbf{Assumptions:} Domain morphisms are well-defined; Yang-Mills mass gap exists; Hilbert–Pólya connection holds; spectral gap classification applies.
+\end{notation}
+
+\begin{theorem}[Universal Applications]
+\label{thm:universal-applications}
+Our domain morphisms provide direct routes to:
+\begin{itemize}
+\item Yang-Mills mass gap problem (via physics domain morphism)
+\item Riemann hypothesis (via Hilbert–Pólya connection in number theory domain)
+\item P vs NP problem (via spectral gap classification in computation domain)
+\end{itemize}
+These connections depend on semantic alignment between our formal structures and target domains.
+\end{theorem}
+
+\subsection{Mathematical Structure as Fundamental Reality}
+
+The systematic applications reveal that:
+\begin{enumerate}
+\item Computation is information exchange between observers
+\item Truth is information preservation in the exchange
+\item Physics is computational semantics
+\item Mathematics is the boundary condition for universal computation
+\end{enumerate}
+
+The framework supports the view that logic systems are fundamentally "open" systems requiring boundaries for definition. When translated to observer-style physics, this leads to familiar discussions about quantum mechanics interpretation, but with the computational twist that any system fundamentally needs boundaries—raising the profound question of what serves as the boundary of the universe itself.
+
+The final section (Section~\ref{sec:spectral-gap}) explores specific applications to number theory and computational complexity, demonstrating the practical power of our unified framework.
