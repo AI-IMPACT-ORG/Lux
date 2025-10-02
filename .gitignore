@@ -1,0 +1,286 @@
+# Build artifacts and temporary files
+*.agdai
+*.agdai.bak
+*.agdai~
+*.aux
+*.auxlock
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*.vo
+*.vok
+*.vos
+*.glob
+*.thy
+*.thy~
+*.lean
+*.olean
+*.cmi
+*.cmo
+*.cmx
+*.o
+*.hi
+*.chi
+*.chs.h
+*.dyn_o
+*.dyn_hi
+*.prof
+*.aux
+*.hi
+*.o
+*.p_hi
+*.p_o
+*.prof
+*.tix
+*.mix
+*.exe
+*.dll
+*.so
+*.dylib
+*.a
+*.lib
+*.jar
+*.war
+*.ear
+*.class
+*.pyc
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# IDE and editor files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+.vscode/
+.cursor/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+
+# Version control
+.git/
+.svn/
+.hg/
+.bzr/
+
+# Backup files
+*.bak
+*.backup
+*.old
+*.orig
+*.rej
+*~
+.#*
+#*#
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
+
+# nyc test coverage
+.nyc_output
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# dotenv environment variables file
+.env
+.env.test
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# parcel-bundler cache (https://parceljs.org/)
+.cache
+.parcel-cache
+
+# Next.js build output
+.next
+
+# Nuxt.js build / generate output
+.nuxt
+dist
+
+# Gatsby files
+.cache/
+public
+
+# Storybook build outputs
+.out
+.storybook-out
+
+# Temporary folders
+tmp/
+temp/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# LaTeX auxiliary files
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+*.run.xml
+*.bcf
+*.auxlock
+
+# Agda files
+*.agdai
+*.agdai.bak
+*.agdai~
+
+# Coq files
+*.vo
+*.vok
+*.vos
+*.glob
+*.aux
+
+# Isabelle files
+*.thy~
+*.thy.bak
+
+# Lean files
+*.olean
+
+# Racket files
+compiled/
+*.zo
+*.dep
+
+# Haskell files
+*.hi
+*.o
+*.chi
+*.chs.h
+*.dyn_o
+*.dyn_hi
+*.prof
+*.p_hi
+*.p_o
+*.tix
+
+# OCaml files
+*.cmi
+*.cmo
+*.cmx
+*.o
+*.a
+*.cma
+*.cmxa
+*.cmxs
+
+# Rust files
+target/
+Cargo.lock
+
+# Go files
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Java files
+*.class
+*.jar
+*.war
+*.ear
+
+# Python files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Test files
+test-results/
+test-output/

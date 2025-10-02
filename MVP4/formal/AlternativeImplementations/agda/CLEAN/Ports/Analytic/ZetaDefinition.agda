@@ -1,5 +1,11 @@
 module CLEAN.Ports.Analytic.ZetaDefinition where
 
+-- | Core interface describing logical L-series, their Hecke/Artin data,
+--   and the growth/decay controls reused across the analytic port.  The
+--   helpers defined here are intentionally algebraic: they expose the same
+--   witnesses that power the rewrite layer so downstream modules can rely on
+--   them without reaching back into the core system.
+
 open import Agda.Builtin.Equality using (_≡_; refl)
 open import Agda.Builtin.Nat using (Nat; zero; suc)
 open import Agda.Builtin.Unit using (⊤; tt)
@@ -12,15 +18,9 @@ open import CLEAN.Core.Renormalisability
 open import CLEAN.Core.Dirichlet
 open import CLEAN.Core.EulerProduct
 open import CLEAN.Ports.Analytic using (analyticNF)
+open import CLEAN.Util.Equality
 
 open DirichletSeries
-
-private
-  transEq : ∀ {A : Set} {x y z : A} → x ≡ y → y ≡ z → x ≡ z
-  transEq refl q = q
-
-  congEq : ∀ {A B : Set} {x y : A} (f : A → B) → x ≡ y → f x ≡ f y
-  congEq f refl = refl
 
 ------------------------------------------------------------------------
 -- Unified renormalisation data harvested from the core logic.
@@ -107,6 +107,7 @@ defaultGrowthDecay =
     (λ r → ≥-step (≥-refl {n = Regulator.lambda r}))
     (λ r → λ≥zero (Regulator.lambda r))
 
+-- | Convenience wrapper producing both sides of the regulator sandwich.
 regulatorBounds : (control : GrowthDecayControl) → ∀ r →
   Σ (Regulator.lambda r ≥ GrowthDecayControl.decayBound control r)
     (λ _ → GrowthDecayControl.growthBound control r ≥ Regulator.lambda r)

@@ -20,6 +20,10 @@ open GrowthDecayControl
 ------------------------------------------------------------------------
 -- Example: classical Riemann ζ-function treated as a logical L-series.
 ------------------------------------------------------------------------
+-- Each definition below is intentionally explicit: the Δ-flow witness, the
+-- regulator sandwich, the denotational interpretations, and the critical-line
+-- outcome are all exposed so other domains can reuse the same pattern without
+-- digging back into the port internals.
 
 riemannLogicalZeta : LogicalZeta
 riemannLogicalZeta = logicalZeta

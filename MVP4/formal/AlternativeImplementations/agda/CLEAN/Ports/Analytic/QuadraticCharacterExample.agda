@@ -21,6 +21,9 @@ open GrowthDecayControl
 ------------------------------------------------------------------------
 -- Example: toy quadratic character realised inside the logical framework.
 ------------------------------------------------------------------------
+-- This mirrors the Riemann example but with a non-trivial phase profile:
+-- the Δ-flow, regulator sandwich, and denotational views are all surfaced
+-- so additional characters can follow the blueprint with minimal effort.
 
 quadraticHeckeCharacter : HeckeCharacterData
 quadraticHeckeCharacter =

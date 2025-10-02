@@ -76,13 +76,18 @@ with constants $0$ and successor $S$, and induction.
 \end{itemize}
 
 \paragraph{Encoders and normalisation.}
-There are encoders $E_{i\to j}$ (Section~\ref{conj:alignment}) sending each presentation to another,
+There are encoders $E_{i\to j}$ sending each presentation to another,
 with $E_{j\to i}\circ E_{i\to j}\simeq N$.
 All four presentations define the same point $[\mathbf{PA}]\in\mathcal{M}$.
 
+\begin{conjecture}[Presentation Alignment]
+\label{conj:alignment}
+The four presentations $\mathbf{TM}$, $\mathbf{\Lambda}$, $\mathbf{Path}$, and $\mathbf{Circ}$ of Peano arithmetic are equivalent under encoder composition and normalisation. The encoders $E_{i\to j}$ preserve the computational semantics while transforming the syntactic presentation.
+\end{conjecture}
+
 \begin{proposition}[Peano equivalence up to normalisation]
 Each presentation of $\mathbf{PA}$ yields the same normalized correlators for
-the generating function $G$, i.e.\ $\mathcal{O}(\Lambda)$ (Def.~\ref{def:global-observable})
+the generating function $G$, i.e.\ $\mathcal{O}(\Lambda)$ (the global observable defined in Section~\ref{sec:rg-flow})
 is invariant under encoders and normalisation. Hence all four belong to the same moduli point.
 \end{proposition}
 

@@ -11,3 +11,4 @@ open import CLEAN.Ports.Analytic.Conjugation public
 open import CLEAN.Ports.Analytic.RiemannZetaExample public
 open import CLEAN.Ports.Analytic.QuadraticCharacterExample public
 open import CLEAN.Ports.Analytic.Semantics public
+open import CLEAN.Ports.Analytic.SpectralShadow public

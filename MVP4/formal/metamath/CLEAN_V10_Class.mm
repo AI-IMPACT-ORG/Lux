@@ -7,9 +7,9 @@ thm-residual-left $p |- observerValue ( residualTerm bulkTerm ) L = zeroL $= ax-
 thm-triality-phase $p |- nfPhase ( normalForm ( trialitySum bulkLeft bulkRight ) ) = phase bulkLeft + phase bulkRight $= ax-triality-phase $.
 thm-valueG-bulk $p |- valueG obs0 0 = bulk_core $= ax-valueG-bulk $.
 thm-valueCov $p |- valueCov obs0 0 1 = ( mkCov bulk_0 probe_1 ) $= ax-valueCov $.
-thm-gen-phase $p |- nfPhase ( normalForm ( generatingFunctional obsGen sourceList01 ) ) = 1 $= ax-gen-phase $.
-thm-gen-scale $p |- nfScale ( normalForm ( generatingFunctional obsGen sourceList01 ) ) = 2 $= ax-gen-scale $.
-thm-moduli-phase $p |- nfPhase ( applyHeaderFlow moduliExample bulkTerm ) = 4 $= ax-moduli-phase $.
+thm-gen-phase $p |- nfPhase ( normalForm ( generatingFunctional obsGen sourceList01 ) ) = 1.0 $= ax-gen-phase $.
+thm-gen-scale $p |- nfScale ( normalForm ( generatingFunctional obsGen sourceList01 ) ) = 2.0 $= ax-gen-scale $.
+thm-moduli-phase $p |- nfPhase ( applyHeaderFlow moduliExample bulkTerm ) = 2 $= ax-moduli-phase $.
 thm-hist-phase $p |- nfPhase ( normalForm ( sumOverHistories hist0 ) ) = phase bulkTerm + phase bulkLeft + phase bulkRight $= ax-hist-phase $.
 thm-guarded $p |- guardedNegation 1 0 = 1 $= ax-guarded $.
 thm-nand $p |- nandTerm 1 1 1 = 0 $= ax-nand $.

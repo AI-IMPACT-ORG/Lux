@@ -1,0 +1,6 @@
+-Q lib lib
+lib/generated_Core.v
+lib/generated_Observers.v
+lib/generated_Kernels.v
+lib/generated_NormalForms.v
+generated_CLEAN.v
