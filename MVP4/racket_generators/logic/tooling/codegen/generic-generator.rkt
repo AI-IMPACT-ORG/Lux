@@ -59,52 +59,20 @@
   (define operations (signature-operations sig))
   (define constants (signature-constants sig))
   
-  ;; Generate constructors
-  (define sort-constructors (case (lang-config-name config)
-    ['lean (map (λ (s) (format "~a" s)) sorts)]
-    [else (map (λ (s) (format "  ~a : Sort" s)) sorts)]))
-  (define op-constructors (case (lang-config-name config)
-    ['lean (map (λ (op) (format "~a" (clean-name (car op)))) operations)]
-    [else (map (λ (op) (format "  ~a : Operation" (clean-name (car op)))) operations)]))
-  (define const-constructors (case (lang-config-name config)
-    ['lean (map (λ (c) (format "~a" (clean-name (car c)))) constants)]
-    [else (map (λ (c) (format "  ~a : Constant" (clean-name (car c)))) constants)]))
+  ;; Generate constructors using language-specific formatters
+  (define sort-constructors ((lang-config-sort-constructor-format config) sorts))
+  (define op-constructors ((lang-config-op-constructor-format config) operations))
+  (define const-constructors ((lang-config-const-constructor-format config) constants))
   
-  ;; Generate term constructors
-  (define arrow (lang-config-arrow config))
-  (define term-constructors (case (lang-config-name config)
-    ['lean (append
-      (map (λ (s) (format "Const~a" s)) sorts)
-      (map (λ (op) 
-        (define name (clean-name (car op)))
-        (define is-unary (or (string-contains? name "Inject") (string-contains? name "Project")))
-        (if is-unary
-            (format "Term~a : Term → Term" name)
-            (format "Term~a : Term → Term → Term" name)))
-        operations))]
-    [else (append
-      (map (λ (s) (format "  Const~a : Constant ~a Term" s arrow)) sorts)
-      (map (λ (op) 
-        (define name (clean-name (car op)))
-        (define is-unary (or (string-contains? name "Inject") (string-contains? name "Project")))
-        (define term-name (if (eq? (lang-config-name config) 'coq) (string-append "Term" name) name))
-        (if is-unary
-            (format "  ~a : Term ~a Term" term-name arrow)
-            (format "  ~a : Term ~a Term ~a Term" term-name arrow arrow)))
-        operations))]))
+  ;; Generate term constructors using language-specific formatter
+  (define term-constructors ((lang-config-term-constructor-format config) sorts operations))
   
   (string-join
    (list
-    ((lang-config-module-header-generator config) "Core" (case (lang-config-name config)
-      ['coq '("Arith.Arith" "Arith.PeanoNat")]
-      ['agda '("Agda.Builtin.Nat" "Agda.Builtin.String" "Agda.Builtin.Equality")]
-      ['lean '()]
-      ['isabelle '("Main")]))
+    ((lang-config-module-header-generator config) "Core" ((lang-config-get-core-imports config)))
     (comment config "CLEAN v10 Core - Expanded with Logical Structure")
     ""
-    (case (lang-config-name config)
-      ['lean (inductive config "CleanSort" sort-constructors)]
-      [else (inductive config "Sort" sort-constructors)])
+    (inductive config (lang-config-sort-name config) sort-constructors)
     ""
     (inductive config "Operation" op-constructors)
     ""
@@ -120,28 +88,22 @@
         "") "\n")]
       [else ""])
     ;; Observer functions (simplified to avoid cycles)
-    (function config "reflect_L" (format "Term ~a Term" arrow) 
+    (function config "reflect_L" (format "Term ~a Term" (lang-config-arrow config)) 
       (format "~a t ~a t" (lang-config-lambda config) (lang-config-arrow config)))
     ""
-    (function config "reflect_R" (format "Term ~a Term" arrow)
+    (function config "reflect_R" (format "Term ~a Term" (lang-config-arrow config))
       (format "~a t ~a t" (lang-config-lambda config) (lang-config-arrow config)))
     ""
-    (function config "observer_value" (format "Term ~a Term" arrow)
+    (function config "observer_value" (format "Term ~a Term" (lang-config-arrow config))
       (format "~a t ~a t" (lang-config-lambda config) (lang-config-arrow config)))
     "")
    "\n"))
 
 ;; Generate observers module
 (define (generate-observers config)
-  (define imports (case (lang-config-name config)
-    ['agda '("lib.generated-Core")]
-    ['coq '("lib.generated_Core")]
-    ['lean '()]
-    [else '("generated-Core")]))
-  
   (string-join
    (list
-    ((lang-config-module-header-generator config) "Observers" imports)
+    ((lang-config-module-header-generator config) "Observers" ((lang-config-get-observers-imports config)))
     (comment config "CLEAN v10 Observers - Expanded with Logical Functions")
     ""
     ;; Basic observer functions (simplified to avoid cycles)
@@ -164,15 +126,9 @@
 
 ;; Generate kernels module
 (define (generate-kernels config)
-  (define imports (case (lang-config-name config)
-    ['agda '("lib.generated-Core")]
-    ['coq '("lib.generated_Core")]
-    ['lean '()]
-    [else '("generated-Core")]))
-  
   (string-join
    (list
-    ((lang-config-module-header-generator config) "Kernels" imports)
+    ((lang-config-module-header-generator config) "Kernels" ((lang-config-get-kernels-imports config)))
     (comment config "CLEAN v10 Kernels - Expanded with Logical Operations")
     ""
     ;; Define Kernel type locally to avoid external dependencies
@@ -210,15 +166,9 @@
 
 ;; Generate normal forms module
 (define (generate-normal-forms config)
-  (define imports (case (lang-config-name config)
-    ['agda '("lib.generated-Core" "Agda.Builtin.Bool")]
-    ['coq '("lib.generated_Core")]
-    ['lean '()]
-    [else '("generated-Core")]))
-  
   (string-join
    (list
-    ((lang-config-module-header-generator config) "NormalForms" imports)
+    ((lang-config-module-header-generator config) "NormalForms" ((lang-config-get-normal-forms-imports config)))
     (comment config "CLEAN v10 Normal Forms - Logical Structure")
     ""
     ;; Define types locally to avoid external dependencies
