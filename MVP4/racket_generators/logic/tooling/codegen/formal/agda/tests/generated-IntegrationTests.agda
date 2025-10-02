@@ -1,7 +1,7 @@
 module tests.generated-IntegrationTests where
 
-open import lib.Core
-open import lib.Observers
+open import lib.generated-Core
+open import lib.generated-Observers
 open import Agda.Builtin.Equality
 
 -- CLEAN v10 Integration Tests

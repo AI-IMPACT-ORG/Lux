@@ -298,11 +298,12 @@
 
 ;; Generate Agda property tests
 (define (generate-agda-property-tests config)
+  (define prefix (lang-config-file-prefix config))
   (string-join
    (list
     "module tests.generated-PropertyTests where"
     ""
-    "open import lib.Core"
+    (format "open import lib.~aCore" prefix)
     "open import Agda.Builtin.Equality"
     ""
     "-- CLEAN v10 Property-Based Tests"
@@ -394,12 +395,13 @@
 
 ;; Generate Agda integration tests
 (define (generate-agda-integration-tests config)
+  (define prefix (lang-config-file-prefix config))
   (string-join
    (list
     "module tests.generated-IntegrationTests where"
     ""
-    "open import lib.Core"
-    "open import lib.Observers"
+    (format "open import lib.~aCore" prefix)
+    (format "open import lib.~aObservers" prefix)
     "open import Agda.Builtin.Equality"
     ""
     "-- CLEAN v10 Integration Tests"

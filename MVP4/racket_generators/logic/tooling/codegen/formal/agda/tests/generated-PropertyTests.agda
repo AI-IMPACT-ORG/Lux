@@ -1,6 +1,6 @@
 module tests.generated-PropertyTests where
 
-open import lib.Core
+open import lib.generated-Core
 open import Agda.Builtin.Equality
 
 -- CLEAN v10 Property-Based Tests

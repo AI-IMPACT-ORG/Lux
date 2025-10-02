@@ -197,7 +197,9 @@
   (format "Inductive ~a : Type :=\n| ~a." name (string-join constructors "\n| ")))
 
 (define (inductive-generator-agda name constructors)
-  (format "data ~a : Set where\n~a" name (string-join constructors "\n")))
+  (format "data ~a : Set where\n~a" name 
+          (string-join (cons (format "  ~a" (car constructors))
+                            (map (λ (c) (format "  | ~a" c)) (cdr constructors))) "\n")))
 
 (define (inductive-generator-lean name constructors)
   (format "inductive ~a : Type where\n| ~a" name (string-join constructors "\n| ")))
@@ -290,6 +292,17 @@
           (format "  ~a : Term -> Term -> Term" name)))
       operations)))
 
+(define (term-constructor-format-agda sorts operations)
+  (append
+    (map (λ (s) (format "  Const~a : Constant -> Term" s)) sorts)
+    (map (λ (op) 
+      (define name (clean-name (car op)))
+      (define is-unary (or (string-contains? name "Inject") (string-contains? name "Project")))
+      (if is-unary
+          (format "  Term~a : Term -> Term" name) ; Add Term prefix for Agda
+          (format "  Term~a : Term -> Term -> Term" name))) ; Add Term prefix for Agda
+      operations)))
+
 ;; Module header generators
 (define (module-header-coq name imports)
   (if (empty? imports) 
@@ -324,7 +337,7 @@
                clean-name clean-constructor-name-default module-header-agda
                "generated-" "." "" "Sort"
                sort-constructor-format-default op-constructor-format-default 
-               const-constructor-format-default term-constructor-format-default
+               const-constructor-format-default term-constructor-format-agda
                get-core-imports-agda get-observers-imports-agda get-kernels-imports-agda
                get-normal-forms-imports-agda get-main-imports-agda
                inductive-generator-agda function-generator-agda axiom-generator-agda
