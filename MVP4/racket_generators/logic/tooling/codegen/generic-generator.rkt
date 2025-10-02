@@ -34,36 +34,66 @@
   ((lang-config-axiom-generator config) name statement))
 
 ;; ============================================================================
-;; SIGNATURE DEFINITION
+;; SIGNATURE INTEGRATION
 ;; ============================================================================
 
-;; CLEAN v10 signature structure
-(define-struct signature
-  (sorts operations constants))
+;; Use the actual signature from the Racket logic instead of defining our own
+;; The current-signature is already provided by the API
+(define (get-current-signature)
+  (current-signature))
 
-;; Default CLEAN v10 signature
-(define current-signature
-  (signature
-   '("L" "B" "R" "I")  ; sorts
-   '(("PlusB" 2) ("MultB" 2) ("Plus_L" 2) ("Plus_R" 2) 
-     ("Inject_L" 1) ("Inject_R" 1) ("Project_L" 1) ("Project_R" 1)
-     ("Ad0" 2) ("Ad1" 2) ("Ad2" 2) ("Ad3" 2)
-     ("starB" 2) ("starL" 2) ("starR" 2))  ; operations
-   '(("ZeroB") ("OneB") ("ZeroL") ("OneL") ("ZeroR") ("OneR")
-     ("Phi") ("BarPhi") ("Z") ("BarZ") ("Lambda") ("Gen4"))))  ; constants
+;; Helper function to get signature components
+(define (get-signature-sorts)
+  (signature-sorts (current-signature)))
+
+(define (get-signature-operations)
+  (signature-operations (current-signature)))
+
+(define (get-signature-constants)
+  (signature-constants (current-signature)))
+
+;; Convert Racket logic operations to generator format
+(define (convert-operations-to-generator-format operations)
+  "Convert Racket logic operations to generator-friendly format"
+  (map (λ (op)
+         (define name (car op))
+         (define type-info (cdr op))
+         ;; Extract arity from type info like (B B -> B)
+         ;; Count arguments before the arrow
+         (define arity (if (list? type-info)
+                          (let ([before-arrow (takef type-info (λ (x) (not (eq? x '->))))])
+                            (length before-arrow))
+                          0))
+         (list (if (symbol? name) (symbol->string name) name) arity))
+       operations))
+
+;; Convert Racket logic constants to generator format  
+(define (convert-constants-to-generator-format constants)
+  "Convert Racket logic constants to generator-friendly format"
+  (map (λ (const)
+         (define name (car const))
+         (list (if (symbol? name) (symbol->string name) name)))
+       constants))
+
+;; Convert Racket logic sorts to generator format
+(define (convert-sorts-to-generator-format sorts)
+  "Convert Racket logic sorts to generator-friendly format"
+  (map (λ (sort) (if (symbol? sort) (symbol->string sort) sort)) sorts))
 
 ;; ============================================================================
 ;; MODULE GENERATORS
 ;; ============================================================================
 
-;; Generate core module
-(define (generate-core config sig)
+;; Generate core module using real signature
+(define (generate-core config)
+  (define sig (current-signature))
   (define sorts (signature-sorts sig))
   (define operations (signature-operations sig))
   (define constants (signature-constants sig))
   (define prefix (lang-config-file-prefix config))
   
   ;; Generate constructors using language-specific formatters
+  ;; These expect the original Racket logic format
   (define sort-constructors ((lang-config-sort-constructor-format config) sorts))
   (define op-constructors ((lang-config-op-constructor-format config) operations))
   (define const-constructors ((lang-config-const-constructor-format config) constants))
@@ -74,7 +104,7 @@
   (string-join
    (list
     ((lang-config-module-header-generator config) (string-append prefix "Core") ((lang-config-get-core-imports config)))
-    (comment config "CLEAN v10 Core - Expanded with Logical Structure")
+    (comment config "CLEAN v10 Core - Generated from Racket Logic")
     ""
     (inductive config (lang-config-sort-name config) sort-constructors)
     ""
@@ -246,12 +276,11 @@
 
 ;; Generate library for a specific language with statistics
 (define (generate-library config output-dir verbose?)
-  (define sig (current-signature))
   (define start-time (current-inexact-milliseconds))
   (define files-generated 0)
   
-  ;; Generate modules
-  (define core-content (generate-core config sig))
+  ;; Generate modules using real signature
+  (define core-content (generate-core config))
   (define observers-content (generate-observers config))
   (define kernels-content (generate-kernels config))
   (define normal-forms-content (generate-normal-forms config))

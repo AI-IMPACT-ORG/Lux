@@ -276,7 +276,7 @@
     (map (λ (s) (format "Const~a" s)) sorts)
     (map (λ (op) 
       (define name (clean-name (car op)))
-      (format "~a" name))
+      (format "Term~a" name)) ; Add Term prefix to avoid conflicts
       operations)))
 
 (define (term-constructor-format-default sorts operations)
