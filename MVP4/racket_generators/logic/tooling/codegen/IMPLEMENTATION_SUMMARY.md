@@ -33,17 +33,14 @@ Created a unified architecture that:
 ### Core Components Created
 
 1. **`unified-library-generator.rkt`**: Main unified architecture
-   - Language-specific configurations (Coq, Agda, Lean)
+   - Language-specific configurations (Coq, Agda, Lean, Isabelle)
    - Template-based code generation
    - Signature analysis and adaptation
    - Output management system
 
-2. **Updated Generators**:
-   - **`agda.rkt`**: Extended from stub to full implementation
-   - **`lean.rkt`**: New generator (previously didn't exist)
-   - **`coq.rkt`**: Updated to use unified architecture
-
-3. **Demo Script**: `main-generator-demo.rkt` for testing
+2. **Documentation**:
+   - `IMPLEMENTATION_SUMMARY.md` - This implementation summary
+   - `UNIFIED_ARCHITECTURE_DOCUMENTATION.md` - Detailed architecture documentation
 
 ### Generated Library Structure
 
@@ -164,15 +161,13 @@ cd output-directory && lean CLEAN.lean
 
 ## Files Created/Modified
 
-### New Files
-- `unified-library-generator.rkt` - Main unified architecture
-- `lean.rkt` - Lean generator (new)
-- `main-generator-demo.rkt` - Demo script
+### Core Files (Current Architecture)
+- `unified-library-generator.rkt` - Main unified architecture (handles all languages)
+- `IMPLEMENTATION_SUMMARY.md` - This implementation summary
 - `UNIFIED_ARCHITECTURE_DOCUMENTATION.md` - Comprehensive documentation
 
-### Modified Files
-- `agda.rkt` - Extended from stub to full implementation
-- `coq.rkt` - Updated to use unified architecture
+### Architecture Migration
+**Migrated to Cleaner Architecture**: Removed unnecessary wrapper files and consolidated everything into the unified generator for better maintainability and simplicity.
 
 ### Generated Output
 - `unified-output/coq-unified/` - Coq library with unified architecture
