@@ -244,9 +244,11 @@
 ;; MAIN GENERATION FUNCTION
 ;; ============================================================================
 
-;; Generate library for a specific language
+;; Generate library for a specific language with statistics
 (define (generate-library config output-dir verbose?)
   (define sig (current-signature))
+  (define start-time (current-inexact-milliseconds))
+  (define files-generated 0)
   
   ;; Generate modules
   (define core-content (generate-core config sig))
@@ -261,13 +263,22 @@
   (make-directory* (build-path output-dir "lib"))
   
   (display-to-file core-content (build-path output-dir "lib" (string-append prefix "Core" ext)) #:exists 'replace)
+  (set! files-generated (add1 files-generated))
   (display-to-file observers-content (build-path output-dir "lib" (string-append prefix "Observers" ext)) #:exists 'replace)
+  (set! files-generated (add1 files-generated))
   (display-to-file kernels-content (build-path output-dir "lib" (string-append prefix "Kernels" ext)) #:exists 'replace)
+  (set! files-generated (add1 files-generated))
   (display-to-file normal-forms-content (build-path output-dir "lib" (string-append prefix "NormalForms" ext)) #:exists 'replace)
+  (set! files-generated (add1 files-generated))
   (display-to-file main-content (build-path output-dir (string-append prefix "CLEAN" ext)) #:exists 'replace)
+  (set! files-generated (add1 files-generated))
   
   ;; Create language-specific project files
   (create-project-files config output-dir prefix ext)
+  
+  ;; Report statistics
+  (define end-time (current-inexact-milliseconds))
+  (define duration (- end-time start-time))
   
   (when verbose?
     (displayln (format "📁 Generated files:"))
@@ -275,7 +286,8 @@
     (displayln (format "  - lib/~aObservers~a" prefix ext))
     (displayln (format "  - lib/~aKernels~a" prefix ext))
     (displayln (format "  - lib/~aNormalForms~a" prefix ext))
-    (displayln (format "  - ~aCLEAN~a" prefix ext))))
+    (displayln (format "  - ~aCLEAN~a" prefix ext))
+    (displayln (format "📊 Statistics: ~a files in ~a ms" files-generated (round duration)))))
 
 ;; Create language-specific project files using configuration
 (define (create-project-files config output-dir prefix ext)

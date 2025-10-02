@@ -359,6 +359,7 @@
 ;; Validate language configuration completeness
 (define (validate-language-config config)
   (define errors '())
+  (define warnings '())
   
   ;; Check required fields
   (when (not (lang-config-name config))
@@ -375,6 +376,12 @@
   
   (when (not (lang-config-comment config))
     (set! errors (cons "Missing comment format" errors)))
+  
+  ;; Check for common issues
+  (when (string-contains? (lang-config-ext config) " ")
+    (set! warnings (cons "File extension contains spaces" warnings)))
+  (when (string-contains? (lang-config-file-prefix config) " ")
+    (set! warnings (cons "File prefix contains spaces" warnings)))
   
   ;; Check functions
   (when (not (procedure? (lang-config-identifier-cleaner config)))
@@ -401,10 +408,18 @@
   (when (not (procedure? (lang-config-deployment-function config)))
     (set! errors (cons "Invalid deployment function" errors)))
   
+  ;; Report warnings
+  (when (not (empty? warnings))
+    (displayln (format "⚠️  Warnings for ~a: ~a" 
+                       (lang-config-name config) 
+                       (string-join warnings ", "))))
+  
   ;; Return validation result
   (if (empty? errors)
       #t
-      (error (format "Language configuration validation failed: ~a" (string-join errors ", ")))))
+      (error (format "Language configuration validation failed for ~a: ~a" 
+                     (lang-config-name config)
+                     (string-join errors ", ")))))
 
 ;; Validate all language configurations
 (define (validate-all-configurations)
