@@ -32,7 +32,7 @@ Created a unified architecture that:
 
 ### Core Components Created
 
-1. **`unified-library-generator.rkt`**: Main unified architecture
+1. **Modular Architecture**: Clean separation of concerns with configuration-driven generation
    - Language-specific configurations (Coq, Agda, Lean, Isabelle)
    - Template-based code generation
    - Signature analysis and adaptation
@@ -78,7 +78,7 @@ output-directory/
 
 ### ✅ **Unified Architecture Test**
 ```bash
-$ racket unified-library-generator.rkt
+$ racket generate.rkt -t all -o formal --deploy
 # Successfully generated libraries for all three languages
 # Created consistent structure across Coq, Agda, Lean
 ```
@@ -162,7 +162,7 @@ cd output-directory && lean CLEAN.lean
 ## Files Created/Modified
 
 ### Core Files (Current Architecture)
-- `unified-library-generator.rkt` - Main unified architecture (handles all languages)
+- Modular generator architecture - Clean separation with configuration-driven generation
 - `IMPLEMENTATION_SUMMARY.md` - This implementation summary
 - `UNIFIED_ARCHITECTURE_DOCUMENTATION.md` - Comprehensive documentation
 

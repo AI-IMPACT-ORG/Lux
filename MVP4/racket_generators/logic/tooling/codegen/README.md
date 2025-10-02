@@ -98,7 +98,7 @@ codegen/
 ├── language-configs.rkt    # Language configurations
 ├── language-extensions.rkt  # Language-specific extensions
 ├── generate.rkt           # Wrapper script
-└── unified-library-generator.rkt  # Legacy (deprecated)
+└── [removed] unified-library-generator.rkt.legacy  # Removed - replaced by modular architecture
 ```
 
 ## Generated Output

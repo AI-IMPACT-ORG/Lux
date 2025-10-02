@@ -112,7 +112,7 @@ output-directory/
 
 ```racket
 #lang racket
-(require "unified-library-generator.rkt")
+(require "main-generator.rkt")
 
 ;; Generate libraries for all supported languages
 (generate-all-libraries-unified "output-directory")
@@ -122,7 +122,7 @@ output-directory/
 
 ```racket
 #lang racket
-(require "unified-library-generator.rkt")
+(require "main-generator.rkt")
 
 ;; Generate Coq library
 (generate-coq-library-unified "coq-output")
