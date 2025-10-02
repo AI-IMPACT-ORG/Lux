@@ -1,6 +1,6 @@
 session CLEAN_Tests = HOL +
   theories
-    "tests.CoreTests"
-    "tests.PropertyTests"
-    "tests.IntegrationTests"
-    "tests.TestRunner"
+    "CoreTests"
+    "PropertyTests"
+    "IntegrationTests"
+    "TestRunner"
