@@ -1,8 +1,8 @@
-module tests.TestRunner where
+module tests.generated-TestRunner where
 
-open import tests.CoreTests
-open import tests.PropertyTests
-open import tests.IntegrationTests
+open import tests.generated-CoreTests
+open import tests.generated-PropertyTests
+open import tests.generated-IntegrationTests
 
 -- CLEAN v10 Test Runner
 
