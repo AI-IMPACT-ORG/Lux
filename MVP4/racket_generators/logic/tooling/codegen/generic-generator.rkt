@@ -36,7 +36,7 @@
 ;; Generate function definition
 (define (function config name type body)
   (case (lang-config-name config)
-    ['coq (format "Definition ~a : ~a :=\n  ~a." name type body)]
+    ['coq (format "Definition ~a : ~a :=\n  ~a." name type (string-replace body "->" "=>"))]
     ['agda (format "~a : ~a\n~a = ~a" name type name body)]
     ['lean (format "def ~a : ~a :=\n  ~a" name type body)]
     ['isabelle (format "definition ~a :: \"~a\" where \"~a = ~a\"" name type name body)]))
@@ -121,13 +121,13 @@
       [else ""])
     ;; Observer functions (simplified to avoid cycles)
     (function config "reflect_L" (format "Term ~a Term" arrow) 
-      (if (eq? (lang-config-name config) 'coq) "fun t => t" "λ t → t"))
+      (format "~a t ~a t" (lang-config-lambda config) (lang-config-arrow config)))
     ""
     (function config "reflect_R" (format "Term ~a Term" arrow)
-      (if (eq? (lang-config-name config) 'coq) "fun t => t" "λ t → t"))
+      (format "~a t ~a t" (lang-config-lambda config) (lang-config-arrow config)))
     ""
     (function config "observer_value" (format "Term ~a Term" arrow)
-      (if (eq? (lang-config-name config) 'coq) "fun t => t" "λ t → t"))
+      (format "~a t ~a t" (lang-config-lambda config) (lang-config-arrow config)))
     "")
    "\n"))
 
@@ -146,19 +146,19 @@
     ""
     ;; Basic observer functions (simplified to avoid cycles)
     (function config "project_L" (format "Term ~a Term" (lang-config-arrow config)) 
-      (if (eq? (lang-config-name config) 'coq) "fun t => t" "λ t → t"))
+      (format "~a t ~a t" (lang-config-lambda config) (lang-config-arrow config)))
     ""
     (function config "project_R" (format "Term ~a Term" (lang-config-arrow config))
-      (if (eq? (lang-config-name config) 'coq) "fun t => t" "λ t → t"))
+      (format "~a t ~a t" (lang-config-lambda config) (lang-config-arrow config)))
     ""
     (function config "reconstitute" (format "Term ~a Term" (lang-config-arrow config))
-      (if (eq? (lang-config-name config) 'coq) "fun t => t" "λ t → t"))
+      (format "~a t ~a t" (lang-config-lambda config) (lang-config-arrow config)))
     ""
     (function config "residual" (format "Term ~a Term" (lang-config-arrow config))
-      (if (eq? (lang-config-name config) 'coq) "fun t => t" "λ t → t"))
+      (format "~a t ~a t" (lang-config-lambda config) (lang-config-arrow config)))
     ""
     (function config "triality_sum" (format "Term ~a Term ~a Term ~a Term" (lang-config-arrow config) (lang-config-arrow config) (lang-config-arrow config))
-      (if (eq? (lang-config-name config) 'coq) "fun l b r => l" "λ l b r → l"))
+      (format "~a l b r ~a l" (lang-config-lambda config) (lang-config-arrow config)))
     "")
    "\n"))
 
@@ -184,27 +184,27 @@
     (case (lang-config-name config)
       ['lean (string-join (list
         (function config "kernel_header_add" (format "Header ~a Header ~a Header" (lang-config-arrow config) (lang-config-arrow config))
-          "λ h1 h2 → h1")
+          (format "~a h1 h2 ~a h1" (lang-config-lambda config) (lang-config-arrow config)))
         ""
         (function config "kernel_header_product" (format "Header ~a Header ~a Header" (lang-config-arrow config) (lang-config-arrow config))
-          "λ h1 h2 → h1")
+          (format "~a h1 h2 ~a h1" (lang-config-lambda config) (lang-config-arrow config)))
         ""
         (function config "kernel_header_zero" (format "Header ~a Header" (lang-config-arrow config))
-          "λ k → k")
+          (format "~a k ~a k" (lang-config-lambda config) (lang-config-arrow config)))
         "") "\n")]
       [else (string-join (list
         (function config "kernel_header_add" (format "Term ~a Term ~a Term" (lang-config-arrow config) (lang-config-arrow config))
-          (if (eq? (lang-config-name config) 'coq) "fun h1 h2 => h1" "λ h1 h2 → h1"))
+          (format "~a h1 h2 ~a h1" (lang-config-lambda config) (lang-config-arrow config)))
         ""
         (function config "kernel_header_product" (format "Term ~a Term ~a Term" (lang-config-arrow config) (lang-config-arrow config))
-          (if (eq? (lang-config-name config) 'coq) "fun h1 h2 => h1" "λ h1 h2 → h1"))
+          (format "~a h1 h2 ~a h1" (lang-config-lambda config) (lang-config-arrow config)))
         ""
         (function config "kernel_header_zero" (format "Term ~a Term" (lang-config-arrow config))
-          (if (eq? (lang-config-name config) 'coq) "fun k => k" "λ k → k"))
+          (format "~a k ~a k" (lang-config-lambda config) (lang-config-arrow config)))
         "") "\n")])
     ""
     (function config "identity_kernel" (format "Term ~a Term" (lang-config-arrow config))
-      (if (eq? (lang-config-name config) 'coq) "fun k => k" "λ k → k"))
+      (format "~a k ~a k" (lang-config-lambda config) (lang-config-arrow config)))
     "")
    "\n"))
 
@@ -234,35 +234,35 @@
     (case (lang-config-name config)
       ['lean (string-join (list
         (function config "normal_form" (format "Term ~a NormalForm" (lang-config-arrow config))
-          "λ t → NormalForm.nf_core t")
+          (format "~a t ~a NormalForm.nf_core t" (lang-config-lambda config) (lang-config-arrow config)))
         ""
         (function config "nf_phase" (format "NormalForm ~a Header" (lang-config-arrow config))
-          "λ nf → nf")
+          (format "~a nf ~a nf" (lang-config-lambda config) (lang-config-arrow config)))
         ""
         (function config "nf_scale" (format "NormalForm ~a Header" (lang-config-arrow config))
-          "λ nf → nf")
+          (format "~a nf ~a nf" (lang-config-lambda config) (lang-config-arrow config)))
         ""
         (function config "nf_core" (format "NormalForm ~a Term" (lang-config-arrow config))
-          "λ nf → nf")
+          (format "~a nf ~a nf" (lang-config-lambda config) (lang-config-arrow config)))
         ""
         (function config "normalize_terms" (format "Term ~a Term ~a NormalForm" (lang-config-arrow config) (lang-config-arrow config))
-          "λ t1 t2 → NormalForm.nf_core t1")
+          (format "~a t1 t2 ~a NormalForm.nf_core t1" (lang-config-lambda config) (lang-config-arrow config)))
         "") "\n")]
       [else (string-join (list
         (function config "normal_form" (format "Term ~a Term" (lang-config-arrow config))
-          (if (eq? (lang-config-name config) 'coq) "fun t => t" "λ t → t"))
+          (format "~a t ~a t" (lang-config-lambda config) (lang-config-arrow config)))
         ""
         (function config "nf_phase" (format "Term ~a Term" (lang-config-arrow config))
-          (if (eq? (lang-config-name config) 'coq) "fun nf => nf" "λ nf → nf"))
+          (format "~a nf ~a nf" (lang-config-lambda config) (lang-config-arrow config)))
         ""
         (function config "nf_scale" (format "Term ~a Term" (lang-config-arrow config))
-          (if (eq? (lang-config-name config) 'coq) "fun nf => nf" "λ nf → nf"))
+          (format "~a nf ~a nf" (lang-config-lambda config) (lang-config-arrow config)))
         ""
         (function config "nf_core" (format "Term ~a Term" (lang-config-arrow config))
-          (if (eq? (lang-config-name config) 'coq) "fun nf => nf" "λ nf → nf"))
+          (format "~a nf ~a nf" (lang-config-lambda config) (lang-config-arrow config)))
         ""
         (function config "normalize_terms" (format "Term ~a Term ~a Term" (lang-config-arrow config) (lang-config-arrow config))
-          (if (eq? (lang-config-name config) 'coq) "fun t1 t2 => t1" "λ t1 t2 → t1"))
+          (format "~a t1 t2 ~a t1" (lang-config-lambda config) (lang-config-arrow config)))
         "") "\n")])
     "")
    "\n"))
@@ -321,7 +321,7 @@
         (function config "CLEAN_Sort" "Type" "Sort")
         (function config "CLEAN_Term" "Type" "Term")
         (function config "CLEAN_PlusB" (format "Term ~a Term ~a Term" (lang-config-arrow config) (lang-config-arrow config)) 
-          (if (eq? (lang-config-name config) 'coq) "TermPlusB" "TermPlusB"))
+          "TermPlusB")
         "") "\n")])
     "")
    "\n"))
