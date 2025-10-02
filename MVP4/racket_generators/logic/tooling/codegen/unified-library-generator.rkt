@@ -44,7 +44,7 @@
   (case (lang-config-name config)
     ['coq (if (empty? imports) 
               "" 
-              (format "Require Import ~a.\n\n" (string-join imports ".\nRequire Import ")))]
+              (string-join (map (λ (imp) (format "Require Import ~a." imp)) imports) "\n" #:after-last "\n\n"))]
     ['agda (format "module lib.~a where\n~a\n" name (string-join (map (λ (imp) (format "open import ~a" imp)) imports) "\n"))]
     ['lean (if (empty? imports) 
               (format "namespace ~a\n\n" name)
@@ -208,10 +208,10 @@
 ;; Generate observers module with expanded functionality
 (define (generate-observers config)
   (define imports (case (lang-config-name config)
-    ['agda '("lib.Core")]
-    ['coq '("Core")]
+    ['agda '("lib.generated_Core")]
+    ['coq '("lib.generated_Core")]
     ['lean '()]
-    [else '("Core")]))
+    [else '("generated_Core")]))
   
   (string-join
    (list
@@ -255,10 +255,10 @@
 ;; Generate kernels module with expanded functionality
 (define (generate-kernels config)
   (define imports (case (lang-config-name config)
-    ['agda '("lib.Core")]
-    ['coq '("Core")]
+    ['agda '("lib.generated_Core")]
+    ['coq '("lib.generated_Core")]
     ['lean '()]
-    [else '("Core")]))
+    [else '("generated_Core")]))
   
   (string-join
    (list
@@ -301,10 +301,10 @@
 ;; Generate normal forms module
 (define (generate-normal-forms config)
   (define imports (case (lang-config-name config)
-    ['agda '("lib.Core" "Agda.Builtin.Bool")]
-    ['coq '("Core")]
+    ['agda '("lib.generated_Core" "Agda.Builtin.Bool")]
+    ['coq '("lib.generated_Core")]
     ['lean '()]
-    [else '("Core")]))
+    [else '("generated_Core")]))
   
   (string-join
    (list
@@ -348,19 +348,19 @@
    (list
     (case (lang-config-name config)
       ['coq (string-join (list
-        "Require Import Core."
-        "Require Import Observers."
-        "Require Import Kernels."
-        "Require Import NormalForms."
+        "Require Import lib.generated_Core."
+        "Require Import lib.generated_Observers."
+        "Require Import lib.generated_Kernels."
+        "Require Import lib.generated_NormalForms."
         "")
         "\n")]
       ['agda (string-join (list
         "module CLEAN where"
         ""
-        "open import lib.Core"
-        "open import lib.Observers"
-        "open import lib.Kernels"
-        "open import lib.NormalForms"
+        "open import lib.generated_Core"
+        "open import lib.generated_Observers"
+        "open import lib.generated_Kernels"
+        "open import lib.generated_NormalForms"
         "")
         "\n")]
       ['lean (string-join (list
@@ -442,15 +442,30 @@
   (define normal-forms-content (generate-normal-forms config))
   (define main-content (generate-main config))
   
-  ;; Write files
+  ;; Write files with "generated" prefix (using underscores for Coq compatibility)
   (define ext (lang-config-ext config))
+  (define prefix (if (eq? target-lang 'coq) "generated_" "generated-"))
   (make-directory* (build-path output-dir "lib"))
   
-  (display-to-file core-content (build-path output-dir "lib" (string-append "Core" ext)) #:exists 'replace)
-  (display-to-file observers-content (build-path output-dir "lib" (string-append "Observers" ext)) #:exists 'replace)
-  (display-to-file kernels-content (build-path output-dir "lib" (string-append "Kernels" ext)) #:exists 'replace)
-  (display-to-file normal-forms-content (build-path output-dir "lib" (string-append "NormalForms" ext)) #:exists 'replace)
-  (display-to-file main-content (build-path output-dir (string-append "CLEAN" ext)) #:exists 'replace)
+  (display-to-file core-content (build-path output-dir "lib" (string-append prefix "Core" ext)) #:exists 'replace)
+  (display-to-file observers-content (build-path output-dir "lib" (string-append prefix "Observers" ext)) #:exists 'replace)
+  (display-to-file kernels-content (build-path output-dir "lib" (string-append prefix "Kernels" ext)) #:exists 'replace)
+  (display-to-file normal-forms-content (build-path output-dir "lib" (string-append prefix "NormalForms" ext)) #:exists 'replace)
+  (display-to-file main-content (build-path output-dir (string-append prefix "CLEAN" ext)) #:exists 'replace)
+  
+  ;; Create _CoqProject file for Coq to find modules
+  (when (eq? target-lang 'coq)
+    (define coq-project-content
+      (string-join
+       (list
+        "-Q lib lib"
+        "lib/generated_Core.v"
+        "lib/generated_Observers.v"
+        "lib/generated_Kernels.v"
+        "lib/generated_NormalForms.v"
+        "generated_CLEAN.v")
+       "\n"))
+    (display-to-file coq-project-content (build-path output-dir "_CoqProject") #:exists 'replace))
   
   (displayln (format "✅ CLEAN v10 ~a Library generated successfully!" (symbol->string target-lang)))
   (displayln (format "📁 Output directory: ~a" output-dir)))
