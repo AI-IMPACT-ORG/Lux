@@ -350,7 +350,7 @@
   (string-join
    (list
     "theory generated_PropertyTests"
-    "imports Main \"lib.generated-Core\""
+    "imports Main \"generated_Core\""
     "begin"
     ""
     "(* CLEAN v10 Property-Based Tests *)"
@@ -438,7 +438,7 @@
   (string-join
    (list
     "theory generated_IntegrationTests"
-    "imports Main \"lib.generated-Core\" \"lib.generated-Observers\""
+    "imports Main \"generated_Core\" \"generated_Observers\""
     "begin"
     ""
     "(* CLEAN v10 Integration Tests *)"

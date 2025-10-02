@@ -34,6 +34,25 @@
   ((lang-config-axiom-generator config) name statement))
 
 ;; ============================================================================
+;; SIGNATURE DEFINITION
+;; ============================================================================
+
+;; CLEAN v10 signature structure
+(define-struct signature
+  (sorts operations constants))
+
+;; Default CLEAN v10 signature
+(define current-signature
+  (signature
+   '("L" "B" "R" "I")  ; sorts
+   '(("PlusB" 2) ("MultB" 2) ("Plus_L" 2) ("Plus_R" 2) 
+     ("Inject_L" 1) ("Inject_R" 1) ("Project_L" 1) ("Project_R" 1)
+     ("Ad0" 2) ("Ad1" 2) ("Ad2" 2) ("Ad3" 2)
+     ("starB" 2) ("starL" 2) ("starR" 2))  ; operations
+   '(("ZeroB") ("OneB") ("ZeroL") ("OneL") ("ZeroR") ("OneR")
+     ("Phi") ("BarPhi") ("Z") ("BarZ") ("Lambda") ("Gen4"))))  ; constants
+
+;; ============================================================================
 ;; MODULE GENERATORS
 ;; ============================================================================
 
@@ -42,6 +61,7 @@
   (define sorts (signature-sorts sig))
   (define operations (signature-operations sig))
   (define constants (signature-constants sig))
+  (define prefix (lang-config-file-prefix config))
   
   ;; Generate constructors using language-specific formatters
   (define sort-constructors ((lang-config-sort-constructor-format config) sorts))
@@ -53,7 +73,7 @@
   
   (string-join
    (list
-    ((lang-config-module-header-generator config) "Core" ((lang-config-get-core-imports config)))
+    ((lang-config-module-header-generator config) (string-append prefix "Core") ((lang-config-get-core-imports config)))
     (comment config "CLEAN v10 Core - Expanded with Logical Structure")
     ""
     (inductive config (lang-config-sort-name config) sort-constructors)
@@ -72,22 +92,28 @@
         "") "\n")]
       [else ""])
     ;; Observer functions (simplified to avoid cycles)
-    (function config "reflect_L" (format "Term ~a Term" (lang-config-arrow config)) 
-      (format "~a t ~a t" (lang-config-lambda config) (lang-config-arrow config)))
-    ""
-    (function config "reflect_R" (format "Term ~a Term" (lang-config-arrow config))
-      (format "~a t ~a t" (lang-config-lambda config) (lang-config-arrow config)))
-    ""
-    (function config "observer_value" (format "Term ~a Term" (lang-config-arrow config))
-      (format "~a t ~a t" (lang-config-lambda config) (lang-config-arrow config)))
+    (case (lang-config-name config)
+      ['isabelle ""]
+      [else (string-join (list
+        (function config "reflect_L" (format "Term ~a Term" (lang-config-arrow config)) 
+          (format "~a t ~a t" (lang-config-lambda config) (lang-config-arrow config)))
+        ""
+        (function config "reflect_R" (format "Term ~a Term" (lang-config-arrow config))
+          (format "~a t ~a t" (lang-config-lambda config) (lang-config-arrow config)))
+        ""
+        (function config "observer_value" (format "Term ~a Term" (lang-config-arrow config))
+          (format "~a t ~a t" (lang-config-lambda config) (lang-config-arrow config)))
+        "") "\n")])
     "")
    "\n"))
 
 ;; Generate observers module
 (define (generate-observers config)
+  (define prefix (lang-config-file-prefix config))
+  
   (string-join
    (list
-    ((lang-config-module-header-generator config) "Observers" ((lang-config-get-observers-imports config)))
+    ((lang-config-module-header-generator config) (string-append prefix "Observers") ((lang-config-get-observers-imports config)))
     (comment config "CLEAN v10 Observers - Expanded with Logical Functions")
     ""
     ;; Basic observer functions (simplified to avoid cycles)
@@ -110,9 +136,11 @@
 
 ;; Generate kernels module
 (define (generate-kernels config)
+  (define prefix (lang-config-file-prefix config))
+  
   (string-join
    (list
-    ((lang-config-module-header-generator config) "Kernels" ((lang-config-get-kernels-imports config)))
+    ((lang-config-module-header-generator config) (string-append prefix "Kernels") ((lang-config-get-kernels-imports config)))
     (comment config "CLEAN v10 Kernels - Expanded with Logical Operations")
     ""
     ;; Define Kernel type locally to avoid external dependencies
@@ -150,9 +178,11 @@
 
 ;; Generate normal forms module
 (define (generate-normal-forms config)
+  (define prefix (lang-config-file-prefix config))
+  
   (string-join
    (list
-    ((lang-config-module-header-generator config) "NormalForms" ((lang-config-get-normal-forms-imports config)))
+    ((lang-config-module-header-generator config) (string-append prefix "NormalForms") ((lang-config-get-normal-forms-imports config)))
     (comment config "CLEAN v10 Normal Forms - Logical Structure")
     ""
     ;; Define types locally to avoid external dependencies

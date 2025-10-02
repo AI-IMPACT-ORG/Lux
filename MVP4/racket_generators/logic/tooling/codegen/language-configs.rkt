@@ -72,22 +72,22 @@
 (define (get-observers-imports-coq) '("lib.generated_Core"))
 (define (get-observers-imports-agda) '("lib.generated-Core"))
 (define (get-observers-imports-lean) '())
-(define (get-observers-imports-isabelle) '("lib.generated-Core"))
+(define (get-observers-imports-isabelle) '("generated_Core"))
 
 (define (get-kernels-imports-coq) '("lib.generated_Core"))
 (define (get-kernels-imports-agda) '("lib.generated-Core"))
 (define (get-kernels-imports-lean) '())
-(define (get-kernels-imports-isabelle) '("lib.generated-Core"))
+(define (get-kernels-imports-isabelle) '("generated_Core"))
 
 (define (get-normal-forms-imports-coq) '("lib.generated_Core"))
 (define (get-normal-forms-imports-agda) '("lib.generated-Core" "Agda.Builtin.Bool"))
 (define (get-normal-forms-imports-lean) '())
-(define (get-normal-forms-imports-isabelle) '("lib.generated-Core"))
+(define (get-normal-forms-imports-isabelle) '("generated_Core"))
 
 (define (get-main-imports-coq) '("lib.generated_Core" "lib.generated_Observers" "lib.generated_Kernels" "lib.generated_NormalForms"))
 (define (get-main-imports-agda) '("lib.generated-Core" "lib.generated-Observers" "lib.generated-Kernels" "lib.generated-NormalForms"))
 (define (get-main-imports-lean) '())
-(define (get-main-imports-isabelle) '("lib.generated-Core" "lib.generated-Observers" "lib.generated-Kernels" "lib.generated-NormalForms"))
+(define (get-main-imports-isabelle) '("generated_Core" "generated_Observers" "generated_Kernels" "generated_NormalForms"))
 
 ;; Deployment functions
 (define (create-coq-project output-dir prefix ext)
@@ -108,7 +108,12 @@
     (string-join
      (list
       "session CLEAN = HOL +"
+      "  directories \"lib\""
       "  theories"
+      (format "    \"lib/~aCore\"" prefix)
+      (format "    \"lib/~aObservers\"" prefix)
+      (format "    \"lib/~aKernels\"" prefix)
+      (format "    \"lib/~aNormalForms\"" prefix)
       (format "    \"~aCLEAN\"" prefix))
      "\n"))
   (display-to-file root-content (build-path output-dir "ROOT") #:exists 'replace))
@@ -173,7 +178,7 @@
 
 (define (main-module-generator-isabelle imports)
   (string-join (list
-    "theory CLEAN"
+    "theory generated_CLEAN"
     "imports Main"
     "begin"
     ""
@@ -229,19 +234,19 @@
   (map (λ (s) (format "~a" s)) sorts))
 
 (define (sort-constructor-format-default sorts)
-  (map (λ (s) (format "  ~a : Sort" s)) sorts))
+  (map (λ (s) (format "~a" s)) sorts))
 
 (define (op-constructor-format-lean operations)
   (map (λ (op) (format "~a" (clean-name (car op)))) operations))
 
 (define (op-constructor-format-default operations)
-  (map (λ (op) (format "  ~a : Operation" (clean-name (car op)))) operations))
+  (map (λ (op) (format "~a" (clean-name (car op)))) operations))
 
 (define (const-constructor-format-lean constants)
   (map (λ (c) (format "~a" (clean-name (car c)))) constants))
 
 (define (const-constructor-format-default constants)
-  (map (λ (c) (format "  ~a : Constant" (clean-name (car c)))) constants))
+  (map (λ (c) (format "~a" (clean-name (car c)))) constants))
 
 (define (term-constructor-format-lean sorts operations)
   (append
@@ -264,6 +269,14 @@
       (if is-unary
           (format "  ~a : Term -> Term" term-name)
           (format "  ~a : Term -> Term -> Term" term-name)))
+      operations)))
+
+(define (term-constructor-format-isabelle sorts operations)
+  (append
+    (map (λ (s) (format "Const~a" s)) sorts)
+    (map (λ (op) 
+      (define name (clean-name (car op)))
+      (format "~a" name))
       operations)))
 
 (define (term-constructor-format-default sorts operations)
@@ -329,11 +342,11 @@
                main-module-generator-lean deployment-lean))
 
 (define isabelle-config 
-  (lang-config 'isabelle ".thy" "=>" "λ" "(* ~a *)"
+  (lang-config 'isabelle ".thy" "⇒" "λ" "(* ~a *)"
                clean-name clean-constructor-name-default module-header-isabelle
                "generated_" " " "" "Sort"
                sort-constructor-format-default op-constructor-format-default 
-               const-constructor-format-default term-constructor-format-default
+               const-constructor-format-default term-constructor-format-isabelle
                get-core-imports-isabelle get-observers-imports-isabelle get-kernels-imports-isabelle
                get-normal-forms-imports-isabelle get-main-imports-isabelle
                inductive-generator-isabelle function-generator-isabelle axiom-generator-isabelle
