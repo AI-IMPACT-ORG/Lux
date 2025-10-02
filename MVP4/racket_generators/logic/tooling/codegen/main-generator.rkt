@@ -20,6 +20,7 @@
   (define verbose? #f)
   (define test? #f)
   (define deploy? #f)
+  (define validate? #f)
   
   (command-line
    #:program "main-generator"
@@ -34,8 +35,14 @@
     (set! test? #t)]
    [("--deploy") "Create deployment files" 
     (set! deploy? #t)]
+   [("--validate") "Validate language configurations" 
+    (set! validate? #t)]
    #:args ()
    (void))
+  
+  ;; Validate configurations if requested
+  (when validate?
+    (validate-all-configurations))
   
   ;; Default values
   (when (not target-lang)

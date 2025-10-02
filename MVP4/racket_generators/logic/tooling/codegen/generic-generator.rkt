@@ -17,37 +17,21 @@
 (define (comment config text)
   (format (lang-config-comment config) text))
 
-;; Generate inductive type
+;; Generate inductive type using language-specific generator
 (define (inductive config name constructors)
-  (case (lang-config-name config)
-    ['coq (format "Inductive ~a : Type :=\n| ~a." name (string-join constructors "\n| "))]
-    ['agda (format "data ~a : Set where\n~a" name (string-join constructors "\n"))]
-    ['lean (format "inductive ~a : Type where\n| ~a" name (string-join constructors "\n| "))]
-    ['isabelle (format "datatype ~a = ~a" name (string-join constructors " | "))]))
+  ((lang-config-inductive-generator config) name constructors))
 
 ;; Generate function body with proper syntax for each language
 (define (function-body config body)
-  (case (lang-config-name config)
-    ['coq body]
-    ['agda body]
-    ['lean body]
-    ['isabelle body]))
+  body) ; Function body is now handled by the function generator
 
-;; Generate function definition
+;; Generate function definition using language-specific generator
 (define (function config name type body)
-  (case (lang-config-name config)
-    ['coq (format "Definition ~a : ~a :=\n  ~a." name type (string-replace body "->" "=>"))]
-    ['agda (format "~a : ~a\n~a = ~a" name type name body)]
-    ['lean (format "def ~a : ~a :=\n  ~a" name type body)]
-    ['isabelle (format "definition ~a :: \"~a\" where \"~a = ~a\"" name type name body)]))
+  ((lang-config-function-generator config) name type body))
 
-;; Generate axiom
+;; Generate axiom using language-specific generator
 (define (axiom config name statement)
-  (case (lang-config-name config)
-    ['coq (format "Axiom ~a : ~a." name statement)]
-    ['agda (format "postulate ~a : ~a" name statement)]
-    ['lean (format "axiom ~a : ~a" name statement)]
-    ['isabelle (format "axiomatization ~a where \"~a\"" name statement)]))
+  ((lang-config-axiom-generator config) name statement))
 
 ;; ============================================================================
 ;; MODULE GENERATORS
@@ -217,62 +201,12 @@
     "")
    "\n"))
 
-;; Generate main library
+;; Generate main library using language-specific generator
 (define (generate-main config)
   (string-join
    (list
-    (case (lang-config-name config)
-      ['coq (string-join (list
-        "Require Import lib.generated_Core."
-        "Require Import lib.generated_Observers."
-        "Require Import lib.generated_Kernels."
-        "Require Import lib.generated_NormalForms."
-        "")
-        "\n")]
-      ['agda (string-join (list
-        "module CLEAN where"
-        ""
-        "open import lib.generated_Core"
-        "open import lib.generated_Observers"
-        "open import lib.generated_Kernels"
-        "open import lib.generated_NormalForms"
-        "")
-        "\n")]
-      ['lean (string-join (list
-        "")
-        "\n")]
-      ['isabelle (string-join (list
-        "theory CLEAN"
-        "imports Main"
-        "begin"
-        ""
-        "datatype Sort = L | B | R | I"
-        "datatype Term = ConstL | ConstB | ConstR | ConstI | PlusB Term Term | MultB Term Term"
-        ""
-        "definition CLEAN_Sort :: \"Sort\" where \"CLEAN_Sort = L\""
-        "definition CLEAN_Term :: \"Term\" where \"CLEAN_Term = ConstB\""
-        "definition CLEAN_PlusB :: \"Term => Term => Term\" where \"CLEAN_PlusB = PlusB\""
-        "")
-        "\n")])
+    ((lang-config-main-module-generator config) ((lang-config-get-main-imports config)))
     (comment config "CLEAN v10 Main Library - Unified Interface")
-    ""
-    ;; Main definitions
-    (case (lang-config-name config)
-      ['lean (string-join (list
-        "inductive CleanSort : Type where | L | B | R | I"
-        "inductive Term : Type where | ConstL | ConstB | ConstR | ConstI | PlusB Term Term | MultB Term Term"
-        ""
-        "def CLEAN_Sort : Type := CleanSort"
-        "def CLEAN_Term : Type := Term"
-        "def CLEAN_PlusB : Term → Term → Term := Term.PlusB"
-        "") "\n")]
-      ['isabelle ""]
-      [else (string-join (list
-        (function config "CLEAN_Sort" "Type" "Sort")
-        (function config "CLEAN_Term" "Type" "Term")
-        (function config "CLEAN_PlusB" (format "Term ~a Term ~a Term" (lang-config-arrow config) (lang-config-arrow config)) 
-          "TermPlusB")
-        "") "\n")])
     "")
    "\n"))
 
@@ -313,37 +247,9 @@
     (displayln (format "  - lib/~aNormalForms~a" prefix ext))
     (displayln (format "  - ~aCLEAN~a" prefix ext))))
 
-;; Create language-specific project files
+;; Create language-specific project files using configuration
 (define (create-project-files config output-dir prefix ext)
-  (case (lang-config-name config)
-    ['coq (create-coq-project output-dir prefix ext)]
-    ['isabelle (create-isabelle-root output-dir prefix ext)]
-    [else (void)]))
-
-;; Create Coq project file
-(define (create-coq-project output-dir prefix ext)
-  (define coq-project-content
-    (string-join
-     (list
-      "-Q lib lib"
-      (format "lib/~aCore~a" prefix ext)
-      (format "lib/~aObservers~a" prefix ext)
-      (format "lib/~aKernels~a" prefix ext)
-      (format "lib/~aNormalForms~a" prefix ext)
-      (format "~aCLEAN~a" prefix ext))
-     "\n"))
-  (display-to-file coq-project-content (build-path output-dir "_CoqProject") #:exists 'replace))
-
-;; Create Isabelle ROOT file
-(define (create-isabelle-root output-dir prefix ext)
-  (define root-content
-    (string-join
-     (list
-      "session CLEAN = HOL +"
-      "  theories"
-      (format "    \"~aCLEAN\"" prefix))
-     "\n"))
-  (display-to-file root-content (build-path output-dir "ROOT") #:exists 'replace))
+  ((lang-config-deployment-function config) output-dir prefix ext))
 
 ;; ============================================================================
 ;; COMPATIBILITY FUNCTIONS
