@@ -43,6 +43,7 @@
          kernel-apply
          identity-kernel
          ; Header functions
+         header
          header?
          header-phase
          header-scale
@@ -64,13 +65,18 @@
          nf-core
          normal-form
          ; Observer functions
+         reflect-L
+         reflect-R
          observer-value
          reconstitute
          residual
+         triality-sum
          bulk-equals-boundaries?
          ; Cumulant functions
          clear-observables!
          register-observable
+         observables
+         generating-functional
          kernel-generating-functional
          kernel-cumulants
          value-g
@@ -80,10 +86,14 @@
          value-a
          value-c
          ; Feynman functions
+         clear-histories!
+         push-history!
+         histories
          sum-over-histories
          greens-sum
          schwinger-dyson
          ; PSDM functions
+         make-psdm-legacy
          psdm-legacy?
          psdm-extend
          psdm-define
@@ -91,7 +101,6 @@
         define-psdm!
         psdm-apply
         psdm-defined?
-         make-psdm-legacy
          ; Domain port functions
          make-domain-port
          domain-port-eval

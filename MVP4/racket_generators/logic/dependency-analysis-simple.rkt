@@ -182,3 +182,4 @@
 ;; Main execution
 (module+ main
   (analyze-dependencies "."))
+

@@ -230,3 +230,4 @@ The RG blocking refactor represents a major architectural improvement to the CLE
 - **Invariant testing** for mathematical properties
 
 The system now has a solid mathematical foundation with proper contracts, comprehensive testing, and RG blocking functionality that can be used for advanced computational applications.
+

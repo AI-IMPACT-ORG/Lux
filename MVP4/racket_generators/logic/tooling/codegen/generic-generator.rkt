@@ -75,10 +75,23 @@
   (define term-constructors (case (lang-config-name config)
     ['lean (append
       (map (λ (s) (format "Const~a" s)) sorts)
-      (map (λ (op) (format "~a" (clean-name (car op)))) operations))]
+      (map (λ (op) 
+        (define name (clean-name (car op)))
+        (define is-unary (or (string-contains? name "Inject") (string-contains? name "Project")))
+        (if is-unary
+            (format "Term~a : Term → Term" name)
+            (format "Term~a : Term → Term → Term" name)))
+        operations))]
     [else (append
-      (map (λ (s) (format "  Const~a : Term" s)) sorts)
-      (map (λ (op) (format "  ~a : Term ~a Term ~a Term" (clean-name (car op)) arrow arrow)) operations))]))
+      (map (λ (s) (format "  Const~a : Constant ~a Term" s arrow)) sorts)
+      (map (λ (op) 
+        (define name (clean-name (car op)))
+        (define is-unary (or (string-contains? name "Inject") (string-contains? name "Project")))
+        (define term-name (if (eq? (lang-config-name config) 'coq) (string-append "Term" name) name))
+        (if is-unary
+            (format "  ~a : Term ~a Term" term-name arrow)
+            (format "  ~a : Term ~a Term ~a Term" term-name arrow arrow)))
+        operations))]))
   
   (string-join
    (list
@@ -168,18 +181,30 @@
       [else ""])
     ""
     ;; Kernel operations
-    (function config "kernel_header_add" (format "Header ~a Header ~a Header" (lang-config-arrow config) (lang-config-arrow config))
-      (if (eq? (lang-config-name config) 'coq) "fun h1 h2 => h1" "λ h1 h2 → h1"))
+    (case (lang-config-name config)
+      ['lean (string-join (list
+        (function config "kernel_header_add" (format "Header ~a Header ~a Header" (lang-config-arrow config) (lang-config-arrow config))
+          "λ h1 h2 → h1")
+        ""
+        (function config "kernel_header_product" (format "Header ~a Header ~a Header" (lang-config-arrow config) (lang-config-arrow config))
+          "λ h1 h2 → h1")
+        ""
+        (function config "kernel_header_zero" (format "Header ~a Header" (lang-config-arrow config))
+          "λ k → k")
+        "") "\n")]
+      [else (string-join (list
+        (function config "kernel_header_add" (format "Term ~a Term ~a Term" (lang-config-arrow config) (lang-config-arrow config))
+          (if (eq? (lang-config-name config) 'coq) "fun h1 h2 => h1" "λ h1 h2 → h1"))
+        ""
+        (function config "kernel_header_product" (format "Term ~a Term ~a Term" (lang-config-arrow config) (lang-config-arrow config))
+          (if (eq? (lang-config-name config) 'coq) "fun h1 h2 => h1" "λ h1 h2 → h1"))
+        ""
+        (function config "kernel_header_zero" (format "Term ~a Term" (lang-config-arrow config))
+          (if (eq? (lang-config-name config) 'coq) "fun k => k" "λ k → k"))
+        "") "\n")])
     ""
-    (function config "kernel_header_product" (format "Header ~a Header ~a Header" (lang-config-arrow config) (lang-config-arrow config))
-      (if (eq? (lang-config-name config) 'coq) "fun h1 h2 => h1" "λ h1 h2 → h1"))
-    ""
-    (function config "kernel_header_zero" (format "Header ~a Header" (lang-config-arrow config))
+    (function config "identity_kernel" (format "Term ~a Term" (lang-config-arrow config))
       (if (eq? (lang-config-name config) 'coq) "fun k => k" "λ k → k"))
-    ""
-    (function config "identity_kernel" (format "Kernel ~a Kernel" (lang-config-arrow config))
-      (if (eq? (lang-config-name config) 'coq) "KernelId" 
-          (if (eq? (lang-config-name config) 'lean) "Kernel.KernelId" "KernelId")))
     "")
    "\n"))
 
@@ -206,20 +231,39 @@
       [else ""])
     ""
     ;; Normal form operations
-    (function config "normal_form" (format "Term ~a NormalForm" (lang-config-arrow config))
-      (if (eq? (lang-config-name config) 'coq) "fun t => NormalForm.nf_core t" "λ t → NormalForm.nf_core t"))
-    ""
-    (function config "nf_phase" (format "NormalForm ~a Header" (lang-config-arrow config))
-      (if (eq? (lang-config-name config) 'coq) "fun nf => nf" "λ nf → nf"))
-    ""
-    (function config "nf_scale" (format "NormalForm ~a Header" (lang-config-arrow config))
-      (if (eq? (lang-config-name config) 'coq) "fun nf => nf" "λ nf → nf"))
-    ""
-    (function config "nf_core" (format "NormalForm ~a Term" (lang-config-arrow config))
-      (if (eq? (lang-config-name config) 'coq) "fun nf => nf" "λ nf → nf"))
-    ""
-    (function config "normalize_terms" (format "Term ~a Term ~a NormalForm" (lang-config-arrow config) (lang-config-arrow config))
-      (if (eq? (lang-config-name config) 'coq) "fun t1 t2 => NormalForm.nf_core t1" "λ t1 t2 → NormalForm.nf_core t1"))
+    (case (lang-config-name config)
+      ['lean (string-join (list
+        (function config "normal_form" (format "Term ~a NormalForm" (lang-config-arrow config))
+          "λ t → NormalForm.nf_core t")
+        ""
+        (function config "nf_phase" (format "NormalForm ~a Header" (lang-config-arrow config))
+          "λ nf → nf")
+        ""
+        (function config "nf_scale" (format "NormalForm ~a Header" (lang-config-arrow config))
+          "λ nf → nf")
+        ""
+        (function config "nf_core" (format "NormalForm ~a Term" (lang-config-arrow config))
+          "λ nf → nf")
+        ""
+        (function config "normalize_terms" (format "Term ~a Term ~a NormalForm" (lang-config-arrow config) (lang-config-arrow config))
+          "λ t1 t2 → NormalForm.nf_core t1")
+        "") "\n")]
+      [else (string-join (list
+        (function config "normal_form" (format "Term ~a Term" (lang-config-arrow config))
+          (if (eq? (lang-config-name config) 'coq) "fun t => t" "λ t → t"))
+        ""
+        (function config "nf_phase" (format "Term ~a Term" (lang-config-arrow config))
+          (if (eq? (lang-config-name config) 'coq) "fun nf => nf" "λ nf → nf"))
+        ""
+        (function config "nf_scale" (format "Term ~a Term" (lang-config-arrow config))
+          (if (eq? (lang-config-name config) 'coq) "fun nf => nf" "λ nf → nf"))
+        ""
+        (function config "nf_core" (format "Term ~a Term" (lang-config-arrow config))
+          (if (eq? (lang-config-name config) 'coq) "fun nf => nf" "λ nf → nf"))
+        ""
+        (function config "normalize_terms" (format "Term ~a Term ~a Term" (lang-config-arrow config) (lang-config-arrow config))
+          (if (eq? (lang-config-name config) 'coq) "fun t1 t2 => t1" "λ t1 t2 → t1"))
+        "") "\n")])
     "")
    "\n"))
 
@@ -276,7 +320,8 @@
       [else (string-join (list
         (function config "CLEAN_Sort" "Type" "Sort")
         (function config "CLEAN_Term" "Type" "Term")
-        (function config "CLEAN_PlusB" (format "Term ~a Term ~a Term" (lang-config-arrow config) (lang-config-arrow config)) "PlusB")
+        (function config "CLEAN_PlusB" (format "Term ~a Term ~a Term" (lang-config-arrow config) (lang-config-arrow config)) 
+          (if (eq? (lang-config-name config) 'coq) "TermPlusB" "TermPlusB"))
         "") "\n")])
     "")
    "\n"))
@@ -349,3 +394,28 @@
       (format "    \"~aCLEAN\"" prefix))
      "\n"))
   (display-to-file root-content (build-path output-dir "ROOT") #:exists 'replace))
+
+;; ============================================================================
+;; COMPATIBILITY FUNCTIONS
+;; ============================================================================
+
+;; Convenience functions for backward compatibility
+(define (generate-coq-library-unified output-dir) 
+  (generate-library (get-language-config 'coq) output-dir #f))
+
+(define (generate-agda-library-unified output-dir) 
+  (generate-library (get-language-config 'agda) output-dir #f))
+
+(define (generate-lean-library-unified output-dir) 
+  (generate-library (get-language-config 'lean) output-dir #f))
+
+(define (generate-isabelle-library-unified output-dir) 
+  (generate-library (get-language-config 'isabelle) output-dir #f))
+
+(define (generate-all-libraries-unified base-output-dir)
+  (displayln "🚀 Generating CLEAN v10 Libraries for All Languages (Simplified)...")
+  (generate-coq-library-unified (build-path base-output-dir "coq"))
+  (generate-agda-library-unified (build-path base-output-dir "agda"))
+  (generate-lean-library-unified (build-path base-output-dir "lean"))
+  (generate-isabelle-library-unified (build-path base-output-dir "isabelle"))
+  (displayln "✅ All CLEAN v10 libraries generated successfully!"))
