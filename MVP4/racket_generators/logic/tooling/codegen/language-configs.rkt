@@ -329,9 +329,9 @@
                main-module-generator-lean deployment-lean))
 
 (define isabelle-config 
-  (lang-config 'isabelle ".thy" "⇒" "λ" "(* ~a *)"
+  (lang-config 'isabelle ".thy" "=>" "λ" "(* ~a *)"
                clean-name clean-constructor-name-default module-header-isabelle
-               "generated-" " " "" "Sort"
+               "generated_" " " "" "Sort"
                sort-constructor-format-default op-constructor-format-default 
                const-constructor-format-default term-constructor-format-default
                get-core-imports-isabelle get-observers-imports-isabelle get-kernels-imports-isabelle

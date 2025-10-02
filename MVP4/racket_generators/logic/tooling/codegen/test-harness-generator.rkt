@@ -142,7 +142,7 @@
 (define (generate-isabelle-core-tests config)
   (string-join
    (list
-    "theory CoreTests"
+    "theory generated_CoreTests"
     "imports Main"
     "begin"
     ""
@@ -156,7 +156,7 @@
     "  by simp"
     ""
     "(* Test 3: Basic Logic *)"
-    "definition test_simple_function :: \"nat ⇒ nat\" where"
+    "definition test_simple_function :: \"nat => nat\" where"
     "\"test_simple_function n = n\""
     ""
     "end")
@@ -289,10 +289,10 @@
      (list
       "session CLEAN_Tests = HOL +"
       "  theories"
-      "    \"CoreTests\""
-      "    \"PropertyTests\""
-      "    \"IntegrationTests\""
-      "    \"TestRunner\"")
+      "    \"generated_CoreTests\""
+      "    \"generated_PropertyTests\""
+      "    \"generated_IntegrationTests\""
+      "    \"generated_TestRunner\"")
      "\n"))
   (display-to-file isabelle-test-content (build-path output-dir "tests" "ROOT") #:exists 'replace))
 
@@ -349,7 +349,7 @@
 (define (generate-isabelle-property-tests config)
   (string-join
    (list
-    "theory PropertyTests"
+    "theory generated_PropertyTests"
     "imports Main \"lib.generated-Core\""
     "begin"
     ""
@@ -437,7 +437,7 @@
 (define (generate-isabelle-integration-tests config)
   (string-join
    (list
-    "theory IntegrationTests"
+    "theory generated_IntegrationTests"
     "imports Main \"lib.generated-Core\" \"lib.generated-Observers\""
     "begin"
     ""
@@ -515,8 +515,8 @@
 (define (generate-isabelle-test-runner config)
   (string-join
    (list
-    "theory TestRunner"
-    "imports Main \"CoreTests\" \"PropertyTests\" \"IntegrationTests\""
+    "theory generated_TestRunner"
+    "imports Main \"generated_CoreTests\" \"generated_PropertyTests\" \"generated_IntegrationTests\""
     "begin"
     ""
     "(* CLEAN v10 Test Runner *)"
