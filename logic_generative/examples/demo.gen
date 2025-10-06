@@ -1,0 +1,124 @@
+#lang logic/gen
+
+;; @logic/gen Demo Example
+;; Demonstrates generator-focused CLEAN language usage
+
+;; ============================================================================
+;; KERNEL GENERATORS
+;; ============================================================================
+
+;; Define a simple kernel generator
+(define-kernel K (λ (t) (⊗B (φ^ 1) t)))
+
+;; Compose kernel generators
+(define K2 (gen-compose K K))
+
+;; Generate Green's sum
+(define G5 (greens-sum K #:N 5))
+
+;; Apply RG blocking
+(define K-blocked (rg-block K #:k 3))
+
+;; ============================================================================
+;; NORMAL FORM GENERATORS
+;; ============================================================================
+
+;; Create a test term
+(define t* (make-term 'test-term #:header '(1 1) #:core 'test))
+
+;; Generate normal form
+(define nf (NF t*))
+
+;; Generate parametric normal form with moduli flows
+(define t1 (NF/param t* #:μL 1 #:θL 0 #:μR 0 #:θR 1))
+
+;; Create moduli flow
+(define flow (flow #:μL (λ (x) (* 2 x))
+                   #:θL (λ (x) (+ x 1))
+                   #:μR (λ (x) (* 3 x))
+                   #:θR (λ (x) (- x 1))))
+
+;; Evolve header with flow
+(define t-evolved (evolve-header t* flow))
+
+;; ============================================================================
+;; OBSERVER GENERATORS
+;; ============================================================================
+
+;; Apply Green's sum to test term
+(define t0 (gen-apply G5 t*))
+
+;; Project to boundaries
+(define t-L (project 'L t0))
+(define t-R (project 'R t0))
+
+;; Reconstitute from boundaries
+(define t-reconstituted (reconstitute t0))
+
+;; Generate residual
+(define t-residual (residual t0))
+
+;; ============================================================================
+;; DOMAIN PORT GENERATORS
+;; ============================================================================
+
+;; Create domain ports
+(define B (port 'boolean))
+(define L (port 'lambda))
+(define I (port 'info))
+(define Q (port 'qft))
+
+;; Check if terms are defined for ports
+(define B-defined? (psdm-defined? B t0))
+(define L-defined? (psdm-defined? L t0))
+
+;; Apply port evaluation if defined
+(when B-defined?
+  (define B-result (psdm-apply B t0))
+  (printf "Boolean port result: ~a~n" B-result))
+
+(when L-defined?
+  (define L-result (psdm-apply L t0))
+  (printf "Lambda port result: ~a~n" L-result))
+
+;; ============================================================================
+;; FEYNMAN GENERATORS
+;; ============================================================================
+
+;; Create Feynman path generator
+(define J (histories 'action))
+
+;; Sum over histories
+(define sum-hist (sum-over-histories J))
+
+;; ============================================================================
+;; TRUTH LANGUAGE CHECKS
+;; ============================================================================
+
+;; Check core invariants
+(check-invariant bulk=boundaries t0)
+(check-invariant residual-invisible t0)
+
+;; Check generator laws
+(check-law rg-closure K)
+
+;; Check theorems
+(check-theorem church-turing 'prog 'input)
+(check-theorem eor-health)
+(check-theorem logic-grh-gate)
+
+;; ============================================================================
+;; OUTPUT RESULTS
+;; ============================================================================
+
+(printf "=== @logic/gen Demo Results ===~n")
+(printf "Original term: ~a~n" t*)
+(printf "Green's sum applied: ~a~n" t0)
+(printf "Left projection: ~a~n" t-L)
+(printf "Right projection: ~a~n" t-R)
+(printf "Reconstituted: ~a~n" t-reconstituted)
+(printf "Residual: ~a~n" t-residual)
+(printf "Boolean port defined: ~a~n" B-defined?)
+(printf "Lambda port defined: ~a~n" L-defined?)
+(printf "=== Demo Complete ===~n")
+
