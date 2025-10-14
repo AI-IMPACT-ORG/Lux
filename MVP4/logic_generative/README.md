@@ -1,3 +1,5 @@
+<!-- (c) 2025 AI.IMPACT GmbH -->
+
 # Lux Generative Logic System
 
 ## Overview
@@ -252,6 +254,12 @@ This system implements the mathematical foundations described in:
 - Include comprehensive documentation for all public functions
 - Follow Racket conventions for module organization
 - Maintain formal verification consistency across systems
+
+### Copyright Requirements
+- **All files must include copyright notice**: `© 2025 AI.IMPACT GmbH`
+- A Git pre-commit hook automatically enforces this requirement
+- See [COPYRIGHT_TEMPLATES.md](COPYRIGHT_TEMPLATES.md) for file-specific examples
+- The hook excludes binary files, build artifacts, and generated files
 
 ### Testing
 - All new features must include corresponding tests
