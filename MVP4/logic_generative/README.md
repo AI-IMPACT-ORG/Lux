@@ -267,9 +267,9 @@ This system implements the mathematical foundations described in:
 
 ## License
 
-© 2025 AI.IMPACT GmbH. Licensed under CC BY-NC-ND 4.0. Provided "as is," without warranties of any kind; liability disclaimed to the extent permitted by law. No patent rights are granted. AI.IMPACT names/logos are trademarks; no endorsement is implied. No support or maintenance obligations. Not for safety-critical/high-risk use; no security guarantee. Users are responsible for export-control compliance and for any processing of personal data (e.g., GDPR). These notices do not limit the CC BY-NC-ND 4.0 permissions. License: https://creativecommons.org/licenses/by-nc-nd/4.0/
+© 2025 AI.IMPACT GmbH. Licensed under CC BY-NC-ND 4.0.
 
-This project is part of the BootstrapPaper research initiative, implementing novel approaches to symbolic computation and formal verification.
+This project is part of the BootstrapPaper research initiative, implementing novel approaches to symbolic computation and formal verification. See [LICENSE](LICENSE) for full license terms.
 
 ## Contact
 
