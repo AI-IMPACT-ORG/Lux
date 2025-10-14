@@ -13,7 +13,9 @@
 (define (reconstitute b)
   (define l (projector-L b))
   (define r (projector-R b))
-  ((semiring-ops-add B-ops) l r))
+  (define ρ ((semiring-ops-add B-ops) l r))
+  (hash-set! element-origin ρ 'rho)
+  ρ)
 
 (define (residual b)
   ((semiring-ops-add B-ops) b (reconstitute b)))
@@ -40,4 +42,3 @@
 (define (test-bulk-two-boundaries b)
   (define ρ (reconstitute b))
   (and (semiring-element? (ν_L ρ)) (semiring-element? (ν_R ρ))))
-

@@ -59,11 +59,20 @@
 
 (define (B-add x y)
   ;; Idempotence on identical values: x ⊕ x = x
-  (define r (if (abstract-expr-equal? (->val x) (->val y))
-                x
-                (mk B (abstract-add (->val x) (->val y)))))
+  (define same? (abstract-expr-equal? (->val x) (->val y)))
   (define xo (hash-ref element-origin x 'unknown))
   (define yo (hash-ref element-origin y 'unknown))
+  (define (selective-mode?)
+    (let ([v (getenv "LUX_B_SELECT")]) (and v (or (string-ci=? v "1") (string-ci=? v "true")))))
+  (define (rank o)
+    (cond [(eq? o 'ι_L) 3]
+          [(eq? o 'ι_R) 2]
+          [(eq? o 'mixed) 1]
+          [else 0]))
+  (define r (cond
+              [(and same? (not (eq? xo 'rho)) (not (eq? yo 'rho))) x]
+              [(selective-mode?) (if (> (rank xo) (rank yo)) x (if (> (rank yo) (rank xo)) y (mk B (abstract-add (->val x) (->val y)))))]
+              [else (mk B (abstract-add (->val x) (->val y)))]))
   (hash-set! element-origin r (cond [(and (eq? xo 'ι_L) (eq? yo 'ι_L)) 'ι_L]
                                     [(and (eq? xo 'ι_R) (eq? yo 'ι_R)) 'ι_R]
                                     [else 'mixed]))
@@ -94,18 +103,20 @@
 (define (ν_L b)
   (define o (hash-ref element-origin b 'unknown))
   (cond
+    [(eq? o 'ι_R) (semiring-ops-zero L-ops)]
     [(or (eq? o 'ι_L) (eq? o 'mixed)) (mk L (->val b))]
     [(eq? b B-one) (semiring-ops-one L-ops)]
     [(eq? b B-zero) (semiring-ops-zero L-ops)]
-    [else (mk L (get-zero))]))
+    [else (mk L (->val b))]))
 
 (define (ν_R b)
   (define o (hash-ref element-origin b 'unknown))
   (cond
+    [(eq? o 'ι_L) (semiring-ops-zero R-ops)]
     [(or (eq? o 'ι_R) (eq? o 'mixed)) (mk R (->val b))]
     [(eq? b B-one) (semiring-ops-one R-ops)]
     [(eq? b B-zero) (semiring-ops-zero R-ops)]
-    [else (mk R (get-zero))]))
+    [else (mk R (->val b))]))
 
 ;; Projector reconstitution ρ := ι_L∘ν_L ⊕ ι_R∘ν_R
 (define (reconstitute-ρ b)

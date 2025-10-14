@@ -90,6 +90,33 @@ This follows MVP4/chatgpt Lux*’s “abstract first” spec: proofs and witness
 - Dynamic requires use robust relative paths; heavyweight modules only load when invoked.
 - Central scalars default to symbolic values (`φ`, `z`, `z̄`, `Λ`) by default; no integer codings are used.
 
+## Runtime Modes
+
+You can toggle small, optional behaviors via environment variables:
+
+- `LUX_FAST=1`
+  - Uses small regulator defaults for port samplers; avoids any long loops.
+- `LUX_SUMMARY_HEAVY=1`
+  - Includes heavyweight domain checks in the summary.
+- `LUX_VERBOSE=1`
+  - Enables optional informational prints in evidence modules (e.g., ANT counts).
+- `LUX_B_SELECT=1`
+  - Enables a selective/idempotent addition on `B` with a simple dominance order (`ι_L > ι_R > mixed > unknown`). Idempotence on identical values is always enabled.
+- `LUX_HEADER_MODEL=Z3`
+  - Demonstration header model: `rec` represents headers as `φ^k z^mz z̄^mzb × core` and `dec` parses that product back to `(k,mz,mzb,core)`. Default remains abstract (headers elided, payload to Core).
+
+## Gap Kernel and Port Propagation
+
+The core “logic gap” is represented explicitly and propagated through ports:
+
+- Core invariants (runner: “Gap properties (core)”): non‑expansive NF, DNF idempotence and transport invariance, rewrite roundtrip, rewrite monotonicity, reduction non‑invertibility.
+- Port consequences (runner: “Gap propagation (by port)”):
+  - ANT: RC and ξ tags; Hilbert–Pólya definition, self‑adjointness, and resolvent–ξ link.
+  - Complexity: regime/lens tags; P≠NP and NP≠coNP manifestations at observer‑level.
+  - QFT: reflection positivity, spectral condition, cluster decomposition; mass‑gap from Lipschitz and exponential decay tags.
+
+The verification runner prints both sections by default; heavy‑scan lists heavyweight checks with per‑item timeouts.
+
 ## Notes
 
 - External dependency note: the foundational abstract framework is no longer imported from a sibling repo; everything needed is in this folder.

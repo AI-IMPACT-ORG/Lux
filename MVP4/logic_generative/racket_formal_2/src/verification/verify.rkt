@@ -562,7 +562,9 @@
     (reg-add-l! 'GapPort_Complexity 'Complexity 'sequent '(LogicGap)
                 (mk-gapport 'Complexity (mk-tags cplx)) #:keywords '(GapPort Complexity Lenses Regime))
     (reg-add-l! 'GapPort_QFT 'QFT 'sequent '(LogicGap)
-                (mk-gapport 'QFT (mk-tags qft)) #:keywords '(GapPort QFT MassGap ExpDecay)))
+                (mk-gapport 'QFT (mk-tags qft)) #:keywords '(GapPort QFT MassGap ExpDecay))
+    (reg-write!)
+    (reg-write-coverage!))
   results)
 
 ;; Return a snapshot of Gap propagation: list of (port . ((name . L-witness) ...))

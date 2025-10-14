@@ -105,7 +105,7 @@
            (semiring-element 0 Core)
            (let ([first-symbol (first tape-content)])
              (cond
-               [(abstract-expr? first-symbol) (make-abstract-element first-symbol Core)]
+               [(abstract-expr? first-symbol) (semiring-element first-symbol Core)]
                [else (semiring-element first-symbol Core)])))]
       [_ (semiring-element 0 Core)]))
   (domain-port 'turing turing-encoder turing-evaluator turing-normalizer turing-decoder 'turing (λ (t) #t) '(1 0 0)))
@@ -151,7 +151,7 @@
     (match normalized-term
       [(list 'church-numeral n) (semiring-element n Core)]
       [(list 'const val) (semiring-element val Core)]
-      [val (cond [(abstract-expr? val) (make-abstract-element val Core)]
+      [val (cond [(abstract-expr? val) (semiring-element val Core)]
                  [else (semiring-element val Core)])]))
   (domain-port 'lambda lambda-encoder lambda-evaluator lambda-normalizer lambda-decoder 'lambda (λ (t) #t) '(0 1 0)))
 
@@ -222,9 +222,20 @@
   (define (evaluator initial)
     (define hs (generate-histories initial (get-feynman-step-limit)))
     (partition-function hs (semiring-element (make-abstract-const 1 'integer) B)))
-  (define (normalizer z) z)
+  (define (normalizer z) (B-normalize z))
   (define (decoder z) z)
   (domain-port 'qft encoder evaluator normalizer decoder 'qft (λ (t) #t) '(1 1 1)))
+
+;; Proof assistant port (trivial Core identity)
+(define (make-proof-assistant-port)
+  (define (encoder input) input)
+  (define (evaluator enc) enc)
+  (define (normalizer ev) ev)
+  (define (decoder val)
+    (cond
+      [(semiring-element? val) (semiring-element (semiring-element-value val) Core)]
+      [else (semiring-element val Core)]))
+  (domain-port 'proof-assistant encoder evaluator normalizer decoder 'proof (λ (t) #t) '(0 0 0)))
 
 (define (make-computational-paradigms-port)
   (define turing (make-turing-port))
@@ -351,6 +362,8 @@
     ['lambda (make-lambda-port)]
     ['blockchain (make-blockchain-port)]
     ['qft (make-qft-port)]
+    ['feynman (make-qft-port)]
+    ['proof-assistant (make-proof-assistant-port)]
     ['analytic (make-analytic-number-theory-port)]
     ['analytic-number-theory (make-analytic-number-theory-port)]
     ['category (make-categorical-logic-port)]

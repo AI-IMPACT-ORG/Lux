@@ -138,10 +138,16 @@
   (set! current-reg (append current-reg (list entry))))
 
 (define (reg-write! [path "tools/proof-registry.json"]) 
+  (define (->json v)
+    (cond
+      [(or (string? v) (boolean? v) (number? v)) v]
+      [(symbol? v) (~a v)]
+      [(list? v) (map ->json v)]
+      [else (~a v)]))
   (define (jsonify-entry e)
     (define out (make-hash))
     (for ([(k v) (in-hash e)])
-      (hash-set! out (~a k) v))
+      (hash-set! out (~a k) (->json v)))
     out)
   (define arr (for/list ([e current-reg]) (jsonify-entry e)))
   (call-with-output-file path
