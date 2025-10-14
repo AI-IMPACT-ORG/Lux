@@ -1,4 +1,5 @@
 #lang Lux
+; (c) 2025 AI.IMPACT GmbH
 
 ;; Yoneda-style example (categorical logic appendix flavor)
 ;; We witness that observers/embeddings determine morphisms via their action on test objects.

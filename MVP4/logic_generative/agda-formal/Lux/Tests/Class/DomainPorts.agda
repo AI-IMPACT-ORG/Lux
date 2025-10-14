@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - V10 CLASS Domain Ports Tests (Racket-Aligned)
 --
 -- PURPOSE: V10 CLASS domain ports tests aligned with Racket test suite patterns

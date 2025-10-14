@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - Mathematical Insights (Abstract Schemas)
 --
 -- PURPOSE: Abstract, architecture-level schemas for mathematical insights

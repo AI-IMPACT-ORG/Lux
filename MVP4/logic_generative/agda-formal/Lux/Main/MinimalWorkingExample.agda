@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - Minimal Working Example
 --
 -- PURPOSE: Minimal working example that compiles

@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Zeta as a generating functional with gauges and RC-normalization
 
 (require (file "./rc-scheme.rkt")

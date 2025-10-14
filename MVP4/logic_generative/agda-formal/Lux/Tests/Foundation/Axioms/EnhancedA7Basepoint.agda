@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - Enhanced V2 Axiom A7 Tests (Racket-Aligned)
 --
 -- PURPOSE: Enhanced A7 Basepoint/Gen4 tests aligned with Racket test suite patterns

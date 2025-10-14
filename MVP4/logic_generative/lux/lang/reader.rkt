@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 
 ;; #lang lux — language reader
 ;; Injects the unified CLEAN API from racket_formal_2/src/main.rkt

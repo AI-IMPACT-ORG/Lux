@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - Ultra Simple Main Module
 --
 -- PURPOSE: Ultra simple main module that compiles

@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Evidence engine for ANT (abstract):
 ;;  - product/sum equivalence (Euler vs Dirichlet, truncated)
 ;;  - RC universality under scheme morphisms

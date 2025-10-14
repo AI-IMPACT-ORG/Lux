@@ -1,3 +1,5 @@
+<!-- (c) 2025 AI.IMPACT GmbH -->
+
 # Lux Formal Logic Library
 
 A rigorous Isabelle/HOL mechanization of the Lux formal logic framework for AI-powered software development.

@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Renormalisation condition schemes for Analytic Number Theory (ANT)
 
 (require (file "../../foundations/abstract-core.rkt")

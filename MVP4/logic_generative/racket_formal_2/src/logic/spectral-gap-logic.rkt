@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Deep integration: relate logic-level spectral gap claims to P vs NP separation
 
 (require (file "../foundations/abstract-core.rkt")

@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Computational Complexity Port (refocused)
 
 (require racket/math

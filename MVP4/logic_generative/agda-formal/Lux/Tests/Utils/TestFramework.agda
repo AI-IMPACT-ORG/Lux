@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - Simplified Test Framework
 --
 -- PURPOSE: Simplified test framework for Lux V2/V10 system testing

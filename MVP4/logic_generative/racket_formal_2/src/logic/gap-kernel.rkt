@@ -1,8 +1,10 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Gap Kernel: a single abstract witness and reusable invariants
 
 (require (file "../foundations/abstract-core.rkt")
          (file "../algebra/algebraic-structures.rkt")
+         (file "../logic/internalize.rkt")
          (file "../theorems/gap.rkt")
          (file "../rewrite/engine.rkt"))
 
@@ -22,4 +24,3 @@
    (cons 'rewrite-roundtrip (rewrite-eq-roundtrip?))
    (cons 'rewrite-metric-monotone (rewrite-metric-monotone?))
    (cons 'rewrite-red-noninvertible (rewrite-red-noninvertible?))))
-

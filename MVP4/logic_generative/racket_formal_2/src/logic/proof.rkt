@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Proof objects and pretty-printing for L-level witnesses
 
 (require (file "../foundations/abstract-core.rkt")

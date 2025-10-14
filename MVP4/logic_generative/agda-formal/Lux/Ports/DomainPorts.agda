@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - Domain Ports (External Computational Paradigms)
 --
 -- PURPOSE: External computational paradigms (Class requirement)

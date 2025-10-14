@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - Test Entrypoint
 --
 -- PURPOSE: Public Tests entrypoint for Lux library

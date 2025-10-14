@@ -1,3 +1,5 @@
+<!-- (c) 2025 AI.IMPACT GmbH -->
+
 # CLEAN V2/V10 — Racket Formal 2 (racket_formal_2)
 
 ## Overview

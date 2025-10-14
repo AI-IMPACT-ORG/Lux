@@ -1,3 +1,5 @@
+<!-- (c) 2025 AI.IMPACT GmbH -->
+
 # lux language
 
 `lux` is the language front-end name for the CLEAN V2/V10 foundational system.

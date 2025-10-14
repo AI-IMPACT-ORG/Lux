@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - Schema Interfaces
 --
 -- PURPOSE: Schema interfaces for explicit parameterization

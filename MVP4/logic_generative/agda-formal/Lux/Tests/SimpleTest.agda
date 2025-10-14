@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Simple test to check compilation
 module Lux.Tests.SimpleTest where
 

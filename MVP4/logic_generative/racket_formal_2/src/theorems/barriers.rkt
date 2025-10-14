@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Barrier annotations (symbolic L-level): non-relativizing, non-natural, non-algebrizing
 
 (require (file "../foundations/abstract-core.rkt")

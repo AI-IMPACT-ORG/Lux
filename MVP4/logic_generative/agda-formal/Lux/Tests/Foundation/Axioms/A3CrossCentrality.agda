@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - V2 Axiom A3 Tests (Cross-Centrality and Independence)
 --
 -- PURPOSE: Tests for V2 Axiom A3 - Cross-centrality and independence

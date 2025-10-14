@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# (c) 2025 AI.IMPACT GmbH
 set -euo pipefail
 
 cd "$(dirname "$0")"/tests

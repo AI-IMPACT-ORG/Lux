@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - V2 Axiom A4 Tests (Connective Axioms)
 --
 -- PURPOSE: Tests for V2 Axiom A4 - Connective axioms (bulk ↔ boundaries)

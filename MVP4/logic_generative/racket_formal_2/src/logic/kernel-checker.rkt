@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Tiny Hilbert-style kernel: axioms + modus ponens + substitution
 
 (require (file "../foundations/abstract-core.rkt"))

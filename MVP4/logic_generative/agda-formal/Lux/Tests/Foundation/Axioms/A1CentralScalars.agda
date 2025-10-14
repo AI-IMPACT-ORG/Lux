@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - V2 Axiom A1 Tests (Central Scalars)
 --
 -- PURPOSE: Tests for V2 Axiom A1 - Central scalars (φ, z, \bar{z}, Λ)

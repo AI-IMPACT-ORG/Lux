@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux V10 CLASS Complete Language Specification
 --
 -- PURPOSE: Complete V10 CLASS implementation with moduli, guarded negation, 

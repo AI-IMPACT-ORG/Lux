@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Gap and DNF properties (abstract):
 ;;  - Non-expansive regime witness (d(Rx,Ry) ≤ d(x,y))
 ;;  - DNF idempotence and transport invariance

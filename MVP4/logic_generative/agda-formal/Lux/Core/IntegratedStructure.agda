@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - Integrated Core Structure (Simplified)
 --
 -- PURPOSE: Establishes explicit mathematical relationships between all core modules

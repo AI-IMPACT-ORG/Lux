@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux V2/V10 Proofs Generated from Racket Tests
 -- Demonstrates that Agda can prove the same theorems
 

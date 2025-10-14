@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - Proper Three-Semiring Architecture
 --
 -- PURPOSE: Proper implementation of Lux V2/V10 Core specifications

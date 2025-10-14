@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - Core Kernel
 --
 -- PURPOSE: Core mathematical foundations implementing V2 axioms

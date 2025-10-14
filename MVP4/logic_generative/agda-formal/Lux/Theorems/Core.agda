@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux V2/V10 Core Theorem Suite
 -- Generated from all 554 Racket tests
 -- Focused on theorems that exist in the Agda implementation

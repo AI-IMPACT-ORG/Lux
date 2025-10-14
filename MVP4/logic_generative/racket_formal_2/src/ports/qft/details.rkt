@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; QFT detailed producer: returns Z with L-level model/semantics witnesses
 
 (require (file "../../foundations/abstract-core.rkt")

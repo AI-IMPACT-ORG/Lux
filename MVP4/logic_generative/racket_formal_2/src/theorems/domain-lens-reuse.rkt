@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Reusable lens semantics across domain maps (QFT, Analytic Number Theory)
 
 (require (file "../foundations/abstract-core.rkt")

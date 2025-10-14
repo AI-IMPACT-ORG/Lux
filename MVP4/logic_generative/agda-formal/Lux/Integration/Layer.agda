@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - Integration Layer (Truth Theorems and Coherence)
 --
 -- PURPOSE: Truth theorems and coherence (V10 CLASS requirement)

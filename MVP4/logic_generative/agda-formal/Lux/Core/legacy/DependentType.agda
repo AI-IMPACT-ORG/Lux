@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - Dependent Type Approach
 --
 -- PURPOSE: Dependent type approach to avoid where clauses

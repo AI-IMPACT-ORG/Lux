@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux V2/V10 Complete Theorem Suite
 -- Generated from all 554 Racket tests
 

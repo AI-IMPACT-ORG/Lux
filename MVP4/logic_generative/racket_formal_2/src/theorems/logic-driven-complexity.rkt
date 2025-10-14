@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Use central constructive-logic theorems to structure the complexity lens argument
 
 (require (file "../foundations/abstract-core.rkt")

@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - Dependent Type Version
 --
 -- PURPOSE: Proper dependent type formalization based on Lux specifications

@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Complexity via lenses (abstract):
 ;;  - Header-only normalization preserves canonical reps (observer identity)
 ;;  - Deterministic step is non-expanding (no strict numeric contraction)

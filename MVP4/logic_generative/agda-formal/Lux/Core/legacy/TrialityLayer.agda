@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - Triality Layer (V10 Core Constructive Logic)
 --
 -- PURPOSE: V10 Core constructive logic layer

@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - Upgraded Main Module
 --
 -- PURPOSE: Main module for upgraded Lux logic system

@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Observer-level identity/idempotence utilities for reuse across domain maps
 
 (require (file "../foundations/abstract-core.rkt")

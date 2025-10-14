@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 
 ;; Side-car integration tests that realize proofs as L-level derivations.
 ;; - Validates rules-as-theorems via the sequent checker (self-application)

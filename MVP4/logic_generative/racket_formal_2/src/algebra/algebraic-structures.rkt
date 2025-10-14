@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Algebraic Structures (Semiring and observers)
 
 (require racket/function

@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Moduli System (CLASS)
 ;;
 ;; Abstract flows over header components with optional parametric strategies.

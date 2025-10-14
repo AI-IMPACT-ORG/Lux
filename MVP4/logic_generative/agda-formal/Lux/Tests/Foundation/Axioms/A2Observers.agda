@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - V2 Axiom A2 Tests (Observer/Embedding System)
 --
 -- PURPOSE: Tests for V2 Axiom A2 - Observer/embedding system (ν_L, ν_R, ι_L, ι_R)

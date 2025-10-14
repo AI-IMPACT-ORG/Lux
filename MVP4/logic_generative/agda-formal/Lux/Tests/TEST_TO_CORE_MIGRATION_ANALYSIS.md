@@ -1,3 +1,5 @@
+<!-- (c) 2025 AI.IMPACT GmbH -->
+
 # CLEAN Logic System - Test-to-Core Migration Analysis
 
 ## 🔍 **ANALYSIS: What Should Be Migrated from Tests to Core**

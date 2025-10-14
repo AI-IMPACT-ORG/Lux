@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Internal sequent derivation checker (stays inside Lux, uses L-level rules)
 
 (require (file "../foundations/abstract-core.rkt")

@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 
 (require racket/list
          (file "../../foundations/abstract-core.rkt")

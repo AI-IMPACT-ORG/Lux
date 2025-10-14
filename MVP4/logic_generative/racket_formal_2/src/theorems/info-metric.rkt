@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Information metric monotonicity along RG (symbolic)
 
 (require (file "../foundations/abstract-core.rkt")

@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux V2 Abstract Foundation
 --
 -- PURPOSE: Abstract V2 foundation with proper mathematical structures

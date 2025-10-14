@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Internal DTIME/NTIME skeleton and lens soundness
 
 (require (file "../foundations/abstract-core.rkt")

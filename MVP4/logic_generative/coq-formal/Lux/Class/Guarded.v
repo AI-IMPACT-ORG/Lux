@@ -1,3 +1,5 @@
+(* (c) 2025 AI.IMPACT GmbH *)
+
 From Coq Require Import ZArith.
 From Lux.Core Require Import Signature Axioms Observers.
 From Lux.Util Require Import SemiringFunctor.

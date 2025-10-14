@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux V2/V10 Test Runner and Validation - Agda Formalization
 --
 -- PURPOSE: Comprehensive test runner and validation for V2 atomic system and V10 integration

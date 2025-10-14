@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Common symbolic helpers for ANT (no numerics)
 
 (provide (all-defined-out))

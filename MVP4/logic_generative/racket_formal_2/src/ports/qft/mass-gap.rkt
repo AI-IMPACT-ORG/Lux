@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; QFT mass-gap bridge: logic RG (trace/Lipschitz) + model assumptions ⇒ MassGap and ExpDecay
 
 (require (file "../../foundations/abstract-core.rkt")

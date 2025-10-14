@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - Enhanced Test Framework (Racket-Aligned)
 --
 -- PURPOSE: Enhanced test framework aligned with Racket test suite patterns

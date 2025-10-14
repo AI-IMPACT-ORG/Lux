@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux V2 Atomic System - Agda Specialized Formalization
 -- Leverages Agda's dependent type system and propositional equality
 {-# OPTIONS --without-K --cubical-compatible #-}

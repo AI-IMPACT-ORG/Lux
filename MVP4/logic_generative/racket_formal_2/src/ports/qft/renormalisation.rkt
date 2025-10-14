@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; QFT renormalisation sequents: scheme independence, Callan–Symanzik, Ward/BRST
 
 (require (file "../../foundations/abstract-core.rkt")

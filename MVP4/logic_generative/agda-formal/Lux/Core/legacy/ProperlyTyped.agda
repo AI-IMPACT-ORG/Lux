@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - Properly Typed Core (No Where Clauses)
 --
 -- PURPOSE: Properly typed core based on specifications

@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Kernel-level tautologies and constructions (L-level)
 
 (require (file "../foundations/abstract-core.rkt")

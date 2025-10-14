@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; ZFC-strength skeleton with internalized axioms as L-level witnesses
 
 (require (file "../foundations/abstract-core.rkt")

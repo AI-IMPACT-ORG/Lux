@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Conservativity demo: adding ZFC axioms to context does not affect derivability of core propositional theorems
 
 (require (file "../foundations/abstract-core.rkt")

@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; QFT model declarations: allow dagger and metric at the model level (port-only)
 
 (require (file "../assumptions.rkt")

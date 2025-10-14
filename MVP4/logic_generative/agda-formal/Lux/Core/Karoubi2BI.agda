@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - Karoubi Split and 2BI Interfaces
 --
 -- PURPOSE: Provide concrete, definitional maps for [L], [R], and ρ using

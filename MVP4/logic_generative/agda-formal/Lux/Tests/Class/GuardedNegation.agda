@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - V10 CLASS Tests (Racket-Aligned)
 --
 -- PURPOSE: V10 CLASS tests aligned with Racket test suite patterns

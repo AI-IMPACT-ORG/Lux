@@ -1,3 +1,5 @@
+<!-- (c) 2025 AI.IMPACT GmbH -->
+
 # Lux Mathematical Logic Library
 
 ## Overview

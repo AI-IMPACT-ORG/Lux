@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - Rigorous Dependent Type Version (Fixed)
 --
 -- PURPOSE: Rigorous dependent type formalization based on Lux specifications

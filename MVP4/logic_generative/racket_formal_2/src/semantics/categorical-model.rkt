@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Categorical + metric enrichment semantics (dagger SMC + Lawvere metric) and lens Lipschitz claims
 
 (require (file "../foundations/abstract-core.rkt")

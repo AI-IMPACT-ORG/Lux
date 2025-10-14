@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 
 ;; V10 CLASS Truth Theorems (compat)
 

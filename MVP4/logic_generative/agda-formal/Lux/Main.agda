@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - Main Module
 --
 -- PURPOSE: Main module for Lux V2 atomic system and V10 integration

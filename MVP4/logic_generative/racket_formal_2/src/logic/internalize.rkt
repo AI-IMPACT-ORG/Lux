@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Internalization: map symbolic boolean expressions to L-level guarded logic terms
 
 (require (file "../foundations/abstract-core.rkt")

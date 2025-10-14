@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Hilbert–Pólya analogue scaffolding for ANT under dagger-enabled model (port-only)
 
 (require (file "../../foundations/abstract-core.rkt")

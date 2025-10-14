@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - V10 Core Tests (Racket-Aligned)
 --
 -- PURPOSE: V10 Core tests aligned with Racket test suite patterns

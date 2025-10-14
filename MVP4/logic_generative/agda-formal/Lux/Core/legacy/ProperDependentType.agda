@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - Proper Dependent Type Approach
 --
 -- PURPOSE: Proper dependent type approach without where clauses

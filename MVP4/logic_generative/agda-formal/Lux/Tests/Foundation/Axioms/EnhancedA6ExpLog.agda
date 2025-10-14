@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - Enhanced V2 Axiom A6 Tests (Racket-Aligned)
 --
 -- PURPOSE: Enhanced A6 Exp/Log Structure tests aligned with Racket test suite patterns

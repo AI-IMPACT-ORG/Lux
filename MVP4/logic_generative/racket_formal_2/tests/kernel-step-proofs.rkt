@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 
 ;; Kernel-level step proofs for ∧/∨ via axiom instances
 

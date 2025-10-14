@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Symbolic evidence for ANT: Euler product equals Dirichlet sum; log-derivative identity
 
 (require rackunit

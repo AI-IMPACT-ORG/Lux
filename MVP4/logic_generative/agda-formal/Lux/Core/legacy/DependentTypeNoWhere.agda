@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - Dependent Type Approach (No Where Clauses)
 --
 -- PURPOSE: Dependent type approach without where clauses

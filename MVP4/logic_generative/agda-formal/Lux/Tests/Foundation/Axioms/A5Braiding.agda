@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - V2 Axiom A5 Tests (Braiding Operations)
 --
 -- PURPOSE: Tests for V2 Axiom A5 - Braiding operations (ad₀, ad₁, ad₂, ad₃)

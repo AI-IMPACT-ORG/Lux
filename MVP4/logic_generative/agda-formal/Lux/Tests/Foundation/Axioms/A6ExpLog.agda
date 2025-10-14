@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - V2 Axiom A6 Tests (Exp/Log Structure)
 --
 -- PURPOSE: Tests for V2 Axiom A6 - Exp/log moduli chart (bijective multiplicative factorisation)

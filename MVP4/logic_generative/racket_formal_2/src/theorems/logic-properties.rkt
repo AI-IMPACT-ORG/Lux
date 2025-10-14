@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 
 (require (file "../foundations/abstract-core.rkt")
          (file "../algebra/algebraic-structures.rkt")

@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux V10 CLASS Integration Tests - Complete Specification
 --
 -- PURPOSE: Comprehensive integration tests for V10 CLASS features

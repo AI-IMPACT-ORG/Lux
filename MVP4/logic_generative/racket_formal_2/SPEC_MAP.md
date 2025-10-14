@@ -1,3 +1,5 @@
+<!-- (c) 2025 AI.IMPACT GmbH -->
+
 # SPEC → Code Map (Lux)
 
 This document maps sections from the MVP4/CHATGPT specification to the Racket presentation in `racket_formal_2`.

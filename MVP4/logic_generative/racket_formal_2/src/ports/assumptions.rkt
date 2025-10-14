@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Port model assumptions registry: declare concrete model features per port
 
 (require (file "../foundations/abstract-core.rkt")

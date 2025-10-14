@@ -1,3 +1,5 @@
+(* (c) 2025 AI.IMPACT GmbH *)
+
 (** 
  * Semiring Functors and Advanced Algebraic Structures
  * 

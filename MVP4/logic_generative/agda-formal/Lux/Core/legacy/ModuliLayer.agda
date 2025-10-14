@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - Moduli Layer (Parametric Normal Forms and Flows)
 --
 -- PURPOSE: Parametric normal forms and flows (V10 CLASS requirement)

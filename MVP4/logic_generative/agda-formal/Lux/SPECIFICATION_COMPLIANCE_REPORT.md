@@ -1,3 +1,5 @@
+<!-- (c) 2025 AI.IMPACT GmbH -->
+
 # CLEAN Logic System - Specification Compliance Report
 
 ## Overview

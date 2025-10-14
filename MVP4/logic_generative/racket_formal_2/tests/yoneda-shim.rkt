@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 
 ;; Shim to replicate the Yoneda-style example using plain Racket requires
 ;; to avoid relying on an installed #lang Lux collection in CI.

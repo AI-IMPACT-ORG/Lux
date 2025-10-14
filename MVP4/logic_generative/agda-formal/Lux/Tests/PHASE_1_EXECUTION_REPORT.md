@@ -1,3 +1,5 @@
+<!-- (c) 2025 AI.IMPACT GmbH -->
+
 # CLEAN Logic System - Phase 1 Execution Report
 
 ## 🎯 **PHASE 1 COMPLETED: V2 Foundation Tests**

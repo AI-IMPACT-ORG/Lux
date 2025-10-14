@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Guarded quantifiers (symbolic) and internal sequent-style rules
 
 (require (file "../foundations/abstract-core.rkt")

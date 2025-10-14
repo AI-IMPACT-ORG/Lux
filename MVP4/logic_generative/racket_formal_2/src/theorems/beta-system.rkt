@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Symbolic beta-system and Callan–Symanzik identity (header-level)
 
 (require (file "../foundations/abstract-core.rkt")

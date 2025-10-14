@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - Mathematically Grounded Core
 --
 -- PURPOSE: Core mathematical foundation based on physics principles

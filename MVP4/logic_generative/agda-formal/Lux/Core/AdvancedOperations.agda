@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - Core Advanced Operations
 --
 -- PURPOSE: Core advanced mathematical operations (V10 Core)

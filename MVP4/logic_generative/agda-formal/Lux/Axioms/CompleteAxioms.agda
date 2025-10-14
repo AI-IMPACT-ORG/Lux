@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - Complete Axiom System
 --
 -- PURPOSE: Complete implementation of V2 axioms A0-A7

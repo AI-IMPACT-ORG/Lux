@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 
 (require racket/list
          json
@@ -137,9 +138,15 @@
   (set! current-reg (append current-reg (list entry))))
 
 (define (reg-write! [path "tools/proof-registry.json"]) 
+  (define (jsonify-entry e)
+    (define out (make-hash))
+    (for ([(k v) (in-hash e)])
+      (hash-set! out (~a k) v))
+    out)
+  (define arr (for/list ([e current-reg]) (jsonify-entry e)))
   (call-with-output-file path
     (λ (out)
-      (displayln (jsexpr->string (list->vector current-reg)) out))
+      (displayln (jsexpr->string arr) out))
     #:exists 'truncate))
 
 (define (reg-write-coverage! [path "tools/proof-registry-coverage.txt"]) 

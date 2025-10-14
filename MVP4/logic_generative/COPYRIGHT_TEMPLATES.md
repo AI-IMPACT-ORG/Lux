@@ -67,7 +67,7 @@ end
 
 ### Markdown Files (.md)
 ```markdown
-<!-- © 2025 AI.IMPACT GmbH -->
+<!-- (c) 2025 AI.IMPACT GmbH -->
 
 # Your Document Title
 ```

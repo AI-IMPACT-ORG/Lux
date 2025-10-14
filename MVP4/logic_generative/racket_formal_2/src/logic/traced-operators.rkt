@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Traced operators (JSV-style) at the L-level: reusable across ports
 
 (require (file "../foundations/abstract-core.rkt")

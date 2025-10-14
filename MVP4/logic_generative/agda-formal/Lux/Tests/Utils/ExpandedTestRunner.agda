@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - Comprehensive Test Runner (Expanded Coverage)
 --
 -- PURPOSE: Comprehensive test runner with expanded coverage aligned with Racket test suite patterns

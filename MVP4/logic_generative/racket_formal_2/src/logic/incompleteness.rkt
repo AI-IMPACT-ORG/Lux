@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Incompleteness schemata (Gödel 1 & 2) — symbolic witnesses
 ;; Programs assemble symbolic proof obligations as abstract expressions.
 

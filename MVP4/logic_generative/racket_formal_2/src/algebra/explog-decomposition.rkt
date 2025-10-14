@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Exponential/Logarithmic Decomposition and NF
 
  (require racket/function

@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - V2 Axiom A7 Tests (Basepoint/Gen4)
 --
 -- PURPOSE: Tests for V2 Axiom A7 - Basepoint/Gen4 axiom

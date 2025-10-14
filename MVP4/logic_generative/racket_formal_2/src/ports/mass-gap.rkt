@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Mass-Gap Port (QFT evidence): symbolic, RG/dagger driven
 
 (require (file "../foundations/abstract-core.rkt")

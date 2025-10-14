@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - Concrete Braiding Operations
 --
 -- PURPOSE: Concrete implementations of non-trivial braiding operations

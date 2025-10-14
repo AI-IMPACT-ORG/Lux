@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - Main Module
 --
 -- PURPOSE: Main module using minimal compilable foundation

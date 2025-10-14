@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; V2/V10 Axioms and Rigorous Foundation Runner (Lux)
 ;; Spec mapping: A0–A7, V10-Core as in SPEC_MAP.md
 

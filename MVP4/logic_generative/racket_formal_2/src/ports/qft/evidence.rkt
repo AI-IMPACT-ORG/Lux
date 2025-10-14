@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; QFT evidence witnesses (symbolic, port-level) with open choices
 
 (require (file "../../foundations/abstract-core.rkt")

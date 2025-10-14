@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Internal inference rules (sequent-style) encoded inside Lux (L-level)
 
 (require (file "../foundations/abstract-core.rkt")

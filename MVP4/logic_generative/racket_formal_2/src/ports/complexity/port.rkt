@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Complexity port (modular wrapper) built on central lens scaffolding
 
 (require (file "../../foundations/abstract-core.rkt")

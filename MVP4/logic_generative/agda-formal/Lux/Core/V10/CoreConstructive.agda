@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux V10 Core Constructive Logic
 --
 -- PURPOSE: V10 Core implementation with triality, boundary sum, cumulants, Δ-operators

@@ -1,4 +1,6 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
+
 ;; Lux verification runner
 ;;
 ;; Flags:
@@ -15,7 +17,8 @@
          racket/format
          racket/list
          json
-         (file "../src/verification/verify.rkt"))
+         (file "../src/verification/verify.rkt")
+         (file "../src/logic/gap-kernel.rkt"))
 
 (define as-json? #f)
 (define strict? #f)
@@ -87,7 +90,11 @@
   (define (get n) (cdr (assoc n results)))
   (displayln (format "contraction: ~a" (if (get 'gap-contraction) "ok" "fail")))
   (displayln (format "DNF idempotence: ~a" (if (get 'dnf-idempotent) "ok" "fail")))
-  (displayln (format "DNF transport invariance: ~a" (if (get 'dnf-transport-invariant) "ok" "fail"))))
+  (displayln (format "DNF transport invariance: ~a" (if (get 'dnf-transport-invariant) "ok" "fail")))
+  (newline)
+  (displayln "=== Gap properties (core) ===")
+  (for ([kv (gap-properties)])
+    (displayln (format "~a: ~a" (car kv) (if (cdr kv) "ok" "fail"))))
   (newline)
   (displayln "=== Gap propagation (by port) ===")
   (let ([gp (gap-propagation-snapshot)])
@@ -105,6 +112,9 @@
   (hash-set! j 'gap (hash 'contraction (cdr (assoc 'gap-contraction results))
                           'dnf-idempotent (cdr (assoc 'dnf-idempotent results))
                           'dnf-transport-invariant (cdr (assoc 'dnf-transport-invariant results))))
+  (hash-set! j 'gap_properties (for/list ([kv (gap-properties)])
+                                 (hash 'name (symbol->string (car kv))
+                                       'ok (cdr kv))))
   (displayln (jsexpr->string j)))
 
 (if heavy-scan?

@@ -1,3 +1,5 @@
+(* (c) 2025 AI.IMPACT GmbH *)
+
 From Coq Require Import ZArith List Bool.
 From Lux.Core Require Import Signature Axioms NF.
 

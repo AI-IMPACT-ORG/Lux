@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - V2 Axiom A0 Tests (Semiring Structures)
 --
 -- PURPOSE: Tests for V2 Axiom A0 - Semiring structures (L, B, R, Core)

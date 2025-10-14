@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux — Axiomatic Triality Logic Library (public entrypoint)
 -- Re-exports core structures and stable interfaces.
 

@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Blum-style complexity fragment and Karp-reduction closure, inside Lux
 
 (require (file "../foundations/abstract-core.rkt")

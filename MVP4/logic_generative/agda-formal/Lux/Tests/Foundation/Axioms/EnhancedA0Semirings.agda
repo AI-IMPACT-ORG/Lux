@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - Enhanced V2 Axiom A0 Tests (Racket-Aligned)
 --
 -- PURPOSE: Enhanced A0 semiring tests aligned with Racket test suite patterns

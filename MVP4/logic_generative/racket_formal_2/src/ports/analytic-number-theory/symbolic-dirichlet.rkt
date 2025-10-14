@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Symbolic Dirichlet series and Euler products (finite truncations)
 
 (require racket/hash

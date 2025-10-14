@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Domain Ports Registry (Blockbuster ports)
 
 (require racket/contract

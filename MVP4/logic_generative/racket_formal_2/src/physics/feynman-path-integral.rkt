@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Feynman Path Integral (QFT)
 
 (require racket/contract

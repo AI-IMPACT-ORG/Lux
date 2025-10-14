@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Two-tier rewrite rules: equational ('eq) vs reduction ('red)
 
 (require (file "../foundations/abstract-core.rkt")

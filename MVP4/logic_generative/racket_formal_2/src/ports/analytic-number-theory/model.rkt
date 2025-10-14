@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; ANT model declarations: allow dagger at the model level (port-only)
 
 (require (file "../../foundations/abstract-core.rkt")

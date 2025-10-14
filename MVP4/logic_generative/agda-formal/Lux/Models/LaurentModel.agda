@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - Laurent Model
 --
 -- PURPOSE: Concrete V2 Laurent-headers model witnessing A0-A7

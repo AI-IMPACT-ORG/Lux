@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 (require (file "../src/ports/analytic-number-theory/rc-scheme.rkt")
          (file "../src/ports/analytic-number-theory/symbolic-dirichlet.rkt")
          (file "../src/ports/analytic-number-theory/evidence.rkt")

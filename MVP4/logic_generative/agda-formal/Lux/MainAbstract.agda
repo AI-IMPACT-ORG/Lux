@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Abstract Main Module
 --
 -- PURPOSE: Main module for abstract Lux logic system

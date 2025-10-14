@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - Living Mathematical Structures
 --
 -- PURPOSE: Living mathematical structures with actual implementations

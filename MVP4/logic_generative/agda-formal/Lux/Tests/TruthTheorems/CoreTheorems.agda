@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - Truth Theorems Tests (Racket-Aligned)
 --
 -- PURPOSE: Truth theorems tests aligned with Racket test suite patterns

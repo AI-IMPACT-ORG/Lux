@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 
 ;; Minimal language reader skeleton for `#lang Lux` (alias).
 ;; For now, it behaves like `#lang racket` and implicitly provides

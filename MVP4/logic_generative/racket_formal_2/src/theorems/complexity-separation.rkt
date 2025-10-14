@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Complexity separation via spectral-gap regimes in the complexity port
 
 (require (file "../foundations/abstract-core.rkt")

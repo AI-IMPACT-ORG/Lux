@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Generic, reusable lens + metric framework at the L-level (constructive)
 
 (require (file "../foundations/abstract-core.rkt")

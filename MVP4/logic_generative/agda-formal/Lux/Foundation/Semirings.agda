@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Semiring Structures - Mathematical Foundation
 --
 -- PURPOSE: Proper semiring structures for Lux logic system

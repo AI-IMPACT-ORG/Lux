@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Blum-style equivalence (up to poly factors) between Lux predicates and standard classes (symbolic, L-level)
 
 (require (file "../foundations/abstract-core.rkt")

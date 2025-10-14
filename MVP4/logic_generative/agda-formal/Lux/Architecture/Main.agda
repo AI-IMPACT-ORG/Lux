@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - Main Architecture Orchestrator
 --
 -- PURPOSE: Main orchestrator for the complete onion-style hexagonal architecture

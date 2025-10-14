@@ -1,3 +1,5 @@
+<!-- (c) 2025 AI.IMPACT GmbH -->
+
 # CLEAN Logic System - Racket to Agda Test Import - COMPLETION REPORT
 
 ## 🎉 **MAJOR MILESTONE ACHIEVED**

@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - Minimal Braiding Implementation
 --
 -- PURPOSE: Minimal implementation of non-trivial braiding operations

@@ -1,3 +1,5 @@
+<!-- (c) 2025 AI.IMPACT GmbH -->
+
 # CLEAN Logic System - Mathematical Coherence Fixes Complete
 
 ## 🎉 **CRITICAL FIXES SUCCESSFULLY IMPLEMENTED**

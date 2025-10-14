@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - Comprehensive Test Runner
 --
 -- PURPOSE: Comprehensive test runner for all Lux V2/V10 tests

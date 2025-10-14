@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 
 ;; Reader for #lang Lux. Wraps the source as a Racket module that
 ;; requires the Lux unified API and then runs the user program.

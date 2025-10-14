@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Lux Verification — abstract-first witnesses and optional heavy packs.
 ;;
 ;; Exports:
@@ -544,31 +545,6 @@
     (add 'barriers ((dynamic-require (build-path here "../theorems/barriers.rkt") 'barriers-pack)))
     (add 'lens-framework ((dynamic-require (build-path here "../logic/lens-framework.rkt") 'lens-framework-pack)))
     (add 'domain-lens-reuse ((dynamic-require (build-path here "../theorems/domain-lens-reuse.rkt") 'domain-lens-reuse-pack))))
-  ;; Optional: register strong assumption → conclusion sequents for registry export
-  (when (let ([v (getenv "LUX_STRONG_ASSUMPTIONS")]) (and v (or (string-ci=? v "1") (string-ci=? v "true"))))
-    ;; GRH via HP route (symbolic sequent)
-    (let* ([scheme ((dynamic-require (build-path here "../ports/analytic-number-theory/rc-scheme.rkt") 'make-rc-scheme)
-                    #:label 'ant-default)]
-           [rh-seq ((dynamic-require (build-path here "../ports/analytic-number-theory/hilbert-polya.rkt") 'rh-sequent)
-                    scheme)])
-      (reg-add-l! 'HP_to_RH 'ANT 'sequent '(DaggerSMC ANT_Dagger XiCompleted XiHadamard ResolventTraceEq)
-                  rh-seq #:keywords '(HilbertPolya Resolvent Xi RC)))
-    ;; Complexity separation as sequents
-    (let* ([pnp-seq ((dynamic-require (build-path here "../theorems/complexity-separation.rkt") 'pnp-separation-sequent))]
-           [npcnp-seq ((dynamic-require (build-path here "../theorems/complexity-separation.rkt") 'npcnp-separation-sequent))]
-           [contrad-seq ((dynamic-require (build-path here "../theorems/complexity-separation.rkt") 'p-equals-np-contradiction-sequent))])
-      (reg-add-l! 'P_neq_NP 'Complexity 'sequent '(DetNonExp NondetNeutral LensSoundness)
-                  pnp-seq #:keywords '(P NP Lens Regime))
-      (reg-add-l! 'NP_neq_coNP 'Complexity 'sequent '(DetNonExp NondetNeutral LensSoundness)
-                  npcnp-seq #:keywords '(NP coNP Lens Regime))
-      (reg-add-l! 'P_eq_NP_contradiction 'Complexity 'sequent '(PEqNP DetNonExp NondetNeutral LensSoundness)
-                  contrad-seq #:keywords '(Counterfactual)))
-    ;; Mass-gap bridge sequent
-    (let ([mg-bridge ((dynamic-require (build-path here "../ports/mass-gap.rkt") 'mass-gap-bridge-sequent))])
-      (reg-add-l! 'QFT_ExpDecay 'QFT 'sequent '(ReflectionPositivity SpectralCondition ClusterDecomposition Lipschitz<1 PortInvariance)
-                  mg-bridge #:keywords '(MassGap ExpDecay QFT)))
-    (reg-write!)
-    (reg-write-coverage!))
   ;; Deep integration: register Gap → Port consequence manifests (as GapPort entries)
   (let* ([ant ((dynamic-require (build-path here "../ports/analytic-number-theory/gap-view.rkt") 'gap->ant))]
          [cplx ((dynamic-require (build-path here "../ports/complexity/gap-view.rkt") 'gap->complexity))]
@@ -586,7 +562,9 @@
     (reg-add-l! 'GapPort_Complexity 'Complexity 'sequent '(LogicGap)
                 (mk-gapport 'Complexity (mk-tags cplx)) #:keywords '(GapPort Complexity Lenses Regime))
     (reg-add-l! 'GapPort_QFT 'QFT 'sequent '(LogicGap)
-                (mk-gapport 'QFT (mk-tags qft)) #:keywords '(GapPort QFT MassGap ExpDecay)))
+                (mk-gapport 'QFT (mk-tags qft)) #:keywords '(GapPort QFT MassGap ExpDecay))
+    (reg-write!)
+    (reg-write-coverage!))
   results)
 
 ;; Return a snapshot of Gap propagation: list of (port . ((name . L-witness) ...))

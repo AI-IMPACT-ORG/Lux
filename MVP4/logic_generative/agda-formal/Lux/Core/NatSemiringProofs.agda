@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - Natural Number Semiring Proofs
 --
 -- PURPOSE: Constructive proofs for natural number semiring operations

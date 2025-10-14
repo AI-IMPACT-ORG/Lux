@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 module Lux.Core.Headers where
 
 open import Lux.Foundations.Types

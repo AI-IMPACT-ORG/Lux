@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - Minimal Compilable Version
 --
 -- PURPOSE: Minimal compilable foundation

@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - Enhanced V2 Axiom A4 Tests (Racket-Aligned)
 --
 -- PURPOSE: Enhanced A4 Connective Axioms tests aligned with Racket test suite patterns

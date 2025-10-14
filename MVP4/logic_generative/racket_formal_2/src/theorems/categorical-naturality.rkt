@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Categorical naturality mini-theorems for observers and exp/log
 
 (require (file "../foundations/abstract-core.rkt")

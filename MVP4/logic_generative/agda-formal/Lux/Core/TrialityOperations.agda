@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - Core Triality Operations
 --
 -- PURPOSE: Core triality operations and functors (V10 Core)

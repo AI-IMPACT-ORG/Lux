@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Rewrite engine (abstract):
 ;;  - equational normalization via symbolic rules to a bounded fixpoint
 ;;  - reduction under a provided normal-form strategy (no numeric evaluation)

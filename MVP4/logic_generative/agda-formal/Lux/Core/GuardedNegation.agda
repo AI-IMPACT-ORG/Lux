@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - Core Guarded Negation Operations
 --
 -- PURPOSE: Core guarded negation operations (V10 CLASS)

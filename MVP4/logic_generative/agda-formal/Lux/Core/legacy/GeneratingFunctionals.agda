@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - Generating Functional Layer
 --
 -- PURPOSE: Generating functional framework with renormalization group flow

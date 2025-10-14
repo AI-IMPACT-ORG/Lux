@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Central rule catalog: single source of truth from axioms → rules → checkers
 
 (require (file "../foundations/abstract-core.rkt")

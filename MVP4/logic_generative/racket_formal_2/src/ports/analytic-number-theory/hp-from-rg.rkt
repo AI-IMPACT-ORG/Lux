@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Bridge module: encode that the logic-level RG operator induces
 ;; a Hilbert–Pólya candidate at the ANT domain map level.
 

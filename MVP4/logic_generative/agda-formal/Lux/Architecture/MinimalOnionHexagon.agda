@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - Minimal Onion-Style Hexagonal Architecture
 --
 -- PURPOSE: Complete implementation covering all Lux Axioms/Core/Class specifications

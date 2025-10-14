@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Abstract Core Foundations (self-contained, Lux)
 ;;
 ;; This module provides a minimal abstract-expression layer used across the

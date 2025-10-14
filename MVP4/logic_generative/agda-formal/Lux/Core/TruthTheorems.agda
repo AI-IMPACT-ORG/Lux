@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - Truth Theorems (Core Integration)
 --
 -- PURPOSE: Core integration of Truth Theorems with actual mathematical proofs.

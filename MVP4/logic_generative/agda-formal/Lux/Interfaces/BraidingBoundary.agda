@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 {-# OPTIONS --cubical --without-K #-}
 
 module Lux.Interfaces.BraidingBoundary where

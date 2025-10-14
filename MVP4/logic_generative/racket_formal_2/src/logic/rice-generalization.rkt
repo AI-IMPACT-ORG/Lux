@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Rice-type generalization: any non-trivial extensional property of computable functions is undecidable
 ;; Symbolic schema across computational paradigms (ports as outputs)
 

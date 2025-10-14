@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - Simple Compilable Core
 --
 -- PURPOSE: Simple compilable core without where clauses

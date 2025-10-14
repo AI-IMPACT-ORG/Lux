@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - Working Braiding Implementation
 --
 -- PURPOSE: Working implementation of non-trivial braiding operations

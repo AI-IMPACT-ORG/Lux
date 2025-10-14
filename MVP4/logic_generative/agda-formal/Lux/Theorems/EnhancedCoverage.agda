@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux V2/V10 Enhanced Coverage Theorem Suite
 -- Generated from all 554 individual test cases
 -- Complete coverage of every test case

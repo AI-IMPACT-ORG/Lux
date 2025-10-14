@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - Domain Ports Layer
 --
 -- PURPOSE: Domain ports interfacing with external computational paradigms

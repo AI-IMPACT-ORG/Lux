@@ -1,3 +1,5 @@
+<!-- (c) 2025 AI.IMPACT GmbH -->
+
 # CLEAN Logic System - Mathematical Coherence and Consistency Analysis
 
 ## 🔍 **COMPREHENSIVE MATHEMATICAL ANALYSIS**

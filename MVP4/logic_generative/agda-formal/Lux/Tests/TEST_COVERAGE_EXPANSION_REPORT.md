@@ -1,3 +1,5 @@
+<!-- (c) 2025 AI.IMPACT GmbH -->
+
 # CLEAN Logic System - Test Coverage Expansion Report
 
 ## 🚀 **MAJOR EXPANSION: Comprehensive Test Coverage Achieved**

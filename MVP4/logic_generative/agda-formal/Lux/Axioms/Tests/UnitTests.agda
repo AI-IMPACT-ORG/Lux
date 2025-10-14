@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 {-# OPTIONS --cubical #-}
 
 module Lux.V2.Tests.UnitTests where

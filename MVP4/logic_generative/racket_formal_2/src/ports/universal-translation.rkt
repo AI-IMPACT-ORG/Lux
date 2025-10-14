@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Universal translation (domain map coherence) — symbolic L-level witnesses
 
 (require (file "../foundations/abstract-core.rkt")

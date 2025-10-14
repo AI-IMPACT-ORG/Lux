@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - Performance Monitoring (Abstract)
 --
 -- PURPOSE: Abstract performance metrics and validators for test runs.

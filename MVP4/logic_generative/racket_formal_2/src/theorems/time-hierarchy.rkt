@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Time Hierarchy (symbolic) inside Lux: diagonalization witness
 
 (require (file "../foundations/abstract-core.rkt")

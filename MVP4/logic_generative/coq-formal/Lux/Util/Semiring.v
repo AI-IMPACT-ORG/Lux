@@ -1,3 +1,5 @@
+(* (c) 2025 AI.IMPACT GmbH *)
+
 From Coq Require Import Setoids.Setoid.
 From Coq Require Import Morphisms.
 

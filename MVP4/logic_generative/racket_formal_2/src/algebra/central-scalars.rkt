@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Central Scalars (φ, z, z̄, Λ)
 
 (require (file "../foundations/abstract-core.rkt")

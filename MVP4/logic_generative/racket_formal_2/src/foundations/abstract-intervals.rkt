@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Abstract interval arithmetic for symbolic inequalities and approximations
 
 (require (file "./abstract-core.rkt"))

@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Auxiliary Transporters and Modulated Operators
 
  (require racket/list

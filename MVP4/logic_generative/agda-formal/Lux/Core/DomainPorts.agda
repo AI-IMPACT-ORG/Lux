@@ -1,3 +1,5 @@
+-- (c) 2025 AI.IMPACT GmbH
+
 -- Lux Logic System - Core Domain Port Operations
 --
 -- PURPOSE: Core domain port operations (V10 CLASS)

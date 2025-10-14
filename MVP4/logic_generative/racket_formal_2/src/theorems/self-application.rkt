@@ -1,4 +1,5 @@
 #lang racket
+; (c) 2025 AI.IMPACT GmbH
 ;; Self-application: use the rule catalog and sequent-checker to validate
 ;; rules-as-theorems end-to-end without duplicating machinery.
 

@@ -1,4 +1,5 @@
 #lang Lux
+; (c) 2025 AI.IMPACT GmbH
 
 (require (file "../../src/main.rkt"))
 
