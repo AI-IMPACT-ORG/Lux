@@ -1,6 +1,0 @@
-session CLEAN_Tests = HOL +
-  theories
-    "generated_CoreTests"
-    "generated_PropertyTests"
-    "generated_IntegrationTests"
-    "generated_TestRunner"

@@ -1,3 +1,0 @@
-session CLEAN = HOL +
-  theories
-    "generated_CLEAN"

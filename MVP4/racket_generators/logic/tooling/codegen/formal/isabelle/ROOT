@@ -1,8 +1,0 @@
-session CLEAN = HOL +
-  directories "lib"
-  theories
-    "lib/generated_Core"
-    "lib/generated_Observers"
-    "lib/generated_Kernels"
-    "lib/generated_NormalForms"
-    "generated_CLEAN"
