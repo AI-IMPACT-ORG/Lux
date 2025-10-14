@@ -1,5 +1,5 @@
 #lang racket
-; (c) 2025 AI.IMPACT GmbH
+; (c) 2025 AI.IMPACT GmbH. Licensed under CC BY-NC-ND 4.0. Provided "as is" without warranties. No patent rights granted. Not for safety-critical use.
 ;; Rice-type generalization: any non-trivial extensional property of computable functions is undecidable
 ;; Symbolic schema across computational paradigms (ports as outputs)
 

@@ -1,5 +1,5 @@
 #lang racket
-; (c) 2025 AI.IMPACT GmbH
+; (c) 2025 AI.IMPACT GmbH. Licensed under CC BY-NC-ND 4.0. Provided "as is" without warranties. No patent rights granted. Not for safety-critical use.
 ;; Algebraic Structures (Semiring and observers)
 
 (require racket/function
@@ -58,7 +58,10 @@
 (hash-set! element-origin B-one 'mixed)
 
 (define (B-add x y)
-  (define r (mk B (abstract-add (->val x) (->val y))))
+  ;; Idempotence on identical values: x ⊕ x = x
+  (define r (if (abstract-expr-equal? (->val x) (->val y))
+                x
+                (mk B (abstract-add (->val x) (->val y)))))
   (define xo (hash-ref element-origin x 'unknown))
   (define yo (hash-ref element-origin y 'unknown))
   (hash-set! element-origin r (cond [(and (eq? xo 'ι_L) (eq? yo 'ι_L)) 'ι_L]
@@ -104,6 +107,14 @@
     [(eq? b B-zero) (semiring-ops-zero R-ops)]
     [else (mk R (get-zero))]))
 
+;; Projector reconstitution ρ := ι_L∘ν_L ⊕ ι_R∘ν_R
+(define (reconstitute-ρ b)
+  (B-add (ι_L (ν_L b)) (ι_R (ν_R b))))
+
+;; Observers after reconstitution: homomorphic on reconstituted terms
+(define (ν_L-after-ρ b) (ν_L (reconstitute-ρ b)))
+(define (ν_R-after-ρ b) (ν_R (reconstitute-ρ b)))
+
 ;; Equality helpers
 (define (abstract-semiring-equal? x y)
   (and (semiring-element? x)
@@ -128,4 +139,3 @@
     (define S (if (eq? observer ν_L) L-ops R-ops))
     (and (abstract-semiring-equal? add-o ((semiring-ops-add S) (observer x) (observer y)))
          (abstract-semiring-equal? mul-o ((semiring-ops-mul S) (observer x) (observer y))))))
-

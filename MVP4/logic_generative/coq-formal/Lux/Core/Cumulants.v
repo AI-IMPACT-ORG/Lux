@@ -1,4 +1,4 @@
-(* (c) 2025 AI.IMPACT GmbH *)
+(* (c) 2025 AI.IMPACT GmbH. Licensed under CC BY-NC-ND 4.0. Provided "as is" without warranties. No patent rights granted. Not for safety-critical use. *)
 
 From Coq Require Import ZArith List.
 From Lux.Core Require Import Signature Axioms Observers NF Triality.

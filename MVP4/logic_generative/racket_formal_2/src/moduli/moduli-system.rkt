@@ -1,5 +1,5 @@
 #lang racket
-; (c) 2025 AI.IMPACT GmbH
+; (c) 2025 AI.IMPACT GmbH. Licensed under CC BY-NC-ND 4.0. Provided "as is" without warranties. No patent rights granted. Not for safety-critical use.
 ;; Moduli System (CLASS)
 ;;
 ;; Abstract flows over header components with optional parametric strategies.
@@ -117,6 +117,11 @@
 (define *current-normal-form-strategy* identity-normal-form)
 (define (set-normal-form-strategy! strategy) (set! *current-normal-form-strategy* strategy))
 (define (NF^B-generalized b) ((normal-form-strategy-nf-fn *current-normal-form-strategy*) b))
+
+;; B-valued normaliser [[·]]_{μ,θ}: alias to header-only normalization in the
+;; reference mechanisation. This matches the paper's B-normaliser in ports.
+(define (B-normalize b)
+  ((normal-form-strategy-nf-fn header-only-normal-form) b))
 
 (struct generalized-coupling (name coupling-fn domain codomain) #:transparent)
 (struct generalized-metric (name metric-fn space properties) #:transparent)

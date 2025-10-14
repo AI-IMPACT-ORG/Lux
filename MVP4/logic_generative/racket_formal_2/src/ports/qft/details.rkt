@@ -1,5 +1,5 @@
 #lang racket
-; (c) 2025 AI.IMPACT GmbH
+; (c) 2025 AI.IMPACT GmbH. Licensed under CC BY-NC-ND 4.0. Provided "as is" without warranties. No patent rights granted. Not for safety-critical use.
 ;; QFT detailed producer: returns Z with L-level model/semantics witnesses
 
 (require (file "../../foundations/abstract-core.rkt")

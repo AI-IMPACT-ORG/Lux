@@ -1,5 +1,5 @@
 #lang racket
-; (c) 2025 AI.IMPACT GmbH
+; (c) 2025 AI.IMPACT GmbH. Licensed under CC BY-NC-ND 4.0. Provided "as is" without warranties. No patent rights granted. Not for safety-critical use.
 ;; Categorical naturality mini-theorems for observers and exp/log
 
 (require (file "../foundations/abstract-core.rkt")

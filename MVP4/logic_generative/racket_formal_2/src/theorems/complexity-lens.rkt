@@ -1,5 +1,5 @@
 #lang racket
-; (c) 2025 AI.IMPACT GmbH
+; (c) 2025 AI.IMPACT GmbH. Licensed under CC BY-NC-ND 4.0. Provided "as is" without warranties. No patent rights granted. Not for safety-critical use.
 ;; Complexity via lenses (abstract):
 ;;  - Header-only normalization preserves canonical reps (observer identity)
 ;;  - Deterministic step is non-expanding (no strict numeric contraction)

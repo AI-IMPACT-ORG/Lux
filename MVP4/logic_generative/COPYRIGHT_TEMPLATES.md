@@ -67,7 +67,7 @@ end
 
 ### Markdown Files (.md)
 ```markdown
-<!-- (c) 2025 AI.IMPACT GmbH -->
+<!-- (c) 2025 AI.IMPACT GmbH. Licensed under CC BY-NC-ND 4.0. Provided "as is" without warranties. No patent rights granted. Not for safety-critical use. -->
 
 # Your Document Title
 ```

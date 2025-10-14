@@ -1,5 +1,5 @@
 #lang racket
-; (c) 2025 AI.IMPACT GmbH
+; (c) 2025 AI.IMPACT GmbH. Licensed under CC BY-NC-ND 4.0. Provided "as is" without warranties. No patent rights granted. Not for safety-critical use.
 ;; V2/V10 Axioms and Rigorous Foundation Runner (Lux)
 ;; Spec mapping: A0–A7, V10-Core as in SPEC_MAP.md
 

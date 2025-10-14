@@ -1,5 +1,5 @@
 #lang racket
-; (c) 2025 AI.IMPACT GmbH
+; (c) 2025 AI.IMPACT GmbH. Licensed under CC BY-NC-ND 4.0. Provided "as is" without warranties. No patent rights granted. Not for safety-critical use.
 ;; Incompleteness schemata (Gödel 1 & 2) — symbolic witnesses
 ;; Programs assemble symbolic proof obligations as abstract expressions.
 

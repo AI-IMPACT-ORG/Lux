@@ -1,5 +1,5 @@
 #lang racket
-; (c) 2025 AI.IMPACT GmbH
+; (c) 2025 AI.IMPACT GmbH. Licensed under CC BY-NC-ND 4.0. Provided "as is" without warranties. No patent rights granted. Not for safety-critical use.
 ;; Lux Verification — abstract-first witnesses and optional heavy packs.
 ;;
 ;; Exports:
@@ -562,9 +562,7 @@
     (reg-add-l! 'GapPort_Complexity 'Complexity 'sequent '(LogicGap)
                 (mk-gapport 'Complexity (mk-tags cplx)) #:keywords '(GapPort Complexity Lenses Regime))
     (reg-add-l! 'GapPort_QFT 'QFT 'sequent '(LogicGap)
-                (mk-gapport 'QFT (mk-tags qft)) #:keywords '(GapPort QFT MassGap ExpDecay))
-    (reg-write!)
-    (reg-write-coverage!))
+                (mk-gapport 'QFT (mk-tags qft)) #:keywords '(GapPort QFT MassGap ExpDecay)))
   results)
 
 ;; Return a snapshot of Gap propagation: list of (port . ((name . L-witness) ...))
