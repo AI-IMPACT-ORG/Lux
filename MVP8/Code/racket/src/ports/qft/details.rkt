@@ -1,0 +1,31 @@
+#lang racket
+; (c) 2025 AI.IMPACT GmbH. Licensed under CC BY-NC-ND 4.0. Provided "as is" without warranties. No patent rights granted. Not for safety-critical use.
+;; QFT detailed producer: returns Z with L-level model/semantics witnesses
+
+(require (file "../../foundations/abstract-core.rkt")
+         (file "../../algebra/algebraic-structures.rkt")
+         (file "../../semantics/categorical-model.rkt")
+         (file "../domain-registry.rkt")
+         (file "./model.rkt")
+         (file "./evidence.rkt")
+         (file "./analytic-smatrix.rkt")
+         (file "./amplituhedron.rkt"))
+
+(provide produce-qft-detailed)
+
+(define (produce-qft-detailed)
+  (register-qft-model!)
+  (define port (make-qft-port))
+  (let* ([enc ((domain-port-encoder port) 'unit)]
+         [Z   ((domain-port-evaluator port) enc)]
+         [l-dag (L-dagger-smc)]
+         [l-met (L-lawvere-metric 'B)]
+         [m-dag (qft-dagger-assumption-L)]
+         [m-met (qft-metric-assumption-L)]
+         [evs (qft-evidence-witnesses #:label 'qft-default)])
+    ;; Essentials only: Z and core L-level QFT antecedents (reflection positivity,
+    ;; spectral condition, cluster decomposition, gauge/BRST/Ward placeholders).
+    ;; Analytic S-matrix and Amplituhedron layers are provided in separate modules
+    ;; and exercised in heavy verification, but kept out of the essentials export.
+    (append (list Z l-dag l-met m-dag m-met) evs))
+)

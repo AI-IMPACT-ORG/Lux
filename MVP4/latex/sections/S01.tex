@@ -1,0 +1,115 @@
+\section{An Invitation to Computation: Three Views Unified}
+\label{sec:computation-paradigms}
+
+This section demonstrates how three foundational paradigms of computation—Turing machines \cite{turing1936}, Church's lambda calculus \cite{church1936,howard1980,curry1958}, and Feynman path integrals—can be elegantly unified as different parametrisations of a single mathematical structure. This unification builds upon early topological field theory foundations \cite{witten1988} and connects to recent developments in universal logic frameworks \cite{universal_logic_2023}.
+
+\begin{definition}[$\mathsf{Gen4}$ Primitive]
+\label{def:gen4-primitive}
+The $\mathsf{Gen4}$ primitive acts on four computational terms and produces a generating function:
+\[
+\mathsf{Gen4}(a_0, a_1, a_2, a_3) \mapsto \mathcal{G}(z,\bar{z};\vec{q},\Lambda)
+\]
+where $\vec{q}$ are paradigm parameters and $\Lambda$ is a scale parameter. The generating function takes the form:
+\[
+\mathcal{G}(z,\bar{z};\vec{q},\Lambda) = \sum_{n,m\ge0}\frac{z^n\bar{z}^{\,m}}{n!\,m!}\,\mathcal{Z}_{n,m}(\vec{q})\,\Lambda^{-(n+m)}
+\label{eq:generating-function-g6}
+\]
+The coefficients $\mathcal{Z}_{n,m}(\vec{q})$ encode the computational structure for different paradigms.
+
+For the S‑matrix port (see §3A), channels $\{P_\alpha\}$ from the PSDM (Definition~\ref{def:psdm}) turn $G$ into cross‑sections via $\sigma_{\alpha;N}(\Lambda)=|P_\alpha S_N(\Lambda)\psi|^2$; moduli control factorisation and crossing.
+
+\textbf{Basepoint Axiom}: $\mathsf{Gen4}(a_0, a_1, a_2, a_3) = 0_B$ where $a_0, a_1, a_2, a_3: I \to B$ are the basepoint constants.
+\end{definition}
+
+The key insight is that all computation follows a universal four-step cycle: encode $\to$ operate $\to$ normalise $\to$ decode. This provides a unified framework for understanding computation across paradigms.
+
+\subsection{Unified Computational Framework}
+
+Our approach introduces a universal computational primitive $\mathsf{Gen4}: B^4 \to B$ that generates different computational paradigms through parameter choices. The coefficients $\mathcal{Z}_{n,m}$ are induced by micro-steps; see App. A for grammar details.
+
+\subsection{Reversibility Constraint (RC†)}
+
+\begin{definition}[Reversibility Constraint RC†]
+\label{def:reversibility-constraint}
+\textbf{Hypothesis schema:} RC† on → reversible fragment; RC† off → full 4D fragment.
+\end{definition}
+
+\subsection{The Universal Computational Cycle}
+
+All computation follows: Encode → Operate → normalise → Decode
+\[
+\text{Encode}(x) \circ \text{Apply}(f) \circ \text{normalise}(N) \circ \text{Decode}(y) = y
+\]
+normalisation $:=$ scheme-fixed comonad (N) (see §4.5).
+
+\paragraph{Parameter Relationships and Green's Functions}
+Our framework involves two distinct sets of parameters that play complementary roles in the computational process:
+
+\textbf{Scale Parameters vs. Coupling Parameters:}
+\begin{itemize}
+\item \textbf{Scale parameter} $\Lambda$: Controls the resolution/precision of the computational process (analogous to energy scale in QFT)
+\item \textbf{Coupling parameters} $\vec{q}$: Control the strength and type of interactions between computational elements (analogous to coupling constants in QFT)
+\end{itemize}
+
+The relationship between these parameters manifests through three types of Green's functions that appear naturally in our framework:
+
+\begin{definition}[Green's Functions Hierarchy]
+\label{def:greens-functions-hierarchy}
+\textbf{Bare}: $\mathcal{G}_{\text{bare}}(z,\bar{z};\vec{q}^{(0)},\Lambda) = \sum_{n,m\ge0}\frac{z^n\bar{z}^{\,m}}{n!\,m!}\,\mathcal{Z}_{n,m}(\vec{q}^{(0)})\,\Lambda^{-(n+m)}$ with bare couplings $\vec{q}^{(0)}$.
+
+\textbf{Dressed}: $\mathcal{G}_{\text{dressed}}(z,\bar{z};\vec{q}(\Lambda),\Lambda)$ with scale-dependent couplings $\vec{q}(\Lambda)$ evolving under RG flow.
+
+\textbf{Renormalized}: $\mathcal{G}_{\text{ren}}(z,\bar{z};\vec{q}^*,\mu)$ with fixed-point couplings $\vec{q}^*$ and renormalisation scale $\mu$.
+\end{definition}
+
+The key insight is that the scale parameter $\Lambda$ and coupling parameters $\vec{q}$ are not independent—they are related through the RG flow equations. As $\Lambda$ changes, the effective coupling parameters $\vec{q}(\Lambda)$ evolve, leading to different behaviours of the Green's functions. This evolution is what we call RG flow, and it provides the mathematical foundation for understanding how computational processes behave at different scales and resolutions.
+
+\begin{notation}[Notation Rule]
+\label{not:notation-rule}
+The generating function uses complex conjugate variables $z, \bar{z}$ encoding presentation gauges that are eliminable through the domain translation framework (see Theorem~\ref{thm:eliminability-auxiliaries}). This notation applies throughout the paper.
+\end{notation}
+
+Units: If $\Lambda$ has mass dimension $[L]^{-1}$, then $\mathcal{Z}_{n,m}(\vec{q})$ must have mass dimension $[L]^{n+m}$ to make $\mathcal{G}$ dimensionless. The variables $n,m$ are degree counters and $\mathcal{Z}_{n,m}(\vec{q})$ are correlator coefficients invariant under normalisation (see Table~\ref{tab:universal-domain-translation} for domain interpretations).
+
+\paragraph{Parameter Dependence and Input/Output Structure}
+The generating function $\mathcal{G}$ has explicit parameter dependence that we make transparent:
+\begin{align}
+\text{Input variables:} \quad & z, \bar{z} \in \mathbb{C} \quad \text{(register encodings)} \\
+\text{Parameter variables:} \quad & \vec{q} \in \mathbb{R}^3 \quad \text{(grading/coupling parameters)} \\
+\text{Scale variable:} \quad & \Lambda \in \mathbb{R}_+ \quad \text{(RG scale)} \\
+\text{Output:} \quad & \mathcal{G}(z,\bar{z};\vec{q},\Lambda) \in \mathbb{C} \quad \text{(observable value)}
+\end{align}
+
+\paragraph{Fixed Operator Insertion Correlator}
+To make the implicit vector structure explicit, we introduce a correlator with fixed operator insertion:
+\begin{definition}[Fixed Operator Correlator]
+\label{def:fixed-operator-correlator}
+For a fixed operator $\hat{O}$ and computational state $|\psi\rangle$, define:
+\[
+\mathcal{C}_{\hat{O}}(z,\bar{z};\vec{q},\Lambda) = \langle\psi|\hat{O}|\psi\rangle \cdot \mathcal{G}(z,\bar{z};\vec{q},\Lambda)
+\]
+This correlator encodes the expectation value of $\hat{O}$ in the computational state, weighted by the generating function structure.
+\end{definition}
+
+The computational weights $\mathcal{Z}_{n,m}(\vec{q})=\langle n,m|\hat{W}(\vec{q})|0\rangle$ appearing in equation~\eqref{eq:generating-function-g6} are matrix elements of an operator $\hat{W}(\vec{q})$ in a graded Fock basis $\{|n,m\rangle\}$ of a unitary $\text{Vir}\oplus\overline{\text{Vir}}$ module. This mathematical foundation will be developed in Section~\ref{sec:formal-systems}.
+
+\subsection{Three Computational Paradigms}
+
+The paradigm parameters $\vec{q}$ select specific corners via weight function $w(p;\vec{q}) = q_1^{n_1} q_2^{n_2} q_3^{n_3}$ where $n_i$ counts operations of type $i$ in path $p$:
+\begin{itemize}
+\item \textbf{Turing Machines} $\vec{q} = (1,0,0)$: Discrete state transitions
+\item \textbf{Lambda Calculus} $\vec{q} = (0,1,0)$: Functional composition and $\beta$-reduction  
+\item \textbf{Path Integrals} $\vec{q} = (0,0,1)$: Quantum interference between paths
+\end{itemize}
+
+\textbf{Invariant:} All examples compute coefficients $\mathcal{Z}_{n,m}(\vec q)$ and nothing else.
+
+\textbf{Worked micro‑example (one step across all views).} Let $\text{succ}$ be successor on $\mathbb{N}$.
+
+\begin{itemize}
+\item \textbf{Turing/RAM port}: one INC on $R_0$ from $n$ to $n+1$ in $\leq 1$ step.
+\item \textbf{$\lambda$‑port}: $(\lambda x.\,S\,x)\,n \twoheadrightarrow_\beta S\,n$ in one $\beta$‑step.
+\item \textbf{Feynman view}: a single permitted micro‑rewrite contributes weight $\mathcal{Z}_{1,0}$.
+\end{itemize}
+
+In all three, $\mathsf{Gen4}$ contributes $\mathcal{Z}_{1,0}=1$ at degree $(1,0)$; the observers see the same scalar $\mathcal{O}(\Lambda)=\Lambda^{-1}$ up to scheme‑dependent rescaling. This anchors the "encode → operate → \textbf{normalise} → decode" cycle that we use throughout.

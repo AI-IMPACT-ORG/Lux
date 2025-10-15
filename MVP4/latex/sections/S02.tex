@@ -1,0 +1,107 @@
+\section{The Regulator View: Understanding Compilation}
+\label{sec:regularization}
+
+Having established the basic computational framework in Section~\ref{sec:computation-paradigms}, we now explore how regularization provides the mathematical foundation for making computational processes well-defined.
+
+This section builds on the $\mathsf{Gen4}$ primitive, paradigm parameters $\vec{q}$, scale parameter $\Lambda$, and the universal computational cycle from Section~\ref{sec:computation-paradigms}.
+
+\begin{notation}[Formal vs Analytic Usage]
+\label{not:formal-analytic}
+\textbf{Critical Distinction:} Throughout Sections~\ref{sec:computation-paradigms}--\ref{sec:formal-systems}, $\mathcal{G}(z,\bar{z};\vec{q},\Lambda)$ is treated as a \textbf{formal power series}. Analytic claims (convergence, zeta-regularization, spectral properties) appear only in Sections~\ref{sec:unified-theory}--\ref{sec:spectral-gap} under additional hypotheses. This avoids category mistakes between formal algebraic objects and analytic functions.
+\end{notation}
+
+\paragraph{What this section adds}
+We introduce regulator hierarchy, normalisation operator, termination condition, and moduli space of normalized programmes.
+
+The normalisation step in our computational cycle corresponds precisely to choosing regulators that control the behaviour of the $\mathsf{Gen4}$ primitive within the L/B/R structure.
+
+\subsection{Four-Moduli Parametric Normaliser}
+
+We use the **four‑moduli parametric normaliser** ($NF_{\mu_L,\theta_L,\mu_R,\theta_R}$) acting **on headers only**, with left/right scale/phase flows; we refer to the CLASS spec for the exact definition and flow‑compatibility requirements. Here we only use that $NF$ is header‑only and boundary‑aware.
+
+\subsection{The Regulator View of Computation in L/B/R Structure}
+
+The computational process encoding $\to$ operator application $\to$ normalisation (regularization) $\to$ decoding corresponds directly to compilation within the L/B/R structure. The regularization map is:
+\[
+\mathcal{R}_\Lambda: \mathsf{Gen4} \mapsto \mathsf{Gen4}^{\text{reg}} = \sum_{n,m\ge0}\frac{z^n\bar{z}^{\,m}}{n!\,m!}\,\mathcal{Z}_{n,m}(\vec{q})\,\Lambda^{-(n+m)} \cdot e^{-(n+m)/K}
+\]
+where $K \in \mathbb{N}$ is the degree cutoff and $\Lambda \in \mathbb{R}_+$ is the physical scale. The smooth kernel $e^{-(n+m)/K}$ avoids scheme dependence issues.\footnote{Sharp $\Theta$-cutoff is equivalent at observational level.}
+
+The parametric normalizer $NF_{\mu_L,\theta_L,\mu_R,\theta_R}$ couples moduli to normalisation, where $\mu_L, \theta_L, \mu_R, \theta_R \in L$ control scale and phase flows across boundaries.
+
+\subsection{Regulator Hierarchy}
+
+Our framework introduces a natural hierarchy of regulators that control the computational process, providing a systematic way to understand how different levels of regularization interact:
+
+\begin{definition}[Regulator Hierarchy]
+\label{def:regulator-hierarchy}
+\textbf{Conceptual}: Boundary at $\infty$ (universal computation) \\
+\textbf{Operational}: Scale parameter $\Lambda$ \\
+\textbf{Grading}: Three grading parameters $\vec{q}$ \\
+\textbf{State}: Virasoro levels $n, m$
+\end{definition}
+
+\paragraph{Syntactic vs semantic regulators:} Syntactic regulators control typing/arity and grammar constraints; semantic regulators control observable choice and evaluation budget. Write $\llbracket\phi\rrbracket_{\Lambda}^{\text{syn},\text{sem}}$ for evaluation with both regulator types.
+
+\subsection{Termination Condition as Regularization}
+
+A run halts at $T_{\text{halt}} := \inf\{t \geq 0 : \langle \psi(t)|P_{\mathrm{vac}}|\psi(t)\rangle \geq \tau\}$ for fixed $\tau\in(0,1]$. The stopping rule at threshold $\tau$ provides paradigm-independent normalisation criterion.
+
+\subsection{Regularization Principles}
+
+Regularization manifests differently across computational paradigms, but follows universal principles that transcend the specific implementation:
+
+\begin{itemize}
+\item Boundary conditions provide natural stopping criteria for computational processes
+\item normalisation procedures ensure well-defined results across all paradigms
+\item Scale parameters control the computational process through the generating function
+\end{itemize}
+
+\begin{definition}[Program → Coefficients Map and Moduli Stack]
+\label{def:programme-coefficient-map}
+The map from programmes to coefficients: $\mathcal{Z}_{n,m}(\vec{q}) = \sum_{\text{paths }p:\,|p|=(n,m)} w(p;\vec{q})$. The moduli space $\mathcal{M} := [\mathfrak{P} / \sim]$ where $(\text{programme},\text{data})\sim(\text{programme}',\text{data}')$ iff related by normalisation $N$ and RG-preserving isomorphisms.
+\end{definition}
+
+\subsection{Example: Peano universality across views}
+\label{subsec:peano-moduli}
+Let $\mathbf{PA}$ be the Lawvere theory of a natural numbers object (NNO)
+with constants $0$ and successor $S$, and induction.
+
+\paragraph{Four presentations.}
+\begin{itemize}
+\item $\mathbf{TM}$: a register machine for $S$ and primitive recursion on $\mathbb{N}$;
+\item $\mathbf{\Lambda}$: Church numerals with $0,\;S,\;$ and a recursor $R$;
+\item $\mathbf{Path}$: a path-integral model with amplitudes supported on unary steps $n\to n+1$;
+\item $\mathbf{Circ}$: a symmetric monoidal presentation with generators $0,S$ and recursion combinators.
+\end{itemize}
+
+\paragraph{Encoders and normalisation.}
+There are encoders $E_{i\to j}$ sending each presentation to another,
+with $E_{j\to i}\circ E_{i\to j}\simeq N$.
+All four presentations define the same point $[\mathbf{PA}]\in\mathcal{M}$.
+
+\begin{conjecture}[Presentation Alignment]
+\label{conj:alignment}
+The four presentations $\mathbf{TM}$, $\mathbf{\Lambda}$, $\mathbf{Path}$, and $\mathbf{Circ}$ of Peano arithmetic are equivalent under encoder composition and normalisation. The encoders $E_{i\to j}$ preserve the computational semantics while transforming the syntactic presentation.
+\end{conjecture}
+
+\begin{proposition}[Peano equivalence up to normalisation]
+Each presentation of $\mathbf{PA}$ yields the same normalized correlators for
+the generating function $G$, i.e.\ $\mathcal{O}(\Lambda)$ (the global observable defined in Section~\ref{sec:rg-flow})
+is invariant under encoders and normalisation. Hence all four belong to the same moduli point.
+\end{proposition}
+
+\subsection{Summary and Outlook}
+
+This section established the regulator view of computation:
+
+\begin{enumerate}
+\item normalisation step corresponds to choosing appropriate regulators
+\item Regulator hierarchy controls computational process at multiple scales
+\item Termination condition provides paradigm-independent normalisation criterion
+\item Traditional models are different regularization choices within our unified framework
+\end{enumerate}
+
+The regulator view unifies compile-time and runtime aspects through the generating function structure. The next section develops RG machinery showing how regulators evolve toward fixed points (Section~\ref{sec:rg-flow}).
+
+\paragraph{Back to the computation ledger.} Whenever a regulator or observable is introduced here, we retain its computation-domain meaning: $\mathcal{R}_\Lambda$ is simultaneously a physical coarse-graining map and the logic transformer that will be used again when we discuss training dynamics (Section~\ref{sec:llm_rg}). We explicitly note these dual roles so that the logic statements that depend only on the computation ledger remain easy to identify.

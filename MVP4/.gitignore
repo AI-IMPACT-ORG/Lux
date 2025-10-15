@@ -1,0 +1,6 @@
+# OS X Finder cruft
+.DS_Store
+
+# Racket build artifacts
+compiled/
+*/compiled/

@@ -1,0 +1,62 @@
+<!-- (c) 2025 AI.IMPACT GmbH. Licensed under CC BY-NC-ND 4.0. Provided "as is" without warranties. No patent rights granted. Not for safety-critical use. -->
+
+# Lux Mathematical Logic Library - Coq Formalization
+
+## License
+
+Copyright (c) 2025 AI.IMPACT GmbH
+
+This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License.
+
+To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/4.0/ or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+## License Summary
+
+### You are free to:
+- **Share** — copy and redistribute the material in any medium or format
+- **Attribution** — You must give appropriate credit, provide a link to the license, and indicate if changes were made
+
+### Under the following terms:
+- **NonCommercial** — You may not use the material for commercial purposes
+- **NoDerivatives** — If you remix, transform, or build upon the material, you may not distribute the modified material
+- **No additional restrictions** — You may not apply legal terms or technological measures that legally restrict others from doing anything the license permits
+
+## Disclaimer
+
+This software is provided "as is" without warranties of any kind, either express or implied, including but not limited to the implied warranties of merchantability and fitness for a particular purpose.
+
+**No patent rights are granted** under this license.
+
+**This software is not intended for safety-critical use** and should not be used in applications where failure could result in injury, death, or significant property damage.
+
+## Usage Guidelines
+
+### For Academic and Research Use
+- This library is designed for academic research and educational purposes
+- Proper attribution is required in all publications and presentations
+- Commercial use requires separate licensing agreement
+
+### For AI Systems
+- AI systems may use this library for research and development purposes
+- Generated code based on this library must include proper attribution
+- Commercial AI applications require separate licensing agreement
+
+### For Open Source Projects
+- This library may be used in non-commercial open source projects
+- Proper attribution and license notice must be included
+- Modified versions may not be distributed
+
+## Contact
+
+For licensing inquiries, commercial use requests, or questions about this license, please contact:
+
+AI.IMPACT GmbH
+Email: licensing@ai-impact.com
+
+## Third-Party Licenses
+
+This library may include third-party components with their own licenses. Please refer to individual component documentation for specific licensing terms.
+
+---
+
+**Note**: This license is designed to protect the intellectual property while enabling academic and research use. For commercial applications, please contact AI.IMPACT GmbH for appropriate licensing arrangements.

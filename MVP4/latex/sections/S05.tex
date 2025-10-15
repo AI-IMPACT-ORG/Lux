@@ -1,0 +1,218 @@
+\section{Interacting Positive Logic: Formal Definition}
+\label{sec:formal-systems}
+
+§5 provides the formal logic structure underlying §§3-4's RG framework.
+
+Having established the renormalisation framework in Section~\ref{sec:regularization} and its physics realisation through scattering semantics (Section~\ref{sec:scattering-invitation}), we now develop the formal logic structure that underlies it. This section provides the complete specification for the $\mathsf{Gen4}$ primitive introduced in Section~\ref{sec:computation-paradigms}.
+
+The key insight is that our logic operates on a three-layered structure: Left boundary ($L$), Bulk core ($B$), and Right boundary ($R$). This structure naturally arises from the renormalisation group flow and provides the mathematical foundation for all computational paradigms. In the physics domain, this corresponds to the in/out states ($L$/$R$) and bulk dynamics ($B$) of scattering theory.
+
+\begin{notation}[Logic Signature (BNF)]
+\label{not:logic-signature}
+\textbf{Sorts}: $L \mid B \mid R \mid I$ \\
+\textbf{Objects}: $I \mid L \mid B \mid R \mid (\text{Objects} \otimes \text{Objects})$ \\
+\textbf{Primitives}: $\mathsf{Gen4} \mid \text{ad}_0 \mid \text{ad}_1 \mid \text{ad}_2 \mid \text{ad}_3 \mid \oplus_L \mid \otimes_L \mid \oplus_R \mid \otimes_R \mid \oplus_B \mid \otimes_B$ \\
+where $\otimes$ is the SMC tensor and primitives have L/R arity pairs $(\ell,r) \in \mathbb{N} \times \mathbb{N}$.
+\end{notation}
+
+\subsection{Primitive Symbol Set}
+
+The logic includes essential primitive symbols organised by the L/B/R structure. See the boxed grammar above for the complete signature.
+
+\subsection{Domain Translation Architecture}
+
+The primitive symbols correspond to domain-specific concepts through systematic analogies. See Table~\ref{tab:universal-domain-translation} for the complete mapping.
+
+These analogies represent the same underlying computational structure expressed in different domain vocabularies. The logic provides the universal structure; each domain provides the semantic interpretation through systematic translation maps.
+
+\begin{definition}[Domain Ports]
+\label{def:domain-ports}
+Domain ports are interfaces between the constructive core logic and domain-specific semantics. Each port must provide:
+\begin{itemize}
+\item A symmetry group action $G_\Lambda$ on L/R boundaries
+\item A step kernel $K$ for computational dynamics
+\item A PSDM channel family for observable extraction
+\end{itemize}
+Ports externalise irreversibility while keeping the global logic constructive.
+\end{definition}
+
+\textbf{Port obligations:} (S‑matrix port) must provide a $G_\Lambda$–action on L/R, a step kernel $K$, and a PSDM channel family; $S_N$ is defined as in §3A; proofs use only Core triality + PSDM.
+
+\subsection{Design Principles}
+
+The logic is governed by essential design principles that ensure consistency and computational soundness:
+
+\begin{definition}[Core Design Principles]
+\label{def:design-principles}
+The logic follows these fundamental principles:
+
+\textbf{normalisation Principle}: All operations respect idempotent normalisation $N^2 = N$, ensuring well-defined computational results.
+
+\begin{definition}[normalisation Comonad N]
+\label{def:normalisation-comonad}
+The normalisation comonad $N: \mathcal{L} \to \mathcal{L}$ is an idempotent endofunctor with counit $\epsilon: N \to \text{id}$ and comultiplication $\delta: N \to N^2$ satisfying the comonad laws. The idempotency condition $N^2 = N$ ensures that normalisation is a projection onto a well-defined subspace of logical expressions.
+\end{definition}
+
+\textbf{Reversibility Principle}: Operations either preserve information (reversible) or destroy information (irreversible) based on the reversibility constraint.
+
+\textbf{Translation Principle}: The same logical structure applies across domains through systematic translation maps that preserve logical relationships.
+
+\textbf{Conservativity Principle}: Extensions maintain the truth of statements in the original language, ensuring logical consistency.
+\end{definition}
+
+\paragraph{Detailed Axioms.} Complete axiom schemas, inference rules, and formal specifications are provided in Appendix~\ref{app:technical-derivations}.
+
+\subsection{Core Theorems}
+
+The canonical list of core theorems is collected in Appendix~\ref{app:technical-derivations} with detailed statements, scope, and proofs. 
+
+\subsection{Simplified Equality Hierarchy}
+
+\begin{definition}[Simplified Equality Hierarchy]
+\label{def:equality-hierarchy}
+The logic features a three-layer equality hierarchy:
+\begin{itemize}
+\item $\equiv_\star$ (reversible): Equality for reversible computations that preserve information
+\item $\equiv_B$ (bulk): Equality for bulk computations within the L/B/R structure  
+\item $\equiv_{\text{meta}}$ (global): Equality for global computations including irreversible processes
+\end{itemize}
+with hierarchy $\equiv_\star \subseteq \equiv_B \subseteq \equiv_{\text{meta}}$. All comparisons are computed modulo the active quotient mask $qmask \subseteq \{\text{phase}, \text{scale}\}$ (default $\{\text{phase}\}$).
+\end{definition}
+
+\subsection{Context Grammars}
+
+The equality definitions rely on well-typed, single-hole contexts. These are defined by the following complete context grammars:
+
+\begin{definition}[Context Grammars (Complete)]
+\label{def:context-grammars-complete}
+Left contexts $C_L[-]$:
+\begin{align}
+C_L[-] &::= \iota_L ; C_B[-] \quad \text{(lift bulk to L via coupler)} \\
+&\quad | \quad \oplus_L(C_L[-], t_L) \quad | \quad \oplus_L(t_L, C_L[-]) \\
+&\quad | \quad \otimes_L(C_L[-], t_L) \quad | \quad \otimes_L(t_L, C_L[-]) \\
+&\quad | \quad C_L[-] ; \text{id}_L \quad | \quad \text{id}_L ; C_L[-]
+\end{align}
+
+Right contexts $C_R[-]$:
+\begin{align}
+C_R[-] &::= \iota_R ; C_B[-] \\
+&\quad | \quad \oplus_R(C_R[-], t_R) \quad | \quad \oplus_R(t_R, C_R[-]) \\
+&\quad | \quad \otimes_R(C_R[-], t_R) \quad | \quad \otimes_R(t_R, C_R[-]) \\
+&\quad | \quad C_R[-] ; \text{id}_R \quad | \quad \text{id}_R ; C_R[-]
+\end{align}
+
+Bulk contexts $C_B[-]$:
+\begin{align}
+C_B[-] &::= \oplus_B(C_B[-], t_B) \quad | \quad \oplus_B(t_B, C_B[-]) \\
+&\quad | \quad \otimes_B(C_B[-], t_B) \quad | \quad \otimes_B(t_B, C_B[-]) \\
+&\quad | \quad \text{ad}_i(C_B[-]) \\
+&\quad | \quad \mathsf{Gen4}(u, u, u, C_B[-]) \quad | \quad \mathsf{Gen4}(u, u, C_B[-], u) \quad | \quad \mathsf{Gen4}(u, C_B[-], u, u) \quad | \quad \mathsf{Gen4}(C_B[-], u, u, u) \\
+&\quad | \quad (C_B[-]) ; \text{id}_B \quad | \quad \text{id}_B ; (C_B[-])
+\end{align}
+
+where $t_L, t_R, t_B, u$ range over closed terms of the corresponding sorts.
+\end{definition}
+
+\paragraph{Context grammar completeness.} These context grammars provide the complete specification for well-typed, single-hole contexts used in the equality hierarchy definitions. Each context type corresponds to a specific equality notion in the L/B/R structure.
+
+\subsection{Derived Generating Functionals}
+
+The logic includes derived operators of arity 5 and 6 that provide higher-order structure:
+
+\begin{definition}[Derived Generating Functionals]
+\label{def:derived-functionals}
+\textbf{Noe5}: Noether theorem trace \cite{noether1918} (conservation laws). \\
+\textbf{CS5}: Callan–Symanzik trace (RG stationarity). \\
+\textbf{Rice6}: Rice theorem trace \cite{rice1953} (decidability bounds). \\
+\textbf{NR6}: Macro combining all three: $\text{NR6} := \text{Noe5} \oplus_B \text{Rice6} \oplus_B (\text{CS5})^{\otimes_B 2}$.
+\end{definition}
+
+\textbf{Details:} Braided calculus and formal definitions moved to Appendix C.
+
+\subsection{Implementation Correspondence}
+
+The theoretical framework maps to concrete implementation through the MDE pyramid structure. The complete implementation details, including Racket module organisation, API specifications, and performance budgets, are provided in Appendix~\ref{app:implementation}.
+
+\subsection{Conservativity Theorem}
+
+\begin{notation}[Hypotheses]
+\label{not:hypotheses}
+\textbf{Assumptions:} $z,\bar z$ occur only in presentation gauges; rules referencing them are conservative extensions of the base calculus; comparisons computed modulo qmask.
+\end{notation}
+
+\begin{theorem}[Conservativity of Auxiliaries and Extensions]
+\label{thm:conservativity}
+\textbf{Eliminability}: For every sentence $\phi$ in the extended language (with $z, \bar{z}$) there is a sentence $\phi'$ in the base language such that $\phi$ and $\phi'$ are interderivable modulo $\equiv_*$.
+
+\textbf{Conservative Extension}: For any logic extension $\mathcal{L}'$ of base logic $\mathcal{L}$: $\mathcal{L} \vdash \phi$ if and only if $\mathcal{L}' \vdash \phi$ for all formulas $\phi$ in the language of $\mathcal{L}$.
+\end{theorem}
+
+\subsection{Hierarchical Deformation of Truth Systems}
+
+\begin{definition}[Hierarchical Deformation]
+\label{def:hierarchical-deformation}
+A hierarchical deformation of a truth system is a family of truth predicates $\text{True}_\alpha$ indexed by ordinals $\alpha$ such that:
+\begin{align}
+\text{True}_0(\phi) &\Leftrightarrow \text{True}(\phi) \quad \text{(original truth)} \\
+\text{True}_{\alpha+1}(\phi) &\Leftrightarrow \text{True}_\alpha(\phi) \land \text{Consistent}_\alpha(\phi) \\
+\text{True}_\lambda(\phi) &\Leftrightarrow \forall \alpha < \lambda: \text{True}_\alpha(\phi) \quad \text{(limit case)}
+\end{align}
+where $\text{Consistent}_\alpha(\phi)$ ensures consistency at level $\alpha$.
+\end{definition}
+
+\subsection{The Logic Transformer}
+
+\begin{definition}[Logic Transformer]
+\label{def:logic-transformer}
+The logic transformer is a polymorphic generalisation of scaling operators in physics. It is an arity $(2,2)$ operator $\mathcal{T}$ that acts on pairs of formulas and returns pairs of formulas:
+\[
+\mathcal{T}: \mathcal{L} \times \mathcal{L} \to \mathcal{L} \times \mathcal{L}
+\]
+where the transformation preserves the logical structure while introducing scaling behaviour. The operator satisfies:
+\begin{align}
+\mathcal{T}(\phi_1, \phi_2) &= (\mathcal{T}_1(\phi_1, \phi_2), \mathcal{T}_2(\phi_1, \phi_2)) \\
+\mathcal{T}(\text{True}, \text{True}) &= (\text{True}, \text{True}) \quad \text{(preserves truth)}
+\end{align}
+\end{definition}
+
+\subsection{Kernel, Co-kernel, and Spectrum}
+
+\begin{definition}[Kernel and Co-kernel]
+\label{def:kernel-cokernel}
+The kernel $\ker(\mathcal{T}) = \{(\phi_1, \phi_2) : \mathcal{T}(\phi_1, \phi_2) = (\text{True}, \text{True})\}$ and co-kernel $\text{coker}(\mathcal{T}) = \{(\psi_1, \psi_2) : \exists (\phi_1, \phi_2), \mathcal{T}(\phi_1, \phi_2) = (\psi_1, \psi_2)\}$ correspond to reversible and irreversible computations respectively.
+\end{definition}
+
+\begin{definition}[Logic Transformer Spectrum]
+\label{def:logic-spectrum}
+The spectrum consists of eigenvalues $\lambda$ where $\mathcal{T}(\phi_1, \phi_2) = \lambda (\phi_1, \phi_2)$, with a spectral gap between kernel (reversible) and co-kernel (irreversible) computations.
+\end{definition}
+
+\subsection{Connections to Programming Languages and Logic}
+
+\begin{remark}[Partial Self-Evaluation Operator]
+\label{rem:partial-self-evaluation}
+The logic transformer is a "partial self-evaluation" operator in programmeming language theory, implementing compilation as logical transformation.
+\end{remark}
+
+\begin{remark}[Diagonal Lemma Connection]
+\label{rem:diagonal-lemma}
+The logic transformer implements self-referential construction for Gödel's incompleteness theorems \cite{godel1931}, providing the mechanism for undecidable statements.
+\end{remark}
+
+\subsection{Correlator Interpretation}
+
+\begin{definition}[Logic Transformer as Correlator]
+\label{def:logic-correlator}
+The logic transformer acts as a correlator for logical propagation: $(\psi_1, \psi_2) = \mathcal{T}(\phi_1, \phi_2)$ where $(\psi_1, \psi_2)$ represents the logical state after transformation.
+\end{definition}
+
+\subsection{Holographic renormalisation}
+
+\begin{definition}[Holographic renormalisation]
+\label{def:holographic-renorm}
+The logic transformer gives rise to two boundaries with direction, leading to holographic renormalisation (detailed in Section~\ref{sec:boundary-maps}).
+\end{definition}
+
+The logic transformer provides the mathematical foundation unifying computation, logic, and physics. The next section establishes truth as a fixed point under RG flow (Section~\ref{sec:truth-fixed-point}), building on the equality hierarchy defined here.
+
+Spectral notions refer to the transfer operator on correlators (defined in Section~\ref{sec:spectral-gap}), not to the proof calculus itself.

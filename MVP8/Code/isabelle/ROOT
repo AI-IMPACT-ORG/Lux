@@ -1,0 +1,45 @@
+(* ============================================================================ *)
+(* Lux Formal Logic Library - Complete Isabelle Session Definitions *)
+(* ============================================================================ *)
+(* 
+ * This file defines the complete Isabelle sessions for the Lux formal logic library.
+ * Each session corresponds to a layer in the three-tier architecture plus extensions:
+ * 
+ * - Lux_Axioms: Mathematical foundations (A0-A7 axioms, semirings, observers)
+ * - Lux_Core: Definitional layer (triality, reconstitution, generating functional)  
+ * - Lux_Constructive: Constructive extensions (residuals, Karoubi split)
+ * - Lux_Class: Application layer (guarded negation, PSDM, dependent types)
+ * - Lux_Consistency: Mathematical consistency decisions
+ * - Lux_Ports: Domain ports (Turing machines, Lambda calculus, QFT)
+ * - Lux_Tests: Comprehensive test suite
+ * - Lux_Theorems: Extracted theorems and proofs
+ * - Lux_API: Complete library API façade
+ * - Lux_Complete: Full library with all components
+ * 
+ * Sessions are designed for AI-powered software development with stable APIs.
+ *)
+
+session Lux = HOL +
+  options [document = false]
+  directories
+    "Lux"
+    "Lux/Axioms"
+    "Lux/Core"
+    "Lux/Class"
+    "Lux/Consistency"
+    "Lux/Ports"
+    "Lux/Tests"
+    "Lux/Theorems"
+  theories
+    "Lux/Axioms/Atomic"
+    "Lux/Core/Shell"
+    "Lux/Core/Constructive_Logic"
+    "Lux/Class/Class"
+    "Lux/Consistency/Design_Decisions"
+    "Lux/Category_Theory"
+    "Lux/Ports/Domain_Ports"
+    "Lux/Ring_Completion"
+    "Lux/R_Data_System"
+    "Lux/Tests/Comprehensive_Tests"
+    "Lux/Theorems/Extracted_Theorems"
+    "Lux/API"

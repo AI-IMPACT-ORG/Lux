@@ -1,0 +1,25 @@
+-Q Lux Lux
+
+Lux/Util/StdlibImports.v
+Lux/Util/Semiring.v
+Lux/Util/SemiringFunctor.v
+Lux/Util/SemiringTemplate.v
+Lux/Util/ModuleInstantiations.v
+Lux/Core/Signature.v
+Lux/Core/Axioms.v
+Lux/Core/Observers.v
+Lux/Core/NF.v
+Lux/Core/Triality.v
+Lux/Core/RegulatorScheme.v
+Lux/Core/Counterterm.v
+Lux/Core/Cumulants.v
+Lux/Karoubi2BI/Karoubi2BI.v
+Lux/Class/Moduli.v
+Lux/Class/Guarded.v
+Lux/Class/PSDM.v
+Lux/Class/Feynman.v
+Lux/Class/Domain/Boolean.v
+Lux/Class/Domain/Lambda.v
+Lux/Class/Domain/InfoFlow.v
+Lux/Class/Domain/QFT.v
+Lux/Tests/ComprehensiveTests.v

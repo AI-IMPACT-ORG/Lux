@@ -1,0 +1,121 @@
+\section{Universal Domain Translation Map}
+\label{sec:domain-translation-map}
+
+This section provides a comprehensive mapping of how the core generating function framework translates across all domains.
+
+\subsection{Core Generating Function Structure}
+
+The universal generating function $\mathcal{G}(z,\bar{z};\vec{q},\Lambda)$ provides the mathematical foundation that translates consistently across all domains:
+
+\begin{equation}
+\mathcal{G}(z,\bar{z};\vec{q},\Lambda) = \sum_{n,m\ge0}\frac{z^n\bar{z}^{\,m}}{n!\,m!}\,\mathcal{Z}_{n,m}(\vec{q})\,\Lambda^{-(n+m)}
+\label{eq:universal-generating-function}
+\end{equation}
+
+where $z,\bar{z}$ are complex variables, $\vec{q} = (q_1,q_2,q_3)$ are domain parameters, $\Lambda$ is the scale parameter, and $\mathcal{Z}_{n,m}(\vec{q})$ are correlator coefficients.
+
+\begin{table}[h]
+\centering
+\footnotesize
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Symbol} & \textbf{Meaning} \\
+\hline
+$(z,\bar{z})$ & Presentation gauges (eliminable) \\
+$\vec{q}$ & Grading parameters \\
+$\Lambda$ & Scale parameter \\
+$\mathcal{Z}_{n,m}$ & Correlator coefficients \\
+\hline
+\end{tabular}
+\end{table}
+
+\textbf{Units:} If $[\Lambda] = L^{-1}$, then $[\mathcal{Z}_{n,m}] = L^{n+m}$.
+
+\subsection{Comprehensive Domain Translation Table}
+
+\begin{table}[h]
+\centering
+\footnotesize
+\begin{tabular}{|l|p{2cm}|p{2cm}|p{2cm}|p{2cm}|}
+\hline
+\textbf{Component} & \textbf{Computation} & \textbf{Physics} & \textbf{Learning} & \textbf{Number Theory} \\
+\hline
+\multicolumn{5}{|c|}{\textbf{Generating Function $\mathcal{G}(z,\bar{z};\vec{q},\Lambda)$}} \\
+\hline
+Core Function & Computational & Green's function & Training correlators & L-function \\
+\hline
+Variables $z,\bar{z}$ & Register encodings & Momentum & Feature embeddings & Complex variables \\
+\hline
+Parameters $\vec{q}$ & Paradigm gradings & Coupling constants & Model moduli & Spectral parameters \\
+\hline
+Scale $\Lambda$ & Precision & UV cutoff & Training horizon & Spectral cutoff \\
+\hline
+Correlators $\mathcal{Z}_{n,m}$ & Matrix elements & Feynman amplitudes & Training statistics & Spectral coefficients \\
+\hline
+\multicolumn{5}{|c|}{\textbf{Derived Functionals}} \\
+\hline
+Noe5 & Noether theorem & Conservation laws & Training stability & Spectral invariance \\
+\hline
+CS5 & Callan–Symanzik & RG equations & Learning dynamics & Spectral flow \\
+\hline
+Rice6 & Rice theorem & Decoupling theorems & Model generalisation & Spectral gaps \\
+\hline
+NR6 & normalisation & renormalisation & Regularization & Spectral normalisation \\
+\hline
+\multicolumn{5}{|c|}{\textbf{RG Flow and Dynamics}} \\
+\hline
+Beta functions & Computational dynamics & QFT beta functions & Training dynamics & Spectral evolution \\
+\hline
+Fixed points & Computational truth & RG fixed points & Training convergence & Spectral fixed points \\
+\hline
+RG equations & Program correctness & Callan–Symanzik & Learning stability & Spectral consistency \\
+\hline
+Observable $\mathcal{O}(\Lambda)$ & Global observable & Physical observable & Model performance & Spectral observable \\
+\hline
+Anomalous dimension $\gamma$ & Scaling dimension & Field scaling & Model scaling & Spectral scaling \\
+\hline
+RC† constraint & Reversibility & Dagger symmetry & Information preservation & Spectral symmetry \\
+\hline
+\multicolumn{5}{|c|}{\textbf{Equality Hierarchy}} \\
+\hline
+$\equiv_\star$ & Program equivalence & Gauge invariance & Model equivalence & Spectral equivalence \\
+\hline
+$\equiv_B$ & Bulk computation & Bulk physics & Core learning & Core spectral \\
+\hline
+$\equiv_{\text{meta}}$ & Meta-computation & Meta-physics & Meta-learning & Meta-spectral \\
+\hline
+\multicolumn{5}{|c|}{\textbf{L/B/R Structure}} \\
+\hline
+L (Left boundary) & Input encoding & Boundary conditions & Input processing & Left spectral \\
+\hline
+B (Bulk core) & Core computation & Bulk dynamics & Core learning & Core spectral \\
+\hline
+R (Right boundary) & Output decoding & Boundary observables & Output generation & Right spectral \\
+\hline
+\multicolumn{5}{|c|}{\textbf{Information Measures}} \\
+\hline
+c-function & Information content & Central charge \cite{zamolodchikov1986} & Model complexity & Spectral complexity \\
+\hline
+a-function & Anomaly coefficients & Trace anomaly \cite{cardy1988,komargodski2011} & Learning anomalies & Spectral anomalies \\
+\hline
+Fisher metric & Information geometry & Moduli space metric & Learning landscape & Spectral landscape \\
+\hline
+\multicolumn{5}{|c|}{\textbf{Domain-Specific Instantiations}} \\
+\hline
+Turing machines & $\vec{q} = (1,0,0)$ & Classical fields & Deterministic models & Classical spectral \\
+\hline
+Lambda calculus & $\vec{q} = (0,1,0)$ & Quantum fields & Probabilistic models & Quantum spectral \\
+\hline
+Path integrals & $\vec{q} = (0,0,1)$ & Feynman paths & Stochastic models & Path spectral \\
+\hline
+S-matrix semantics & Cross-sections = partial norms of channel-projected outputs; flows supply factorisation/crossing control & S-matrix elements & Channel probabilities & Scattering amplitudes \\
+\hline
+\end{tabular}
+\caption{Universal domain translation map: generating function framework across computation, physics, learning, and number theory.}
+\label{tab:universal-domain-translation}
+\end{table}
+
+This universal domain translation map eliminates repetitive domain explanations throughout the paper. \textbf{All later sections refer to Table 1 for translations.}
+
+
+

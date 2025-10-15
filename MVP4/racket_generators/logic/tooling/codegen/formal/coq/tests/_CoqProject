@@ -1,0 +1,6 @@
+-Q ../lib lib
+-Q tests tests
+tests/generated_CoreTests.v
+tests/generated_PropertyTests.v
+tests/generated_IntegrationTests.v
+tests/generated_TestRunner.v
